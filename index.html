@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ajetrez — Elegí una versión</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#111;color:#eee;margin:0;display:grid;place-items:center;min-height:100dvh}
+    .wrap{max-width:960px;padding:24px}
+    h1{font-weight:900;margin:0 0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:#1c1c1c;border:1px solid #333;border-radius:14px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+    .card h2{margin:0 0 6px}
+    .card p{opacity:.8;margin:0 0 12px}
+    .btn{display:inline-block;padding:.65rem 1rem;border-radius:9999px;border:2px solid #fff;background:#000;color:#fff;text-decoration:none;font-weight:800}
+    .btn:hover{transform:translateY(-1px)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Elegí una versión de Ajetrez</h1>
+    <div class="grid">
+      <div class="card">
+        <h2>Modo simple</h2>
+        <p>8×8 jugable fijo y reglas clásicas 3.0.</p>
+        <a class="btn" href="ajetrez_modo_simple.html">Jugar</a>
+      </div>
+      <div class="card">
+        <h2>Modo amenaza</h2>
+        <p>Príncipe/Princesa rehenes y victoria por liberación.</p>
+        <a class="btn" href="ajetrez_modo_amenaza.html">Jugar</a>
+      </div>
+      <div class="card">
+        <h2>Modo guerra</h2>
+        <p>En preparación (beta).</p>
+        <a class="btn" href="ajetrez_modo_guerra.html">Abrir</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
