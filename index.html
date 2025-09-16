@@ -75,7 +75,7 @@
       <div class="grid" id="cards">
         <div class="card">
           <h2>Modo simple</h2>
-          <p>Juega ajedrez variable en modo clásico.</p>
+          <p>Juga ajedrez variable en modo clásico.</p>
           <a class="btn play" href="ajetrez_modo_simple.html" data-src="ajetrez_modo_simple.html">Jugar</a>
         </div>
         <div class="card">
@@ -104,7 +104,7 @@
       <h1>Instalar o abrir en horizontal</h1>
       <p>En móviles, la experiencia es en <b>horizontal</b> (modo paisaje). Podés instalar como App para abrir siempre a pantalla completa, o abrir ahora.</p>
       <div class="actions">
-        <button class="btn" id="btnOpen">Abrir en horizontal (girá el teléfono si no rota)</button>
+        <button class="btn" id="btnOpen">Abrir en horizontal (si no rota, girá el teléfono)</button>
         <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
         <button class="btn" id="btnOpenNoFS" style="background:#222;color:#fff;border-color:#666">Abrir sin pantalla completa</button>
       </div>
@@ -185,6 +185,58 @@
       landing.style.display = 'none';
     }
 
+    // ===== Ocultar overlays de orientación INTERNOS del juego (mismo origen)
+    function hideInGameOrientationOverlays() {
+      if (!game.contentWindow) return;
+      const win = game.contentWindow;
+      const doc = win.document;
+      if (!doc) return;
+
+      const kill = () => {
+        try {
+          const nodes = Array.from(doc.querySelectorAll('div,section,aside,article,dialog'));
+          for (const el of nodes) {
+            const txt = (el.textContent || '').toLowerCase();
+            if (!txt) continue;
+            // Heurística: textos típicos en tus overlays previos
+            const looksLikeGuard = (txt.includes('gir') && txt.includes('tel')) ||
+                                   txt.includes('orientación') || txt.includes('orientacion') ||
+                                   txt.includes('vertical') || txt.includes('horizontal');
+            if (!looksLikeGuard) continue;
+            const cs = win.getComputedStyle(el);
+            // overlay típico: fixed/absolute + z-index alto + centra o cubre mucho
+            const posOk = ['fixed','absolute','sticky'].includes(cs.position);
+            const zOk = parseInt(cs.zIndex || '0', 10) >= 10;
+            if (posOk && zOk) {
+              el.style.display = 'none';
+              el.style.visibility = 'hidden';
+              el.style.pointerEvents = 'none';
+            }
+          }
+          // IDs comunes por si existen
+          ['rotate-guard','orientation-guard','orientationOverlay','rotateOverlay','orientation-modal','orientation','overlay-rotate']
+            .forEach(id => { const e = doc.getElementById(id); if (e) e.style.display = 'none'; });
+        } catch(e) {}
+      };
+
+      // Ejecutar varias veces por si el juego lo vuelve a crear
+      kill();
+      let runs = 0;
+      const iv = win.setInterval(() => {
+        kill();
+        runs++;
+        if (runs > 15) win.clearInterval(iv); // ~30s si 2s intervalo
+      }, 2000);
+
+      // Observar mutaciones para matar overlays nuevos
+      try {
+        const mo = new win.MutationObserver(kill);
+        mo.observe(doc.documentElement, { childList: true, subtree: true });
+        // Guardar referencia por si hace falta parar luego
+        win.__aj_killMo = mo;
+      } catch(e) {}
+    }
+
     // ===== Flujo al tocar una tarjeta
     document.getElementById('cards').addEventListener('click', async (ev) => {
       const a = ev.target.closest('a.play');
@@ -195,6 +247,8 @@
       if (!isMobile() || isStandalone()) {
         ev.preventDefault();
         showApp(src);
+        // cuando cargue, ocultar overlay interno si lo hubiese
+        game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
         return;
       }
       // En móvil navegador: mostrar overlay con opciones
@@ -208,11 +262,13 @@
       await enterFSandLandscape(document.documentElement);
       hideOverlay();
       showApp(pendingSrc);
+      game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
     });
 
     btnOpenNoFS.addEventListener('click', () => {
       hideOverlay();
       showApp(pendingSrc);
+      game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
     });
 
     // Tap fuera -> intentar también (una vez)
@@ -221,6 +277,7 @@
         await enterFSandLandscape(document.documentElement);
         hideOverlay();
         showApp(pendingSrc);
+        game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
       }
     }, { once: true, passive: true });
 
