@@ -7,28 +7,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Ajetrez">
   <link rel="manifest" href="manifest.json">
-  <title>Ajetrez — Elegí una versión (App / Horizontal móvil)</title>
+  <title>Ajetrez — App / Horizontal móvil (Modo simple directo)</title>
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; background: #111; color: #eee; font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif; }
     a { color: inherit; }
-
-    /* Landing (tarjetas de versiones) */
-    .landing {
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-    .wrap{max-width: 960px; width: 100%;}
-    h1{font-weight:900;margin:0 0 16px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .card{background:#1c1c1c;border:1px solid #333;border-radius:14px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
-    .card h2{margin:0 0 6px}
-    .card p{opacity:.8;margin:0 0 12px}
-    .btn{display:inline-block;padding:.65rem 1rem;border-radius:9999px;border:2px solid #fff;background:#000;color:#fff;text-decoration:none;font-weight:800;cursor:pointer}
-    .btn:hover{transform:translateY(-1px)}
 
     /* App (iframe contenedor) */
     .app { position: fixed; inset: 0; display: none; }
@@ -50,67 +34,45 @@
     .panel h1 { margin: 0 0 .5rem 0; font-size: 1.6rem; }
     .panel p { opacity: .9; line-height: 1.35; margin: .5rem 0 1rem; }
     .actions { display: grid; gap: 10px; margin-top: .75rem; }
-    .panel .btn { width: 100%; font-size: 1.05rem; font-weight: 800; border-radius: 14px; padding: 14px 16px; background:#fff;color:#111 }
+    .panel .btn { width: 100%; font-size: 1.05rem; font-weight: 800; border-radius: 14px; padding: 14px 16px; background:#fff;color:#111; border:2px solid #fff; cursor: pointer; }
     .hint { font-size: .9rem; opacity: .7; margin-top: .5rem; }
 
-    /* Botón para volver al menú (opcional dentro del modo app) */
-    .back {
-      position: fixed; z-index: 60; top: 10px; left: 10px;
-      padding: .5rem .75rem; border-radius: 9999px; border: 2px solid #fff; background:#000; color:#fff; font-weight: 800;
-      display: none;
-    }
-    .app.active + .back { display: inline-block; }
-
-    /* Desktop: no mostrar overlay de toque */
+    /* Desktop: no mostrar overlay */
     @media (min-width: 981px) {
       .overlay { display: none !important; }
     }
+
+    /* Mini toast para errores */
+    .toast{
+      position: fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background: rgba(17,17,17,.92); color:#fff; padding:10px 14px;
+      border-radius:12px; z-index:10000; font-size:14px; line-height:1.3;
+      box-shadow:0 10px 28px rgba(0,0,0,.25); opacity:0; transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show{ opacity:1; transform:translateX(-50%) translateY(-2px); }
   </style>
 </head>
 <body>
-  <!-- Menú con tarjetas -->
-  <section class="landing" id="landing">
-    <div class="wrap">
-      <h1>Elegí una versión de Ajetrez</h1>
-      <div class="grid" id="cards">
-        <div class="card">
-          <h2>Modo simple</h2>
-          <p>Juga ajedrez variable en modo clásico.</p>
-          <a class="btn play" href="ajetrez_modo_simple.html" data-src="ajetrez_modo_simple.html">Jugar</a>
-        </div>
-        <div class="card">
-          <h2>Modo amenaza</h2>
-          <p>Un toque especial de conflicto entre oponentes.</p>
-          <a class="btn play" href="ajetrez_modo_amenaza.html" data-src="ajetrez_modo_amenaza.html">Jugar</a>
-        </div>
-        <div class="card">
-          <h2>Modo guerra</h2>
-          <p>Una batalla épica en el tablero variable.</p>
-          <a class="btn play" href="ajetrez_modo_guerra.html" data-src="ajetrez_modo_guerra.html">Abrir</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Contenedor App (iframe a pantalla completa) -->
   <div class="app" id="app">
     <iframe id="game" src="" allow="fullscreen *" allowfullscreen></iframe>
   </div>
-  <button class="back" id="btnBack" type="button" aria-label="Volver al menú">Menú</button>
 
   <!-- Overlay de “Instalar / Abrir en horizontal” -->
   <div class="overlay" id="overlay">
     <div class="panel">
-      <h1>Instalar o abrir en horizontal</h1>
-      <p>En móviles, la experiencia es en <b>horizontal</b> (modo paisaje). Podés instalar como App para abrir siempre a pantalla completa, o abrir ahora.</p>
+      <h1>Ajetrez</h1>
+      <p>En móviles, la experiencia es en <b>horizontal</b>. Podés instalar como App para abrir siempre a pantalla completa, o abrir ahora.</p>
       <div class="actions">
-        <button class="btn" id="btnOpen">Abrir en horizontal (si no rota, girá el teléfono)</button>
+        <button class="btn" id="btnOpen">Abrir en horizontal (girá el teléfono si no rota)</button>
         <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
         <button class="btn" id="btnOpenNoFS" style="background:#222;color:#fff;border-color:#666">Abrir sin pantalla completa</button>
       </div>
       <div class="hint">En algunos navegadores iOS, el bloqueo de orientación requiere tener la App instalada.</div>
     </div>
   </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     // ===== PWA: registrar service worker (si existe)
@@ -127,20 +89,31 @@
     function isMobile() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
+    function showOverlay() { overlay.classList.add('show'); }
+    function hideOverlay() { overlay.classList.remove('show'); }
+    function showApp(src) { game.src = src; app.classList.add('active'); }
+    function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 3400); }
 
-    const landing = document.getElementById('landing');
     const app = document.getElementById('app');
     const game = document.getElementById('game');
     const overlay = document.getElementById('overlay');
     const btnOpen = document.getElementById('btnOpen');
     const btnInstall = document.getElementById('btnInstall');
     const btnOpenNoFS = document.getElementById('btnOpenNoFS');
-    const btnBack = document.getElementById('btnBack');
 
-    let pendingSrc = ''; // versión elegida
-    let deferredPrompt = null;
+    // === Candidatos típicos para el archivo del modo simple ===
+    const CANDIDATES = [
+      'ajetrez_modo_simple.html',
+      'juego.html',
+      'modo_simple.html',
+      'index_simple.html',
+      'simple.html',
+      'ajedrez_simple.html'
+    ];
+    let SIMPLE_SRC = null;
 
     // ===== Instalar PWA cuando el navegador lo permite
+    let deferredPrompt = null;
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
@@ -167,126 +140,68 @@
         const lock = screen.orientation?.lock;
         if (typeof lock === 'function') {
           try { await lock.call(screen.orientation, 'landscape'); }
-          catch(e1) {
-            try { await lock.call(screen.orientation, 'landscape-primary'); }
-            catch(e2) { /* iOS / restricciones */ }
-          }
+          catch(e1) { try { await lock.call(screen.orientation, 'landscape-primary'); } catch(e2) {} }
         }
       } catch(e) {}
     }
 
-    function showOverlay() { overlay.classList.add('show'); }
-    function hideOverlay() { overlay.classList.remove('show'); }
-
-    function showApp(src) {
-      if (!src) return;
-      game.src = src;
-      app.classList.add('active');
-      landing.style.display = 'none';
-    }
-
-    // ===== Ocultar overlays de orientación INTERNOS del juego (mismo origen)
-    function hideInGameOrientationOverlays() {
-      if (!game.contentWindow) return;
-      const win = game.contentWindow;
-      const doc = win.document;
-      if (!doc) return;
-
-      const kill = () => {
+    // ===== Resolver automáticamente qué archivo existe
+    async function resolveSimpleSrc(){
+      for (const path of CANDIDATES){
         try {
-          const nodes = Array.from(doc.querySelectorAll('div,section,aside,article,dialog'));
-          for (const el of nodes) {
-            const txt = (el.textContent || '').toLowerCase();
-            if (!txt) continue;
-            // Heurística: textos típicos en tus overlays previos
-            const looksLikeGuard = (txt.includes('gir') && txt.includes('tel')) ||
-                                   txt.includes('orientación') || txt.includes('orientacion') ||
-                                   txt.includes('vertical') || txt.includes('horizontal');
-            if (!looksLikeGuard) continue;
-            const cs = win.getComputedStyle(el);
-            // overlay típico: fixed/absolute + z-index alto + centra o cubre mucho
-            const posOk = ['fixed','absolute','sticky'].includes(cs.position);
-            const zOk = parseInt(cs.zIndex || '0', 10) >= 10;
-            if (posOk && zOk) {
-              el.style.display = 'none';
-              el.style.visibility = 'hidden';
-              el.style.pointerEvents = 'none';
-            }
-          }
-          // IDs comunes por si existen
-          ['rotate-guard','orientation-guard','orientationOverlay','rotateOverlay','orientation-modal','orientation','overlay-rotate']
-            .forEach(id => { const e = doc.getElementById(id); if (e) e.style.display = 'none'; });
-        } catch(e) {}
-      };
+          // 1) HEAD (rápido y sin descargar)
+          let r = await fetch(path, { method: 'HEAD', cache: 'no-store' });
+          if (r.ok) return path;
 
-      // Ejecutar varias veces por si el juego lo vuelve a crear
-      kill();
-      let runs = 0;
-      const iv = win.setInterval(() => {
-        kill();
-        runs++;
-        if (runs > 15) win.clearInterval(iv); // ~30s si 2s intervalo
-      }, 2000);
-
-      // Observar mutaciones para matar overlays nuevos
-      try {
-        const mo = new win.MutationObserver(kill);
-        mo.observe(doc.documentElement, { childList: true, subtree: true });
-        // Guardar referencia por si hace falta parar luego
-        win.__aj_killMo = mo;
-      } catch(e) {}
+          // 2) Algunos hostings bloquean HEAD -> probar GET (sin cache)
+          r = await fetch(path, { method: 'GET', cache: 'no-store' });
+          if (r.ok) return path;
+        } catch(e){ /* ignorar y probar el siguiente */ }
+      }
+      return null;
     }
 
-    // ===== Flujo al tocar una tarjeta
-    document.getElementById('cards').addEventListener('click', async (ev) => {
-      const a = ev.target.closest('a.play');
-      if (!a) return;
-      const src = a.dataset.src || a.getAttribute('href') || '';
-      if (!src) return;
-      // En modo app o en desktop, abrir directo
-      if (!isMobile() || isStandalone()) {
-        ev.preventDefault();
-        showApp(src);
-        // cuando cargue, ocultar overlay interno si lo hubiese
-        game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
+    // ===== Flujo inicial
+    (async function init(){
+      SIMPLE_SRC = await resolveSimpleSrc();
+      if (!SIMPLE_SRC) {
+        toast('No encontré el archivo del Modo simple. Coloca "ajetrez_modo_simple.html" junto a este index.');
+        // Como último recurso, mantenemos overlay para que el usuario lea el mensaje en móvil
+        if (isMobile() && !isStandalone()) showOverlay();
         return;
       }
-      // En móvil navegador: mostrar overlay con opciones
-      ev.preventDefault();
-      pendingSrc = src;
-      showOverlay();
-    });
+
+      if (!isMobile() || isStandalone()) {
+        // Desktop o PWA instalada: abrir directo modo simple
+        showApp(SIMPLE_SRC);
+      } else {
+        // Móvil navegador: mostrar overlay
+        showOverlay();
+      }
+    })();
 
     // ===== Botones del overlay
     btnOpen.addEventListener('click', async () => {
+      if (!SIMPLE_SRC) { toast('Archivo del Modo simple no encontrado.'); return; }
       await enterFSandLandscape(document.documentElement);
       hideOverlay();
-      showApp(pendingSrc);
-      game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
+      showApp(SIMPLE_SRC);
     });
 
     btnOpenNoFS.addEventListener('click', () => {
+      if (!SIMPLE_SRC) { toast('Archivo del Modo simple no encontrado.'); return; }
       hideOverlay();
-      showApp(pendingSrc);
-      game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
+      showApp(SIMPLE_SRC);
     });
 
     // Tap fuera -> intentar también (una vez)
     window.addEventListener('touchend', async () => {
-      if (overlay.classList.contains('show')) {
+      if (overlay.classList.contains('show') && SIMPLE_SRC) {
         await enterFSandLandscape(document.documentElement);
         hideOverlay();
-        showApp(pendingSrc);
-        game.addEventListener('load', hideInGameOrientationOverlays, { once: true });
+        showApp(SIMPLE_SRC);
       }
     }, { once: true, passive: true });
-
-    // ===== Volver al menú
-    btnBack.addEventListener('click', () => {
-      app.classList.remove('active');
-      game.src = '';
-      landing.style.display = '';
-    });
   </script>
 </body>
 </html>
