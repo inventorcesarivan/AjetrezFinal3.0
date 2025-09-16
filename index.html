@@ -7,112 +7,76 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Ajetrez">
   <link rel="manifest" href="manifest.json">
-  <title>Ajetrez — App / Horizontal móvil (Modo simple directo)</title>
+  <title>Ajetrez — Móvil Fullscreen</title>
   <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; background: #111; color: #eee; font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif; }
-    a { color: inherit; }
-
-    /* App (iframe contenedor) */
-    .app { position: fixed; inset: 0; display: none; }
-    .app.active { display: flex; }
+    html, body { height: 100%; margin: 0; padding: 0; background: #111; }
+    body { display: grid; place-items: center; }
+    .app { position: fixed; inset: 0; display: flex; }
     iframe#game { border: 0; width: 100vw; height: 100dvh; flex: 1; }
-
-    /* Overlay de “Instalar / Abrir en horizontal” (solo móvil) */
     .overlay {
       position: fixed; inset: 0;
-      display: none; align-items: center; justify-content: center;
-      background: rgba(0,0,0,0.85); color: #fff; z-index: 50; text-align: center;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.85); color: #fff; z-index: 10; text-align: center;
       padding: 2rem;
     }
-    .overlay.show { display: flex; }
     .panel {
-      width: min(90vw, 580px);
+      max-width: min(90vw, 580px);
       border-radius: 16px; padding: 20px 18px; background: #1d1d1d; box-shadow: 0 10px 30px rgba(0,0,0,.5);
     }
     .panel h1 { margin: 0 0 .5rem 0; font-size: 1.6rem; }
     .panel p { opacity: .9; line-height: 1.35; margin: .5rem 0 1rem; }
+    .btn {
+      width: 100%; font-size: 1.2rem; font-weight: 800;
+      border: 0; border-radius: 14px; padding: 14px 16px;
+      background: #fff; color: #111;
+    }
     .actions { display: grid; gap: 10px; margin-top: .75rem; }
-    .panel .btn { width: 100%; font-size: 1.05rem; font-weight: 800; border-radius: 14px; padding: 14px 16px; background:#fff;color:#111; border:2px solid #fff; cursor: pointer; }
     .hint { font-size: .9rem; opacity: .7; margin-top: .5rem; }
-
-    /* Desktop: no mostrar overlay */
     @media (min-width: 981px) {
-      .overlay { display: none !important; }
+      .overlay { display: none; } /* Solo móvil */
     }
-
-    /* Mini toast para errores */
-    .toast{
-      position: fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background: rgba(17,17,17,.92); color:#fff; padding:10px 14px;
-      border-radius:12px; z-index:10000; font-size:14px; line-height:1.3;
-      box-shadow:0 10px 28px rgba(0,0,0,.25); opacity:0; transition: opacity .2s ease, transform .2s ease;
-    }
-    .toast.show{ opacity:1; transform:translateX(-50%) translateY(-2px); }
   </style>
 </head>
 <body>
-  <!-- Contenedor App (iframe a pantalla completa) -->
-  <div class="app" id="app">
-    <iframe id="game" src="" allow="fullscreen *" allowfullscreen></iframe>
-  </div>
-
-  <!-- Overlay de “Instalar / Abrir en horizontal” -->
-  <div class="overlay" id="overlay">
-    <div class="panel">
-      <h1>Ajetrez</h1>
-      <p>En móviles, la experiencia es en <b>horizontal</b>. Podés instalar como App para abrir siempre a pantalla completa, o abrir ahora.</p>
-      <div class="actions">
-        <button class="btn" id="btnOpen">Abrir en horizontal (girá el teléfono si no rota)</button>
-        <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
-        <button class="btn" id="btnOpenNoFS" style="background:#222;color:#fff;border-color:#666">Abrir sin pantalla completa</button>
+  <div class="app">
+    <!-- Carga directa del modo simple -->
+    <iframe id="game" src="ajetrez_modo_simple.html" allow="fullscreen *; gamepad *; screen-wake-lock; xr-spatial-tracking" allowfullscreen></iframe>
+    <div class="overlay" id="overlay">
+      <div class="panel">
+        <h1>Modo horizontal</h1>
+        <p>En móviles, hace falta un toque para activar pantalla completa. Se intentará bloquear la orientación en horizontal.</p>
+        <div class="actions">
+          <button class="btn" id="btnGo">Abrir en horizontal (pantalla completa)</button>
+          <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
+        </div>
+        <div class="hint">Sugerido: instalá la App para abrir siempre a pantalla completa.</div>
       </div>
-      <div class="hint">En algunos navegadores iOS, el bloqueo de orientación requiere tener la App instalada.</div>
     </div>
   </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script>
-    // ===== PWA: registrar service worker (si existe)
+    // PWA: registrar service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
 
-    // ===== Utilidades
+    // Detectar si ya corre como app instalada
     function isStandalone() {
       return window.matchMedia('(display-mode: fullscreen)').matches ||
              window.matchMedia('(display-mode: standalone)').matches ||
              window.navigator.standalone === true;
     }
-    function isMobile() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-    function showOverlay() { overlay.classList.add('show'); }
-    function hideOverlay() { overlay.classList.remove('show'); }
-    function showApp(src) { game.src = src; app.classList.add('active'); }
-    function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 3400); }
 
-    const app = document.getElementById('app');
-    const game = document.getElementById('game');
     const overlay = document.getElementById('overlay');
-    const btnOpen = document.getElementById('btnOpen');
+    const btnGo = document.getElementById('btnGo');
     const btnInstall = document.getElementById('btnInstall');
-    const btnOpenNoFS = document.getElementById('btnOpenNoFS');
+    const game = document.getElementById('game');
 
-    // === Candidatos típicos para el archivo del modo simple ===
-    const CANDIDATES = [
-      'ajetrez_modo_simple.html',
-      'juego.html',
-      'modo_simple.html',
-      'index_simple.html',
-      'simple.html',
-      'ajedrez_simple.html'
-    ];
-    let SIMPLE_SRC = null;
+    // Si ya está en modo app, ocultar overlay
+    if (isStandalone()) {
+      overlay.style.display = 'none';
+    }
 
-    // ===== Instalar PWA cuando el navegador lo permite
+    // Soporte de instalación (Android/Chrome)
     let deferredPrompt = null;
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
@@ -126,82 +90,45 @@
       deferredPrompt = null;
     });
 
-    // ===== Intento de fullscreen + bloqueo a horizontal
-    async function enterFSandLandscape(target) {
+    async function enterFS(target) {
       const el = target || document.documentElement;
       let p;
-      try { p = el.requestFullscreen?.(); } catch(e) {}
-      if (!p) try { p = el.webkitRequestFullscreen?.(); } catch(e) {}
-      if (!p) try { p = el.mozRequestFullScreen?.(); } catch(e) {}
-      if (p?.catch) { try { await p; } catch(e) {} }
-
-      // Intento de bloqueo a orientación landscape
-      try {
-        const lock = screen.orientation?.lock;
-        if (typeof lock === 'function') {
-          try { await lock.call(screen.orientation, 'landscape'); }
-          catch(e1) { try { await lock.call(screen.orientation, 'landscape-primary'); } catch(e2) {} }
-        }
-      } catch(e) {}
+      try { p = el.requestFullscreen?.(); } catch(e){}
+      if (!p) try { p = el.webkitRequestFullscreen?.(); } catch(e){}
+      if (!p) try { p = el.mozRequestFullScreen?.(); } catch(e){}
+      if (p?.catch) { p.catch(()=>{}); }
+      try { await screen.orientation.lock('landscape'); } catch(e){}
     }
 
-    // ===== Resolver automáticamente qué archivo existe
-    async function resolveSimpleSrc(){
-      for (const path of CANDIDATES){
-        try {
-          // 1) HEAD (rápido y sin descargar)
-          let r = await fetch(path, { method: 'HEAD', cache: 'no-store' });
-          if (r.ok) return path;
-
-          // 2) Algunos hostings bloquean HEAD -> probar GET (sin cache)
-          r = await fetch(path, { method: 'GET', cache: 'no-store' });
-          if (r.ok) return path;
-        } catch(e){ /* ignorar y probar el siguiente */ }
-      }
-      return null;
+    // Si no es app instalada, pedir gesto para FS
+    if (!isStandalone()) {
+      // Intento inicial (algunos navegadores permiten si hubo gesto previo de navegación)
+      setTimeout(()=> enterFS(document.documentElement), 0);
+      // Mostrar overlay hasta que el usuario toque
+      overlay.style.display = 'flex';
     }
 
-    // ===== Flujo inicial
-    (async function init(){
-      SIMPLE_SRC = await resolveSimpleSrc();
-      if (!SIMPLE_SRC) {
-        toast('No encontré el archivo del Modo simple. Coloca "ajetrez_modo_simple.html" junto a este index.');
-        // Como último recurso, mantenemos overlay para que el usuario lea el mensaje en móvil
-        if (isMobile() && !isStandalone()) showOverlay();
-        return;
-      }
-
-      if (!isMobile() || isStandalone()) {
-        // Desktop o PWA instalada: abrir directo modo simple
-        showApp(SIMPLE_SRC);
-      } else {
-        // Móvil navegador: mostrar overlay
-        showOverlay();
-      }
-    })();
-
-    // ===== Botones del overlay
-    btnOpen.addEventListener('click', async () => {
-      if (!SIMPLE_SRC) { toast('Archivo del Modo simple no encontrado.'); return; }
-      await enterFSandLandscape(document.documentElement);
-      hideOverlay();
-      showApp(SIMPLE_SRC);
+    function done() { overlay.style.display = 'none'; }
+    btnGo.addEventListener('click', async () => {
+      await enterFS(document.documentElement);
+      done();
     });
 
-    btnOpenNoFS.addEventListener('click', () => {
-      if (!SIMPLE_SRC) { toast('Archivo del Modo simple no encontrado.'); return; }
-      hideOverlay();
-      showApp(SIMPLE_SRC);
-    });
-
-    // Tap fuera -> intentar también (una vez)
+    // Toque en cualquier lado también intenta FS (una vez)
     window.addEventListener('touchend', async () => {
-      if (overlay.classList.contains('show') && SIMPLE_SRC) {
-        await enterFSandLandscape(document.documentElement);
-        hideOverlay();
-        showApp(SIMPLE_SRC);
+      if (overlay.style.display !== 'none') {
+        await enterFS(document.documentElement);
+        done();
       }
     }, { once: true, passive: true });
+
+    // Si sale de FS en navegador, volver a mostrar el overlay
+    function fsActive(){ return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement; }
+    document.addEventListener('fullscreenchange', () => {
+      if (!fsActive() && !isStandalone()) {
+        overlay.style.display = 'flex';
+      }
+    });
   </script>
 </body>
 </html>
