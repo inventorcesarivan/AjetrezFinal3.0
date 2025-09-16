@@ -65,18 +65,6 @@
     @media (min-width: 981px) {
       .overlay { display: none !important; }
     }
-
-    /* Guard de orientación (bloquea hasta que esté en horizontal) */
-    .rotate-guard{
-      position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
-      background: #000; color: #fff; z-index: 70; text-align: center; padding: 2rem;
-    }
-    .rotate-guard.show{ display:flex; }
-    .rotate-guard .box{
-      max-width: 560px; border: 2px dashed #666; border-radius: 16px; padding: 20px;
-    }
-    .rotate-guard h2{ margin: 0 0 .5rem; }
-    .rotate-guard p{ opacity:.85; margin:.25rem 0 0; }
   </style>
 </head>
 <body>
@@ -114,21 +102,13 @@
   <div class="overlay" id="overlay">
     <div class="panel">
       <h1>Instalar o abrir en horizontal</h1>
-      <p>En móviles, la experiencia es en <b>horizontal</b> (modo paisaje). Podés instalar como App para abrir siempre a pantalla completa, o abrir ahora y girar el teléfono.</p>
+      <p>En móviles, la experiencia es en <b>horizontal</b> (modo paisaje). Podés instalar como App para abrir siempre a pantalla completa, o abrir ahora.</p>
       <div class="actions">
-        <button class="btn" id="btnOpen">Abrir en horizontal</button>
+        <button class="btn" id="btnOpen">Abrir en horizontal (girá el teléfono si no rota)</button>
         <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
         <button class="btn" id="btnOpenNoFS" style="background:#222;color:#fff;border-color:#666">Abrir sin pantalla completa</button>
       </div>
-      <div class="hint">Si no rota automáticamente, girá el teléfono a horizontal o desbloqueá la rotación. En iOS, el bloqueo de orientación puede requerir que la App esté instalada.</div>
-    </div>
-  </div>
-
-  <!-- Guard que exige horizontal -->
-  <div class="rotate-guard" id="rotateGuard" aria-hidden="true">
-    <div class="box">
-      <h2>Girá tu teléfono</h2>
-      <p>Para jugar Ajetrez, colocá el dispositivo en <b>horizontal</b>.</p>
+      <div class="hint">En algunos navegadores iOS, el bloqueo de orientación requiere tener la App instalada.</div>
     </div>
   </div>
 
@@ -147,18 +127,11 @@
     function isMobile() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
-    function isLandscape(){
-      // Fallback a matchMedia si screen.orientation no es confiable
-      if (window.matchMedia) return window.matchMedia('(orientation: landscape)').matches;
-      const w = window.innerWidth, h = window.innerHeight;
-      return w > h;
-    }
 
     const landing = document.getElementById('landing');
     const app = document.getElementById('app');
     const game = document.getElementById('game');
     const overlay = document.getElementById('overlay');
-    const rotateGuard = document.getElementById('rotateGuard');
     const btnOpen = document.getElementById('btnOpen');
     const btnInstall = document.getElementById('btnInstall');
     const btnOpenNoFS = document.getElementById('btnOpenNoFS');
@@ -204,21 +177,12 @@
 
     function showOverlay() { overlay.classList.add('show'); }
     function hideOverlay() { overlay.classList.remove('show'); }
-    function showGuard() { rotateGuard.classList.add('show'); rotateGuard.setAttribute('aria-hidden', 'false'); }
-    function hideGuard() { rotateGuard.classList.remove('show'); rotateGuard.setAttribute('aria-hidden', 'true'); }
 
     function showApp(src) {
       if (!src) return;
       game.src = src;
       app.classList.add('active');
       landing.style.display = 'none';
-      enforceLandscapeGuard();
-    }
-
-    function enforceLandscapeGuard(){
-      if (!isMobile()) { hideGuard(); return; }
-      if (isLandscape()) { hideGuard(); }
-      else { showGuard(); }
     }
 
     // ===== Flujo al tocar una tarjeta
@@ -260,20 +224,11 @@
       }
     }, { once: true, passive: true });
 
-    // Monitorear cambios de orientación para ocultar/mostrar guard
-    ['orientationchange', 'resize'].forEach(evt => {
-      window.addEventListener(evt, () => {
-        if (!app.classList.contains('active')) return;
-        enforceLandscapeGuard();
-      });
-    });
-
     // ===== Volver al menú
     btnBack.addEventListener('click', () => {
       app.classList.remove('active');
       game.src = '';
       landing.style.display = '';
-      hideGuard();
     });
   </script>
 </body>
