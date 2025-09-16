@@ -12573,7 +12573,27 @@ function showToast(){
   console.log('[AJ] Option C activada: 3 perfiles + libro + variación.');
 })();
 </script>
-  <script src="auto-portrait-fullscreen.js"></script>
+
+<!-- AJ: Forzar orientación horizontal dentro del juego -->
+<script id="aj-force-landscape">
+(function(){
+  const canLock = () => !!(screen && screen.orientation && typeof screen.orientation.lock === 'function');
+  async function tryLock(){
+    try { if (canLock()) await screen.orientation.lock('landscape'); } catch(e){}
+  }
+  // Intentos iniciales y reintentos en eventos típicos de gesto/estado
+  tryLock();
+  setTimeout(tryLock, 200);
+  setTimeout(tryLock, 800);
+  window.addEventListener('click', tryLock, { once:true, passive:true });
+  window.addEventListener('touchend', tryLock, { once:true, passive:true });
+  window.addEventListener('keydown', tryLock, { once:true });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tryLock(); });
+  document.addEventListener('fullscreenchange', tryLock);
+  window.addEventListener('orientationchange', tryLock);
+})();
+</script>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
