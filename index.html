@@ -1,42 +1,241 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Ajetrez — Elegí una versión</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ajetrez">
+  <link rel="manifest" href="manifest.json">
+  <title>Ajetrez — Elegí una versión (App / Vertical móvil)</title>
   <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#111;color:#eee;margin:0;display:grid;place-items:center;min-height:100dvh}
-    .wrap{max-width:960px;padding:24px}
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: #111; color: #eee; font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif; }
+    a { color: inherit; }
+
+    /* Landing (tarjetas de versiones) */
+    .landing {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .wrap{max-width: 960px; width: 100%;}
     h1{font-weight:900;margin:0 0 16px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
     .card{background:#1c1c1c;border:1px solid #333;border-radius:14px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
     .card h2{margin:0 0 6px}
     .card p{opacity:.8;margin:0 0 12px}
-    .btn{display:inline-block;padding:.65rem 1rem;border-radius:9999px;border:2px solid #fff;background:#000;color:#fff;text-decoration:none;font-weight:800}
+    .btn{display:inline-block;padding:.65rem 1rem;border-radius:9999px;border:2px solid #fff;background:#000;color:#fff;text-decoration:none;font-weight:800;cursor:pointer}
     .btn:hover{transform:translateY(-1px)}
+
+    /* App (iframe contenedor) */
+    .app { position: fixed; inset: 0; display: none; }
+    .app.active { display: flex; }
+    iframe#game { border: 0; width: 100vw; height: 100dvh; flex: 1; }
+
+    /* Overlay de “Instalar / Abrir en vertical” (solo móvil) */
+    .overlay {
+      position: fixed; inset: 0;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.85); color: #fff; z-index: 50; text-align: center;
+      padding: 2rem;
+    }
+    .overlay.show { display: flex; }
+    .panel {
+      width: min(90vw, 580px);
+      border-radius: 16px; padding: 20px 18px; background: #1d1d1d; box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .panel h1 { margin: 0 0 .5rem 0; font-size: 1.6rem; }
+    .panel p { opacity: .9; line-height: 1.35; margin: .5rem 0 1rem; }
+    .actions { display: grid; gap: 10px; margin-top: .75rem; }
+    .panel .btn { width: 100%; font-size: 1.05rem; font-weight: 800; border-radius: 14px; padding: 14px 16px; background:#fff;color:#111 }
+    .hint { font-size: .9rem; opacity: .7; margin-top: .5rem; }
+
+    /* Botón para volver al menú (opcional dentro del modo app) */
+    .back {
+      position: fixed; z-index: 60; top: 10px; left: 10px;
+      padding: .5rem .75rem; border-radius: 9999px; border: 2px solid #fff; background:#000; color:#fff; font-weight: 800;
+      display: none;
+    }
+    .app.active + .back { display: inline-block; }
+
+    /* Desktop: no mostrar overlay de toque */
+    @media (min-width: 981px) {
+      .overlay { display: none !important; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Elegí una versión de Ajetrez</h1>
-    <div class="grid">
-      <div class="card">
-        <h2>Modo simple</h2>
-        <p>Juega ajedrez variable en modo clásico</p>
-        <a class="btn" href="ajetrez_modo_simple.html">Jugar</a>
-      </div>
-      <div class="card">
-        <h2>Modo amenaza</h2>
-        <p>Juega Ajedrez variable con un toque especial de conflicto entre oponentes.</p>
-        <a class="btn" href="ajetrez_modo_amenaza.html">Jugar</a>
-      </div>
-      <div class="card">
-        <h2>Modo guerra</h2>
-        <p>Juega Ajedrez variable en una batalla épica.</p>
-        <a class="btn" href="ajetrez_modo_guerra.html">Abrir</a>
+  <!-- Menú con tarjetas -->
+  <section class="landing" id="landing">
+    <div class="wrap">
+      <h1>Elegí una versión de Ajetrez</h1>
+      <div class="grid" id="cards">
+        <div class="card">
+          <h2>Modo simple</h2>
+          <p>Juega ajedrez variable en modo clásico.</p>
+          <a class="btn play" href="ajetrez_modo_simple.html" data-src="ajetrez_modo_simple.html">Jugar</a>
+        </div>
+        <div class="card">
+          <h2>Modo amenaza</h2>
+          <p>Un toque especial de conflicto entre oponentes.</p>
+          <a class="btn play" href="ajetrez_modo_amenaza.html" data-src="ajetrez_modo_amenaza.html">Jugar</a>
+        </div>
+        <div class="card">
+          <h2>Modo guerra</h2>
+          <p>Una batalla épica en el tablero variable.</p>
+          <a class="btn play" href="ajetrez_modo_guerra.html" data-src="ajetrez_modo_guerra.html">Abrir</a>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- Contenedor App (iframe a pantalla completa) -->
+  <div class="app" id="app">
+    <iframe id="game" src="" allow="fullscreen *" allowfullscreen></iframe>
   </div>
-  <script src="auto-portrait-fullscreen.js"></script>
+  <button class="back" id="btnBack" type="button" aria-label="Volver al menú">Menú</button>
+
+  <!-- Overlay de “Instalar / Abrir en vertical” -->
+  <div class="overlay" id="overlay">
+    <div class="panel">
+      <h1>Instalar o abrir en vertical</h1>
+      <p>En móviles, se recomienda instalar como App para abrir siempre a pantalla completa. O bien, podés abrir el juego ahora en orientación vertical.</p>
+      <div class="actions">
+        <button class="btn" id="btnOpen">Abrir en vertical</button>
+        <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
+        <button class="btn" id="btnOpenNoFS" style="background:#222;color:#fff;border-color:#666">Abrir sin pantalla completa</button>
+      </div>
+      <div class="hint">Consejo: si al abrir no rota, girá el teléfono a vertical o desbloqueá la rotación. En iOS, la orientación forzada puede requerir que la App esté instalada.</div>
+    </div>
+  </div>
+
+  <script>
+    // ===== PWA: registrar service worker (si existe)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+
+    // ===== Utilidades de modo app / standalone
+    function isStandalone() {
+      return window.matchMedia('(display-mode: fullscreen)').matches ||
+             window.matchMedia('(display-mode: standalone)').matches ||
+             window.navigator.standalone === true;
+    }
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    const landing = document.getElementById('landing');
+    const app = document.getElementById('app');
+    const game = document.getElementById('game');
+    const overlay = document.getElementById('overlay');
+    const btnOpen = document.getElementById('btnOpen');
+    const btnInstall = document.getElementById('btnInstall');
+    const btnOpenNoFS = document.getElementById('btnOpenNoFS');
+    const btnBack = document.getElementById('btnBack');
+
+    let pendingSrc = ''; // versión elegida
+
+    // ===== Mostrar botón "Instalar" cuando el navegador lo permite
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      btnInstall.style.display = 'block';
+    });
+    btnInstall.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice.catch(()=>{});
+      deferredPrompt = null;
+    });
+
+    // ===== Intento de fullscreen + bloqueo a vertical
+    async function enterFSandPortrait(target) {
+      const el = target || document.documentElement;
+      let p;
+      try { p = el.requestFullscreen?.(); } catch(e) {}
+      if (!p) try { p = el.webkitRequestFullscreen?.(); } catch(e) {}
+      if (!p) try { p = el.mozRequestFullScreen?.(); } catch(e) {}
+      if (p?.catch) { try { await p; } catch(e) {} }
+      // Intento de bloqueo a orientación vertical
+      try {
+        const lock = screen.orientation?.lock;
+        if (typeof lock === 'function') {
+          await lock.call(screen.orientation, 'portrait');
+        }
+      } catch(e) {
+        // iOS/Safari u otros pueden rechazarlo si no es PWA; es normal.
+      }
+    }
+
+    function showOverlay() { overlay.classList.add('show'); }
+    function hideOverlay() { overlay.classList.remove('show'); }
+
+    function showApp(src) {
+      if (!src) return;
+      game.src = src;
+      app.classList.add('active');
+      landing.style.display = 'none';
+    }
+
+    // ===== Flujo al tocar una tarjeta
+    document.getElementById('cards').addEventListener('click', async (ev) => {
+      const a = ev.target.closest('a.play');
+      if (!a) return;
+      const src = a.dataset.src || a.getAttribute('href') || '';
+      if (!src) return;
+      // En modo app o en desktop, abrir directo
+      if (!isMobile() || isStandalone()) {
+        ev.preventDefault();
+        showApp(src);
+        return;
+      }
+      // En móvil navegador: mostrar overlay con opciones
+      ev.preventDefault();
+      pendingSrc = src;
+      showOverlay();
+    });
+
+    // ===== Botones del overlay
+    btnOpen.addEventListener('click', async () => {
+      await enterFSandPortrait(document.documentElement);
+      hideOverlay();
+      showApp(pendingSrc);
+    });
+
+    btnOpenNoFS.addEventListener('click', () => {
+      hideOverlay();
+      showApp(pendingSrc);
+    });
+
+    // Tap fuera -> intentar también (una vez)
+    window.addEventListener('touchend', async () => {
+      if (overlay.classList.contains('show')) {
+        await enterFSandPortrait(document.documentElement);
+        hideOverlay();
+        showApp(pendingSrc);
+      }
+    }, { once: true, passive: true });
+
+    // Si se abandona el fullscreen en navegador (no app), recuperar overlay para volver a FS si se desea
+    function fsActive(){ return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement; }
+    document.addEventListener('fullscreenchange', () => {
+      if (!fsActive() && !isStandalone() && app.classList.contains('active')) {
+        // Mostrar una sutil posibilidad de volver a FS. (Opcional: podríamos reabrir overlay)
+      }
+    });
+
+    // ===== Volver al menú
+    btnBack.addEventListener('click', () => {
+      app.classList.remove('active');
+      game.src = '';
+      landing.style.display = '';
+      // Si no es standalone y estamos en móvil, podríamos volver a mostrar el overlay la próxima vez
+    });
+  </script>
 </body>
 </html>
