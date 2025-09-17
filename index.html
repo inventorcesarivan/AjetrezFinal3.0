@@ -150,5 +150,32 @@
 </style>
   <script src="<script>window.AJ_SF_URL = '/engine/stockfish.js';</script>
   engine/aj-oraculo.js"></script>
+
+<script>
+// Failsafe loader para el Oráculo en Netlify
+(function(){
+  if (window.__AJ_ORACULO_LOADED__) return;
+  function add(src, cb){
+    var s = document.createElement('script');
+    s.src = src; s.async = true;
+    s.onload = function(){ window.__AJ_ORACULO_LOADED__=true; cb && cb(true, src); };
+    s.onerror = function(){ cb && cb(false, src); };
+    document.head.appendChild(s);
+  }
+  // Fuerza ruta del Worker absoluto en raíz
+  window.AJ_SF_URL = '/engine/stockfish.js';
+  // Intenta cargar oráculo con ruta absoluta primero
+  add('/engine/aj-oraculo.js', function(ok1){
+    if (ok1) return;
+    // Fallback relativo por si el sitio está en subcarpeta
+    add('engine/aj-oraculo.js', function(ok2){
+      if (!ok2) {
+        console.warn('[Ajetrez] No se pudo cargar el oráculo desde /engine/aj-oraculo.js ni engine/aj-oraculo.js');
+      }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
