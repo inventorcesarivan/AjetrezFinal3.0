@@ -4983,11 +4983,18 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     function kickBotsIfReady(){
       try{
         if(!window.GAME_STARTED) return;
-        if(typeof window.isBotEnabled==='function' ? !window.isBotEnabled() : !(window.GAME_MODE==='bot'||window.GAME_MODE==='bot-vs-bot')) return;
+        const gm = String(window.GAME_MODE||'').toLowerCase();
         if(typeof scheduleBotMove !== 'function') return;
-        if(window.GAME_MODE==='bot-vs-bot'){
+        if(gm==='bot-vs-bot'){
           scheduleBotMove();
-        } else if(window.GAME_MODE==='bot'){
+        } else if(gm==='bot'){
+          try{ if(typeof window.botSide==='undefined') window.botSide = 'b'; }catch(_){ window.botSide='b'; }
+          if(typeof turn!=='undefined' && turn === window.botSide) scheduleBotMove();
+        } else if (typeof window.isBotEnabled==='function' && window.isBotEnabled()){
+          scheduleBotMove();
+        }
+      }catch(_){}
+    } else if(window.GAME_MODE==='bot'){
           try{ if(typeof window.botSide==='undefined') window.botSide = 'b'; }catch(_){ window.botSide='b'; }
           if(typeof turn!=='undefined' && turn === window.botSide) scheduleBotMove();
         }
