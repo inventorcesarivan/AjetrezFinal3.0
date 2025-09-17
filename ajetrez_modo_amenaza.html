@@ -2950,6 +2950,16 @@ body[data-theme="noche"] .regv2-btn{
   #zonesOpenCard .zones-legend .legend-chip{ pointer-events: auto; }
 </style>
 
+<style>
+#promoOverlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:9999}
+#promoCard{background:#111;padding:16px 18px;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.5);border:1px solid #333;color:#eee;min-width:280px}
+#promoCard h3{margin:0 0 10px;font:700 18px/1.2 system-ui,Segoe UI,Roboto,Arial}
+#promoChoices{display:flex;gap:10px;justify-content:center}
+#promoChoices button{background:#222;border:2px solid #666;border-radius:12px;padding:8px;cursor:pointer}
+#promoChoices button:hover{transform:translateY(-1px);border-color:#fff}
+#promoChoices img{width:56px;height:56px;display:block}
+#promoClose{margin-top:10px;text-align:center;opacity:.7;font-size:12px}
+</style>
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
@@ -3019,7 +3029,43 @@ body[data-theme="noche"] .regv2-btn{
 </div>
 
 </div><div class="field"><label>Estilo visual</label><div aria-label="Elegir estilo visual" class="row" id="themePicker" role="group"><button class="btn theme" data-theme="dia" title="Tonos claros, suaves" type="button">Día</button><button class="btn theme" data-theme="noche" title="Tonos oscuros, suaves" type="button">Noche</button><button class="btn theme" data-theme="madera" title="Tonos madera, suaves" type="button">Madera</button><button class="btn theme" data-theme="arena" title="Arena suave" type="button">Arena</button><button class="btn theme" data-theme="pizarra" title="Pizarra / gris" type="button">Pizarra</button><button class="btn theme" data-theme="oliva" title="Verde oliva suave" type="button">Oliva</button></div><span class="hint-sm">Los estilos son suaves para no distraer durante la partida.</span></div></div></div><div class="tab" id="tab-version" style="display:block"><h3>Versión de Ajetrez</h3><p>Versión actual del juego: <strong id="verActual">2.5 (Estable)</strong></p><div class="field"><label>Seleccionar versión</label><select id="selVersion"><option selected="" value="3_0_simple">Versión 3.0 (modo simple)</option><option value="3_0_amenaza">Versión 3.0 (modo amenaza)</option><option value="3_0_guerra">Versión 3.0 (modo guerra)</option></select></div><div class="hint-sm">La selección futura podrá cargar configuraciones específicas por versión.
-</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="bot-vs-bot">Bot vs Bot (demo)</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab" id="tab-guia" style="display:none"><h3>Guía rápida</h3><ol><li><strong>Objetivo:</strong> dar jaque mate al rey rival.</li><li><strong>Mover piezas:</strong> igual que en ajedrez clásico (incluye enroque y captura al paso).</li><li><strong>Tras capturar:</strong> decidís en la <em>misma fila</em> entre <strong>Mantener</strong> o <strong>Desplazar</strong> la sección completa (offset 0 ↔ 8).</li><li><strong>Restricciones:</strong> no hay desplazamientos si estás en jaque o si el 8×8 quedaría sin piezas de algún bando.</li><li><strong>Zonas:</strong> se juega sólo en el 8×8 central; los laterales funcionan como reserva al desplazar.</li><li><strong>Partida:</strong> pulsá <em>Comenzar</em>, elegí modo; cambiar de modo reinicia la partida.</li><li><strong>Final:</strong> jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insuficiente, acuerdo).</li></ol></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3>Reglas del juego</h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;"><div class="rules-version" data-version="3_0"><h4>Ajetrez Version 3.0 (Modo simple) — Reglas Básicas del juego</h4><div><p>En este modo, sólo el recuadro central del tablero es jugable. Las partes sobrantes (aunque contengan piezas) no participan hasta que sean ingresadas mediante el desplazamiento de secciones.</p><h5>Distribución de las piezas</h5><p>Por color, el tablero contiene:</p><ul><li>2 reyes</li><li>2 reinas</li><li>4 alfiles, 4 caballos, 4 torres</li><li>16 peones</li></ul><p>Las piezas son distribuidas en el recuadro central de la misma manera que en el ajedrez clásico. En los laterales, (si bien ocupan las mismas posiciones entre ellas). Las piezas se colocan desplazadas, 2 secciones hacia abajo en negras y 2 hacia arriba en blancas.</p><ul><li>Ajetrez respeta todas las reglas del clásico ajedrez, por lo tanto, se debe jugar de la misma manera y respetando las reglas generales del ajedrez clásico.</li><li>A su vez, añade nuevas reglas, que dependen del modo de juego que se utilice.</li><li>En este modo de juego (Modo simple). Luego de capturar, se puede elegir entre desplazar o mantener la sección del tablero donde ahora se ubica la pieza que realizó la captura.</li><li>Si decide desplazar. Se desplaza (hacia el lado opuesto al que se encuentra y solo una vez).</li><li>Luego de la elección de mantener, o desplazar la sección, queda cedido el turno al contrincante.</li><li>El desplazamiento de la sección, puede sacar, o introducir piezas del área jugable.</li></ul><h5>Función del desplazamiento de las secciones</h5><ul><li>Escapar de una captura.</li><li>Alterar las posibles estrategias del oponente.</li><li>Sacar piezas rivales del área jugable.</li><li>Ingresar piezas propias al área jugable.</li><li>También ingresar piezas del oponente para luego intentar capturarlas.</li></ul><p>Importante: Si una pieza sale del recuadro central, esto no significa que queda fuera de juego definitivamente; podría reingresar tras nuevos desplazamientos.</p><h5>⚠️ Imposibilidad de desplazamiento de secciones</h5><ul><li>En jaque/mate no hay desplazamientos de las secciones (aun cuando se haya capturado una pieza del oponente que se encuentre en la sección donde está el rey).</li><li>No se pueden desplazar secciones cuando esa acción implica que el recuadro central jugable quede sin piezas disponibles de alguno de los dos participantes.</li></ul></div></div><div class="rules-version" data-version="3_0_amenaza"></div><div class="rules-version" data-version="3_0_guerra">
+</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="bot-vs-bot">Bot vs Bot (demo)</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab" id="tab-guia" style="display:none"><h3>Guía rápida</h3><ol><li><strong>Objetivo:</strong> dar jaque mate al rey rival.</li><li><strong>Mover piezas:</strong> igual que en ajedrez clásico (incluye enroque y captura al paso).</li><li><strong>Tras capturar:</strong> decidís en la <em>misma fila</em> entre <strong>Mantener</strong> o <strong>Desplazar</strong> la sección completa (offset 0 ↔ 8).</li><li><strong>Restricciones:</strong> no hay desplazamientos si estás en jaque o si el 8×8 quedaría sin piezas de algún bando.</li><li><strong>Zonas:</strong> se juega sólo en el 8×8 central; los laterales funcionan como reserva al desplazar.</li><li><strong>Partida:</strong> pulsá <em>Comenzar</em>, elegí modo; cambiar de modo reinicia la partida.</li><li><strong>Final:</strong> jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insuficiente, acuerdo).</li></ol></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3>Reglas del juego</h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza" selected="selected">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;"><div class="rules-version" data-version="3_0"><h4>Ajetrez Version 3.0 (Modo simple) — Reglas Básicas del juego</h4><div><p>En este modo, sólo el recuadro central del tablero es jugable. Las partes sobrantes (aunque contengan piezas) no participan hasta que sean ingresadas mediante el desplazamiento de secciones.</p><h5>Distribución de las piezas</h5><p>Por color, el tablero contiene:</p><ul><li>2 reyes</li><li>2 reinas</li><li>4 alfiles, 4 caballos, 4 torres</li><li>16 peones</li></ul><p>Las piezas son distribuidas en el recuadro central de la misma manera que en el ajedrez clásico. En los laterales, (si bien ocupan las mismas posiciones entre ellas). Las piezas se colocan desplazadas, 2 secciones hacia abajo en negras y 2 hacia arriba en blancas.</p><ul><li>Ajetrez respeta todas las reglas del clásico ajedrez, por lo tanto, se debe jugar de la misma manera y respetando las reglas generales del ajedrez clásico.</li><li>A su vez, añade nuevas reglas, que dependen del modo de juego que se utilice.</li><li>En este modo de juego (Modo simple). Luego de capturar, se puede elegir entre desplazar o mantener la sección del tablero donde ahora se ubica la pieza que realizó la captura.</li><li>Si decide desplazar. Se desplaza (hacia el lado opuesto al que se encuentra y solo una vez).</li><li>Luego de la elección de mantener, o desplazar la sección, queda cedido el turno al contrincante.</li><li>El desplazamiento de la sección, puede sacar, o introducir piezas del área jugable.</li></ul><h5>Función del desplazamiento de las secciones</h5><ul><li>Escapar de una captura.</li><li>Alterar las posibles estrategias del oponente.</li><li>Sacar piezas rivales del área jugable.</li><li>Ingresar piezas propias al área jugable.</li><li>También ingresar piezas del oponente para luego intentar capturarlas.</li></ul><p>Importante: Si una pieza sale del recuadro central, esto no significa que queda fuera de juego definitivamente; podría reingresar tras nuevos desplazamientos.</p><h5>⚠️ Imposibilidad de desplazamiento de secciones</h5><ul><li>En jaque/mate no hay desplazamientos de las secciones (aun cuando se haya capturado una pieza del oponente que se encuentre en la sección donde está el rey).</li><li>No se pueden desplazar secciones cuando esa acción implica que el recuadro central jugable quede sin piezas disponibles de alguno de los dos participantes.</li></ul></div></div><div class="rules-version" data-version="3_0_amenaza">
+<div class="rules-block">
+  <h2>Ajetrez 3.0 — Modo Amenaza (Príncipe &amp; Princesa)</h2>
+  <h3>1) Objetivo</h3>
+  <ul>
+    <li><strong>Jaque mate</strong> al rey rival (clásico).</li>
+    <li><strong>Liberación:</strong> si al <em>terminar tu jugada</em> cualquier pieza propia queda en una casilla <strong>adyacente</strong> (8 direcciones) a <strong>tu</strong> Príncipe <em>o</em> Princesa, ganás de inmediato. Si hay mate y liberación en la misma jugada, prima la <strong>liberación</strong>.</li>
+  </ul>
+  <h3>2) Preparación y colocación</h3>
+  <ul>
+    <li>Tablero con un sector central 8×8 y secciones laterales por lado.</li>
+    <li>En laterales, las piezas que eran Rey/Reina se reemplazan por <strong>Príncipe (I)</strong> y <strong>Princesa (S)</strong>.</li>
+    <li><strong>Rehenes en territorio enemigo:</strong> en el lateral <em>blanco</em> están I/S <em>negros</em>; en el lateral <em>negro</em>, I/S <em>blancos</em>.</li>
+  </ul>
+  <h3>3) Comportamiento de I/S</h3>
+  <ul>
+    <li><strong>Inmóviles</strong>: no se mueven en toda la partida.</li>
+    <li><strong>No capturables</strong>: no puede ocuparse ni capturarse su casilla (intento ilegal).</li>
+    <li><strong>No atacan</strong> y <strong>bloquean</strong> su casilla como pieza propia (el caballo puede saltar).</li>
+  </ul>
+  <h3>4) Liberación (detalle operativo)</h3>
+  <ul>
+    <li>Se evalúa <strong>al terminar cada jugada</strong>.</li>
+    <li>Si la jugada permite <em>desplazar sección</em> luego de una captura, la liberación solo cuenta si <strong>la pieza que moviste</strong> termina adyacente a tu I/S.</li>
+    <li>Alcanza con quedar junto a <em>I</em> o <em>S</em> (uno de los dos). Estar junto a los rehenes rivales no hace nada.</li>
+  </ul>
+  <h3>5) Resto de reglas</h3>
+  <ul>
+    <li>Resto de piezas = ajedrez estándar: capturas, jaque, jaque mate, tablas, promoción, enroque, en passant, etc. (salvo I/S).</li>
+    <li>No se puede promocionar a Príncipe/Princesa.</li>
+  </ul>
+  <h3>6) Interfaz</h3>
+  <ul>
+    <li>Al liberar: aviso <em>“Príncipe y princesa liberados. ¡Haz ganado la partida!”</em>, suena el mismo audio que en mate y el botón <em>Reiniciar</em> se muestra en rojo.</li>
+  </ul>
+</div>
+</div><div class="rules-version" data-version="3_0_guerra">
   <h4>Ajetrez — Modo Guerra (Reglas generales)</h4>
 
   <h5>1) Tablero y secciones</h5>
@@ -3123,7 +3169,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   try{
     var sel = document.getElementById('selRulesVersion');
-    var initial = sel && sel.value ? sel.value : '3_0';
+    var initial = sel && sel.value ? sel.value : '3_0_amenaza';
     setRulesVersion(initial);
     if(sel){
       sel.addEventListener('change', function(){ setRulesVersion(sel.value); });
@@ -3760,18 +3806,14 @@ if (candidates && candidates.length) {
   const mover = vis[sel.r][sel.c];
   const promoCand = candidates.filter(mv => mv[2] && mv[2].promotion);
   if (mover && mover.type==='P' && promoCand.length > 0) {
-    var choice = (window.prompt('Promoción: (Q) Dama, (R) Torre, (B) Alfil, (N) Caballo','Q')||'Q').trim().toUpperCase();
-    if (['Q','R','B','N'].indexOf(choice)<0) choice='Q';
-    // Si solo vino Q desde el generador, reemplazamos por la elección del usuario
-    var chosen = promoCand.find(mv => mv[2] && mv[2].promotion===choice);
-    if (!chosen) {
-      chosen = promoCand[0];
-      if (chosen && chosen[2]) chosen[2] = Object.assign({}, chosen[2], {promotion: choice});
-    }
+  showPromotionDialog(mover.color, function(choice){
+    if(!choice) return;
+    var chosen = promoCand.find(mv => mv[2] && mv[2].promotion===choice) || promoCand[0];
     playMove(sel, {r, c}, chosen[2]||null, chosen[3]||false);
-    return;
-  }
-  const next = candidates[0];
+  });
+  return;
+}
+const next = candidates[0];
   playMove(sel, {r, c}, next[2]||null, next[3]||false);
   return;
 }
@@ -12802,6 +12844,77 @@ function showToast(){
 })();
 </script>
 <script src="aj-force-landscape.js"></script>
+<div id="promoOverlay" role="dialog" aria-modal="true" aria-label="Elegir pieza de promoción">
+  <div id="promoCard">
+    <h3>Elegí pieza de promoción</h3>
+    <div id="promoChoices"></div>
+    <div id="promoClose">Esc o click afuera para cancelar</div>
+  </div>
+</div>
+<script>
+function showPromotionDialog(color, onChoose){
+  try{
+    const overlay = document.getElementById('promoOverlay');
+    const cont = document.getElementById('promoChoices');
+    cont.innerHTML='';
+    const order = ['Q','R','B','N'];
+    order.forEach(function(t){
+      const btn = document.createElement('button');
+      const img = document.createElement('img');
+      let url = null;
+      try{ url = PIECE_SPRITES[color] && PIECE_SPRITES[color][t]; }catch(_){}
+      if(!url){
+        // fallback unicode
+        const map = {w:{Q:'♕',R:'♖',B:'♗',N:'♘'}, b:{Q:'♛',R:'♜',B:'♝',N:'♞'}};
+        btn.textContent = (map[color]||map.w)[t];
+        btn.style.fontSize='40px';
+        btn.style.lineHeight='48px';
+      }else{
+        img.src = url; btn.appendChild(img);
+      }
+      btn.addEventListener('click', function(){
+        overlay.style.display='none';
+        onChoose && onChoose(t);
+      });
+      cont.appendChild(btn);
+    });
+    function close(){ overlay.style.display='none'; onChoose && onChoose(null); }
+    overlay.style.display='flex';
+    overlay.addEventListener('click', function(ev){ if(ev.target===overlay) close(); }, {once:true});
+    document.addEventListener('keydown', function esc(e){ if(e.key==='Escape'){ close(); document.removeEventListener('keydown', esc); } });
+  }catch(e){ console.error(e); onChoose && onChoose('Q'); }
+}
+
+function showVeteranBanner(color){
+  try{
+    const overlay = document.getElementById('promoOverlay');
+    const cont = document.getElementById('promoChoices');
+    const holder = document.getElementById('promoHolder') || cont.parentElement;
+    cont.innerHTML='';
+    // Simple message card
+    const card = document.createElement('div');
+    card.style.display='flex';
+    card.style.flexDirection='column';
+    card.style.alignItems='center';
+    card.style.gap='10px';
+    const msg = document.createElement('div');
+    msg.style.fontSize='1rem';
+    msg.style.textAlign='center';
+    msg.style.color='#eee';
+    msg.innerHTML = '¡Tu <b>Guerrero</b> se convirtió en <b>Veterano</b>!<br>Ahora puede mover y capturar 1 casillero en todas las direcciones.';
+    const ok = document.createElement('button');
+    ok.textContent = 'Entendido';
+    ok.style.padding='8px 16px';
+    ok.style.fontWeight='700';
+    ok.onclick = function(){ overlay.style.display='none'; };
+    card.appendChild(msg);
+    card.appendChild(ok);
+    cont.appendChild(card);
+    overlay.style.display='flex';
+  }catch(_){ /* ignore */ }
+}
+
+</script>
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
