@@ -52,7 +52,7 @@
   function addBtn(){
     if($('#aj-sf-btn')) return;
     const b=d.createElement('button'); b.id='aj-sf-btn'; b.textContent='SF · Oráculo';
-    Object.assign(b.style,{position:'fixed',right:'10px',bottom:'10px',zIndex:2147483600,background:'#fff',border:'2px solid #111',borderRadius:'999px',padding:'10px 14px',fontWeight:'900',cursor:'pointer'});
+    Object.assign(b.style,{position:'fixed',right:'10px',bottom:'10px',zIndex:2147483646,background:'#fff',border:'2px solid #111',borderRadius:'999px',padding:'10px 14px',fontWeight:'900',cursor:'pointer'});
     b.onclick=async ()=>{
       try{
         // Espera activa (hasta 3s) por readyok si el usuario hace clic muy rápido
