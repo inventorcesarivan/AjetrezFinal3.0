@@ -4752,19 +4752,23 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
       window.GAME_STARTED = true;
       try{ kickBotsIfReady(); }catch(_){}
     }
-    function kickBotsIfReady(){
+    
+function kickBotsIfReady(){
       try{
         if(!window.GAME_STARTED) return;
-        if(typeof window.isBotEnabled==='function' ? !window.isBotEnabled() : !(window.GAME_MODE==='bot'||window.GAME_MODE==='bot-vs-bot')) return;
+        const gm = String(window.GAME_MODE||'').toLowerCase();
         if(typeof scheduleBotMove !== 'function') return;
-        if(window.GAME_MODE==='bot-vs-bot'){
+        if(gm==='bot-vs-bot'){
           scheduleBotMove();
-        } else if(window.GAME_MODE==='bot'){
+        } else if(gm==='bot'){
           try{ if(typeof window.botSide==='undefined') window.botSide = 'b'; }catch(_){ window.botSide='b'; }
           if(typeof turn!=='undefined' && turn === window.botSide) scheduleBotMove();
+        } else if (typeof window.isBotEnabled==='function' && window.isBotEnabled()){
+          scheduleBotMove();
         }
       }catch(_){}
     }
+}
 
     window.showStartOverlay = showStartOverlay;
     window.hideStartOverlay = hideStartOverlay;
@@ -9017,27 +9021,19 @@ div[style="height:var(--toolbar-gap)"]{
     });
   }
   
-  function exit(){
-    try{
-      if(window.__RegV2Bot){ window.__RegV2Bot.stop({resetToStart:true}); }
-      else if(typeof restartGame==='function'){ restartGame(); }
-    }catch(_){}
-    try{ if(typeof window.showStartOverlay==='function') window.showStartOverlay(); else { var so=document.getElementById('startOverlay'); if(so){ so.style.display='flex'; } window.GAME_STARTED=false; } }catch(_ ){}
-try{ hidePane(); hideStartButtons(false); }catch(_){}
-    try{
-      if(typeof setBotEnabled==='function') setBotEnabled(true);
-      window.__CLOCK_PAUSED__ = false;
-    }catch(_){}
-    try{ document.body.classList.remove('replaying','replaying-finished','replaying-stopped'); }catch(_){}
-  }
-catch(_){}
-    try{
-      if(typeof setBotEnabled==='function') setBotEnabled(true);
-      window.__CLOCK_PAUSED__ = false;
-    }catch(_){}
-  }
-  // Exponer utilidades mínimas
-  window.__REGV2_overlay__ = { showPane, hidePane, hideStartButtons, exit };
+  
+function exit(){
+  try{
+    if (window.__RegV2Bot) { window.__RegV2Bot.stop({resetToStart:true}); }
+    else if (typeof restartGame==='function') { restartGame(); }
+  }catch(_){}
+  try{ hidePane(); hideStartButtons(false); }catch(_){}
+  try{ if (typeof setBotEnabled==='function') setBotEnabled(true); window.__CLOCK_PAUSED__ = false; }catch(_){}
+  try{ document.body.classList.remove('replaying','replaying-finished','replaying-stopped'); }catch(_){}
+  try{ if (typeof window.showStartOverlay==='function') window.showStartOverlay(); }catch(_){}
+  try{ window.GAME_STARTED = false; }catch(_){}
+}
+window.__REGV2_overlay__ = { showPane, hidePane, hideStartButtons, exit };
   // Exponer salida global compatible con anterior
   window.AJ_Replay = window.AJ_Replay || {};
   window.AJ_Replay.exit = function(){ exit(); };
@@ -12835,8 +12831,6 @@ function showVeteranBanner(color){
 })();
 </script>
 
-  <script src="<script>window.AJ_SF_URL = '/engine/stockfish.js';</script>
-  engine/aj-oraculo.js"></script>
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
