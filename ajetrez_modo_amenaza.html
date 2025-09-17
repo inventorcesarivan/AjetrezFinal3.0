@@ -12805,9 +12805,7 @@ function showToast(){
 
   console.log('[AJ] Option C activada: 3 perfiles + libro + variación.');
 })();
-</script>
-  <script src="auto-portrait-fullscreen.js"></script>
-<div id="promoOverlay" role="dialog" aria-modal="true" aria-label="Elegir pieza de promoción">
+</script><div id="promoOverlay" role="dialog" aria-modal="true" aria-label="Elegir pieza de promoción">
   <div id="promoCard">
     <h3>Elegí pieza de promoción</h3>
     <div id="promoChoices"></div>
@@ -12878,6 +12876,24 @@ function showVeteranBanner(color){
 }
 
 </script>
+<style id="hide-rotate-overlays">
+  /* Forzar oculto cualquier cartel de rotación/orientación, sin afectar elementos normales */
+  [id*="rotate-overlay"], [class*="rotate-overlay"],
+  [id*="rotateNotice"], [class*="rotateNotice"],
+  [id*="rotatePhone"], [class*="rotatePhone"],
+  [id*="aj-rotate"], [class*="aj-rotate"],
+  [id*="orientation-overlay"], [class*="orientation-overlay"],
+  [id*="portrait-overlay"], [class*="portrait-overlay"],
+  [id*="force-portrait"], [class*="force-portrait"],
+  [id*="forcePortrait"], [class*="forcePortrait"],
+  [id*="rotate"], [class*="rotate"],
+  [id*="portrait"], [class*="portrait"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+</style>
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">

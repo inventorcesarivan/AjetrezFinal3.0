@@ -130,5 +130,23 @@
       }
     });
   </script>
+<style id="hide-rotate-overlays">
+  /* Forzar oculto cualquier cartel de rotación/orientación, sin afectar elementos normales */
+  [id*="rotate-overlay"], [class*="rotate-overlay"],
+  [id*="rotateNotice"], [class*="rotateNotice"],
+  [id*="rotatePhone"], [class*="rotatePhone"],
+  [id*="aj-rotate"], [class*="aj-rotate"],
+  [id*="orientation-overlay"], [class*="orientation-overlay"],
+  [id*="portrait-overlay"], [class*="portrait-overlay"],
+  [id*="force-portrait"], [class*="force-portrait"],
+  [id*="forcePortrait"], [class*="forcePortrait"],
+  [id*="rotate"], [class*="rotate"],
+  [id*="portrait"], [class*="portrait"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+</style>
 </body>
 </html>
