@@ -12894,6 +12894,175 @@ function showVeteranBanner(color){
     pointer-events: none !important;
   }
 </style>
+
+<!-- Ajetrez: Opening Book + Bot style wrapper (synchronous) -->
+<script id="aj-opening-book">
+(function(){
+  if(window.__AJ_OPENING_INJECTED__) return; 
+  window.__AJ_OPENING_INJECTED__=true;
+
+  // --- Minimal opening book (UCI) with weights and tags ---
+  const BOOK = {
+    "": [
+      { uci: "e2e4", w: 30, t: ["open","tactical"] },
+      { uci: "d2d4", w: 25, t: ["positional","closed"] },
+      { uci: "c2c4", w: 12, t: ["english","hypermodern","flexible"] },
+      { uci: "g1f3", w: 18, t: ["flexible"] },
+      { uci: "g2g3", w: 7,  t: ["hypermodern"] },
+      { uci: "b2b3", w: 8,  t: ["hypermodern","surprise"] }
+    ],
+    "e2e4": [
+      { uci: "e7e5", w: 28, t: ["open","solid"] },
+      { uci: "c7c5", w: 32, t: ["sicilian","tactical"] },
+      { uci: "e7e6", w: 14, t: ["french","solid","closed"] },
+      { uci: "c7c6", w: 12, t: ["caro","solid"] },
+      { uci: "g8f6", w: 8,  t: ["alehine","surprise"] },
+      { uci: "d7d6", w: 6,  t: ["pirc","hypermodern"] }
+    ],
+    "e2e4 e7e5": [
+      { uci: "g1f3", w: 24, t: ["open","tactical"] },
+      { uci: "f1b5", w: 22, t: ["ruy","positional"] },
+      { uci: "f1c4", w: 18, t: ["italian","open"] },
+      { uci: "d2d4", w: 10, t: ["scotch","open","tactical"] },
+      { uci: "f2f4", w: 8,  t: ["kings_gambit","gambit","tactical"] },
+      { uci: "c2c3", w: 8,  t: ["piano","solid"] }
+    ],
+    "e2e4 c7c5": [
+      { uci: "g1f3", w: 30, t: ["sicilian","flexible"] },
+      { uci: "b1c3", w: 18, t: ["sicilian","tactical"] },
+      { uci: "c2c3", w: 16, t: ["alapin","anti_tactic"] },
+      { uci: "d2d4", w: 20, t: ["open_sicilian","tactical"] },
+      { uci: "f2f4", w: 8,  t: ["grand_prix","gambit"] },
+      { uci: "g2g3", w: 8,  t: ["kings_indian_attack","hypermodern"] }
+    ],
+    "e2e4 e7e6": [
+      { uci: "d2d4", w: 45, t: ["french","main","positional"] },
+      { uci: "c2c3", w: 15, t: ["advance_prep","solid"] },
+      { uci: "b1d2", w: 10, t: ["tarrasch_prep","solid"] },
+      { uci: "b1c3", w: 15, t: ["knight_dev","positional"] },
+      { uci: "g1f3", w: 15, t: ["flexible"] }
+    ],
+    "d2d4": [
+      { uci: "d7d5", w: 26, t: ["closed","solid"] },
+      { uci: "g8f6", w: 26, t: ["indian","flexible"] },
+      { uci: "e7e6", w: 16, t: ["queen_gambit_declined","solid"] },
+      { uci: "c7c5", w: 8,  t: ["benoni","tactical"] },
+      { uci: "f7f5", w: 8,  t: ["dutch","surprise"] },
+      { uci: "d7d6", w: 8,  t: ["old_indian","solid"] },
+      { uci: "c7c6", w: 8,  t: ["slav","solid"] }
+    ],
+    "d2d4 d7d5": [
+      { uci: "c2c4", w: 40, t: ["qg","positional"] },
+      { uci: "g1f3", w: 20, t: ["flexible","solid"] },
+      { uci: "e2e3", w: 20, t: ["colle","solid"] },
+      { uci: "c1f4", w: 12, t: ["london","solid"] },
+      { uci: "c1g5", w: 8,  t: ["trompowsky","surprise"] }
+    ],
+    "d2d4 g8f6": [
+      { uci: "c2c4", w: 45, t: ["indian","flexible"] },
+      { uci: "g1f3", w: 25, t: ["kings_indian_attack","solid"] },
+      { uci: "c1g5", w: 15, t: ["trompowsky","surprise"] },
+      { uci: "e2e3", w: 15, t: ["solid"] }
+    ],
+    "c2c4": [
+      { uci: "e7e5", w: 25, t: ["reversed_sicilian","open"] },
+      { uci: "g8f6", w: 25, t: ["flexible","solid"] },
+      { uci: "c7c5", w: 20, t: ["symmetrical","solid"] },
+      { uci: "e7e6", w: 15, t: ["solid"] },
+      { uci: "c7c6", w: 15, t: ["solid"] }
+    ]
+  };
+
+  const STYLE = {
+    agresivo: { boost:{ open:1.25, gambit:1.3, tactical:1.15, hypermodern:1.05 }, depth: 8 },
+    solido:   { boost:{ positional:1.25, solid:1.2, closed:1.1, anti_tactic:1.05 }, depth: 10 },
+    hibrido:  { boost:{ open:1.1, positional:1.1, flexible:1.1 }, depth: 8 }
+  };
+
+  function keyFromHistory(hist){ return (hist||[]).join(' ').trim(); }
+  function findCandidates(key){
+    if(BOOK[key]) return BOOK[key];
+    let k=key;
+    while(k.includes(' ')){
+      k = k.slice(0, k.lastIndexOf(' '));
+      if(BOOK[k]) return BOOK[k];
+    }
+    return BOOK[""]||null;
+  }
+  function weightOf(tags, preset){
+    const boosts = (STYLE[preset]||STYLE.hibrido).boost || {};
+    let f = 1; (tags||[]).forEach(t=>{ if(boosts[t]) f *= boosts[t]; });
+    return f;
+  }
+  function chooseWeighted(arr, preset){
+    let total=0; arr.forEach(it=> total += (it.w||1)*weightOf(it.t, preset));
+    if(total<=0) return arr.length ? arr[Math.floor(Math.random()*arr.length)] : null;
+    let r = Math.random()*total;
+    for(const it of arr){ r -= (it.w||1)*weightOf(it.t, preset); if(r<=0) return it; }
+    return arr[arr.length-1] || null;
+  }
+
+  window.AJ_BOOK = window.AJ_BOOK || {};
+  window.AJ_BOOK.history = window.AJ_BOOK.history || [];
+  window.AJ_BOOK.profileName = window.AJ_BOOK.profileName || 'hibrido';
+
+  // Reset historia al iniciar/reiniciar
+  document.addEventListener('click', function(e){
+    const id = e && e.target && e.target.id;
+    if(id==='btnStartGame' || id==='btnRestartBR'){
+      try{ window.AJ_BOOK.history = []; }catch(_){}
+    }
+  }, true);
+
+  // Registrar cada jugada que se ejecute
+  (function(){
+    const orig = window.playMove;
+    if(typeof orig === 'function'){
+      window.playMove = function(from,to,special,capturesKing){
+        try{
+          const promo = (special && special.promotion) ? String(special.promotion).toLowerCase() : '';
+          const uci = (algebra(from.r,from.c)+algebra(to.r,to.c)+promo).toLowerCase();
+          (window.AJ_BOOK.history||(window.AJ_BOOK.history=[])).push(uci);
+        }catch(_){}
+        return orig.apply(this, arguments);
+      };
+    }
+  })();
+
+  // Hook sincronizado para variar aperturas en pickMove
+  (function(){
+    const origPick = window.pickMove;
+    if(typeof origPick === 'function'){
+      window.pickMove = function(color){
+        try{
+          const hist = window.AJ_BOOK.history || [];
+          const key = keyFromHistory(hist);
+          const depthLimit = (STYLE[window.AJ_BOOK.profileName]?.depth) || 8;
+          const candidates = (hist.length < depthLimit) ? findCandidates(key) : null;
+          if(candidates && candidates.length){
+            const legals = genMoves(board, offsets, color, epTarget);
+            const legalUCIs = new Map();
+            for(const m of legals){
+              const promo = (m.special && m.special.promotion) ? String(m.special.promotion).toLowerCase() : '';
+              const uci = (algebra(m.from.r,m.from.c)+algebra(m.to.r,m.to.c)+promo).toLowerCase();
+              legalUCIs.set(uci, m);
+            }
+            const pool = candidates.filter(c => legalUCIs.has(c.uci));
+            if(pool.length){
+              const pick = chooseWeighted(pool, window.AJ_BOOK.profileName);
+              const mv = legalUCIs.get(pick.uci);
+              if(mv) return mv;
+            }
+          }
+        }catch(_){}
+        return origPick.call(this, color);
+      };
+    }
+  })();
+
+})();
+</script>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
