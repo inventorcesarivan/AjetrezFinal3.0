@@ -1,6 +1,6 @@
 <!doctype html><meta charset="utf-8"><title>Ajetrez Online — amenaza</title>
-<h1>Ajetrez Online — amenaza</h1>
-<button id="btn">Online</button>
+<h1 style="font-family:system-ui;margin:16px">Ajetrez Online — amenaza</h1>
+<button id="btn" style="margin-left:16px">Online</button>
 <span id="status" style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:12px;background:#111;color:#fff;border:1px solid #ffcc00"></span>
 <script type="module">
 const setStatus=(t)=>{ const s=document.getElementById('status'); s.textContent=t; s.title=t; console.log('[amenaza]', t); };
@@ -20,5 +20,4 @@ document.getElementById('btn').addEventListener('click', async () => {
     setStatus(`🎮 Partida ${g.code} — ${g.status}`);
   } catch(e) { setStatus('❌ '+(e?.message||e)); console.error(e); }
 });
-window.onLocalMove = (move) => window._online?.send?.({ kind:'move', payload: move });
 </script>
