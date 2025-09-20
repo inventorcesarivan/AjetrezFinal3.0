@@ -13140,44 +13140,59 @@ function showVeteranBanner(color){
 
 
 <script type="module">
-  import { initOnline } from './web/online.js';
+  // HARDENED: lazy init on click, muestra estado, y evita que un error bloquee el botón.
+  const BTN_ID = 'btn-online-war';
+  const STATUS_ID = 'online-war-status';
+  const SUPABASE_URL = 'https://TU-PROJECT.supabase.co';   // ← reemplazar
+  const SUPABASE_ANON_KEY = 'TU-ANON-KEY';                 // ← reemplazar
 
-  const SUPABASE_URL = 'https://TU-PROJECT.supabase.co';
-  const SUPABASE_ANON_KEY = 'TU-ANON-KEY';
+  const $btn = document.getElementById(BTN_ID);
+  const $status = document.getElementById(STATUS_ID);
+  const setStatus = (t) => { if ($status) $status.textContent = t; console.log('[online-war]', t); };
 
-  const $btn = document.getElementById('btn-online-war');
-  const $status = document.getElementById('online-war-status');
-  const log = (msg, obj) => {
-    if ($status) { $status.textContent = msg; }
-    console.log('[online-war]', msg, obj||'');
-  };
+  let online = null;
+  async function ensureOnline() {
+    if (online) return online;
 
-  const online = await initOnline({
-    supabaseUrl: SUPABASE_URL,
-    supabaseAnonKey: SUPABASE_ANON_KEY,
-    variant: 'guerra',
-    getLocalState: () => window.Ajetrez?.exportState?.() ?? {},
-    applyRemoteEvent: (ev) => { try { window.Ajetrez?.applyEvent?.(ev); } catch(e) { console.error(e); } },
-    onStatus: (s) => log(s.type, s)
-  });
+    if (!SUPABASE_URL.startsWith('https://') || SUPABASE_URL.includes('TU-PROJECT') || SUPABASE_ANON_KEY.includes('TU-ANON-KEY')) {
+      setStatus('⚠️ Falta configurar Supabase URL/Anon Key en este HTML.');
+      throw new Error('Missing Supabase keys');
+    }
+
+    try {
+      const mod = await import('./web/online.js');
+      const { initOnline } = mod;
+      online = await initOnline({
+        supabaseUrl: SUPABASE_URL,
+        supabaseAnonKey: SUPABASE_ANON_KEY,
+        variant: 'guerra',
+        getLocalState: () => window.Ajetrez?.exportState?.() ?? {},
+        applyRemoteEvent: (ev) => { try { window.Ajetrez?.applyEvent?.(ev); } catch(e) { console.error(e); } },
+        onStatus: (s) => setStatus(`${s.type}`)
+      });
+      setStatus('✅ Conectado (auth ok).');
+      return online;
+    } catch (e) {
+      setStatus('❌ No se pudo cargar /web/online.js o conectar.');
+      console.error(e);
+      throw e;
+    }
+  }
 
   if ($btn) {
     $btn.addEventListener('click', async () => {
       try {
-        const g = await online.quickMatch();
-        await online.subscribeToGame(g.id);
-        log('Partida: ' + g.code + ' (' + g.status + ')');
-      } catch (e) {
-        log('Error al conectar');
-        console.error(e);
-      }
+        const svc = await ensureOnline();
+        const g = await svc.quickMatch();
+        await svc.subscribeToGame(g.id);
+        setStatus(`🎮 Partida ${g.code} — ${g.status}`);
+      } catch (e) {}
     });
   }
 
-  // Hooks que tu motor debe llamar al confirmar acciones locales válidas:
-  window.onLocalMove = (move) => online.send({ kind: 'move', payload: move });
-  window.onSectionShift = (shift) => online.send({ kind: 'shift', payload: shift });
-  window.onPromote = (prom) => online.send({ kind: 'promote', payload: prom });
+  window.onLocalMove = (move) => online?.send({ kind: 'move', payload: move });
+  window.onSectionShift = (shift) => online?.send({ kind: 'shift', payload: shift });
+  window.onPromote = (prom) => online?.send({ kind: 'promote', payload: prom });
 </script>
 
 </body>
