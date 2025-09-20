@@ -1,5 +1,4 @@
-
-// Ajetrez Online — Supabase MVP client (ESM, browser) — v2 ignore self moves
+// Ajetrez Online — Supabase MVP client (ESM) — v2 (ignora jugadas propias)
 export async function initOnline (opts) {
   const {
     supabaseUrl,
@@ -13,6 +12,7 @@ export async function initOnline (opts) {
   const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm')
   const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+  // --- AUTH anónima ---
   async function ensureAuth () {
     const { data: sess } = await supabase.auth.getSession()
     if (sess?.session?.user) return sess.session.user
@@ -23,6 +23,7 @@ export async function initOnline (opts) {
   const user = await ensureAuth()
   onStatus({ type: 'auth', userId: user.id })
 
+  // Helpers
   function randomCode (len = 6) {
     const abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
     return Array.from({length: len}, () => abc[Math.floor(Math.random() * abc.length)]).join('')
@@ -34,9 +35,11 @@ export async function initOnline (opts) {
   async function createGame () {
     const code = randomCode()
     const state = getLocalState()
-    const { data, error } = await supabase.from('games').insert({
-      code, variant, status: 'waiting', white_id: user.id, turn: 'w', state_json: state
-    }).select().single()
+    const { data, error } = await supabase
+      .from('games')
+      .insert({ code, variant, status: 'waiting', white_id: user.id, turn: 'w', state_json: state })
+      .select()
+      .single()
     if (error) throw error
     currentGame = data
     onStatus({ type: 'game_created', game: data })
@@ -60,23 +63,38 @@ export async function initOnline (opts) {
   }
 
   async function quickMatch () {
-    const { data: candidates } = await supabase.from('games')
-      .select('*').eq('variant', variant).eq('status', 'waiting').is('black_id', null).neq('white_id', user.id).limit(1)
+    // Intentar reclamar una waiting
+    const { data: candidates, error: e0 } = await supabase
+      .from('games')
+      .select('*')
+      .eq('variant', variant)
+      .eq('status', 'waiting')
+      .is('black_id', null)
+      .neq('white_id', user.id)
+      .limit(1)
+    if (e0) throw e0
+
     if (candidates && candidates.length) {
       const g = candidates[0]
       try {
-        const { data: upd } = await supabase.from('games')
+        const { data: upd, error: e2 } = await supabase.from('games')
           .update({ black_id: user.id, status: 'active' }).eq('id', g.id).select().single()
+        if (e2) throw e2
         currentGame = upd
         onStatus({ type: 'matched_as_black', game: upd })
         return upd
-      } catch {}
+      } catch (err) {
+        // si hubo carrera, creamos una nueva
+      }
     }
+    // Si no, crea como blancas
     return await createGame()
   }
 
   async function subscribeToGame (gameId) {
+    // Desuscribir canal previo
     if (channel) { await supabase.removeChannel(channel); channel = null }
+
     const { data: g, error } = await supabase.from('games').select('*').eq('id', gameId).single()
     if (error) throw error
     currentGame = g
@@ -93,7 +111,7 @@ export async function initOnline (opts) {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'moves', filter: movesFilter }, (payload) => {
         const ev = payload.new
         onStatus({ type: 'move_received', ev })
-        if (ev.created_by === user.id) return // ignore own insert to prevent double-apply
+        if (ev.created_by === user.id) return // ignora tus propias jugadas
         try { applyRemoteEvent({ kind: ev.kind, payload: ev.payload, ply: ev.ply, created_by: ev.created_by, created_at: ev.created_at }) } catch {}
       })
       .subscribe((status) => onStatus({ type: 'channel', status }))
@@ -105,7 +123,8 @@ export async function initOnline (opts) {
     if (!currentGame) throw new Error('No game selected')
     const { kind, payload } = event
     const { data: mv, error } = await supabase.from('moves')
-      .insert({ game_id: currentGame.id, created_by: user.id, kind, payload }).select().single()
+      .insert({ game_id: currentGame.id, created_by: user.id, kind, payload })
+      .select().single()
     if (error) throw error
 
     const nextState = (typeof getLocalState === 'function') ? getLocalState() : {}
