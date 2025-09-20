@@ -2959,7 +2959,6 @@ body[data-theme="noche"] .regv2-btn{
 #promoChoices img{width:56px;height:56px;display:block}
 #promoClose{margin-top:10px;text-align:center;opacity:.7;font-size:12px}
 </style>
-  <script>window.AJ_SF_URL = '/engine/stockfish.js';</script>
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
@@ -3158,7 +3157,11 @@ body[data-theme="noche"] .regv2-btn{
 <img alt="PayPal" src="logo paypal.png"/>
 </a>
 </div>
-<button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button">Menú</button><div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
+<button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button">Menú</button><div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button><button id="btn-online-simple" class="btn small" title="Jugar online (simple)">Online</button>
+<div id="online-simple-status" aria-live="polite"
+     style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:12px;
+            background:rgba(0,0,0,.7);color:#fff;border:1px solid #ffcc00;
+            font-size:13px;line-height:1.1;max-width:50vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
   function make(src){ try{ const a = new Audio(src); a.preload='auto'; a.volume = 0.85; return a; }catch(_){ return null; } }
@@ -4753,23 +4756,19 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
       window.GAME_STARTED = true;
       try{ kickBotsIfReady(); }catch(_){}
     }
-    
-function kickBotsIfReady(){
+    function kickBotsIfReady(){
       try{
         if(!window.GAME_STARTED) return;
-        const gm = String(window.GAME_MODE||'').toLowerCase();
+        if(typeof window.isBotEnabled==='function' ? !window.isBotEnabled() : !(window.GAME_MODE==='bot'||window.GAME_MODE==='bot-vs-bot')) return;
         if(typeof scheduleBotMove !== 'function') return;
-        if(gm==='bot-vs-bot'){
+        if(window.GAME_MODE==='bot-vs-bot'){
           scheduleBotMove();
-        } else if(gm==='bot'){
+        } else if(window.GAME_MODE==='bot'){
           try{ if(typeof window.botSide==='undefined') window.botSide = 'b'; }catch(_){ window.botSide='b'; }
           if(typeof turn!=='undefined' && turn === window.botSide) scheduleBotMove();
-        } else if (typeof window.isBotEnabled==='function' && window.isBotEnabled()){
-          scheduleBotMove();
         }
       }catch(_){}
     }
-}
 
     window.showStartOverlay = showStartOverlay;
     window.hideStartOverlay = hideStartOverlay;
@@ -9022,19 +9021,27 @@ div[style="height:var(--toolbar-gap)"]{
     });
   }
   
-  
-function exit(){
-  try{
-    if (window.__RegV2Bot) { window.__RegV2Bot.stop({resetToStart:true}); }
-    else if (typeof restartGame==='function') { restartGame(); }
-  }catch(_){}
-  try{ hidePane(); hideStartButtons(false); }catch(_){}
-  try{ if (typeof setBotEnabled==='function') setBotEnabled(true); window.__CLOCK_PAUSED__ = false; }catch(_){}
-  try{ document.body.classList.remove('replaying','replaying-finished','replaying-stopped'); }catch(_){}
-  try{ if (typeof window.showStartOverlay==='function') window.showStartOverlay(); }catch(_){}
-  try{ window.GAME_STARTED = false; }catch(_){}
-}
-window.__REGV2_overlay__ = { showPane, hidePane, hideStartButtons, exit };
+  function exit(){
+    try{
+      if(window.__RegV2Bot){ window.__RegV2Bot.stop({resetToStart:true}); }
+      else if(typeof restartGame==='function'){ restartGame(); }
+    }catch(_){}
+    try{ if(typeof window.showStartOverlay==='function') window.showStartOverlay(); else { var so=document.getElementById('startOverlay'); if(so){ so.style.display='flex'; } window.GAME_STARTED=false; } }catch(_ ){}
+try{ hidePane(); hideStartButtons(false); }catch(_){}
+    try{
+      if(typeof setBotEnabled==='function') setBotEnabled(true);
+      window.__CLOCK_PAUSED__ = false;
+    }catch(_){}
+    try{ document.body.classList.remove('replaying','replaying-finished','replaying-stopped'); }catch(_){}
+  }
+catch(_){}
+    try{
+      if(typeof setBotEnabled==='function') setBotEnabled(true);
+      window.__CLOCK_PAUSED__ = false;
+    }catch(_){}
+  }
+  // Exponer utilidades mínimas
+  window.__REGV2_overlay__ = { showPane, hidePane, hideStartButtons, exit };
   // Exponer salida global compatible con anterior
   window.AJ_Replay = window.AJ_Replay || {};
   window.AJ_Replay.exit = function(){ exit(); };
@@ -12832,7 +12839,55 @@ function showVeteranBanner(color){
 })();
 </script>
 
-<script src="/engine/aj-oraculo.js"></script>
+<script type="module">
+  const VARIANT = 'simple';
+  const SUPABASE_URL = 'https://unyomyoojfjatxrcknqu.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVueW9teW9vamZqYXR4cmNrbnF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzNjQyNTgsImV4cCI6MjA3Mzk0MDI1OH0.ob5n4Ae7UecIQ7K4IlYMkxOgoDgZxg2VcgTFwKHOgsA';
+  const BTN_ID = 'btn-online-simple';
+  const STATUS_ID = 'online-simple-status';
+
+  const $btn = document.getElementById(BTN_ID);
+  const $status = document.getElementById(STATUS_ID);
+  const setStatus = (t) => { if ($status) { $status.textContent = t; $status.title = t; $status.style.display='inline-block'; } console.log('[online-'+VARIANT+']', t); };
+
+  let online = null;
+  async function ensureOnline() {
+    if (online) return online;
+    try {
+      const mod = await import('./web/online.js');
+      online = await mod.initOnline({
+        supabaseUrl: SUPABASE_URL,
+        supabaseAnonKey: SUPABASE_ANON_KEY,
+        variant: VARIANT,
+        getLocalState: () => window.Ajetrez?.exportState?.() ?? {},   // tu motor
+        applyRemoteEvent: (ev) => { try { window.Ajetrez?.applyEvent?.(ev) } catch(e) { console.error(e) } },
+        onStatus: (s) => setStatus(s.type)
+      });
+      setStatus('✅ Conectado (auth ok).');
+      return online;
+    } catch (e) {
+      setStatus('❌ No se pudo cargar /web/online.js o conectar.');
+      console.error(e);
+      throw e;
+    }
+  }
+
+  if ($btn) {
+    $btn.addEventListener('click', async () => {
+      try {
+        const svc = await ensureOnline();
+        const g = await svc.quickMatch();
+        await svc.subscribeToGame(g.id);
+        setStatus(`🎮 Partida ${g.code} — ${g.status}`);
+      } catch (e) { /* ya logueado arriba */ }
+    });
+  }
+
+  // Hooks que tu motor debe llamar tras validar la acción local
+  window.onLocalMove = (move) => online?.send({ kind: 'move', payload: move });
+  window.onSectionShift = (shift) => online?.send({ kind: 'shift', payload: shift });
+  window.onPromote = (prom) => online?.send({ kind: 'promote', payload: prom });
+</script>
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
