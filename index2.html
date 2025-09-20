@@ -39,17 +39,16 @@
 </head>
 <body>
   <div class="app">
-    <!-- Carga directa del modo simple -->
-    <iframe id="game" src="ajetrez_modo_simple.html" allow="fullscreen *; gamepad *; screen-wake-lock; xr-spatial-tracking" allowfullscreen></iframe>
+    <iframe id="game" src="juego.html" allow="fullscreen *" allowfullscreen></iframe>
     <div class="overlay" id="overlay">
       <div class="panel">
-        <h1>Modo horizontal</h1>
-        <p>En móviles, hace falta un toque para activar pantalla completa. Se intentará bloquear la orientación en horizontal.</p>
+        <h1>Entrar en pantalla completa</h1>
+        <p>En móviles, los navegadores exigen un toque para activar el modo pantalla completa.</p>
         <div class="actions">
-          <button class="btn" id="btnGo">Abrir en horizontal (pantalla completa)</button>
+          <button class="btn" id="btnGo">Tocar para continuar</button>
           <button class="btn" id="btnInstall" style="display:none">Instalar como App (recomendado)</button>
         </div>
-        <div class="hint">Sugerido: instalá la App para abrir siempre a pantalla completa.</div>
+        <div class="hint">Sugerido: instala como App para abrir siempre a pantalla completa.</div>
       </div>
     </div>
   </div>
@@ -59,7 +58,7 @@
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
 
-    // Detectar si ya corre como app instalada
+    // Detectar modos de app instalable
     function isStandalone() {
       return window.matchMedia('(display-mode: fullscreen)').matches ||
              window.matchMedia('(display-mode: standalone)').matches ||
@@ -71,12 +70,12 @@
     const btnInstall = document.getElementById('btnInstall');
     const game = document.getElementById('game');
 
-    // Si ya está en modo app, ocultar overlay
+    // Intentar ocultar overlay si ya está en modo app
     if (isStandalone()) {
       overlay.style.display = 'none';
     }
 
-    // Soporte de instalación (Android/Chrome)
+    // beforeinstallprompt (Android/Chrome)
     let deferredPrompt = null;
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
@@ -100,9 +99,9 @@
       try { await screen.orientation.lock('landscape'); } catch(e){}
     }
 
-    // Si no es app instalada, pedir gesto para FS
+    // Si ya está en display-mode app, no necesitamos pedir FS (ya es fullscreen)
     if (!isStandalone()) {
-      // Intento inicial (algunos navegadores permiten si hubo gesto previo de navegación)
+      // Primer intento sin gesto (algunos navegadores lo permiten si se abre desde un gesto previo)
       setTimeout(()=> enterFS(document.documentElement), 0);
       // Mostrar overlay hasta que el usuario toque
       overlay.style.display = 'flex';
@@ -114,7 +113,7 @@
       done();
     });
 
-    // Toque en cualquier lado también intenta FS (una vez)
+    // Si el usuario toca la pantalla fuera del botón, también intentamos
     window.addEventListener('touchend', async () => {
       if (overlay.style.display !== 'none') {
         await enterFS(document.documentElement);
@@ -122,60 +121,14 @@
       }
     }, { once: true, passive: true });
 
-    // Si sale de FS en navegador, volver a mostrar el overlay
+    // Mantener etiqueta de estado si cambia el fullscreen
     function fsActive(){ return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement; }
     document.addEventListener('fullscreenchange', () => {
       if (!fsActive() && !isStandalone()) {
+        // Si salió del FS en navegador, volver a mostrar el overlay
         overlay.style.display = 'flex';
       }
     });
   </script>
-<style id="hide-rotate-overlays">
-  /* Forzar oculto cualquier cartel de rotación/orientación, sin afectar elementos normales */
-  [id*="rotate-overlay"], [class*="rotate-overlay"],
-  [id*="rotateNotice"], [class*="rotateNotice"],
-  [id*="rotatePhone"], [class*="rotatePhone"],
-  [id*="aj-rotate"], [class*="aj-rotate"],
-  [id*="orientation-overlay"], [class*="orientation-overlay"],
-  [id*="portrait-overlay"], [class*="portrait-overlay"],
-  [id*="force-portrait"], [class*="force-portrait"],
-  [id*="forcePortrait"], [class*="forcePortrait"],
-  [id*="rotate"], [class*="rotate"],
-  [id*="portrait"], [class*="portrait"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-</style>
-  <script src="<script>window.AJ_SF_URL = '/engine/stockfish.js';</script>
-  engine/aj-oraculo.js"></script>
-
-<script>
-// Failsafe loader para el Oráculo en Netlify
-(function(){
-  if (window.__AJ_ORACULO_LOADED__) return;
-  function add(src, cb){
-    var s = document.createElement('script');
-    s.src = src; s.async = true;
-    s.onload = function(){ window.__AJ_ORACULO_LOADED__=true; cb && cb(true, src); };
-    s.onerror = function(){ cb && cb(false, src); };
-    document.head.appendChild(s);
-  }
-  // Fuerza ruta del Worker absoluto en raíz
-  window.AJ_SF_URL = '/engine/stockfish.js';
-  // Intenta cargar oráculo con ruta absoluta primero
-  add('/engine/aj-oraculo.js', function(ok1){
-    if (ok1) return;
-    // Fallback relativo por si el sitio está en subcarpeta
-    add('engine/aj-oraculo.js', function(ok2){
-      if (!ok2) {
-        console.warn('[Ajetrez] No se pudo cargar el oráculo desde /engine/aj-oraculo.js ni engine/aj-oraculo.js');
-      }
-    });
-  });
-})();
-</script>
-
 </body>
 </html>
