@@ -132,7 +132,7 @@
   }
   .mp-tabs .tab-btn{ appearance:none; border:none; border-radius:999px; padding:8px 12px; font-weight:800; cursor:pointer; background:#111; color:#fff; }
   .tab-btn.active{ background:#b91c1c; color:#fff; }
-  .mp-content{ flex:1; overflow:auto; padding:calc(14px - 1.5mm); }
+  .mp-content{ padding:calc(14px - 1.5mm);  flex: 1 1 auto; min-height: 0; overflow: auto; }
   .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
   .field{ display:flex; flex-direction:column; gap:4px; margin-bottom:12px; }
   .field input, .field select{ padding:6px 8px; border:1px solid #ccc; border-radius:10px; font-size:14px; }
@@ -5080,11 +5080,6 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   font-size: 0.85em !important;     /* -15% */
   padding: 6.8px 10.2px !important; /* 8px 12px -> -15% */
 }
-</style><style id="panelMinus10">
-/* Reducir tamaño total del panel (ancho y alto) un 10% */
-#megaPanel{
-  width: calc(var(--square) * 10.8) !important;  /* 12 -> 10.8 */    /* 10 -> 9 */
-}
 </style><style id="loginTighten">
 /* Subir login 1 casillero y compactar espaciados */
 #megaPanel #loginView{
@@ -5138,12 +5133,6 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   background: #f7f1e1 !important;
   border-radius: 12px;
   padding: 6px 8px;
-}
-</style><style id="panelWidthVar">
-:root{ --panel-w: 18.2952; }
-#megaPanel{
-  width: calc(var(--square) * var(--panel-w)) !important;
-  left: calc( (var(--square) * (var(--board-cols) - var(--panel-w))) / 2 ) !important;
 }
 </style><style id="panelTaller5">
 /* Altura del panel +~5% y ajuste simétrico (sube y baja por igual) */
@@ -10610,17 +10599,11 @@ function showToast(){
 })();
 </script>
 <!-- Canonical override: tamaño del panel del menú unificado (+4mm hacia ARRIBA) -->
-<style id="aj-megaPanel-canonical-2025-09-12">
-  #megaPanel {
-    height: calc(var(--square) * 8) !important;
-    transform: translateY(calc(var(--square) * 1)) scale(1) !important;
-    transform-origin: top center !important;
-  }
-</style>
+<style id="aj-megaPanel-canonical-2025-09-12">#megaPanel { left: calc(var(--square) * 12 - min(92vw, 980px) / 2) !important; width: min(92vw, 980px) !important; height: calc(var(--square) * 8) !important; transform: translateY(calc(var(--square) * 1)) scale(1) !important; transform-origin: top center !important; }</style>
 <style id="aj-megapanel-bg-white-fix-2025-09-12">
   /* Evita transparencias en el cuerpo del panel del menú */
   #megaPanel { background: #fff !important; }
-  #megaPanel .mp-content { background: #fff !important; }
+  #megaPanel .mp-content { background: #fff !important;  flex: 1 1 auto; min-height: 0; overflow: auto; }
   /* Si existiera algún overlay translúcido dentro del panel, lo neutralizamos */
   #megaPanel [class*="overlay"],
   #megaPanel .glass,
