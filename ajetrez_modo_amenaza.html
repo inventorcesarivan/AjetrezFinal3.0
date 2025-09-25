@@ -115,8 +115,8 @@
   #megaPanel{
     position:absolute;
     left: calc(var(--square) * 6);
-    top: calc(var(--square) * -1);
-    width: calc(var(--square) * 12)
+    top: calc(var(--square) * -1 + 3mm);
+    width: calc(var(--square) * 12);
     background:#fff; border-radius: 16px;
     box-shadow: 0 12px 32px rgba(0,0,0,.25);
     display:none; flex-direction:column; overflow:hidden;
@@ -132,7 +132,7 @@
   }
   .mp-tabs .tab-btn{ appearance:none; border:none; border-radius:999px; padding:8px 12px; font-weight:800; cursor:pointer; background:#111; color:#fff; }
   .tab-btn.active{ background:#b91c1c; color:#fff; }
-  .mp-content{ flex:1; overflow:auto; padding:14px; }
+  .mp-content{ flex:1; overflow:auto; padding:calc(14px - 1.5mm); }
   .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
   .field{ display:flex; flex-direction:column; gap:4px; margin-bottom:12px; }
   .field input, .field select{ padding:6px 8px; border:1px solid #ccc; border-radius:10px; font-size:14px; }
@@ -560,147 +560,6 @@ body, html{overflow:visible!important;}
   box-shadow: 0 6px 16px rgba(225,17,17,.35);
   border-color: #700;
 }
-</style><style id="menuTextColorLock">
-/* Fijar color base del texto dentro del panel del menú, independientemente del tema visual */
-#megaPanel #tabsView { color: #111; }
-
-/* Asegurar encabezados/labels/párrafos con color estable */
-#megaPanel #tabsView h1,
-#megaPanel #tabsView h2,
-#megaPanel #tabsView h3,
-#megaPanel #tabsView h4,
-#megaPanel #tabsView p,
-#megaPanel #tabsView label,
-#megaPanel #tabsView span,
-#megaPanel #tabsView li,
-#megaPanel #tabsView .hint-sm { color: #111; }
-
-/* Mantener contraste en botones/píldoras del panel de pestañas */
-#megaPanel #tabsView .tab-btn { color: #fff; }
-#megaPanel #tabsView .btn { color: inherit; }
-
-/* Mantener SIEMPRE el texto de los botones de estilos en blanco */
-#megaPanel #tabsView #themePicker .btn.theme { color: #fff !important; }
-#megaPanel #tabsView #themePicker .btn.theme.active { color: #fff !important; }
-
-/* Botones de selección de Modo de juego: texto siempre blanco */
-#modeDropdown .btn.dd-item { color: #fff !important; }
-#modeDropdown .btn.dd-item.active { color: #fff !important; }
-
-/* Además, por seguridad, los "píldora" dentro del tab de modos mantienen texto blanco */
-#tab-modos .pill,
-#tab-modos .pill.btn,
-#tab-modos .btn.pill,
-#tab-modos .btn { color: #fff; }
-
-/* === Forzar texto BLANCO en TODOS los botones del panel de menú === */
-#megaPanel button,
-#megaPanel .btn,
-#megaPanel .btn.mode,
-#megaPanel .btn.pill,
-#megaPanel .pill,
-#megaPanel .tab-btn,
-#megaPanel .dd-item,
-#megaPanel [role="button"] {
-  color: #fff !important;
-}
-
-/* Estados comunes */
-#megaPanel button:hover,
-#megaPanel .btn:hover,
-#megaPanel .btn.mode:hover,
-#megaPanel .btn.pill:hover,
-#megaPanel .pill:hover,
-#megaPanel .tab-btn:hover,
-#megaPanel .dd-item:hover,
-#megaPanel [role="button"]:hover {
-  color: #fff !important;
-}
-
-#megaPanel button:focus,
-#megaPanel .btn:focus,
-#megaPanel .btn.mode:focus,
-#megaPanel .btn.pill:focus,
-#megaPanel .pill:focus,
-#megaPanel .tab-btn:focus,
-#megaPanel .dd-item:focus,
-#megaPanel [role="button"]:focus {
-  color: #fff !important;
-}
-
-#megaPanel button:disabled,
-#megaPanel .btn:disabled,
-#megaPanel .btn.mode:disabled,
-#megaPanel .btn.pill:disabled,
-#megaPanel .pill:disabled,
-#megaPanel .tab-btn:disabled,
-#megaPanel .dd-item:disabled,
-#megaPanel [role="button"][aria-disabled="true"] {
-  color: #fff !important;
-}
-
-/* No tocar selects/inputs; mantienen su color original */
-
-/* === Texto del panel flotante de Registros: forzar contraste === */
-#regPanel { color: #111 !important; }
-#regPanel .card-title,
-#regPanel .title,
-#regPanel .meta-line,
-#regPanel .meta-chip,
-#regPanel .game-item .title,
-#regPanel .game-item .meta,
-#regPanel .stats-list,
-#regPanel .notes,
-#regPanel .hint,
-#regPanel p,
-#regPanel li,
-#regPanel label,
-#regPanel span { color: #111 !important; opacity: 1 !important; }
-
-/* Placeholders legibles */
-#regPanel input::placeholder,
-#regPanel textarea::placeholder { color: #666 !important; opacity: 1 !important; }
-
-/* Mantener botones del panel en BLANCO (coherente con resto del UI) */
-#regPanel .btn,
-#regPanel .btn * { color: #fff !important; }
-
-/* Evitar que un tema aplique color claro a enlaces dentro del panel */
-#regPanel a { color: #0a58ca !important; }
-
-/* === HUD de modo y selector de bots (esquina sup. izquierda) === */
-#modeGroup, #modeGroup *, #botHUD, #botHUD *, .bot-hud, .bot-hud * { color: #fff !important; }
-
-/* Mantener legibles los selects del panel flotante de bots */
-#botChooserPanel select, #botChooserPanel option { color: #111 !important; }
-#botChooserPanel .btn, #botChooserPanel .btn * { color: #fff !important; }
-
-/* === Cerrar del selector de Bots (menú y HUD): fondo negro estilo botón === */
-#botChooserClose,
-#botChooserPanel .btn.close,
-#botChooserPanel .bot-chooser-close,
-[id*="botChooserClose"]{
-  background:#000 !important;
-  color:#fff !important;
-  border:2px solid #fff !important;
-  border-radius:999px !important;
-  box-shadow: 0 3px 10px rgba(0,0,0,.35);
-}
-
-/* === Indicador a la derecha del selector de Modo del tablero: estilizado como botón negro === */
-#modeIndicator, .mode-indicator{
-  display:inline-flex !important;
-  align-items:center; justify-content:center;
-  background:#000 !important;
-  color:#fff !important;
-  border:2px solid #fff !important;
-  border-radius:999px !important;
-  padding:6px 14px !important;
-  font-weight:900; line-height:1; min-height:36px;
-}
-
-/* === Contorno blanco alrededor del panel completo del menú === */
-#megaPanel { border: 4px solid #fff !important; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
 </style><style id="aj-bottombar-height-patch">
   /* Achicar altura del contenedor de botones inferior ~1 casillero (desde abajo hacia arriba) */
   #bottomBar{
@@ -1939,18 +1798,7 @@ body[data-theme="noche"] .regv2-btn{
   #timeIndicator #regv2-clock-btn,
   #timeIndicator #pauseBtn{ all: unset; }
 </style>
-<style id="aj-menu-registro-tab-style">
-  /* Asegurar que el botón nuevo herede el look de las tabs */
-  #megaPanel .tabs .tab-btn#regv2-open-menu,
-  #menu-panel .tabs .tab-btn#regv2-open-menu{
-    display:inline-flex; align-items:center; gap:6px;
-    font-weight:800;
-  }
-  #regv2-open-menu .dot{
-    width:6px; height:6px; border-radius:50%; background:#4ade80;
-    box-shadow:0 0 6px rgba(74,222,128,.6);
-  }
-</style>
+
 <style id="regv2-head-actions-style">
   #regv2-panel header{
     display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -2959,6 +2807,7 @@ body[data-theme="noche"] .regv2-btn{
 #promoChoices img{width:56px;height:56px;display:block}
 #promoClose{margin-top:10px;text-align:center;opacity:.7;font-size:12px}
 </style>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
@@ -5368,59 +5217,6 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 #megaPanel{
   width: calc(var(--square) * var(--panel-w)) !important;
   left: calc( (var(--square) * (var(--board-cols) - var(--panel-w))) / 2 ) !important;
-}
-</style><style id="panelCompact">
-/* Compacción vertical general en el panel (todas las secciones) */
-#megaPanel .mp-header{
-  padding-top: 7px !important;
-  padding-bottom: 7px !important;
-}
-#megaPanel .mp-tabs{
-  padding: 4px 6px !important;      /* era 6px 8px en crema */
-  margin: 6px 0 8px 0 !important;   /* reduce separación */
-}
-/* Contenido de pestañas y grupos */
-#megaPanel .tab{ 
-  padding: 8px 10px !important;
-}
-#megaPanel .tab .group,
-#megaPanel .tab .row,
-#megaPanel .tab .section{
-  gap: 8px !important;              /* reduce gaps entre controles */
-}
-#megaPanel .field{ 
-  margin: 6px 0 !important;         /* inputs/labels más cercanos */
-}
-#megaPanel label{ 
-  margin-bottom: 4px !important;
-}
-#megaPanel input,
-#megaPanel select,
-#megaPanel textarea{
-  margin: 0 0 6px 0 !important;
-}
-/* Tipografía más eficiente en altura */
-#megaPanel h2, 
-#megaPanel h3{
-  margin: 4px 0 6px 0 !important;
-  line-height: 1.15 !important;
-}
-#megaPanel p, 
-#megaPanel li, 
-#megaPanel .hint-sm,
-#megaPanel label{
-  line-height: 1.25 !important;
-  margin-top: 2px !important;
-  margin-bottom: 4px !important;
-}
-/* Botones dentro del panel: margen superior suave para cerrar bloques */
-#megaPanel .btn{ 
-  margin-top: 6px !important;
-}
-/* Footer del panel un poco más compacto */
-#megaPanel .mp-footer{
-  padding-top: 7px !important;
-  padding-bottom: 7px !important;
 }
 </style><style id="panelTaller5">
 /* Altura del panel +~5% y ajuste simétrico (sube y baja por igual) */
@@ -10890,8 +10686,8 @@ function showToast(){
 <!-- Canonical override: tamaño del panel del menú unificado (+4mm hacia ARRIBA) -->
 <style id="aj-megaPanel-canonical-2025-09-12">
   #megaPanel {
-    height: calc(var(--square) * 8 + 4mm) !important;
-    transform: translateY(calc(var(--square) * 1 - 4mm)) scale(1) !important;
+    height: calc(var(--square) * 8) !important;
+    transform: translateY(calc(var(--square) * 1)) scale(1) !important;
     transform-origin: top center !important;
   }
 </style>
