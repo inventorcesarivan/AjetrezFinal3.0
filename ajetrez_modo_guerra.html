@@ -3291,7 +3291,22 @@ body[data-theme="noche"] .regv2-btn{
 }
 </style>
 
-</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
+
+<script id="aj-hide-bot-vs-bot-safe">
+(function(){
+  function hideBotVsBot(){
+    document.querySelectorAll('button').forEach(btn=>{
+      const t = (btn.textContent || '').toLowerCase().trim();
+      if (t === 'bot vs bot' || t === 'bots vs bots' || t === 'bot-vs-bot') {
+        btn.style.display = 'none';
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', hideBotVsBot);
+})();
+</script>
+
+</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
 <button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
@@ -3362,7 +3377,7 @@ body[data-theme="noche"] .regv2-btn{
 </div>
 
 </div><div class="field"><label>Estilo visual</label><div aria-label="Elegir estilo visual" class="row" id="themePicker" role="group"><button class="btn theme" data-theme="dia" title="Tonos claros, suaves" type="button">Día</button><button class="btn theme" data-theme="noche" title="Tonos oscuros, suaves" type="button">Noche</button><button class="btn theme" data-theme="madera" title="Tonos madera, suaves" type="button">Madera</button><button class="btn theme" data-theme="arena" title="Arena suave" type="button">Arena</button><button class="btn theme" data-theme="pizarra" title="Pizarra / gris" type="button">Pizarra</button><button class="btn theme" data-theme="oliva" title="Verde oliva suave" type="button">Oliva</button></div><span class="hint-sm">Los estilos son suaves para no distraer durante la partida.</span></div></div></div><div class="tab" id="tab-version" style="display:block"><h3>Versión de Ajetrez</h3><p>Versión actual del juego: <strong id="verActual">2.5 (Estable)</strong></p><div class="field"><label>Seleccionar versión</label><select id="selVersion"><option selected="" value="3_0_simple">Versión 3.0 (modo simple)</option><option value="3_0_amenaza">Versión 3.0 (modo amenaza)</option><option value="3_0_guerra">Versión 3.0 (modo guerra)</option></select></div><div class="hint-sm">La selección futura podrá cargar configuraciones específicas por versión.
-</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="bot-vs-bot">Bot vs Bot (demo)</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3></h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;">
+</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3></h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;">
 
 <div class="rules-version" data-version="3_0_guerra">
   <h4>Ajetrez — Modo Guerra (Reglas generales)</h4>
@@ -14431,59 +14446,172 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-<!-- === AJETREZ DEMO PATCH (igual a modo simple) === -->
-<script>
-/* DESACTIVAR LIBRO DE APERTURAS */
-(function(){
-  try{
-    if (window.AJ_BOOK) window.AJ_BOOK = {};
-    if (typeof window.useOpeningBook !== 'undefined') window.useOpeningBook = false;
-    if (typeof window.pickFromBook === 'function') window.pickFromBook = function(){ return null; };
-    console.log('[AJ] Libro de aperturas DESACTIVADO');
-  }catch(e){}
-})();
-</script>
+<!-- ================= AJETREZ ONLINE (SYNCED FROM MODO SIMPLE) ================= -->
+<script id="aj-online-synced">
+document.addEventListener('DOMContentLoaded', ()=>{
+  /* ---------- BOTÓN EXTERNO (ROJO FIJO + LATIDO) ---------- */
+  const topBar = document.querySelector('.bar') || document.body;
+  const modeGroup = topBar.querySelector('.mode-group') || topBar;
 
-<script>
-/* PARCHE BOT INTERNO: anti-loop + aleatoriedad */
-(function(){
-  if(!window.pickMove) return;
-  const origPick = window.pickMove;
-  let lastMoves = [];
-  window.pickMove = function(moves, color){
-    if(lastMoves.length >= 2){
-      const a = lastMoves[lastMoves.length-1];
-      const b = lastMoves[lastMoves.length-2];
-      moves = moves.filter(m => !(m.from.r===b.to.r && m.from.c===b.to.c &&
-                                  m.to.r===b.from.r && m.to.c===b.from.c));
-    }
-    if(moves.length > 1) moves = moves.slice().sort(()=>Math.random()-0.5);
-    const m = origPick(moves, color);
-    if(m){
-      lastMoves.push({from:m.from, to:m.to});
-      if(lastMoves.length>6) lastMoves.shift();
-    }
-    return m;
-  };
-  console.log('[AJ] Parche bot interno activo');
-})();
-</script>
+  let btnExt = document.getElementById('btnOnlineExternal');
+  if(!btnExt){
+    btnExt = document.createElement('button');
+    btnExt.id = 'btnOnlineExternal';
+    btnExt.className = 'btn';
+    btnExt.textContent = 'Jugar Online';
+    modeGroup.appendChild(btnExt);
+  }
 
-<script>
-/* FIX reinicio BOT vs BOT */
-(function(){
-  if(typeof window.resetGame !== 'function') return;
-  const _reset = window.resetGame;
-  window.resetGame = function(){
-    _reset.apply(this, arguments);
-    setTimeout(()=>{
-      if(window.GAME_MODE==='bot' && typeof window.scheduleBotMove==='function'){
-        window.scheduleBotMove();
+  Object.assign(btnExt.style,{
+    background:'#c8102e',
+    color:'#fff',
+    border:'2px solid #fff',
+    borderRadius:'999px',
+    fontWeight:'900',
+    animation:'onlinePulse 1.6s ease-in-out infinite'
+  });
+
+  /* ---------- PANEL / TAB MODOS ---------- */
+  const tab = document.querySelector('#tab-modos') || document.querySelector('[data-tab="modos"]');
+  if(!tab) return;
+
+  const btnRow = tab.querySelector('.row') || tab;
+  const sharedHelp = tab.querySelector('#modeHelp');
+  if(!sharedHelp) return;
+
+  let btnOnline = document.getElementById('btnOnlineMode');
+  if(!btnOnline){
+    btnOnline = document.createElement('button');
+    btnOnline.id = 'btnOnlineMode';
+    btnOnline.className = 'btn mode';
+    btnOnline.textContent = 'Jugar Online';
+    btnRow.appendChild(btnOnline);
+  }
+
+  const onlineHTML = `
+    <span class="title">Modo Online</span>
+    <p>
+      Estamos trabajando para que puedas jugar de manera online contra otros usuarios.
+      Para ello, necesitamos que colabores con el proyecto.
+      Cualquier monto que puedas donar nos ayuda a alcanzar la meta.
+      Quienes colaboren, recibirán premios y tendrán además, la posibilidad de probar nuevas funciones,
+      antes de que sean publicadas oficialmente.
+      Desde ya, muchas gracias.
+    </p>
+
+    <div id="online-donations"
+      style="margin-top:28px;display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;">
+      
+      <a href="https://www.paypal.com/ncp/payment/PTRWET3UWGEY8" target="_blank" rel="noopener">
+        <img src="logo paypal.png" alt="Donar con PayPal"
+          style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
+      </a>
+
+      <a href="https://link.mercadopago.com.ar/ajetrez" target="_blank" rel="noopener">
+        <img src="mercadopago.jpg" alt="Donar con MercadoPago"
+          style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
+      </a>
+    </div>
+  `;
+
+  function resetModes(){
+    tab.querySelectorAll('.btn.mode').forEach(b=>b.classList.remove('active','selected'));
+  }
+
+  function hideBotDifficulty(){
+    Array.from(tab.querySelectorAll('*')).forEach(el=>{
+      const t=(el.textContent||'').toLowerCase();
+      if(t.includes('player vs bot') && (t.includes('fácil')||t.includes('medio')||t.includes('difícil'))){
+        el.style.display='none';
       }
-    },100);
-    console.log('[AJ] Fix reinicio bot-vs-bot aplicado');
-  };
-})();
+    });
+  }
+  function showBotDifficulty(){
+    Array.from(tab.querySelectorAll('*')).forEach(el=>{
+      const t=(el.textContent||'').toLowerCase();
+      if(t.includes('player vs bot') && (t.includes('fácil')||t.includes('medio')||t.includes('difícil'))){
+        el.style.display='';
+      }
+    });
+  }
+
+  btnOnline.addEventListener('click', ()=>{
+    resetModes();
+    btnOnline.classList.add('active','selected');
+    sharedHelp.innerHTML = onlineHTML;
+    hideBotDifficulty();
+  });
+
+  tab.querySelectorAll('.btn.mode').forEach(btn=>{
+    if(btn===btnOnline) return;
+    btn.addEventListener('click', ()=>{
+      btnOnline.classList.remove('active','selected');
+      showBotDifficulty();
+    });
+  });
+
+  /* ---------- BOTÓN EXTERNO ABRE MENÚ Y ONLINE ---------- */
+  btnExt.addEventListener('click', ()=>{
+    const menuBtn = document.getElementById('btnMegaMenu');
+    if(menuBtn) menuBtn.click();
+
+    setTimeout(()=>{
+      const modosTabBtn = Array.from(document.querySelectorAll('.tab-btn, .btn'))
+        .find(b=>/modos de juego/i.test(b.textContent||''));
+      if(modosTabBtn) modosTabBtn.click();
+      setTimeout(()=>btnOnline.click(),60);
+    },60);
+  });
+});
+</script>
+
+<style>
+@keyframes onlinePulse{
+  0%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0);}
+  50%{transform:scale(1.08);box-shadow:0 0 32px rgba(200,16,46,.85);}
+  100%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0);}
+}
+</style>
+<!-- ================= END AJETREZ ONLINE ================= -->
+
+
+
+
+
+<!-- AJETREZ SAFE HIDE BOT VS BOT (MENU ONLY) -->
+<script id="aj-hide-bot-vs-bot-safe">
+document.addEventListener('DOMContentLoaded', ()=>{
+  const panel = document.getElementById('megaPanel');
+  if(!panel) return;
+
+  function hide(){
+    panel.querySelectorAll('button, .dd-item, .tab-btn, .btn').forEach(el=>{
+      const t = (el.textContent||'').toLowerCase();
+      if(t.includes('bot vs bot')){
+        el.remove();
+      }
+    });
+  }
+
+  hide();
+  panel.addEventListener('click', ()=>setTimeout(hide, 30));
+});
+</script>
+
+
+<!-- AJETREZ REMOVE EXTERNAL BOT VS BOT -->
+<script id="aj-remove-external-bot-vs-bot">
+document.addEventListener('DOMContentLoaded', ()=>{
+  const containers = document.querySelectorAll('.mode-group, .mode-selector, .left-panel');
+  containers.forEach(c=>{
+    c.querySelectorAll('button').forEach(btn=>{
+      const t = (btn.textContent||'').toLowerCase();
+      if(t.includes('bot vs bot') || t.includes('bot versus bot')){
+        btn.remove();
+      }
+    });
+  });
+});
 </script>
 
 </body>
