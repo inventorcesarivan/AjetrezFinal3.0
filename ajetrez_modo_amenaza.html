@@ -45,7 +45,7 @@
   /* Desplazar los botones de pago 1 casillero a la derecha */
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
 
-</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez – Modo Amenaza – Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
+</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square: 56px;
     --border: 2px;
@@ -3131,8 +3131,9 @@ body[data-theme="noche"] .regv2-btn{
 #promoClose{margin-top:10px;text-align:center;opacity:.7;font-size:12px}
 </style>
 
-<style id="aj-remove-login">
+<style id="aj-no-login-final">
 #tabsView{ display:block !important; }
+#loginView{ display:none !important; } 
 #loggedUser, .user-label, [data-role="logged-user"]{ display:none !important; }
 </style>
 <style>
@@ -3301,119 +3302,21 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 
 
-<script id="aj-safe-disable-bot-vs-bot">
-// === AJETREZ SAFE PATCH (modo simple)
-// - NO toca setters globales
-// - NO rompe bootstrap
-// - Bloquea Bot vs Bot solo al cambiar de modo
-// - Elimina el botón "Versiones"
+<script id="aj-hide-bot-vs-bot-safe">
 (function(){
-  function whenReady(fn){
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(fn, 0);
-    } else {
-      document.addEventListener('DOMContentLoaded', fn, { once: true });
-    }
-  }
-
-  whenReady(function(){
-    // 1) Interceptar SOLO la función de cambio de modo (si existe)
-    if (typeof window.setGameMode === 'function' && !window.__ajSetGameModeWrapped){
-      const original = window.setGameMode;
-      window.setGameMode = function(mode){
-        if (String(mode).toLowerCase().includes('bot') && String(mode).toLowerCase().includes('vs')){
-          console.warn('[AJETREZ] Bot vs Bot deshabilitado (safe)');
-          return; // bloquea sin romper engine
-        }
-        return original.apply(this, arguments);
-      };
-      window.__ajSetGameModeWrapped = true;
-    }
-
-    // 2) Eliminar entradas UI "Bot vs Bot" (solo UI, post-init)
-    const purgeUI = () => {
-      document.querySelectorAll('button, .btn, [role="button"], li, a').forEach(el=>{
-        const t=(el.textContent||'').toLowerCase();
-        if (t.includes('bot vs bot') || t.includes('bots vs bots')) el.remove();
-      });
-    };
-    purgeUI();
-    setTimeout(purgeUI, 50);
-
-    // 3) Eliminar botón "Versiones" (hardcodeado)
-    document.querySelectorAll('button, .btn, a').forEach(el=>{
-      const t=(el.textContent||'').toLowerCase().trim();
-      if (t === 'versiones') el.remove();
-    });
-  });
-})();
-</script>
-
-
-<script id="aj-hide-external-botvsbot">
-// === AJETREZ UI PATCH
-// Oculta el botón "Bot vs Bot" del menú externo (arriba a la izquierda del tablero)
-// Sin tocar lógica ni bootstrap
-(function(){
-  function hideExternal(){
-    document.querySelectorAll('button, .btn, [role="button"], a, span').forEach(el=>{
-      const t = (el.textContent || '').toLowerCase().trim();
-      if (t === 'bot vs bot' || t === 'bots vs bots') {
-        el.style.display = 'none';
-        el.setAttribute('aria-hidden','true');
+  function hideBotVsBot(){
+    document.querySelectorAll('button').forEach(btn=>{
+      const t = (btn.textContent || '').toLowerCase().trim();
+      if (t === 'bot vs bot' || t === 'bots vs bots' || t === 'bot-vs-bot') {
+        btn.style.display = 'none';
       }
     });
   }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(hideExternal, 0);
-  } else {
-    document.addEventListener('DOMContentLoaded', hideExternal, { once:true });
-  }
-
-  // refuerzo leve por si el HUD se re-renderiza
-  setTimeout(hideExternal, 50);
+  document.addEventListener('DOMContentLoaded', hideBotVsBot);
 })();
 </script>
 
-
-<script id="aj-hide-external-botvsbot-strong">
-// === AJETREZ UI PATCH (strong)
-// Oculta cualquier opción Bot vs Bot / Bot versus bot / demo en el menú externo
-(function(){
-  function normalize(s){
-    return s.toLowerCase().replace(/\s+/g,' ').trim();
-  }
-  function hide(){
-    document.querySelectorAll('button, .btn, [role="button"], li, a').forEach(el=>{
-      const t = normalize(el.textContent || '');
-      if (
-        t.includes('bot vs bot') ||
-        t.includes('bot versus bot') ||
-        (t.includes('bot') && t.includes('bot') && t.includes('demo'))
-      ){
-        el.style.display = 'none';
-        el.setAttribute('aria-hidden','true');
-      }
-    });
-  }
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    hide();
-  } else {
-    document.addEventListener('DOMContentLoaded', hide, { once:true });
-  }
-  // refuerzos por re-render
-  setTimeout(hide, 50);
-  setTimeout(hide, 150);
-})();
-</script>
-
-
-<script>
-  window.AJETREZ_RULESET = "amenaza";
-</script>
-
-</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
+</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
 <button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
@@ -3484,7 +3387,35 @@ body[data-theme="noche"] .regv2-btn{
 </div>
 
 </div><div class="field"><label>Estilo visual</label><div aria-label="Elegir estilo visual" class="row" id="themePicker" role="group"><button class="btn theme" data-theme="dia" title="Tonos claros, suaves" type="button">Día</button><button class="btn theme" data-theme="noche" title="Tonos oscuros, suaves" type="button">Noche</button><button class="btn theme" data-theme="madera" title="Tonos madera, suaves" type="button">Madera</button><button class="btn theme" data-theme="arena" title="Arena suave" type="button">Arena</button><button class="btn theme" data-theme="pizarra" title="Pizarra / gris" type="button">Pizarra</button><button class="btn theme" data-theme="oliva" title="Verde oliva suave" type="button">Oliva</button></div><span class="hint-sm">Los estilos son suaves para no distraer durante la partida.</span></div></div></div><div class="tab" id="tab-version" style="display:block"><h3>Versión de Ajetrez</h3><p>Versión actual del juego: <strong id="verActual">2.5 (Estable)</strong></p><div class="field"><label>Seleccionar versión</label><select id="selVersion"><option selected="" value="3_0_simple">Versión 3.0 (modo simple)</option><option value="3_0_amenaza">Versión 3.0 (modo amenaza)</option><option value="3_0_guerra">Versión 3.0 (modo guerra)</option></select></div><div class="hint-sm">La selección futura podrá cargar configuraciones específicas por versión.
-</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="bot-vs-bot">Bot vs Bot (demo)</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3></h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;"><div class="rules-version" data-version="3_0"><h4>Ajetrez Version 3.0 (Modo simple) — Reglas Básicas del juego</h4><div><p>En este modo, sólo el recuadro central del tablero es jugable. Las partes sobrantes (aunque contengan piezas) no participan hasta que sean ingresadas mediante el desplazamiento de secciones.</p><h5><span class="subtitulo">Distribución de las piezas</span></h5><p>Por color, el tablero contiene:</p><ul><li>2 reyes</li><li>2 reinas</li><li>4 alfiles, 4 caballos, 4 torres</li><li>16 peones</li></ul><p>Las piezas son distribuidas en el recuadro central de la misma manera que en el ajedrez clásico. En los laterales, (si bien ocupan las mismas posiciones entre ellas). Las piezas se colocan desplazadas, 2 secciones hacia abajo en negras y 2 hacia arriba en blancas.</p><ul><li>Ajetrez respeta todas las reglas del clásico ajedrez, por lo tanto, se debe jugar de la misma manera y respetando las reglas generales del ajedrez clásico.</li><li>A su vez, añade nuevas reglas, que dependen del modo de juego que se utilice.</li><li>En este modo de juego (Modo simple). Luego de capturar, se puede elegir entre desplazar o mantener la sección del tablero donde ahora se ubica la pieza que realizó la captura.</li><li>Si decide desplazar. Se desplaza (hacia el lado opuesto al que se encuentra y solo una vez).</li><li>Luego de la elección de mantener, o desplazar la sección, queda cedido el turno al contrincante.</li><li>El desplazamiento de la sección, puede sacar, o introducir piezas del área jugable.</li></ul><h5>Función del desplazamiento de las secciones</h5><ul><li>Escapar de una captura.</li><li>Alterar las posibles estrategias del oponente.</li><li>Sacar piezas rivales del área jugable.</li><li>Ingresar piezas propias al área jugable.</li><li>También ingresar piezas del oponente para luego intentar capturarlas.</li></ul><p>Importante: Si una pieza sale del recuadro central, esto no significa que queda fuera de juego definitivamente; podría reingresar tras nuevos desplazamientos.</p><h5>⚠️ Imposibilidad de desplazamiento de secciones</h5><ul><li>En jaque/mate no hay desplazamientos de las secciones (aun cuando se haya capturado una pieza del oponente que se encuentre en la sección donde está el rey).</li><li>No se pueden desplazar secciones cuando esa acción implica que el recuadro central jugable quede sin piezas disponibles de alguno de los dos participantes.</li></ul></div></div><div class="rules-version" data-version="3_0_amenaza"></div>
+</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3></h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;"><div class="rules-version" data-version="3_0"><h4>Ajetrez Version 3.0 (Modo simple) — Reglas Básicas del juego</h4><div><p>En este modo, sólo el recuadro central del tablero es jugable. Las partes sobrantes (aunque contengan piezas) no participan hasta que sean ingresadas mediante el desplazamiento de secciones.</p><h5><span class="subtitulo">Distribución de las piezas</span></h5><p>Por color, el tablero contiene:</p><ul><li>2 reyes</li><li>2 reinas</li><li>4 alfiles, 4 caballos, 4 torres</li><li>16 peones</li></ul><p>Las piezas son distribuidas en el recuadro central de la misma manera que en el ajedrez clásico. En los laterales, (si bien ocupan las mismas posiciones entre ellas). Las piezas se colocan desplazadas, 2 secciones hacia abajo en negras y 2 hacia arriba en blancas.</p><ul><li>Ajetrez respeta todas las reglas del clásico ajedrez, por lo tanto, se debe jugar de la misma manera y respetando las reglas generales del ajedrez clásico.</li><li>A su vez, añade nuevas reglas, que dependen del modo de juego que se utilice.</li><li>En este modo de juego (Modo simple). Luego de capturar, se puede elegir entre desplazar o mantener la sección del tablero donde ahora se ubica la pieza que realizó la captura.</li><li>Si decide desplazar. Se desplaza (hacia el lado opuesto al que se encuentra y solo una vez).</li><li>Luego de la elección de mantener, o desplazar la sección, queda cedido el turno al contrincante.</li><li>El desplazamiento de la sección, puede sacar, o introducir piezas del área jugable.</li></ul><h5>Función del desplazamiento de las secciones</h5><ul><li>Escapar de una captura.</li><li>Alterar las posibles estrategias del oponente.</li><li>Sacar piezas rivales del área jugable.</li><li>Ingresar piezas propias al área jugable.</li><li>También ingresar piezas del oponente para luego intentar capturarlas.</li></ul><p>Importante: Si una pieza sale del recuadro central, esto no significa que queda fuera de juego definitivamente; podría reingresar tras nuevos desplazamientos.</p><h5>⚠️ Imposibilidad de desplazamiento de secciones</h5><ul><li>En jaque/mate no hay desplazamientos de las secciones (aun cuando se haya capturado una pieza del oponente que se encuentre en la sección donde está el rey).</li><li>No se pueden desplazar secciones cuando esa acción implica que el recuadro central jugable quede sin piezas disponibles de alguno de los dos participantes.</li></ul></div></div>
+<div class="rules-version" data-version="3_0_guerra">
+  <h4>Ajetrez — Modo Guerra (Reglas generales)</h4>
+  <ol>
+    <li><b>Conflicto permanente:</b> todas las capturas disponibles son obligatorias.</li>
+    <li><b>Prioridad ofensiva:</b> si existe una jugada de ataque, no se permiten movimientos defensivos pasivos.</li>
+    <li><b>Encadenamiento de capturas:</b> una captura que habilita otra debe continuarse mientras sea legal.</li>
+    <li><b>Sin tregua:</b> no se permiten movimientos que solo busquen ganar tiempo si existe acción directa.</li>
+    <li><b>Jaque agresivo:</b> el jaque se considera una amenaza prioritaria y debe ejecutarse si está disponible.</li>
+    <li><b>Colapso táctico:</b> si un jugador no puede cumplir una jugada obligatoria de guerra, pierde la partida.</li>
+    <li><b>Reglas clásicas:</b> el ajedrez tradicional se mantiene salvo conflicto con estas reglas.</li>
+  </ol>
+</div>
+
+<div class="rules-version" data-version="3_0_amenaza"></div>
+
+<div class="rules-version" data-version="3_0_guerra">
+  <h4>Ajetrez — Modo Guerra (Reglas generales)</h4>
+  <ol>
+    <li><b>Conflicto permanente:</b> todas las capturas disponibles son obligatorias.</li>
+    <li><b>Prioridad ofensiva:</b> si existe una jugada de ataque, no se permiten movimientos defensivos pasivos.</li>
+    <li><b>Encadenamiento de capturas:</b> una captura que habilita otra debe continuarse mientras sea legal.</li>
+    <li><b>Sin tregua:</b> no se permiten movimientos que solo busquen ganar tiempo si existe acción directa.</li>
+    <li><b>Jaque agresivo:</b> el jaque se considera una amenaza prioritaria y debe ejecutarse si está disponible.</li>
+    <li><b>Colapso táctico:</b> si un jugador no puede cumplir una jugada obligatoria de guerra, pierde la partida.</li>
+    <li><b>Reglas clásicas:</b> el ajedrez tradicional se mantiene salvo conflicto con estas reglas.</li>
+  </ol>
+</div>
+
 <div class="rules-version" data-version="3_0_amenaza">
   <h4>Ajetrez — Modo Amenaza (Reglas generales)</h4>
   <ol>
@@ -3663,28 +3594,55 @@ const SPRITE_PROBE = 'assets/piezas_aa/w_P.png';
 
 const EMPTY = null;
 const PIECE_SPRITES = {
-  w: { P:'assets/piezas_aa/w_P.png', R:'assets/piezas_aa/w_R.png', N:'assets/piezas_aa/w_N.png', B:'assets/piezas_aa/w_B.png', Q:'assets/piezas_aa/w_Q.png', K:'assets/piezas_aa/w_K.png' },
-  b: { P:'assets/piezas_aa/b_P.png', R:'assets/piezas_aa/b_R.png', N:'assets/piezas_aa/b_N.png', B:'assets/piezas_aa/b_B.png', Q:'assets/piezas_aa/b_Q.png', K:'assets/piezas_aa/b_K.png' }
+  w: {P:'assets/piezas_aa/w_P.png', R:'assets/piezas_aa/w_R.png', N:'assets/piezas_aa/w_N.png', B:'assets/piezas_aa/w_B.png', Q:'assets/piezas_aa/w_Q.png', K:'assets/piezas_aa/w_K.png',  G:'assets/piezas_aa/white_Príncipe_sword.svg', V:'assets/piezas_aa/white_Princesa_axe.svg' },
+  b: {P:'assets/piezas_aa/b_P.png', R:'assets/piezas_aa/b_R.png', N:'assets/piezas_aa/b_N.png', B:'assets/piezas_aa/b_B.png', Q:'assets/piezas_aa/b_Q.png', K:'assets/piezas_aa/b_K.png',  G:'assets/piezas_aa/black_Príncipe_sword.svg', V:'assets/piezas_aa/black_Princesa_axe.svg' }
 };
 const PIECES_UNICODE = { w:{P:'\\u2659',R:'\\u2656',N:'\\u2658',B:'\\u2657',Q:'\\u2655',K:'\\u2654'}, b:{P:'\\u265F',R:'\\u265C',N:'\\u265E',B:'\\u265D',Q:'\\u265B',K:'\\u265A'} };
+
+/* Sprites para Príncipe/Princesa */
+try{
+  PIECE_SPRITES.w.I = 'assets/piezas_aa/w_I.png';
+  PIECE_SPRITES.b.I = 'assets/piezas_aa/b_I.png';
+  PIECE_SPRITES.w.S = 'assets/piezas_aa/w_S.png';
+  PIECE_SPRITES.b.S = 'assets/piezas_aa/b_S.png';
+}catch(_){}
+
 function makePiece(t,c){ return { type:t, color:c, hasMoved:false }; }
+
 
 function makeInitialBoard16x8(){
   const b = Array.from({length:8},()=>Array(16).fill(EMPTY));
   const back = ["R","N","B","Q","K","B","N","R"];
   const row = back.concat(back);
+
+  // Parte superior (negras) y lateral izquierdo [0..7]
   for(let c=0;c<16;c++){
-    const pb = makePiece(row[c],'b');
+    let t = row[c];
+    let colorB = 'b';
+    if(c<8){
+      if(t==='K'){ t='I'; colorB='w'; }
+      else if(t==='Q'){ t='S'; colorB='w'; }
+    }
+    const pb = makePiece(t, colorB);
     const pn = makePiece('P','b');
     if(c<8){ b[2][c] = pb; b[3][c] = pn; } else { b[0][c] = pb; b[1][c] = pn; }
   }
+
+  // Parte inferior (blancas) y lateral derecho [8..15]
   for(let c=0;c<16;c++){
-    const pwb = makePiece(row[c],'w');
+    let t = row[c];
+    let colorW = 'w';
+    if(c>=8){
+      if(t==='K'){ t='I'; colorW='b'; }
+      else if(t==='Q'){ t='S'; colorW='b'; }
+    }
+    const pwb = makePiece(t, colorW);
     const pwp = makePiece('P','w');
     if(c>=8){ b[5][c] = pwb; b[4][c] = pwp; } else { b[7][c] = pwb; b[6][c] = pwp; }
   }
   return b;
 }
+
 const initialOffsets = [8,8,8,8,0,0,0,0];
 function toBaseCol(vc,row,offs){ return offs[row] + vc; }
 function buildVisible(board, offs){
@@ -3704,7 +3662,11 @@ function inside(r,c){ return r>=0 && r<8 && c>=0 && c<8; }
 function pseudoMoves(vis, r, c){
   const p = vis[r][c]; if(!p) return [];
   const out = [];
-  const add=(rr,cc)=>{ if(!inside(rr,cc)) return; const t=vis[rr][cc]; if(!t || t.color!==p.color) out.push([rr,cc]); };
+  // Modo Amenaza: I/S inmóviles
+  const __tp = vis[r][c];
+  if(__tp && (__tp.type==='I'||__tp.type==='S')) return [];
+  const isIS = (q)=> q && (q.type==='I'||q.type==='S');
+  const add=(rr,cc)=>{ if(!inside(rr,cc)) return; const t=vis[rr][cc]; if(!t || (t.color!==p.color && !isIS(t))) out.push([rr,cc]); };
   if(p.type==='N'){ [[2,1],[2,-1],[-2,1],[-2,-1],[1,2],[1,-2],[-1,2],[-1,-2]].forEach(([dr,dc])=>add(r+dr,c+dc)); }
   else if(p.type==='K'){
     for(let dr=-1; dr<=1; dr++){
@@ -3720,11 +3682,38 @@ function pseudoMoves(vis, r, c){
       while(inside(rr,cc)){
         const t=vis[rr][cc];
         if(!t) out.push([rr,cc]);
-        else { if(t.color!==p.color) out.push([rr,cc]); break; }
+        else { if(t.color!==p.color && !(t.type==='I'||t.type==='S')) out.push([rr,cc]); break; }
         rr+=dr; cc+=dc;
       }
     }
-  } else if(p.type==='P'){
+  } 
+  else if(p.type==='G'){
+    const dirs=[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
+    const MAX=4;
+    for(const [dr,dc] of dirs){
+      let rr=r, cc=c; let hops=0;
+      for(let step=1; step<=MAX; step++){
+        rr+=dr; cc+=dc;
+        if(!inside(rr,cc)) break;
+        const t=vis[rr][cc];
+        if(!t){ out.push([rr,cc]); }
+        else {
+          if(t.color!==p.color) out.push([rr,cc]);
+          if(hops===0){ hops=1; continue; } else { break; }
+        }
+      }
+    }
+  }
+  else if(p.type==='V'){
+    const dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+    for(const [dr,dc] of dirs){
+      const rr=r+2*dr, cc=c+2*dc;
+      if(!inside(rr,cc)) continue;
+      const t=vis[rr][cc];
+      if(!t || t.color!==p.color) out.push([rr,cc]);
+    }
+  }
+else if(p.type==='P'){
     const dir = p.color==='w' ? -1 : 1;
     const r1 = r + dir;
     if(inside(r1,c) && !vis[r1][c]) out.push([r1,c]);
@@ -3732,7 +3721,7 @@ function pseudoMoves(vis, r, c){
     const r2 = r + 2*dir;
     if(r===start && !vis[r1][c] && inside(r2,c) && !vis[r2][c]) out.push([r2,c]);
     [[r1,c-1],[r1,c+1]].forEach(([rr,cc])=>{
-      if(inside(rr,cc) && vis[rr][cc] && vis[rr][cc].color!==p.color) out.push([rr,cc]);
+      if(inside(rr,cc) && vis[rr][cc] && vis[rr][cc].color!==p.color && vis[rr][cc].type!=='I' && vis[rr][cc].type!=='S') out.push([rr,cc]);
     });
   }
   return out;
@@ -3755,6 +3744,11 @@ function applyMove(board, offs, from, to, special){
   const toBC   = toBaseCol(to.c,   to.r,   offs);
   let captured = copy[to.r][toBC];
   let moved    = copy[from.r][fromBC];
+  // Prohibido capturar/ocupar I o S
+  if(captured && (captured.type==='I' || captured.type==='S')){
+    return { board, captured: null, illegal:true };
+  }
+
 
   if(special && special.enPassant){
     const dir = moved.color==='w' ? -1 : 1;
@@ -4044,7 +4038,38 @@ function evaluateStatus(nextToMove){
   }
 }
 
+
+// === Ajetrez: helper para colorear el botón Reiniciar cuando termina la partida ===
+(function(){
+  function normalize(s){ return (s||'').replace(/\s+/g,' ').trim().toLowerCase(); }
+  function findResetBtn(){
+    const labels = ['reiniciar','reset'];
+    const btns = Array.from(document.querySelectorAll('button, .btn'));
+    for(const b of btns){
+      const t = normalize(b.textContent);
+      if(labels.includes(t)) return b;
+    }
+    return null;
+  }
+  window.__AJ_GET_RESET_BTN__ = findResetBtn;
+  window.__AJ_UPDATE_RESET_STYLE__ = function(){
+    try{
+      const b = findResetBtn();
+      if(!b) return;
+      if(window.gameOver){
+        b.dataset._prevStyle = b.getAttribute('style') || '';
+        b.style.background = '#d00';
+        b.style.color = '#fff';
+        b.style.borderColor = '#fff';
+      }else{
+        b.setAttribute('style', b.dataset._prevStyle || '');
+      }
+    }catch(e){}
+  };
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(window.__AJ_UPDATE_RESET_STYLE__, 100); });
+})();
 function render(){
+  try{ window.__AJ_UPDATE_RESET_STYLE__ && window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ }
   const vis = buildVisible(board, offsets);
   const frag = document.createDocumentFragment();
   boardEl.innerHTML = '';
@@ -4177,6 +4202,7 @@ const next = candidates[0];
 }
 
 function playMove(from, to, special, capturesKing){
+    window.__LAST_MOVED_BASE = { r: to.r, bc: toBaseCol(to.c, to.r, offsets), color: turn };
   const res = applyMove(board, offsets, from, to, special);
   const movedPiece = buildVisible(board, offsets)[from.r][from.c];
   let newBoard = res.board;
@@ -4190,13 +4216,40 @@ function playMove(from, to, special, capturesKing){
 
   board = newBoard;
   sel = null; moves = [];
+  // === Modo Amenaza: LIBERACIÓN tras la jugada ===
+  (function(){
+    try{
+      const vis2 = buildVisible(board, offsets);
+      const color = turn;
+      const rr = to.r, cc = to.c;
+      let liberated = false;
+      for(let dr=-1; dr<=1; dr++){
+        for(let dc=-1; dc<=1; dc++){
+          if(dr===0 && dc===0) continue;
+          const ar = rr+dr, ac = cc+dc;
+          if(inside(ar,ac)){
+            const q = vis2[ar][ac];
+            if(q && (q.type==='I' || q.type==='S') && q.color===color){ liberated = true; break; }
+          }
+        }
+      }
+      if(liberated){
+        const overlay = document.getElementById('overlay'); const banner = document.getElementById('banner');
+        overlay.style.display='flex'; banner.textContent='Príncipe y princesa liberados. ¡Haz ganado la partida!'; try{ window.__SND__ && __SND__.play('mate'); }catch(_){ } try{ window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ } try{ window.__SND__ && __SND__.play('mate'); }catch(_){ }
+        gameOver = true; winner = turn;
+        try{ finalizeGameLog && finalizeGameLog('liberation', winner); }catch(_){}
+        render(); return;
+      }
+    }catch(e){}
+  })();
+
   try{ if(res && res.captured){ window.__SND__ && __SND__.play('capture'); } else { window.__SND__ && __SND__.play('move'); } }catch(_){}
 
   try{ incrementMoveCount(); }catch(_){}
 
   if(capturesKing){
     const overlay = document.getElementById('overlay'); const banner = document.getElementById('banner');
-    overlay.style.display='flex'; banner.textContent='JAQUE MATE';
+    overlay.style.display='flex'; banner.textContent='JAQUE MATE'; try{ window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ }
     gameOver = true; winner = turn;
     try{ finalizeGameLog('mate', winner); }catch(_){}
     render(); return;
@@ -4214,7 +4267,42 @@ function playMove(from, to, special, capturesKing){
     applyShiftCtrlLockVisual();
     pendingChoice = null;
     hideCtrl();
-    turn = (turn==='w' ? 'b' : 'w'); emitTurnChange();
+    
+  // === Modo Amenaza: LIBERACIÓN tras desplazar sección (sólo si la pieza movida queda adyacente) ===
+  (function(){
+    try{
+      const lm = window.__LAST_MOVED_BASE;
+      if(!lm || lm.color!==turn) { /* nada */ }
+      else{
+        const vc = ((lm.bc - offsets[lm.r]) % 16 + 16) % 16; // base->visible
+        if(vc>=0 && vc<8){
+          const rr = lm.r, cc = vc;
+          const vis2 = buildVisible(board, offsets);
+          let liberated=false;
+          for(let dr=-1; dr<=1 && !liberated; dr++){
+            for(let dc=-1; dc<=1 && !liberated; dc++){
+              if(dr===0 && dc===0) continue;
+              const ar=rr+dr, ac=cc+dc;
+              if(inside(ar,ac)){
+                const q = vis2[ar][ac];
+                if(q && (q.type==='I'||q.type==='S') && q.color===turn){ liberated=true; }
+              }
+            }
+          }
+          if(liberated){
+            const overlay = document.getElementById('overlay'); const banner = document.getElementById('banner');
+            overlay.style.display='flex'; banner.textContent='Príncipe y princesa liberados. ¡Haz ganado la partida!'; try{ window.__SND__ && __SND__.play('mate'); }catch(_){ } try{ window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ } try{ window.__SND__ && __SND__.play('mate'); }catch(_){ }
+            gameOver = true; winner = turn;
+            try{ finalizeGameLog && finalizeGameLog('liberation', winner); }catch(_){}
+            render(); return;
+          }
+        }
+      }
+    }catch(e){}
+  })();
+  if(gameOver) return;
+  turn = (turn==='w' ? 'b' : 'w');
+ emitTurnChange();
     evaluateStatus(turn);
     render();
   }
@@ -4242,7 +4330,42 @@ try{ window.__SND__ && __SND__.play('shift'); }catch(_){}
   applyShiftCtrlLockVisual();
   pendingChoice = null;
   hideCtrl();
-  turn = (turn==='w' ? 'b' : 'w'); emitTurnChange();
+  
+  // === Modo Amenaza: LIBERACIÓN tras desplazar sección (sólo si la pieza movida queda adyacente) ===
+  (function(){
+    try{
+      const lm = window.__LAST_MOVED_BASE;
+      if(!lm || lm.color!==turn) { /* nada */ }
+      else{
+        const vc = ((lm.bc - offsets[lm.r]) % 16 + 16) % 16; // base->visible
+        if(vc>=0 && vc<8){
+          const rr = lm.r, cc = vc;
+          const vis2 = buildVisible(board, offsets);
+          let liberated=false;
+          for(let dr=-1; dr<=1 && !liberated; dr++){
+            for(let dc=-1; dc<=1 && !liberated; dc++){
+              if(dr===0 && dc===0) continue;
+              const ar=rr+dr, ac=cc+dc;
+              if(inside(ar,ac)){
+                const q = vis2[ar][ac];
+                if(q && (q.type==='I'||q.type==='S') && q.color===turn){ liberated=true; }
+              }
+            }
+          }
+          if(liberated){
+            const overlay = document.getElementById('overlay'); const banner = document.getElementById('banner');
+            overlay.style.display='flex'; banner.textContent='Príncipe y princesa liberados. ¡Haz ganado la partida!'; try{ window.__SND__ && __SND__.play('mate'); }catch(_){ } try{ window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ } try{ window.__SND__ && __SND__.play('mate'); }catch(_){ }
+            gameOver = true; winner = turn;
+            try{ finalizeGameLog && finalizeGameLog('liberation', winner); }catch(_){}
+            render(); return;
+          }
+        }
+      }
+    }catch(e){}
+  })();
+  if(gameOver) return;
+  turn = (turn==='w' ? 'b' : 'w');
+ emitTurnChange();
   evaluateStatus(turn);
   render();
 }
@@ -4252,7 +4375,42 @@ function keepRow(){
   applyShiftCtrlLockVisual();
   pendingChoice = null;
   hideCtrl();
-  turn = (turn==='w' ? 'b' : 'w'); emitTurnChange();
+  
+  // === Modo Amenaza: LIBERACIÓN tras desplazar sección (sólo si la pieza movida queda adyacente) ===
+  (function(){
+    try{
+      const lm = window.__LAST_MOVED_BASE;
+      if(!lm || lm.color!==turn) { /* nada */ }
+      else{
+        const vc = ((lm.bc - offsets[lm.r]) % 16 + 16) % 16; // base->visible
+        if(vc>=0 && vc<8){
+          const rr = lm.r, cc = vc;
+          const vis2 = buildVisible(board, offsets);
+          let liberated=false;
+          for(let dr=-1; dr<=1 && !liberated; dr++){
+            for(let dc=-1; dc<=1 && !liberated; dc++){
+              if(dr===0 && dc===0) continue;
+              const ar=rr+dr, ac=cc+dc;
+              if(inside(ar,ac)){
+                const q = vis2[ar][ac];
+                if(q && (q.type==='I'||q.type==='S') && q.color===turn){ liberated=true; }
+              }
+            }
+          }
+          if(liberated){
+            const overlay = document.getElementById('overlay'); const banner = document.getElementById('banner');
+            overlay.style.display='flex'; banner.textContent='Príncipe y princesa liberados. ¡Haz ganado la partida!'; try{ window.__SND__ && __SND__.play('mate'); }catch(_){ } try{ window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ } try{ window.__SND__ && __SND__.play('mate'); }catch(_){ }
+            gameOver = true; winner = turn;
+            try{ finalizeGameLog && finalizeGameLog('liberation', winner); }catch(_){}
+            render(); return;
+          }
+        }
+      }
+    }catch(e){}
+  })();
+  if(gameOver) return;
+  turn = (turn==='w' ? 'b' : 'w');
+ emitTurnChange();
   evaluateStatus(turn);
   render();
 }
@@ -6936,6 +7094,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     return (h>0? (h.toString().padStart(2,'0')+':') : '') + mm + ':' + ss;
   }
   function render(){
+  try{ window.__AJ_UPDATE_RESET_STYLE__ && window.__AJ_UPDATE_RESET_STYLE__(); }catch(_){ }
     const txt = $('#timeTxt');
     if(!txt) return;
     const now = Date.now();
@@ -12923,14 +13082,14 @@ function showToast(){
 </script>
 
 <script>
-// === Enrutador de versiones (selector del panel) — modo actual: simple ===
+// === Enrutador de versiones (selector del panel) — modo actual: amenaza ===
 (function(){
   var ROUTE = {
     '3_0_simple':  'ajetrez_modo_simple.html',
     '3_0_amenaza': 'ajetrez_modo_amenaza.html',
     '3_0_guerra':  'ajetrez_modo_guerra.html'
   };
-  var CURRENT = '3_0_simple';
+  var CURRENT = '3_0_amenaza';
   function hasGameInProgress(){
     try{ return ((window.moves&&window.moves.length>0) || (window.__AJ_CURRENT_GAME__ && (window.__AJ_CURRENT_GAME__.script||[]).length>0)) && !window.gameOver; }catch(_){
       return false;
@@ -14321,18 +14480,19 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-<!-- AJETREZ ONLINE FINAL FIX -->
-<script id="aj-online-final">
+<!-- ================= AJETREZ ONLINE (SYNCED FROM MODO SIMPLE) ================= -->
+<script id="aj-online-synced">
 document.addEventListener('DOMContentLoaded', ()=>{
-  const topBar = document.querySelector('#topBar') || document.body;
+  /* ---------- BOTÓN EXTERNO (ROJO FIJO + LATIDO) ---------- */
+  const topBar = document.querySelector('.bar') || document.body;
   const modeGroup = topBar.querySelector('.mode-group') || topBar;
 
   let btnExt = document.getElementById('btnOnlineExternal');
   if(!btnExt){
     btnExt = document.createElement('button');
     btnExt.id = 'btnOnlineExternal';
-    btnExt.textContent = 'Jugar Online';
     btnExt.className = 'btn';
+    btnExt.textContent = 'Jugar Online';
     modeGroup.appendChild(btnExt);
   }
 
@@ -14345,11 +14505,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     animation:'onlinePulse 1.6s ease-in-out infinite'
   });
 
+  /* ---------- PANEL / TAB MODOS ---------- */
   const tab = document.querySelector('#tab-modos') || document.querySelector('[data-tab="modos"]');
   if(!tab) return;
 
-  const sharedHelp = tab.querySelector('#modeHelp');
   const btnRow = tab.querySelector('.row') || tab;
+  const sharedHelp = tab.querySelector('#modeHelp');
+  if(!sharedHelp) return;
 
   let btnOnline = document.getElementById('btnOnlineMode');
   if(!btnOnline){
@@ -14370,12 +14532,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
       antes de que sean publicadas oficialmente.
       Desde ya, muchas gracias.
     </p>
+
     <div id="online-donations"
       style="margin-top:28px;display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;">
+      
       <a href="https://www.paypal.com/ncp/payment/PTRWET3UWGEY8" target="_blank" rel="noopener">
         <img src="logo paypal.png" alt="Donar con PayPal"
           style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
       </a>
+
       <a href="https://link.mercadopago.com.ar/ajetrez" target="_blank" rel="noopener">
         <img src="mercadopago.jpg" alt="Donar con MercadoPago"
           style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
@@ -14383,7 +14548,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     </div>
   `;
 
-  function resetButtons(){
+  function resetModes(){
     tab.querySelectorAll('.btn.mode').forEach(b=>b.classList.remove('active','selected'));
   }
 
@@ -14395,7 +14560,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }
     });
   }
-
   function showBotDifficulty(){
     Array.from(tab.querySelectorAll('*')).forEach(el=>{
       const t=(el.textContent||'').toLowerCase();
@@ -14406,7 +14570,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
   btnOnline.addEventListener('click', ()=>{
-    resetButtons();
+    resetModes();
     btnOnline.classList.add('active','selected');
     sharedHelp.innerHTML = onlineHTML;
     hideBotDifficulty();
@@ -14420,9 +14584,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   });
 
+  /* ---------- BOTÓN EXTERNO ABRE MENÚ Y ONLINE ---------- */
   btnExt.addEventListener('click', ()=>{
     const menuBtn = document.getElementById('btnMegaMenu');
     if(menuBtn) menuBtn.click();
+
     setTimeout(()=>{
       const modosTabBtn = Array.from(document.querySelectorAll('.tab-btn, .btn'))
         .find(b=>/modos de juego/i.test(b.textContent||''));
@@ -14432,13 +14598,55 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
 });
 </script>
+
 <style>
 @keyframes onlinePulse{
-  0%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0)}
-  50%{transform:scale(1.08);box-shadow:0 0 32px rgba(200,16,46,.85)}
-  100%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0)}
+  0%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0);}
+  50%{transform:scale(1.08);box-shadow:0 0 32px rgba(200,16,46,.85);}
+  100%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0);}
 }
 </style>
+<!-- ================= END AJETREZ ONLINE ================= -->
+
+
+
+
+
+<!-- AJETREZ SAFE HIDE BOT VS BOT (MENU ONLY) -->
+<script id="aj-hide-bot-vs-bot-safe">
+document.addEventListener('DOMContentLoaded', ()=>{
+  const panel = document.getElementById('megaPanel');
+  if(!panel) return;
+
+  function hide(){
+    panel.querySelectorAll('button, .dd-item, .tab-btn, .btn').forEach(el=>{
+      const t = (el.textContent||'').toLowerCase();
+      if(t.includes('bot vs bot')){
+        el.remove();
+      }
+    });
+  }
+
+  hide();
+  panel.addEventListener('click', ()=>setTimeout(hide, 30));
+});
+</script>
+
+
+<!-- AJETREZ REMOVE EXTERNAL BOT VS BOT -->
+<script id="aj-remove-external-bot-vs-bot">
+document.addEventListener('DOMContentLoaded', ()=>{
+  const containers = document.querySelectorAll('.mode-group, .mode-selector, .left-panel');
+  containers.forEach(c=>{
+    c.querySelectorAll('button').forEach(btn=>{
+      const t = (btn.textContent||'').toLowerCase();
+      if(t.includes('bot vs bot') || t.includes('bot versus bot')){
+        btn.remove();
+      }
+    });
+  });
+});
+</script>
 
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
@@ -15279,29 +15487,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 })();
 </script>
-
-
-<style id="aj-zones-float-css-2025-09-13-height-plus30">
-  /* Aumentar ~30% la altura del panel flotante de brillo/opacidad (solo altura) */
-  /* Basado en la regla previa que usaba: height = ((100vh - 6mm)/4) * 0.85 */
-  /* 0.85 * 1.30 = 0.27625 => ~27.625% del viewport disponible (restando 6mm) */
-  #zonesFloat.zf-top{
-    height: calc((100vh - 6mm) * 0.27625) !important;
-    max-height: calc((100vh - 6mm) * 0.27625) !important;
-  }
-</style>
-
-
-<style id="aj-zones-float-css-2025-09-13-width-20-height-plus20">
-  /* Panel de Personalización: hacer más angosto (~20%) y aumentar altura (~20%) */
-  /* Altura previa: (100vh - 6mm) * 0.27625  => nueva = * 1.20 = 0.3315 */
-  #zonesFloat.zf-top{
-    height: calc((100vh - 6mm) * 0.3315) !important;
-    max-height: calc((100vh - 6mm) * 0.3315) !important;
-    transform-origin: top center;
-    transform: scaleX(0.8); /* 20% más angosto */
-  }
-</style>
 
 <style>
 
