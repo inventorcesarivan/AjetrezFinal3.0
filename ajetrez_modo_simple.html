@@ -2,31 +2,50 @@
 
 <html lang="es"><head>
 
-<!-- aj-remove-mercadopago-flash DESACTIVADO -->
+<script id="aj-remove-mercadopago-flash">
+/*
+  Elimina de raíz cualquier cartel/botón de MercadoPago
+  antes de que llegue a mostrarse durante recargas.
+*/
+(function(){
+  function killMP(){
+    try{
+      // eliminar por id conocidos
+      ['btnMercadoPago','btnMP','mercadopago','mpBanner','mp-banner'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el) el.remove();
+      });
+
+      // eliminar por texto o links
+      document.querySelectorAll('a,button,div,img').forEach(el=>{
+        const t=(el.textContent||'').toLowerCase();
+        const src=(el.src||'').toLowerCase();
+        const href=(el.href||'').toLowerCase();
+        if(t.includes('mercado') || src.includes('mercado') || href.includes('mercado')){
+          el.remove();
+        }
+      });
+    }catch(_){}
+  }
+
+  // lo antes posible
+  killMP();
+
+  // refuerzo al cargar DOM
+  document.addEventListener('DOMContentLoaded', killMP, {once:true});
+
+  // refuerzo post-render por si algún script lo reinyecta
+  setTimeout(killMP, 0);
+  setTimeout(killMP, 50);
+})();
+</script>
 <style id="bottomBarSizingFix">
 #bottomBar{ width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto;  position: relative;}
 
   /* Desplazar los botones de pago 1 casillero a la derecha */
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
+</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square: 56px;
     --border: 2px;
@@ -374,24 +393,7 @@ body[data-theme="madera"] .board-wrap{
     margin-right: 4px;
   }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style>
+</style><style>
   /* Start overlay centered on board */
   #startOverlay{
     position: fixed;
@@ -418,44 +420,10 @@ body[data-theme="madera"] .board-wrap{
     transition: transform .06s ease, background-color .12s ease, opacity .12s ease;
   }
   #btnStartGame:active{ transform: translateY(1px) scale(.996); }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="no-bot-hud-css">
+</style><style id="no-bot-hud-css">
   /* Ocultar por completo cualquier HUD del bot */
   #botHUD, .bot-hud { display: none !important; visibility: hidden !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="overlayPatch">
+</style><style id="overlayPatch">
   /* Overlay centrado sobre el tablero 8×8 (sin bloquear controles) */
   #boardWrap{ position: relative !important;  position:relative;}
   #startOverlay{
@@ -481,24 +449,7 @@ body[data-theme="madera"] .board-wrap{
     display: inline-block !important;  /* aseguramos que sea visible */
     pointer-events: auto !important;   /* clic sólo en el botón */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="startBlinkPatch">
+</style><style id="startBlinkPatch">
   /* Animación de atención más notoria para el botón de Comenzar partida */
   @keyframes btnGlow {
     0%   { box-shadow: 0 0 0 rgba(225,17,17,0.0); transform: scale(1); }
@@ -511,24 +462,7 @@ body[data-theme="madera"] .board-wrap{
     animation: btnGlow 1.15s ease-in-out infinite;
     will-change: transform, box-shadow;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="onlineToastPatch">
+</style><style id="onlineToastPatch">
   #ajToast{
     position: fixed;
     left: 50%;
@@ -551,24 +485,7 @@ body[data-theme="madera"] .board-wrap{
     opacity: 1;
     transform: translateX(-50%) translateY(-2px);
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="rpFloatStyles">
+</style><style id="rpFloatStyles">
 #rpBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:999998;display:none;}
 #replayPanel.rp-float{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
   width:min(calc(760px + (2 * var(--square))),94vw);max-height:78vh;overflow:auto;background:#fff;
@@ -576,24 +493,7 @@ body[data-theme="madera"] .board-wrap{
 /* compact list spacing */
 #replayPanel .row{gap:10px;}
 #rpList li{margin:2px 0;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="rpEnforcerStyles">
+</style><style id="rpEnforcerStyles">
 /* Enforce top-most modal */
 #rpBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.40)!important;z-index:2147483000!important;display:none;}
 #replayPanel.rp-float{position:fixed!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;
@@ -603,24 +503,7 @@ body[data-theme="madera"] .board-wrap{
 #replayPanel.rp-force-show{display:block!important; visibility:visible!important; opacity:1!important;}
 /* Prevent parent overflow clipping */
 body, html{overflow:visible!important;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="rpTopStyles">
+</style><style id="rpTopStyles">
 /* Panel flotante independiente arriba del panel del juego (sobre todo), con separación ~3mm */
 #replayPanel.rp-top {
   position: fixed !important;
@@ -639,24 +522,7 @@ body, html{overflow:visible!important;}
 }
 /* Eliminamos el backdrop para no tapar el panel/menú */
 #rpBackdrop { display: none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- AJETREZ: centrar bloque de dificultad en Elije tu modo de juego --><!-- AJETREZ: Reubicar bloque de dificultad debajo del texto de reinicio (solo Elije tu modo de juego) --><!-- AJETREZ: estilo uniforme para botón de Sonido --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: contorno blanco también para botón superior izquierdo "Elije tu modo de juego" --><style>
+</style><!-- AJETREZ: centrar bloque de dificultad en Modos de juego --><!-- AJETREZ: Reubicar bloque de dificultad debajo del texto de reinicio (solo Modos de juego) --><!-- AJETREZ: estilo uniforme para botón de Sonido --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: contorno blanco también para botón superior izquierdo "Modo de juego" --><style>
   /* Asegurar que los tabs del panel tengan borde blanco como los demás botones */
   #menu-panel .tabs .btn,
   #menu-panel .tabs .btn.active,
@@ -665,48 +531,14 @@ body, html{overflow:visible!important;}
     border: 2px solid #fff !important;
     border-radius: 999px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- AJETREZ PATCH: Reajuste de posición de la barra inferior --><style id="aj-bottombar-fix">
+</style><!-- AJETREZ PATCH: Reajuste de posición de la barra inferior --><style id="aj-bottombar-fix">
   /* Sube la barra ~1 casillero sin afectar layout */
   #bottomBar{ position: relative; top: calc(var(--square) * -1); }
   /* Opcional: en pantallas estrechas mantenemos el ajuste */
   @media (max-width: 820px){
     #bottomBar{ top: calc(var(--square) * -1);  position: relative;}
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style>
+</style><style>
 
 /* === REGISTROS (flotante) — estilos === */
 #regPanel.rg-top{
@@ -748,24 +580,7 @@ body, html{overflow:visible!important;}
   .registros-grid{ grid-template-columns: 1fr; }
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="menu-panel-zfix">
+</style><style id="menu-panel-zfix">
 /* --- Menu panel layering fix: ensure menu is above board/overlays but below replay modal --- */
 #panelBackdrop{
   position:absolute;
@@ -790,67 +605,16 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="menu-panel-pointerfix">
+</style><style id="menu-panel-pointerfix">
 /* --- Menú: asegurar clickeabilidad y capas dentro del panel --- */
 #megaPanel, #megaPanel *{ pointer-events: auto !important; }
 #btnClosePanel{ z-index: 2147483601 !important; position: relative; }
 #btnLogin{ z-index: 2147483601 !important; position: relative; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="bot-chooser-zfix">
+</style><style id="bot-chooser-zfix">
 /* --- Bot Chooser above Menu: z-index override --- */
 #botChooserBackdrop{ z-index: 2147483700 !important; }
 #botChooserPanel{ z-index: 2147483701 !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style>
+</style><style>
 /* --- Ayuda de modos --- */
 #modeHelp{
   margin-top: 10px;
@@ -867,24 +631,7 @@ body, html{overflow:visible!important;}
   font-weight: 800;
   margin-bottom: 4px;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="mode-active-style">
+</style><style id="mode-active-style">
 /* --- Active state for mode buttons (incl. Online) --- */
 #tab-modos .btn.mode.active{
   background: #e11;
@@ -892,24 +639,7 @@ body, html{overflow:visible!important;}
   box-shadow: 0 6px 16px rgba(225,17,17,.35);
   border-color: #700;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="menuTextColorLock">
+</style><style id="menuTextColorLock">
 /* Fijar color base del texto dentro del panel del menú, independientemente del tema visual */
 #megaPanel #tabsView { color: #111; }
 
@@ -932,7 +662,7 @@ body, html{overflow:visible!important;}
 #megaPanel #tabsView #themePicker .btn.theme { color: #fff !important; }
 #megaPanel #tabsView #themePicker .btn.theme.active { color: #fff !important; }
 
-/* Botones de selección de Elije tu modo de juego: texto siempre blanco */
+/* Botones de selección de Modo de juego: texto siempre blanco */
 #modeDropdown .btn.dd-item { color: #fff !important; }
 #modeDropdown .btn.dd-item.active { color: #fff !important; }
 
@@ -1065,24 +795,7 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-bottombar-height-patch">
+</style><style id="aj-bottombar-height-patch">
   /* Achicar altura del contenedor de botones inferior ~1 casillero (desde abajo hacia arriba) */
   #bottomBar{
     /* Reduce el alto reservado del contenedor sin afectar los botones (pueden sobresalir si es necesario) */
@@ -1092,24 +805,7 @@ body, html{overflow:visible!important;}
   @media (max-width: 820px){
     #bottomBar{ height: calc(var(--toolbar-h) - (var(--square) * 1.5));  position: relative;}
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-contraste-selector-bot">
+</style><style id="aj-contraste-selector-bot">
   /* Legibilidad del Selector de Bot (panel blanco) en cualquier tema */
   #botChooserPanel { color:#111 !important; }
   #botChooserPanel h1, #botChooserPanel h2, #botChooserPanel h3,
@@ -1131,68 +827,17 @@ body, html{overflow:visible!important;}
   #modeGroup .bot-dropdown, #modeGroup .bot-dropdown * {
     color:#111 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-bottombar-buttons-offset">
+</style><style id="aj-bottombar-buttons-offset">
 /* Levanta los botones inferiores aprox 3 mm sin afectar layout */
 #bottomBar .btn,
 #bottomBar button,
 #bottomBar a.btn,
 #bottomBar .button { transform: translateY(-3mm); }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-minus4mm">
+</style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-minus4mm">
 #bottomBar{
   height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 4mm) !important;
  position: relative;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-topbar-down-3mm">
+</style><style id="aj-topbar-down-3mm">
   /* Bajar ~3mm los controles superiores (modo + indicador) sin afectar layout */
   :root{ --mode-y: calc(6px + 3mm); } /* mantiene alineado el dropdown del modo */
   #topBar .mode-group{ top: calc(6px + 3mm) !important; }
@@ -1200,24 +845,7 @@ body, html{overflow:visible!important;}
   #topBar .right-ctrls{ transform: translateY(3mm); }
 
   #timeIndicator{ top: calc(6px + 3mm) !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-container-symmetric-3mm">
+</style><style id="aj-container-symmetric-3mm">
   /* Achicar 3mm arriba y 3mm abajo el "contenedor" del juego
      reduciendo los separadores que están antes y después del tablero. */
 
@@ -1231,24 +859,7 @@ body, html{overflow:visible!important;}
   #bottomBar{
     height: calc(var(--toolbar-h) - (var(--square) * 1.5)) !important;
    position: relative;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-bottomBase-trim-2mm">
+</style><style id="aj-bottomBase-trim-2mm">
   /* Base de color de la barra inferior: recorta visualmente 2mm desde abajo
      sin mover los botones (no altera la altura ni el layout del contenedor). */
   #bottomBar{
@@ -1267,71 +878,20 @@ body, html{overflow:visible!important;}
     /* Colocado detrás del contenido de la barra */
     z-index: 0;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBar-buttons-up-2mm">
+</style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBar-buttons-up-2mm">
   /* Sube los botones inferiores 2mm sin alterar el layout del contenedor */
   #bottomBar .btn{
     position: relative !important;
     top: -2mm !important; /* mover hacia arriba */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBase-trim-6mm">
+</style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBase-trim-6mm">
   /* Achica el alto total de la base de color: -6mm en total (3mm arriba + 3mm abajo) */
   #bottomBar{ position: relative !important; }
   #bottomBar::before{
     top: 3mm !important;
     bottom: 3mm !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-tidy">
+</style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-tidy">
   /* Quitar empuje vertical extra en la barra superior */
   #topBar{
     --bar-trim: 0mm !important;
@@ -1352,24 +912,7 @@ body, html{overflow:visible!important;}
     margin-top: 0px !important;   /* 0–3px sugeridos; usamos 0px para no empujar */
     margin-bottom: 0px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-frame-trim-6mm">
+</style><style id="aj-frame-trim-6mm">
   /* Achicar visualmente el 'fondo de color del juego' (.frame) 6mm en total (3mm arriba y 3mm abajo) */
   .frame{
     position: relative !important;
@@ -1387,92 +930,24 @@ body, html{overflow:visible!important;}
     z-index: 0;             /* detrás del contenido */
   }
   .frame > *{ position: relative; z-index: 1; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-frame-border-trim-6mm">
+</style><style id="aj-frame-border-trim-6mm">
   /* Quita el borde real de .frame y dibuja el borde sobre el ::before recortado */
   .frame{ border: none !important; }
   .frame::before{
     border: var(--border) solid #c9c9c9;
     border-radius: 12px; /* igual al original */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-frame-shadow-trim-6mm">
+</style><style id="aj-frame-shadow-trim-6mm">
   /* Mover la sombra al ::before recortado para que acompañe el nuevo alto visual */
   .frame{ box-shadow: none !important; }
   .frame::before{ box-shadow: 0 6px 20px rgba(0,0,0,.08); }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-buttons-down-3mm">
+</style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-buttons-down-3mm">
   /* Bajar 3mm TODOS los botones de la parte superior (regla general) */
   #topBar .btn{
     position: relative !important;
     top: 3mm !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-topbar-others-down-3mm">
+</style><style id="aj-topbar-others-down-3mm">
   /* Bajar también lo demás en la parte superior (indicadores, HUD y reloj) */
   /* Reloj */
   #topBar #timeIndicator{
@@ -1494,24 +969,7 @@ body, html{overflow:visible!important;}
   #topBar .dropdown{
     transform: translateY(3mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-topbar-align-bottom">
+</style><style id="aj-topbar-align-bottom">
   /* Alinear EXACTAMENTE con el borde inferior del top bar */
   #topBar{ position: relative !important; }
 
@@ -1540,69 +998,18 @@ body, html{overflow:visible!important;}
   #topBar .dropdown{
     transform: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-align-to-dashed">
+</style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-align-to-dashed">
   /* Subir la barra inferior para que su borde superior toque la línea punteada del área del tablero */
   #bottomBar{
     margin-top: calc(-1 * var(--toolbar-gap)) !important; /* neutraliza el separador de 10px */
    position: relative;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-frame-trim-top-plus-2mm">
+</style><style id="aj-frame-trim-top-plus-2mm">
   /* Achica la base que contiene todo el juego 2mm SOLO desde arriba */
   .frame::before{
     top: 5mm !important;   /* antes 3mm; +2mm extra arriba */
     bottom: 3mm !important;/* sin cambios abajo */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-mobile-bottombar-inside">
+</style><style id="aj-mobile-bottombar-inside">
   /* En móvil, extiende el contorno/fondo hasta el borde inferior
      para que la barra inferior quede claramente "dentro" del contenedor. */
   @media (max-width: 900px), (pointer: coarse){
@@ -1615,47 +1022,13 @@ body, html{overflow:visible!important;}
       transform: none !important;
      position: relative;}
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><style id="aj-frame-trim-plus4mm">
+</style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-frame-trim-plus4mm">
   /* Achicar 4mm en total la base que contiene todo (2mm arriba + 2mm abajo) */
   .frame::before{
     top: 7mm !important;   /* veníamos en 5mm; +2mm => 7mm */
     bottom: 5mm !important;/* veníamos en 3mm; +2mm => 5mm */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-mobile-frame-trim-plus4mm">
+</style><style id="aj-mobile-frame-trim-plus4mm">
   /* En móvil, mantener el mismo recorte que web (evita que la barra parezca fuera) */
   @media (max-width: 900px), (pointer: coarse){
     .frame::before{
@@ -1663,24 +1036,7 @@ body, html{overflow:visible!important;}
       top: 7mm !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><style id="aj-megaPanel-scale-95">
+</style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-megaPanel-scale-95">
   /* Achicar el panel de menú un 5% (general: web + móvil) */
   #megaPanel{
   position:absolute;
@@ -1698,24 +1054,7 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-megaPanel-scale-90">
+</style><style id="aj-megaPanel-scale-90">
   /* Achicar el panel de menú un 5% adicional (total ~10%) */
   #megaPanel{
   position:absolute;
@@ -1733,24 +1072,7 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-megaPanel-shift">
+</style><style id="aj-megaPanel-shift">
   /* Desplazar un poco a la derecha y hacia abajo, manteniendo scale(0.90) */
   #megaPanel{
   position:absolute;
@@ -1768,24 +1090,7 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-megaPanel-shift-half-square">
+</style><style id="aj-megaPanel-shift-half-square">
   /* Desplazar medio casillero a la derecha (+ mantener 3mm abajo) */
   #megaPanel{
   position:absolute;
@@ -1803,24 +1108,7 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-megaPanel-centered-to-board">
+</style><style id="aj-megaPanel-centered-to-board">
   /* Centrado perfecto entre derecha e izquierda respecto al tablero */
   #megaPanel{
   position:absolute;
@@ -1838,24 +1126,7 @@ body, html{overflow:visible!important;}
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-registro-minus-1_5-square">
+</style><style id="aj-registro-minus-1_5-square">
   /* Achicar altura del panel de registros ~1.5 casilleros */
   /* 1) Versión flotante del panel de registros */
   #replayPanel.rp-float{
@@ -1869,24 +1140,7 @@ body, html{overflow:visible!important;}
   .moves-table{
     max-height: calc(42vh - (var(--square) * 1.5)) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-replayPanel-scale-90">
+</style><style id="aj-replayPanel-scale-90">
   /* Achicar tamaño TOTAL del panel de registros un 10% */
   #replayPanel.rp-float{
     transform: translate(-50%, -50%) scale(0.90) !important;
@@ -1896,24 +1150,7 @@ body, html{overflow:visible!important;}
     transform: translateX(-50%) scale(0.90) !important;
     transform-origin: top center !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- AJETREZ: Alineación fina de barra inferior (vFINAL) --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: Offset 1mm para botones MercadoPago & PayPal --><!-- AJETREZ: Subir solo "Colabora" 1mm --><!-- AJETREZ: Subir "Colabora" +1mm adicional (total 2mm) --><!-- AJETREZ: Botón de sonido (más ancho + más bajo) --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: FIX — asegurar que el control de sonido (select) se pueda modificar --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: Igualar altura del botón "Elije tu modo de juego" al indicador --><style id="aj-mode-button-match-indicator-2025-09-09">
+</style><!-- AJETREZ: Alineación fina de barra inferior (vFINAL) --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: Offset 1mm para botones MercadoPago & PayPal --><!-- AJETREZ: Subir solo "Colabora" 1mm --><!-- AJETREZ: Subir "Colabora" +1mm adicional (total 2mm) --><!-- AJETREZ: Botón de sonido (más ancho + más bajo) --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: FIX — asegurar que el control de sonido (select) se pueda modificar --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: Igualar altura del botón "Modo de juego" al indicador --><style id="aj-mode-button-match-indicator-2025-09-09">
   /* El indicador usa: padding:6px 14px; line-height:1; min-height:36px; borde 2px */
   /* Igualamos el botón #btnMode a esos valores para que queden exactamente a la misma altura visual */
   #topBar #modeGroup #btnMode{
@@ -1928,24 +1165,7 @@ body, html{overflow:visible!important;}
     border-width: 2px !important;         /* igual al indicador */
     border-radius: 999px !important;      /* conserva estilo pill */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- AJETREZ: Mobile tight-fix — barra inferior más cerca del tablero --><style id="aj-bottomBar-mobile-tightfix-0909">
+</style><!-- AJETREZ: Mobile tight-fix — barra inferior más cerca del tablero --><style id="aj-bottomBar-mobile-tightfix-0909">
   /* En móvil, algunas reglas previas mueven #bottomBar con 'top:-1*var(--square)'.
      Eso puede producir una separación aparente por redondeo/altura disponible.
      Neutralizamos 'top' y compensamos con un micro-offset adicional. */
@@ -1957,24 +1177,7 @@ body, html{overflow:visible!important;}
       padding-top: 2px !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- AJETREZ: Mobile — subir barra inferior ~1 casillero --><style id="aj-bottomBar-mobile-up-1square-0909">
+</style><!-- AJETREZ: Mobile — subir barra inferior ~1 casillero --><style id="aj-bottomBar-mobile-up-1square-0909">
   @media (max-width: 900px), (pointer: coarse){
     #bottomBar{
       /* Mantener neutralización previa del 'top' */
@@ -1985,24 +1188,7 @@ body, html{overflow:visible!important;}
       padding-top: 2px !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- AJETREZ: UNIFICACIÓN DE CONFIGURACIÓN (web = todas las versiones) --><!-- LEGACY AUDIO CSS REMOVED -->
+</style><!-- AJETREZ: UNIFICACIÓN DE CONFIGURACIÓN (web = todas las versiones) --><!-- LEGACY AUDIO CSS REMOVED -->
 <style id="aj-donate-buttons-0910">
   /* Contenedor de donaciones, independiente de otros botones */
   #donateBox{
@@ -2080,24 +1266,7 @@ body, html{overflow:visible!important;}
     margin-top: calc(var(--casillero, 64px) * 0.5556) !important;
 }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-replay-red-btn">
   /* Botón Reproducir en tablero: rojo cuando habilitado, negro cuando deshabilitado */
   #reg-replay-start{
@@ -2115,24 +1284,7 @@ body, html{overflow:visible!important;}
     cursor: not-allowed;
   }
   #reg-replay-start:disabled:hover{ filter: none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-reg-hint-style">
   #regHintSelect, .reg-hint-select{
     /* Layout */
@@ -2162,24 +1314,7 @@ body, html{overflow:visible!important;}
     50% { transform: scale(1.06); }
     100% { transform: scale(1); }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topbar-order-replayer-reg-clock">
   /* Orden deseado dentro del reloj (timeIndicator):
      1) Reproductor, 2) Botón "Registro de partidas", 3) Reloj, 4) Pausa */
@@ -2189,24 +1324,7 @@ body, html{overflow:visible!important;}
   #timeIndicator .dot, #timeIndicator .label, #timeIndicator #timeTxt{ order: 3 !important; }
   #timeIndicator #pauseBtn{ order: 4 !important; margin-left: 8px !important; }
   #timeIndicator .dot{ margin-left: 8px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-replayer-compact-85">
   /* Achicar el tamaño del reproductor */
   #regv2-replayer{ gap: 6px !important; padding: 4px 8px !important; }
@@ -2214,45 +1332,11 @@ body, html{overflow:visible!important;}
   #regv2-replayer #rp2-slider{ width: 120px !important; }
   #regv2-replayer #rp2-status{ font-size: 11px !important; }
   #regv2-replayer #rp2-speed{ padding: 2px 5px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-pause-right-and-timeindicator-transparent">
   /* Fondo del bloque del reloj transparente */
   #timeIndicator{ background: transparent !important; box-shadow: none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-shift-buttons-left-2c">
   /* Tamaño base de un casillero */
   :root{ --aj-casillero: 40px; }
@@ -2261,24 +1345,7 @@ body, html{overflow:visible!important;}
   #timeIndicator #regv2-clock-btn{ position: relative; left: calc(-2 * var(--aj-casillero)); }
   /* Compensar el desplazamiento agregando padding al contenedor */
   #timeIndicator{ padding-left: calc(2 * var(--aj-casillero)); }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-black-bg-replayer-clock">
   /* Reproductor con fondo negro */
   #regv2-replayer{ background: #000 !important; color: #fff !important; border-radius: 10px !important; padding: 4px 8px !important; }
@@ -2290,24 +1357,7 @@ body, html{overflow:visible!important;}
   /* Botón Pausa en negro */
   #timeIndicator #pauseBtn{ background: #000 !important; color: #fff !important; border-radius: 8px !important; }
   #timeIndicator #pauseBtn:hover{ filter: brightness(1.15); }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-replayer-solid-black-override">
   /* Anula gradientes globales y sombras para asegurar negro sólido */
   #regv2-replayer,
@@ -2319,46 +1369,12 @@ body, html{overflow:visible!important;}
     border: 1px solid #fff !important;
     border-radius: 12px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-shift-reg-btn-plus-0_5c">
   /* Mueve el botón "Registro de partidas" medio casillero a la derecha (de -2c a -1.5c) */
   :root{ --aj-casillero: 40px; }
   #timeIndicator #regv2-clock-btn{ left: calc(-1.5 * var(--aj-casillero)) !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-shift-reg-btn-plus-1_0c-and-replayer-black">
   /* Registro +0.5c adicional a la derecha (ahora total -1.0c) */
   :root{ --aj-casillero: 40px; }
@@ -2379,44 +1395,10 @@ body, html{overflow:visible!important;}
     border-radius: 12px !important;
     color: #fff !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-replayer-hidden-by-default">
   #regv2-replayer{ display: none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-replayer-visibility-logic">
 (function(){
   function $(s,root=document){ return root.querySelector(s); }
@@ -2494,24 +1476,7 @@ body, html{overflow:visible!important;}
   #aj-clockwrap #pauseBtn{
     margin-left: 6px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-clockwrap-script">
 (function(){
   function $(s,root=document){ return root.querySelector(s); }
@@ -2565,67 +1530,16 @@ body, html{overflow:visible!important;}
 #rv2-moves .num{ font-weight:700; opacity:.8; text-align:right; padding-right:4px; }
 .btn.danger{ background:#d9534f; border-color:#c9302c; }
 @media (max-width: 960px){ #rv2 .grid{ grid-template-columns:1fr; gap:12px; } #rv2 .card{ height:48vh; max-height:56vh; } }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-textarea-shrink">
 /* Reduce tester textarea height to ~half */
 #regv2-input{ height: 160px !important; min-height: 140px !important; }
 textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !important; min-height: 140px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-grid-5050">
 /* Make bottom info panels split 50/50 */
 #rv2 .grid{ grid-template-columns: 1fr 1fr !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-leftheader-stack">
 /* En el panel izquierdo ("Partidas guardadas"), pone el título arriba y los botones debajo */
 #rv2 .grid > section.card:first-of-type > div{
@@ -2641,24 +1555,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   gap: 10px;
   flex-wrap: wrap;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-play-heartbeat-css">
 /* Topbar with three zones: left (demo+velocidad), center (play), right (spacer/extra) */
 #rv2-topbar{ display:flex; align-items:center; gap:12px; margin:8px 0 6px; }
@@ -2688,24 +1585,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 @media (prefers-reduced-motion: reduce){
   #rv2-topbar #regv2-play{ animation: none; }
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-pulse-css">
 #rv2-topbar .center button.rv2-pulse{
   animation: rv2-heartbeat-x 1.25s ease-in-out infinite !important;
@@ -2723,24 +1603,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 @media (prefers-reduced-motion: reduce){
   #rv2-topbar .center button.rv2-pulse{ animation: none !important; }
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-topbar-tweak-css">
 /* Mover "Cargar demo" + "Velocidad" unos 3mm a la derecha */
 #rv2-topbar .left{ padding-left: 3mm; }
@@ -2750,46 +1613,12 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   border-color:#000 !important;
   color:#fff !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-panel-8-casilleros-css">
 /* Variables: altura total del panel y altura de las tarjetas inferiores */
 #rv2{ --rv2-panel-h: 480px; --rv2-cards-h: 280px; }
 #rv2 .card{ height: var(--rv2-cards-h) !important; max-height: var(--rv2-cards-h) !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rv2-rounded-modal-css">
 /* Redondear las esquinas del contenedor que desplaza (aunque tenga scroll) */
 .rv2-modal{
@@ -2802,24 +1631,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 }
 /* Opcional: suaviza la esquina del área de la barra */
 .rv2-modal::-webkit-scrollbar-corner{ background: transparent; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-right-black-cover-dot-0911">
   /* Mueve el bloque negro de la DERECHA (tiempo y pausa) para cubrir el punto verde */
   #timeIndicator #timeTxt,
@@ -2833,24 +1645,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
     transform: scale(1.05) !important;
     transform-origin: left center !important;  /* crece hacia la derecha */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-right-black-cover-dot-0911-v2">
   /* +5% EXTRA al botón de Registro de partidas (total ~10%) */
   #timeIndicator #regv2-clock-btn{
@@ -2877,24 +1672,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
     z-index: -1;
     pointer-events: none;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-timer-pill-container-2025-09-11">
   #timeIndicator{
     background: #000 !important;
@@ -2914,65 +1692,14 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   }
   #timeIndicator #timeTxt{ background: transparent !important; color: #fff !important; padding: 0 4px !important; }
   #timeIndicator #pauseBtn{ background: transparent !important; color: #fff !important; border: 0 !important; padding: 0 !important; font-weight: 700 !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-timer-corner-fix-2025-09-11">
   #timeIndicator > * { margin-left: 0 !important; transform-origin: center; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-hide-registros-in-menu-2025-09-11">
   .mp-tabs .tab-btn[data-tab="tab-registros"]{ display:none !important; }
   #tab-registros{ display:none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-top-right-compact-2025-09-11">
   /* En el topbar, empuja el timer hacia la derecha */
   #topBar{ position: relative !important; }
@@ -2985,24 +1712,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   }
   /* Leve reducción del padding global del contenedor para compactarlo */
   #timeIndicator{ padding-right: 14px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-height-reduce-2025-09-11">
   /* Achicar el ALTO del contenedor superior derecho */
   #topBar #timeIndicator{
@@ -3023,24 +1733,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   #topBar #timeIndicator #timeTxt{
     line-height: 1 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-height-strong-2025-09-11">
   /* Fuerza altura total menor del contenedor negro del reloj */
   #topBar #timeIndicator{
@@ -3070,116 +1763,31 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   #topBar #timeIndicator .dot{
     width: 8px !important; height: 8px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-shift-down-3mm-2025-09-11">
   /* Bajar el contenedor negro (reloj) ~3 mm */
   #topBar #timeIndicator{
     top: calc(6px + 3mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-shift-down-5mm-2025-09-11">
   /* Bajar el contenedor negro (reloj) ~5 mm total */
   #topBar #timeIndicator{
     top: calc(6px + 5mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-shift-down-7mm-2025-09-11">
   /* Bajar el contenedor negro (reloj) ~7 mm total */
   #topBar #timeIndicator{
     top: calc(6px + 7mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-shift-right-4mm-2025-09-11">
   /* Desplazar ~4 mm hacia la derecha (más pegado al borde) */
   #topBar #timeIndicator{
     right: calc(10px - 4mm) !important;  /* partimos del 10px previo y restamos 4mm */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-donatebox-spacing-balance-2025-09-11">
   /* Uniformar separaciones y balancear visualmente el bloque de donación */
   #bottomBar #donateBox{
@@ -3189,78 +1797,27 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   }
   #bottomBar #donateBox .btn.imgbtn{ margin: 0 !important; }
   #bottomBar #donateBox .label{ margin: 0 !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-donate-label-down-4mm-2025-09-11">
   /* Bajar ~4 mm solo el indicador de texto "Colabora" */
   #bottomBar #donateBox .label{
     display: inline-block !important;
     transform: translateY(4mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-donate-label-down-6mm-2025-09-11">
   /* Bajar ~6 mm total el indicador "Colabora" */
   #bottomBar #donateBox .label{
     transform: translateY(6mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-left-shifts-2025-09-11">
   /* Colabora: 2 mm a la izquierda (conservando el descenso previo) */
   #bottomBar #donateBox .label{
     margin-left: -2mm !important;   /* usar margen para no sobreescribir el translateY existente */
   }
 
-  /* Elije tu modo de juego (arriba a la izquierda): 2 mm a la izquierda */
+  /* Modo de juego (arriba a la izquierda): 2 mm a la izquierda */
   #topBar #modeGroup{
     transform: translateX(-2mm) !important;
   }
@@ -3268,24 +1825,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   #topBar .mode-group{
     transform: translateX(-2mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-mobile-match-web-2025-09-11">
   /* === Igualar versión móvil a la web === */
   @media (max-width: 820px){
@@ -3308,7 +1848,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
       padding: 2px 8px !important;
       border-radius: 10px !important;
     }
-    /* Elije tu modo de juego (arriba a la izquierda) */
+    /* Modo de juego (arriba a la izquierda) */
     #topBar #modeGroup,
     #topBar .mode-group{
       transform: translateX(-2mm) !important;
@@ -3323,24 +1863,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
       margin-left: -2mm !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="ajetrez-mobile-topright-8cols">
 /* === Ajetrez Mobile: Top-Right group width = 8 casilleros === */
 @media (max-width: 900px) {
@@ -3360,24 +1883,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
     flex: 0 0 auto;
   }
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="verDevToast-styles">
 #verDevToast .btn{ 
   display:inline-flex; align-items:center; justify-content:center; 
@@ -3389,24 +1895,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 #verDevToast .btn:active{ transform:translateY(0); }
 #verDevToast .btn.mp{ border-color:#009ee3; }
 #verDevToast .btn.pp{ border-color:#253b80; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Ajetrez: WakeLock toggle (flex item al lado de Reiniciar) === */
@@ -3416,24 +1905,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   .btn.aj-wakelock-toggle{ font-size:0.95em; }
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Ajetrez: Centrar botón Menú en bottomBar SIN fijar posiciones === */
@@ -3449,24 +1921,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   margin-left:0 !important;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Reset fuerte para Menú: eliminar offsets previos (sin fijarlo) === */
@@ -3489,24 +1944,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 /* Grupo derecho queda al final de la fila sin empujar el centro */
 #rightControls{ margin-left: 0 !important; }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Tema-safe: texto oscuro sobre fondos claros en "noche" y "pizarra" === */
@@ -3548,24 +1986,7 @@ body[data-theme="pizarra"]#regv2-panel *{
 /* Si algún botón/etiqueta depende de texto blanco sobre fondo oscuro, sus reglas específicas ya lo definen.
    Este bloque evita que el color heredado del tema (gris muy claro) haga ilegible el contenido sobre fondos blancos. */
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Texto legible en temas "noche" y "pizarra" (sin !important) === */
@@ -3574,24 +1995,7 @@ body[data-theme="pizarra"]{
   color:#111; /* texto oscuro por defecto; encabezados/btn con color propio seguirán mostrándose bien */
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Botones legibles en temas "noche" y "pizarra" === */
@@ -3602,24 +2006,7 @@ body[data-theme="pizarra"] .tab-btn{
   color:#fff; /* texto blanco en botones/ pestañas con fondo oscuro */
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Fix específico para "noche": texto blanco en botones sobre fondos oscuros === */
@@ -3631,24 +2018,7 @@ body[data-theme="noche"] #regv2-panel .btn{
   color:#fff !important;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Noche: asegurar iconos/✕ de cerrar visibles en blanco === */
@@ -3662,24 +2032,7 @@ body[data-theme="noche"] #verDevToastClose{
   color:#fff !important;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 
 /* === Noche: asegurar que "Cargar demo" (#regv2-demo) muestre texto blanco === */
@@ -3688,71 +2041,20 @@ body[data-theme="noche"] .regv2-btn{
   color:#fff !important;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-menu-restart-adjacency">
   /* Place restart right next to Menu with a small gap */
   #btnMegaMenu + #btnRestartBR {
     margin-left: 8px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-restart-left-4">
   /* Desplaza el botón Reiniciar 4 casilleros a la izquierda */
   #btnRestartBR {
     position: relative !important;
     left: calc(-4 * var(--square)) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-menu-size-match-restart">
   /* Hacer que el botón Menú tenga el mismo tamaño visual que Reiniciar (.btn.small) */
   #btnMegaMenu {
@@ -3764,24 +2066,7 @@ body[data-theme="noche"] .regv2-btn{
     padding: 5.4px 8.1px !important; /* igual que .btn.small (-10%) */
     font-size: 90% !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-topright-separated-styles">
   /* Alinear los 3 controles superiores (registro, pausa, reloj) como items individuales */
   #regv2-clock-btn, #pauseBtn {
@@ -3810,24 +2095,7 @@ body[data-theme="noche"] .regv2-btn{
   /* Quitar estilos que dependían del reloj como contenedor */
   #timeIndicator #regv2-clock-btn,
   #timeIndicator #pauseBtn{ all: unset; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-menu-registro-tab-style">
   /* Asegurar que el botón nuevo herede el look de las tabs */
   #megaPanel .tabs .tab-btn#regv2-open-menu,
@@ -3839,24 +2107,7 @@ body[data-theme="noche"] .regv2-btn{
     width:6px; height:6px; border-radius:50%; background:#4ade80;
     box-shadow:0 0 6px rgba(74,222,128,.6);
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="regv2-head-actions-style">
   #regv2-panel header{
     display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -3865,24 +2116,7 @@ body[data-theme="noche"] .regv2-btn{
   #regv2-panel .regv2-head-actions{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   #regv2-panel .regv2-btn.small{ padding:6px 10px; border-radius:10px; font-weight:800; background:#111; color:#fff; border:2px solid #fff; }
   #regv2-panel .regv2-btn.small:hover{ background:#000; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-night-btn-contrast-fix">
   /* Forzar contraste en temas oscuros: texto blanco en botones del panel de registros */
   body[data-theme="noche"]  #regv2-panel .btn,
@@ -3904,24 +2138,7 @@ body[data-theme="noche"] .regv2-btn{
   body[data-theme="pizarra"]#regv2-panel .regv2-head-actions select{
     color: #fff !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-registro-open-btn-style">
   /* Estilo del botón dentro de la pestaña Registros (v2) */
   #tab-registros-v2 #regv2-open-from-tab{
@@ -3949,24 +2166,7 @@ body[data-theme="noche"] .regv2-btn{
     50%  { transform: scale(1.07); box-shadow: 0 0 14px rgba(255,255,255,0.45); }
     100% { transform: scale(1);   box-shadow: 0 0 0 rgba(255,255,255,0.0); }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-regv2-play-pulse-slow">
   /* Hacer más lento el latido del botón "Reproducir en tablero" en el panel de registros */
   #regv2-play,
@@ -3977,24 +2177,7 @@ body[data-theme="noche"] .regv2-btn{
     animation-duration: 2.4s !important; /* antes ~1.5s, ahora más lento */
     animation-timing-function: ease-in-out !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-fit-bars-css">
   /* Ajusta ancho de barras para que coincidan con el ancho del tablero visible */
   #topBar.bar, #bottomBar.bar{
@@ -4008,24 +2191,7 @@ body[data-theme="noche"] .regv2-btn{
     min-width: 0 !important;
   }
   #rightControls .btn{ white-space: nowrap; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-right-controls-shift-4mm">
   /* Desplazar 4mm hacia la izquierda los controles derechos (abajo y arriba) */
   #bottomBar #rightControls{
@@ -4034,24 +2200,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   /* Top-right: reloj, pausa y botón de registros */
   #topBar #timeIndicator, #topBar #pauseBtn{ transform: translateX(-4mm); }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-top-shift-pause-clock-4mm">
   /* Solo reloj y pausa: 4mm a la izquierda */
   #topBar #timeIndicator,
@@ -4062,24 +2211,7 @@ body[data-theme="noche"] .regv2-btn{
   #topBar #regv2-clock-btn{
     transform: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-bottom-menu-center">
   /* Centrar el botón Menú (horizontalmente) en la barra inferior */
   #bottomBar { position: relative !important; }
@@ -4095,24 +2227,7 @@ body[data-theme="noche"] .regv2-btn{
   #rightControls #wakeLockToggle + #btnRestartBR{
     margin-left: 8px !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="patch-regv2-open-from-tab-2025-09-12">
   /* Ajuste solicitado: subir ~1 casillero y achicar 15% el botón "Abrir panel de registros" del menú principal */
   #regv2-open-from-tab{
@@ -4123,24 +2238,7 @@ body[data-theme="noche"] .regv2-btn{
     transform: scale(0.85);
     transform-origin: center center;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-megaPanel-height-plus4mm">
   /* Aumentar altura del panel completo de menú ~4mm (aprox) */
   #megaPanel{
@@ -4159,24 +2257,7 @@ body[data-theme="noche"] .regv2-btn{
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="regv2-open-bottombar-css">
   /* Estilo del botón 'Registros' cuando está en la barra inferior */
   #bottomBar #regv2-open{
@@ -4194,24 +2275,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   /* Asegurar que la barra no recorte el botón */
   #bottomBar{ overflow: visible; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="regv2-offset-3mm">
   /* Desplazar el panel de Registros 3mm hacia abajo para centrar mejor */
   #regv2-overlay{
@@ -4223,24 +2287,7 @@ body[data-theme="noche"] .regv2-btn{
     margin-top: 3mm;
     transform-origin: top center;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="regv2-overlay-pointer-events-fix">
   /* Permitir usar botones debajo (ej. Pantalla completa) cuando el panel está abierto */
   #regv2-overlay{
@@ -4249,24 +2296,7 @@ body[data-theme="noche"] .regv2-btn{
   #regv2-panel, #regv2-panel *{
     pointer-events: auto !important;   /* dentro del panel sigue siendo interactivo */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="regv2-fs-zindex">
   /* Asegurar que el overlay flote por encima también en fullscreen */
   #regv2-overlay{
@@ -4278,48 +2308,14 @@ body[data-theme="noche"] .regv2-btn{
     position: relative;
     z-index: 2147483646 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-free-megaMenu-vars">
   /* Variables para mover el botón libremente (modificables después) */
   :root{
     --menu-x: 50%;   /* posición horizontal por defecto (centro) */
     --menu-y: 0mm;   /* posición vertical por defecto (borde superior del topbar) */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-free-megaMenu">
   /* Liberar completamente el botón de Menú para moverlo sin anclajes ni "rebotes" */
   #btnMegaMenu{
@@ -4342,24 +2338,7 @@ body[data-theme="noche"] .regv2-btn{
     bottom: auto !important;
     transform: translate(-50%, 0) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Menú +0.5 casillero a la derecha (nudge) - 2025-09-13 -->
 <style id="aj-menu-nudge-right-0_5sq-2025-09-13">
   /* Ajusta la variable --menu-x sumando medio casillero al centro */
@@ -4367,24 +2346,7 @@ body[data-theme="noche"] .regv2-btn{
     --menu-x: calc(50% + calc(var(--square, var(--casillero, 64px)) * 0.5));
     /* --menu-y queda como estaba (0mm por defecto) */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Registros botón -2mm a la izquierda (2025-09-13) -->
 <style id="aj-regv2-open-left-2mm-2025-09-13">
   /* Nudge fino respecto a su posición actual junto al reloj */
@@ -4392,24 +2354,7 @@ body[data-theme="noche"] .regv2-btn{
     position: relative !important;
     left: calc(-1 * var(--aj-casillero, 40px) - 2mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Registros botón -5% adicional (2025-09-13) -->
 <style id="aj-regv2-open-scale-95plus5-2025-09-13">
   /* Achica el botón de Registros un 5% adicional sobre el estado actual */
@@ -4417,24 +2362,7 @@ body[data-theme="noche"] .regv2-btn{
     transform: scale(0.9025) !important; /* 0.95 (previo) * 0.95 (nuevo) */
     transform-origin: center !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Registros botón +2mm a la derecha (2025-09-13) -->
 <style id="aj-regv2-open-right-2mm-2025-09-13">
   /* Cancela el -2mm previo y lo mueve 2mm a la derecha respecto de ese estado */
@@ -4442,24 +2370,7 @@ body[data-theme="noche"] .regv2-btn{
     position: relative !important;
     left: calc(-1 * var(--aj-casillero, 40px) + 0mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-shift-reg-btn-plus-2mm-right">
   /* Mover el botón "Registro de partidas" 2mm a la derecha respecto a su posición actual (-1c) */
   /* Esta regla sobrescribe la posición previa (p.ej., -1 * var(--aj-casillero)) sumando +2mm */
@@ -4467,44 +2378,10 @@ body[data-theme="noche"] .regv2-btn{
     position: relative !important;
     left: calc(-1 * var(--aj-casillero) + 2mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="rulesVersionStyle">
 #rulesContent .rules-version{ display:none; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Uniformar contornos blancos de botones externos + mover 'Registro de partidas' 2mm (2025-09-13) -->
 <style id="aj-external-btns-border-uniform-2025-09-13">
   /* Uniforme: contorno blanco de 2px SOLO en botones EXTERNOS del juego */
@@ -4521,24 +2398,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   /* Botones internos del replayer (si usan .btn) */
   #regv2-replayer .btn { border: 2px solid #fff !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style id="aj-shift-reg-btn-plus-2mm-2025-09-13">
   /* Desplaza 2 mm a la DERECHA el botón "Registro de partidas" dentro del reloj */
@@ -4547,24 +2407,7 @@ body[data-theme="noche"] .regv2-btn{
     position: relative !important;
     left: calc((var(--aj-casillero, 40px) * -1) + 2mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <!-- AJETREZ: Resaltar selects de Versión y Reglas dentro del menú (2025-09-13) -->
 <style id="aj-menu-selects-highlight-2025-09-13">
@@ -4586,24 +2429,7 @@ body[data-theme="noche"] .regv2-btn{
     color: inherit;
     background-color: rgba(0,0,0,0.03);
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <!-- AJETREZ: 'Reproducir en tablero' rojo con latido (2025-09-13) -->
 <style id="aj-replay-heartbeat-2025-09-13">
@@ -4628,24 +2454,7 @@ body[data-theme="noche"] .regv2-btn{
   @media (prefers-reduced-motion: reduce) {
     #reg-replay-start { animation: none !important; }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <!-- AJETREZ: Control de opacidad/brillo por zona (central vs laterales) 2025-09-13 -->
 <style id="aj-zone-appearance-2025-09-13">
@@ -4664,24 +2473,7 @@ body[data-theme="noche"] .regv2-btn{
     opacity: var(--lateral-opacity) !important;
     filter: brightness(var(--lateral-brightness)) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style id="aj-zones-float-css-2025-09-13">
   /* Panel flotante para brillo/opacidad */
@@ -4705,24 +2497,7 @@ body[data-theme="noche"] .regv2-btn{
   .zones-legend{ display:flex; gap:10px; margin-top:6px; font-size:12px; opacity:.85; flex-wrap:wrap; }
   .legend-chip{ display:inline-flex; gap:6px; align-items:center; padding:4px 8px; border-radius:999px; background:#f6f6f6; border:1px solid #eee; }
   .legend-swatch{ width:14px; height:14px; border-radius:3px; outline:1px solid #ccc; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-override-half">
@@ -4731,24 +2506,7 @@ body[data-theme="noche"] .regv2-btn{
     height: calc((100vh - 6mm)/2) !important;
     max-height: calc((100vh - 6mm)/2) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-override-layout">
@@ -4763,24 +2521,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   #zonesContent #fg-zonas-appearance > *{ min-width:0; }
   #zonesContent #fg-zonas-appearance input[type="range"]{ width:100%; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-override-quarter-wide">
@@ -4790,24 +2531,7 @@ body[data-theme="noche"] .regv2-btn{
     max-height: calc((100vh - 6mm)/4) !important;
     width: min(960px, 98vw) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-override-quarter-wide-plus20">
@@ -4815,24 +2539,7 @@ body[data-theme="noche"] .regv2-btn{
   #zonesFloat.zf-top{
     width: min(1152px, 99vw) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-center-and-reset-dark">
@@ -4851,24 +2558,7 @@ body[data-theme="noche"] .regv2-btn{
     background: #111 !important;
     border-color: #111 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-transparent-bg">
@@ -4878,24 +2568,7 @@ body[data-theme="noche"] .regv2-btn{
     box-shadow: none !important;
     border: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-revert-bg-and-shrink15">
@@ -4909,24 +2582,7 @@ body[data-theme="noche"] .regv2-btn{
     height: calc(((100vh - 6mm)/4) * 0.85) !important;
     max-height: calc(((100vh - 6mm)/4) * 0.85) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-inner-scale-85">
@@ -4944,24 +2600,7 @@ body[data-theme="noche"] .regv2-btn{
   #zonesContent label, #zonesContent .hint-sm, #zonesContent p, #zonesContent .help, #zonesContent .desc{
     font-size: 0.95em; /* suavizar para que no quede demasiado pequeño en ayudas */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-tight-spacings">
@@ -4986,24 +2625,7 @@ body[data-theme="noche"] .regv2-btn{
   #zonesContent #fg-zonas-appearance input[type="range"]{
     margin: 0 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-hide-under-text">
@@ -5024,24 +2646,7 @@ body[data-theme="noche"] .regv2-btn{
   #zonesContent #fg-zonas-appearance .muted {
     display: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-width-minus10">
@@ -5049,48 +2654,14 @@ body[data-theme="noche"] .regv2-btn{
   #zonesFloat.zf-top{
     width: min(882px, 81vw) !important; /* 980px->882px, 90vw->81vw */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-fs-support">
   /* Asegurar visibilidad por encima de todo en fullscreen */
   :fullscreen #zonesFloat.zf-top{ z-index: 2147483640 !important; }
   :-webkit-full-screen #zonesFloat.zf-top{ z-index: 2147483640 !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-fs-center-vfix">
@@ -5103,24 +2674,7 @@ body[data-theme="noche"] .regv2-btn{
     transform: translate(-50%, -50%) !important;
     margin: 0 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-fs-flex-anchor">
@@ -5144,24 +2698,7 @@ body[data-theme="noche"] .regv2-btn{
     margin: 0 !important;
     pointer-events: auto !important; /* solo el panel recibe eventos */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-fs-top-align">
@@ -5181,24 +2718,7 @@ body[data-theme="noche"] .regv2-btn{
     transform: none !important;
     margin: 0 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-piece-style-width-80">
@@ -5210,24 +2730,7 @@ body[data-theme="noche"] .regv2-btn{
   #tab-personalizacion select[data-role="piece-style"]{
     width:80% !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-topbar-visual-styles-2025-09-13">
@@ -5249,24 +2752,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   /* Ocultar el pequeño texto descriptivo si se quedó en el bloque original */
   #tab-personalizacion .aj-visual-desc-hidden{ display:none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-piece-below-visual-css-2025-09-13">
@@ -5288,24 +2774,7 @@ body[data-theme="noche"] .regv2-btn{
     #tab-personalizacion .aj-piece-row{ flex-direction: column; align-items:flex-start; gap:6px; }
     #tab-personalizacion .aj-piece-row .aj-piece-style-select{ width: 100% !important; max-width: none; }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-piece-under-zones-css-2025-09-13">
@@ -5326,24 +2795,7 @@ body[data-theme="noche"] .regv2-btn{
     #tab-personalizacion .aj-piece-row-under-zones{ flex-direction: column; align-items:flex-start; gap:6px; }
     #tab-personalizacion .aj-piece-row-under-zones .aj-piece-style-select{ width: 100% !important; max-width: none; }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-visual-buttons-relocate-2025-09-13">
@@ -5364,24 +2816,7 @@ body[data-theme="noche"] .regv2-btn{
   @media (max-width: 780px){
     #tab-personalizacion .aj-style-buttons-top{ width: 100%; }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-piece-top-right-css-2025-09-13">
@@ -5405,24 +2840,7 @@ body[data-theme="noche"] .regv2-btn{
   @media (max-width: 780px){
     #tab-personalizacion .aj-top-right{ width: 100%; }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-piece-align-with-visual-row-2025-09-13">
@@ -5449,24 +2867,7 @@ body[data-theme="noche"] .regv2-btn{
       flex: 1 1 100%;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-topbar-center-title-2025-09-13">
@@ -5503,24 +2904,7 @@ body[data-theme="noche"] .regv2-btn{
       justify-self: stretch;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-remove-title-and-verticalize-piece-2025-09-13">
@@ -5539,24 +2923,7 @@ body[data-theme="noche"] .regv2-btn{
   #tab-personalizacion .aj-top-right .aj-piece-style-select{
     width: 100% !important; max-width: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-visual-header-align-pieces-2025-09-13">
@@ -5605,24 +2972,7 @@ body[data-theme="noche"] .regv2-btn{
       grid-template-columns: 1fr;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zonescard-right-below-piece-2025-09-13">
@@ -5648,24 +2998,7 @@ body[data-theme="noche"] .regv2-btn{
       grid-column: 1;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-visual-fix-zones-title-and-buttons-2025-09-13">
@@ -5708,24 +3041,7 @@ body[data-theme="noche"] .regv2-btn{
       grid-column: 1;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-button-red-2025-09-13">
@@ -5745,24 +3061,7 @@ body[data-theme="noche"] .regv2-btn{
   }
   /* Por si en algún tema el texto del botón cambia de color */
   #zonesOpenCard #openZonesFloat *{ color: inherit !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-button-black-pulse-2025-09-13">
@@ -5789,24 +3088,7 @@ body[data-theme="noche"] .regv2-btn{
     60%  { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(0,0,0,0); }
     100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(0,0,0,.20); }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-button-stronger-pulse-legend-center-2025-09-13">
@@ -5837,24 +3119,7 @@ body[data-theme="noche"] .regv2-btn{
   /* Accesibilidad: evitar overlap de clicks sobre el contenedor */
   #zonesOpenCard .zones-legend{ pointer-events: none; }
   #zonesOpenCard .zones-legend .legend-chip{ pointer-events: auto; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style>
 #promoOverlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:2147483647;padding:16px 18px;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.5);border:1px solid #333;color:#eee;min-width:280px}
@@ -5864,46 +3129,12 @@ body[data-theme="noche"] .regv2-btn{
 #promoChoices button:hover{transform:translateY(-1px);border-color:#fff}
 #promoChoices img{width:56px;height:56px;display:block}
 #promoClose{margin-top:10px;text-align:center;opacity:.7;font-size:12px}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style id="aj-remove-login">
 #tabsView{ display:block !important; }
 #loggedUser, .user-label, [data-role="logged-user"]{ display:none !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style>
 /* === Mejora de visibilidad de títulos dentro del panel === */
 #megaPanel .mp-content h1,
@@ -5931,24 +3162,7 @@ body[data-theme="noche"] .regv2-btn{
   font-weight: 800;
   color: #111; /* negro */
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style id="aj-tight-brightness-panel">
 /* Reducir padding superior del bloque crema de brillo/opacidad */
@@ -5965,24 +3179,7 @@ body[data-theme="noche"] .regv2-btn{
   padding-top: 2mm !important;
   margin-top: 0 !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-move-visual-style-buttons-down">
@@ -5992,24 +3189,7 @@ body[data-theme="noche"] .regv2-btn{
 #tab-personalizacion .aj-visual-row button{
   margin-top: 5mm !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-move-visual-style-buttons-down-more">
@@ -6019,24 +3199,7 @@ body[data-theme="noche"] .regv2-btn{
 #tab-personalizacion .aj-visual-row button{
   margin-top: 10mm !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-fix-brightness-preview-cut">
@@ -6059,24 +3222,7 @@ body[data-theme="noche"] .regv2-btn{
 #tab-personalizacion .brightness-block::after{
   content: none !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-panel-root-overflow-fix">
@@ -6104,24 +3250,7 @@ body[data-theme="noche"] .regv2-btn{
 #megaPanel .mp-content::after{
   content: none !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style>
@@ -6136,24 +3265,7 @@ body[data-theme="noche"] .regv2-btn{
 #rulesByVersion > div{
   justify-content: center;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style>
@@ -6186,297 +3298,9 @@ body[data-theme="noche"] .regv2-btn{
   justify-content: center;
   gap: 10px;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
 
-
-
-<script id="aj-safe-disable-bot-vs-bot">
-// === AJETREZ SAFE PATCH (modo simple)
-// - NO toca setters globales
-// - NO rompe bootstrap
-// - Bloquea Bot vs Bot solo al cambiar de modo
-// - Elimina el botón "Versiones"
-(function(){
-  function whenReady(fn){
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(fn, 0);
-    } else {
-      document.addEventListener('DOMContentLoaded', fn, { once: true });
-    }
-  }
-
-  whenReady(function(){
-    // 1) Interceptar SOLO la función de cambio de modo (si existe)
-    if (typeof window.setGameMode === 'function' && !window.__ajSetGameModeWrapped){
-      const original = window.setGameMode;
-      window.setGameMode = function(mode){
-        if (String(mode).toLowerCase().includes('bot') && String(mode).toLowerCase().includes('vs')){
-          console.warn('[AJETREZ] Bot vs Bot deshabilitado (safe)');
-          return; // bloquea sin romper engine
-        }
-        return original.apply(this, arguments);
-      };
-      window.__ajSetGameModeWrapped = true;
-    }
-
-    // 2) Eliminar entradas UI "Bot vs Bot" (solo UI, post-init)
-    const purgeUI = () => {
-      document.querySelectorAll('button, .btn, [role="button"], li, a').forEach(el=>{
-        const t=(el.textContent||'').toLowerCase();
-        if (t.includes('bot vs bot') || t.includes('bots vs bots')) el.remove();
-      });
-    };
-    purgeUI();
-    setTimeout(purgeUI, 50);
-
-    // 3) Eliminar botón "Versiones" (hardcodeado)
-    document.querySelectorAll('button, .btn, a').forEach(el=>{
-      const t=(el.textContent||'').toLowerCase().trim();
-      if (t === 'versiones') el.remove();
-    });
-  });
-})();
-</script>
-
-
-<script id="aj-hide-external-botvsbot">
-// === AJETREZ UI PATCH
-// Oculta el botón "Bot vs Bot" del menú externo (arriba a la izquierda del tablero)
-// Sin tocar lógica ni bootstrap
-(function(){
-  function hideExternal(){
-    document.querySelectorAll('button, .btn, [role="button"], a, span').forEach(el=>{
-      const t = (el.textContent || '').toLowerCase().trim();
-      if (t === 'bot vs bot' || t === 'bots vs bots') {
-        el.style.display = 'none';
-        el.setAttribute('aria-hidden','true');
-      }
-    });
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(hideExternal, 0);
-  } else {
-    document.addEventListener('DOMContentLoaded', hideExternal, { once:true });
-  }
-
-  // refuerzo leve por si el HUD se re-renderiza
-  setTimeout(hideExternal, 50);
-})();
-</script>
-
-
-<script id="aj-hide-external-botvsbot-strong">
-// === AJETREZ UI PATCH (strong)
-// Oculta cualquier opción Bot vs Bot / Bot versus bot / demo en el menú externo
-(function(){
-  function normalize(s){
-    return s.toLowerCase().replace(/\s+/g,' ').trim();
-  }
-  function hide(){
-    document.querySelectorAll('button, .btn, [role="button"], li, a').forEach(el=>{
-      const t = normalize(el.textContent || '');
-      if (
-        t.includes('bot vs bot') ||
-        t.includes('bot versus bot') ||
-        (t.includes('bot') && t.includes('bot') && t.includes('demo'))
-      ){
-        el.style.display = 'none';
-        el.setAttribute('aria-hidden','true');
-      }
-    });
-  }
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    hide();
-  } else {
-    document.addEventListener('DOMContentLoaded', hide, { once:true });
-  }
-  // refuerzos por re-render
-  setTimeout(hide, 50);
-  setTimeout(hide, 150);
-})();
-</script>
-
-
-<style id="aj-online-red-help">
-  /* Fondo rojo para el contenedor de Modo Online */
-  #tab-modos #modeHelp .title:contains("Modo Online"),
-  #tab-modos #modeHelp {
-    background: #b91c1c;
-    border-color: #7f1d1d;
-    color: #fff;
-  }
-
-  /* Ajustes finos de legibilidad */
-  #tab-modos #modeHelp p,
-  #tab-modos #modeHelp span,
-  #tab-modos #modeHelp {
-    color: #fff !important;
-  }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-
-
-
-<style id="aj-online-external-red-btn">
-/* Botón externo "Jugar Online" siempre rojo */
-#btnOnlineExternal{
-  background: #b91c1c !important;
-  color: #fff !important;
-  border-color: #7f1d1d !important;
-  box-shadow: 0 4px 14px rgba(185,28,28,.45);
-}
-#btnOnlineExternal:hover{
-  background: #a31616 !important;
-}
-#btnOnlineExternal:active{
-  background: #8f1313 !important;
-}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-
-
-
-<style id="aj-online-external-red-btn-force">
-/* Fuerza absoluta del botón externo Jugar Online */
-button#btnOnlineExternal,
-#topBar button#btnOnlineExternal,
-.mode-group button#btnOnlineExternal{
-  background-color: #c8102e !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-  border-radius: 999px !important;
-  box-shadow: 0 0 0 rgba(200,16,46,0);
-  animation: onlinePulse 1.6s ease-in-out infinite;
-}
-
-/* Hover / active no cambian el color base */
-button#btnOnlineExternal:hover,
-button#btnOnlineExternal:active{
-  background-color: #c8102e !important;
-  color: #ffffff !important;
-}
-
-/* Animación tipo latido (igual filosofía que Comenzar partida) */
-@keyframes onlinePulse{
-  0%{
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(200,16,46,0.0);
-  }
-  45%{
-    transform: scale(1.08);
-    box-shadow: 0 0 28px rgba(200,16,46,0.75);
-  }
-  60%{
-    transform: scale(1.1);
-    box-shadow: 0 0 36px rgba(200,16,46,0.9);
-  }
-  100%{
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(200,16,46,0.0);
-  }
-}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-
-
-
-
-
-
-<style id="aj-internal-online-btn-fix">
-  /* Botón Jugar Online INTERNO: comportamiento normal del grupo */
-  #btnOnlineMode{
-    background: #000;
-    color: #fff;
-    box-shadow: none;
-  }
-  #btnOnlineMode.active,
-  #btnOnlineMode.selected{
-    background: #c8102e;
-    color: #fff;
-  }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-
-
-</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Elije tu modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
+</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
 <button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
@@ -6510,11 +3334,7 @@ button#btnOnlineExternal:active{
 </div></div></div><div aria-label="Ajetrez base limpia" id="board"></div><div aria-label="Decidir desplazamiento de fila" class="shift-ctrl" id="shiftCtrl" role="group"><span class="lbl" id="shiftLbl">Fila</span><span id="chooseWrap"><button aria-label="Mantener" id="btnKeep" type="button">Mantener</button><button aria-label="Desplazar sección" id="btnShift" type="button">Desplazar sección</button></span><span id="confirmWrap" style="display:none"><span id="choiceTxt" style="font-size:12px;font-weight:700;margin-right:6px;opacity:.85">Confirmar:</span><button aria-label="Confirmar" class="confirm" id="btnConfirm" type="button">Confirmar</button><button aria-label="Volver a elegir" id="btnBack" type="button">Cambiar elección</button></span></div><div id="overlay"><div id="banner">FIN</div></div><div id="panelBackdrop"></div><div aria-labelledby="mpTitle" aria-modal="true" id="megaPanel" role="dialog"><div class="apply-toast" id="applyToast">✔ Cambios guardados
 </div><div class="mp-header"><div id="mpTitle">Panel de Ajetrez
 </div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="btnClosePanel" type="button">Cerrar</button></div></div><div id="tabsView"><div class="mp-tabs">
-<button class="tab-btn active" data-tab="tab-version">Elije tu versión del juego</button>
-<button class="tab-btn" data-tab="tab-modos">Elije tu modo de juego</button>
-<button class="tab-btn" data-tab="tab-personalizacion">Personalización</button>
-<button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button>
-</div><div class="mp-content">
+    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button></div><div class="mp-content">
 
     <div class="tab" id="tab-personalizacion" style="display:none"><h3>Personalización del juego</h3><div class="row"><div class="field"><label>Estilo de piezas</label><select id="selSprites"><option value="auto">Auto (usar sprites si están disponibles)</option><option value="sprites">Sprites (imágenes)</option><option value="unicode">Unicode (símbolos)</option></select>
 
@@ -6550,8 +3370,8 @@ button#btnOnlineExternal:active{
   </div>
 </div>
 
-</div><div class="field"><label>Estilo visual</label><div aria-label="Elegir estilo visual" class="row" id="themePicker" role="group"><button class="btn theme" data-theme="dia" title="Tonos claros, suaves" type="button">Día</button><button class="btn theme" data-theme="noche" title="Tonos oscuros, suaves" type="button">Noche</button><button class="btn theme" data-theme="madera" title="Tonos madera, suaves" type="button">Madera</button><button class="btn theme" data-theme="arena" title="Arena suave" type="button">Arena</button><button class="btn theme" data-theme="pizarra" title="Pizarra / gris" type="button">Pizarra</button><button class="btn theme" data-theme="oliva" title="Verde oliva suave" type="button">Oliva</button></div><span class="hint-sm">Los estilos son suaves para no distraer durante la partida.</span></div></div></div><div class="tab" id="tab-version" style="display:block"><h3>Elije tu versión del juego</h3><p>Versión actual del juego: <strong id="verActual">2.5 (Estable)</strong></p><div class="field"><label>Seleccionar versión</label><select id="selVersion"><option selected="" value="3_0_simple">Versión 3.0 (modo simple)</option><option value="3_0_amenaza">Versión 3.0 (modo amenaza)</option><option value="3_0_guerra">Versión 3.0 (modo guerra)</option></select></div><div class="hint-sm">La selección futura podrá cargar configuraciones específicas por versión.
-</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Elije tu modo de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="bot-vs-bot">Bot vs Bot (demo)</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm"><div style="margin-top:10px;margin-bottom:24px;">Al elegir un modo, la partida se reinicia automáticamente.</div></p></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3></h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Elije tu versión del juego”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;"><div class="rules-version" data-version="3_0"><h4>Ajetrez Version 3.0 (Modo simple) — Reglas Básicas del juego</h4><div><p>En este modo, sólo el recuadro central del tablero es jugable. Las partes sobrantes (aunque contengan piezas) no participan hasta que sean ingresadas mediante el desplazamiento de secciones.</p><h5><span class="subtitulo">Distribución de las piezas</span></h5><p>Por color, el tablero contiene:</p><ul><li>2 reyes</li><li>2 reinas</li><li>4 alfiles, 4 caballos, 4 torres</li><li>16 peones</li></ul><p>Las piezas son distribuidas en el recuadro central de la misma manera que en el ajedrez clásico. En los laterales, (si bien ocupan las mismas posiciones entre ellas). Las piezas se colocan desplazadas, 2 secciones hacia abajo en negras y 2 hacia arriba en blancas.</p><ul><li>Ajetrez respeta todas las reglas del clásico ajedrez, por lo tanto, se debe jugar de la misma manera y respetando las reglas generales del ajedrez clásico.</li><li>A su vez, añade nuevas reglas, que dependen del modo de juego que se utilice.</li><li>En este modo de juego (Modo simple). Luego de capturar, se puede elegir entre desplazar o mantener la sección del tablero donde ahora se ubica la pieza que realizó la captura.</li><li>Si decide desplazar. Se desplaza (hacia el lado opuesto al que se encuentra y solo una vez).</li><li>Luego de la elección de mantener, o desplazar la sección, queda cedido el turno al contrincante.</li><li>El desplazamiento de la sección, puede sacar, o introducir piezas del área jugable.</li></ul><h5>Función del desplazamiento de las secciones</h5><ul><li>Escapar de una captura.</li><li>Alterar las posibles estrategias del oponente.</li><li>Sacar piezas rivales del área jugable.</li><li>Ingresar piezas propias al área jugable.</li><li>También ingresar piezas del oponente para luego intentar capturarlas.</li></ul><p>Importante: Si una pieza sale del recuadro central, esto no significa que queda fuera de juego definitivamente; podría reingresar tras nuevos desplazamientos.</p><h5>⚠️ Imposibilidad de desplazamiento de secciones</h5><ul><li>En jaque/mate no hay desplazamientos de las secciones (aun cuando se haya capturado una pieza del oponente que se encuentre en la sección donde está el rey).</li><li>No se pueden desplazar secciones cuando esa acción implica que el recuadro central jugable quede sin piezas disponibles de alguno de los dos participantes.</li></ul></div></div><div class="rules-version" data-version="3_0_amenaza"></div>
+</div><div class="field"><label>Estilo visual</label><div aria-label="Elegir estilo visual" class="row" id="themePicker" role="group"><button class="btn theme" data-theme="dia" title="Tonos claros, suaves" type="button">Día</button><button class="btn theme" data-theme="noche" title="Tonos oscuros, suaves" type="button">Noche</button><button class="btn theme" data-theme="madera" title="Tonos madera, suaves" type="button">Madera</button><button class="btn theme" data-theme="arena" title="Arena suave" type="button">Arena</button><button class="btn theme" data-theme="pizarra" title="Pizarra / gris" type="button">Pizarra</button><button class="btn theme" data-theme="oliva" title="Verde oliva suave" type="button">Oliva</button></div><span class="hint-sm">Los estilos son suaves para no distraer durante la partida.</span></div></div></div><div class="tab" id="tab-version" style="display:block"><h3>Versión de Ajetrez</h3><p>Versión actual del juego: <strong id="verActual">2.5 (Estable)</strong></p><div class="field"><label>Seleccionar versión</label><select id="selVersion"><option selected="" value="3_0_simple">Versión 3.0 (modo simple)</option><option value="3_0_amenaza">Versión 3.0 (modo amenaza)</option><option value="3_0_guerra">Versión 3.0 (modo guerra)</option></select></div><div class="hint-sm">La selección futura podrá cargar configuraciones específicas por versión.
+</div></div><div class="tab" id="tab-modos" style="display:none"><h3>Modos de juego</h3><div class="row"><button class="btn mode" data-gmode="pvp-local">Player vs player (local)</button><button class="btn mode" data-gmode="bot">Player Vs Bot</button><button class="btn mode" data-gmode="bot-vs-bot">Bot vs Bot (demo)</button><button class="btn mode" data-gmode="online">Modo Online</button></div><div aria-live="polite" id="modeHelp" role="note"><span class="title">¿Cómo funciona este modo?</span><div class="body">Elegí un modo para ver una breve explicación.</div></div><p class="hint-sm">Al elegir un modo, la partida se reinicia automáticamente.</p></div><div class="tab aj-reglas-ver" id="tab-reglas" style="display:none"><h3></h3><div class="field"><label for="selRulesVersion">Ver reglas según versión</label><select id="selRulesVersion"><option selected="selected" value="3_0">3.0 (Modo simple)</option><option value="3_0_amenaza">3.0 (Modo amenaza)</option><option value="3_0_guerra">3.0 (Modo guerra)</option></select><div class="hint-sm">Este selector es independiente del de “Versión de Ajetrez”. Cambiarlo solo afecta el texto mostrado aquí.</div></div><div id="rulesContent" style="margin-top:8px;"><div class="rules-version" data-version="3_0"><h4>Ajetrez Version 3.0 (Modo simple) — Reglas Básicas del juego</h4><div><p>En este modo, sólo el recuadro central del tablero es jugable. Las partes sobrantes (aunque contengan piezas) no participan hasta que sean ingresadas mediante el desplazamiento de secciones.</p><h5><span class="subtitulo">Distribución de las piezas</span></h5><p>Por color, el tablero contiene:</p><ul><li>2 reyes</li><li>2 reinas</li><li>4 alfiles, 4 caballos, 4 torres</li><li>16 peones</li></ul><p>Las piezas son distribuidas en el recuadro central de la misma manera que en el ajedrez clásico. En los laterales, (si bien ocupan las mismas posiciones entre ellas). Las piezas se colocan desplazadas, 2 secciones hacia abajo en negras y 2 hacia arriba en blancas.</p><ul><li>Ajetrez respeta todas las reglas del clásico ajedrez, por lo tanto, se debe jugar de la misma manera y respetando las reglas generales del ajedrez clásico.</li><li>A su vez, añade nuevas reglas, que dependen del modo de juego que se utilice.</li><li>En este modo de juego (Modo simple). Luego de capturar, se puede elegir entre desplazar o mantener la sección del tablero donde ahora se ubica la pieza que realizó la captura.</li><li>Si decide desplazar. Se desplaza (hacia el lado opuesto al que se encuentra y solo una vez).</li><li>Luego de la elección de mantener, o desplazar la sección, queda cedido el turno al contrincante.</li><li>El desplazamiento de la sección, puede sacar, o introducir piezas del área jugable.</li></ul><h5>Función del desplazamiento de las secciones</h5><ul><li>Escapar de una captura.</li><li>Alterar las posibles estrategias del oponente.</li><li>Sacar piezas rivales del área jugable.</li><li>Ingresar piezas propias al área jugable.</li><li>También ingresar piezas del oponente para luego intentar capturarlas.</li></ul><p>Importante: Si una pieza sale del recuadro central, esto no significa que queda fuera de juego definitivamente; podría reingresar tras nuevos desplazamientos.</p><h5>⚠️ Imposibilidad de desplazamiento de secciones</h5><ul><li>En jaque/mate no hay desplazamientos de las secciones (aun cuando se haya capturado una pieza del oponente que se encuentre en la sección donde está el rey).</li><li>No se pueden desplazar secciones cuando esa acción implica que el recuadro central jugable quede sin piezas disponibles de alguno de los dos participantes.</li></ul></div></div><div class="rules-version" data-version="3_0_amenaza"></div>
 <div class="rules-version" data-version="3_0_amenaza">
   <h4>Ajetrez — Modo Amenaza (Reglas generales)</h4>
   <ol>
@@ -8574,47 +5394,13 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(225,17,17,0.0); }
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="sizePatch">
+</style><style id="sizePatch">
 /* +10% size for start button */
 #startOverlay #btnStartGame{
   font-size: 110% !important;
   padding: 11px 20px !important; /* from ~10px 18px */
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="mobileFit">
+</style><style id="mobileFit">
 /* --- Mobile responsive fit: mantiene posiciones respetando contenedores --- */
 @media (max-width: 900px){
   :root{
@@ -8634,24 +5420,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   /* Evita que sombras externas generen scroll lateral */
   #board{ overflow: hidden; }
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="menuHeaderShrink">
+</style><style id="menuHeaderShrink">
 /* Reducir altura de cabecera del panel (~15%) y su tipografía/botones */
 #megaPanel .mp-header{
   padding: 8.5px 10.2px !important; /* 10px 12px -> -15% */
@@ -8666,24 +5435,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   font-size: 0.85em !important;     /* -15% */
   padding: 6.8px 10.2px !important; /* 8px 12px -> -15% */
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="panelMinus10">
+</style><style id="panelMinus10">
 /* Reducir tamaño total del panel (ancho y alto) un 10% */
 #megaPanel{
   position:absolute;
@@ -8701,24 +5453,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="loginTighten">
+</style><style id="loginTighten">
 /* Subir login 1 casillero y compactar espaciados */
 #megaPanel #loginView{
   padding-top: calc(20px - var(--square)) !important; /* desplaza visualmente 1 casillero arriba */
@@ -8736,47 +5471,13 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 #megaPanel #loginView button{
   margin-top: 6px !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="loginUp3mm">
+</style><style id="loginUp3mm">
 /* Posicionar login dejando ~3mm desde la cabecera negra */
 #megaPanel #loginView{
   margin-top: 3mm !important;
   padding-top: 0 !important; /* anula patch previo que restaba 1 casillero */
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="uiShrink10">
+</style><style id="uiShrink10">
 /* Reducir 10%: botón Menú y botones de "Colabora con el proyecto" (donaciones) */
 #btnMegaMenu{
   font-size: 90% !important;
@@ -8784,24 +5485,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 }
 /* Donación: imágenes PayPal / Mercado Pago */
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="panelBtnsMinus10">
+</style><style id="panelBtnsMinus10">
 /* Reducir -10% los botones dentro del panel */
 #megaPanel .tab-btn{
   font-size: 90% !important;
@@ -8816,48 +5500,14 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   font-size: 90% !important;
   padding: 5.4px 8.1px !important; /* 6px 9px aprox -> -10% */
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="tabsHeaderCream">
+</style><style id="tabsHeaderCream">
 /* Fondo crema para el contenedor de los botones superiores (mp-tabs) */
 #megaPanel .mp-tabs{
   background: #f7f1e1 !important;
   border-radius: 12px;
   padding: 6px 8px;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="panelWidthVar">
+</style><style id="panelWidthVar">
 :root{ --panel-w: 18.2952; }
 #megaPanel{
   position:absolute;
@@ -8875,24 +5525,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="panelCompact">
+</style><style id="panelCompact">
 /* Compacción vertical general en el panel (todas las secciones) */
 #megaPanel .mp-header{
   padding-top: 7px !important;
@@ -8951,24 +5584,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   padding-top: 7px !important;
   padding-bottom: 7px !important;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="panelTaller5">
+</style><style id="panelTaller5">
 /* Altura del panel +~5% y ajuste simétrico (sube y baja por igual) */
 :root{ --panel-h: 9.45; } /* antes 9 */
 #megaPanel{
@@ -8987,24 +5603,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="panelTopTighten">
+</style><style id="panelTopTighten">
 /* Acerca el contenido de todas las secciones al borde crema (mitad de margen) */
 #megaPanel .mp-tabs{
   margin-bottom: 4px !important;   /* antes ~8px */
@@ -9019,24 +5618,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 #megaPanel h3{
   margin-top: 2px !important;      /* aún más cerca del borde crema */
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><script>
+</style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><script>
 (function(){
   // ======= Util seguro =======
   function deepClone(o){ try { return JSON.parse(JSON.stringify(o)); } catch(_){ return null; } }
@@ -9742,7 +6324,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     setTimeout(function(){ updateGhostFromGlobals(null); }, 0);
   })();
 })();
-</script><!-- AJETREZ: Dificultad del Bot (easy/medium/hard) --><!-- AJETREZ: Selector de dificultad dentro de "Elije tu modo de juego" --><!-- AJETREZ: Mostrar selector de dificultad solo en modos con bot --><!-- AJETREZ: UI para "Modo Online" (activo + aviso dentro del panel) --><style>
+</script><!-- AJETREZ: Dificultad del Bot (easy/medium/hard) --><!-- AJETREZ: Selector de dificultad dentro de "Modos de juego" --><!-- AJETREZ: Mostrar selector de dificultad solo en modos con bot --><!-- AJETREZ: UI para "Modo Online" (activo + aviso dentro del panel) --><style>
   /* Aviso interno en la pestaña Modos */
   .aj-online-notice{
     margin-top:14px; padding:12px 14px;
@@ -9752,24 +6334,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   }
   .aj-online-notice h4{ margin:0 0 6px 0; font-size:18px; }
   .aj-online-notice p{ margin:4px 0; line-height:1.4; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<script>
+</style><script>
 (function(){
   if(window.__AJ_ONLINE_MODE_UI__) return;
   window.__AJ_ONLINE_MODE_UI__ = true;
@@ -10066,24 +6631,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     text-align: center;
   }
   #login-hint .cred{ color: #d00; font-weight: 800; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<script>
+</style><script>
 (function(){
   if(window.__AJ_LOGIN_HINT_FIX__) return;
   window.__AJ_LOGIN_HINT_FIX__ = true;
@@ -10122,24 +6670,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   #botChooserPanel .btn{appearance:none;border:none;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer;background:#111;color:#fff;}
   #botChooserPanel .btn.secondary{background:#e9e9e9;color:#111;border:1px solid #bbb;}
   #botChooserPanel select{width:100%;padding:8px;border-radius:8px;border:1px solid #bbb;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- === Bot Chooser Floating Panel (per-color for Bot vs Bot) === --><style>
+</style><!-- === Bot Chooser Floating Panel (per-color for Bot vs Bot) === --><style>
   #botChooserBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:saturate(120%) blur(1px);display:none;z-index:9998;}
   #botChooserPanel{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);min-width:340px;max-width:92vw;background:#fff;border:2px solid #222;border-radius:14px;padding:14px 14px 12px;box-shadow:0 18px 50px rgba(0,0,0,.25);display:none;z-index:9999;}
   #botChooserPanel .row{display:flex;gap:10px;align-items:center;justify-content:space-between;}
@@ -10152,24 +6683,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   #bcDual .col{display:flex;flex-direction:column;gap:6px;flex:1;}
   #bcDual .cols{display:flex;gap:12px;}
   #bcHelp{font-size:12px;opacity:.8;margin-top:6px;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<div aria-hidden="true" id="botChooserBackdrop"></div><div aria-labelledby="botChooserTitle" aria-modal="true" id="botChooserPanel" role="dialog"><div class="row" style="margin-bottom:6px;"><h3 id="botChooserTitle">Elegí la dificultad del bot</h3><button aria-label="Cerrar" class="btn secondary" id="botChooserClose" type="button">Cerrar</button></div><!-- Single-select (Player vs Bot) --><div id="bcSingle"><label for="botChooserSelect" style="font-weight:700;display:block;margin-bottom:6px;">Dificultad</label><select id="botChooserSelect"><option value="easy">Fácil</option>
+</style><div aria-hidden="true" id="botChooserBackdrop"></div><div aria-labelledby="botChooserTitle" aria-modal="true" id="botChooserPanel" role="dialog"><div class="row" style="margin-bottom:6px;"><h3 id="botChooserTitle">Elegí la dificultad del bot</h3><button aria-label="Cerrar" class="btn secondary" id="botChooserClose" type="button">Cerrar</button></div><!-- Single-select (Player vs Bot) --><div id="bcSingle"><label for="botChooserSelect" style="font-weight:700;display:block;margin-bottom:6px;">Dificultad</label><select id="botChooserSelect"><option value="easy">Fácil</option>
 <option value="normal" selected>Normal</option>
 <option value="hard">Difícil</option>
 </select></div><!-- Dual-select (Bot vs Bot) --><div id="bcDual"><div class="cols"><div class="col"><label for="botChooserSelectW" style="font-weight:700;">Blancas</label><select id="botChooserSelectW"><option value="easy">Fácil</option>
@@ -10186,24 +6700,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   .aj-dual-diff-box label{ font-weight:700; }
   .aj-dual-diff-box select{ padding:8px; border:1px solid #bbb; border-radius:8px; }
   .aj-dual-note{ font-size:12px; opacity:.8; margin-top:6px; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<script>
+</style><script>
 (function(){
   if(window.__AJ_DD_INTEGRATION__) return; window.__AJ_DD_INTEGRATION__=true;
   const $ = (s,r=document)=>r.querySelector(s);
@@ -10298,24 +6795,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   #timeIndicator.finished .dot{ background:#fc8181; }
   #timeIndicator .label{ font-size:12px; opacity:.85; font-weight:700; }
   #timeTxt{ font-variant-numeric:tabular-nums; letter-spacing:.5px; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<script>
+</style><script>
 (function(){
   if(window.__AJ_TIMER__) return; window.__AJ_TIMER__=true;
   const $ = (s,r=document)=>r.querySelector(s);
@@ -10437,24 +6917,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   }
   #pauseBtn:hover{ background:#c53030; }
   #pauseBtn.paused{ background:#2b6cb0; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<script>
+</style><script>
 (function(){
   if(window.__AJ_TIMER_PAUSE_BTN__) return; window.__AJ_TIMER_PAUSE_BTN__=true;
   const $ = (s,r=document)=>r.querySelector(s);
@@ -10497,24 +6960,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   }
   /* Visual dim & block shift controls while paused */
   body.aj-paused #shiftCtrl{ opacity:.5; pointer-events:none; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<script>
+</style><script>
 (function(){
   if(window.__AJ_PAUSE_BLOCK__) return; window.__AJ_PAUSE_BLOCK__=true;
   const $ = (s,r=document)=>r.querySelector(s);
@@ -11945,28 +8391,11 @@ div[style="height:var(--toolbar-gap)"]{
 #bottomBar{
   height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 4mm) !important;
  position: relative;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-mode-controls-size">
+</style><style id="aj-mode-controls-size">
 /* Reducir 15% el tamaño del selector de modo y del indicador de modo (arriba a la izquierda) */
 #btnMode, #gameModeBtn, #modeToggle, #btnGameMode, #modeBtn,
 .mode-indicator, #modeIndicator, .mode-pill, .pill.mode, .modePill,
-[aria-label="Elije tu modo de juego"], [aria-label="Seleccionar modo"], [data-role="mode-button"]{
+[aria-label="Modo de juego"], [aria-label="Seleccionar modo"], [data-role="mode-button"]{
   transform: scale(0.85);
   transform-origin: top left;
 }
@@ -11976,24 +8405,7 @@ div[style="height:var(--toolbar-gap)"]{
   font-size: 0.9em;
   padding: 0.9em 0.9em;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-replayPanel-override-final">
+</style><style id="aj-replayPanel-override-final">
   /* Override final para que el tamaño del panel de registros sí cambie (gana al rpEnforcerStyles). */
   /* Flotante centrado */
   #replayPanel.rp-float{
@@ -12011,24 +8423,7 @@ div[style="height:var(--toolbar-gap)"]{
     width: calc(min(820px, 96vw) * 0.90) !important;
     max-height: calc(70vh - (var(--square) * 1.5)) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-bottomBar-mobile-up-1more-square-0909b">
   /* Subir TODOS los botones inferiores +1 casillero en versión móvil */
   @media (max-width: 900px), (pointer: coarse){
@@ -12039,24 +8434,7 @@ div[style="height:var(--toolbar-gap)"]{
       padding-top: 2px !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-frame-mobile-taller-bottom-2sq-0909">
   /* Versión móvil: aumentar la altura de la base hacia abajo en +2 casilleros */
   @media (max-width: 900px), (pointer: coarse){
@@ -12069,24 +8447,7 @@ div[style="height:var(--toolbar-gap)"]{
       bottom: 0 !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-bottomBar-mobile-down-half-square-0909c">
   /* Versión móvil: bajar los botones inferiores medio casillero */
   @media (max-width: 900px), (pointer: coarse){
@@ -12098,24 +8459,7 @@ div[style="height:var(--toolbar-gap)"]{
       padding-top: 2px !important;
     }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- === Ajetrez: Panels follow fullscreen (bot chooser + registros + replay) === -->
 <script id="aj-fs-panels-follow">
 (function(){
@@ -12467,24 +8811,7 @@ div[style="height:var(--toolbar-gap)"]{
   }
   #rpFab .btn.small{ padding:6px 10px; }
   #rpFabClose{ background:#2a2a2a; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-replay-fab-js">
 (function(){
   const $ = s => document.querySelector(s);
@@ -12663,24 +8990,7 @@ div[style="height:var(--toolbar-gap)"]{
 </script>
 <style id="aj-replay-shift">
   #replayBar{ top: calc(-1.5 * var(--square) + 4px) !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-regpanel-size-strong">
 (function(){
   function getSquarePx(){
@@ -12713,24 +9023,7 @@ div[style="height:var(--toolbar-gap)"]{
 </script>
 <style id="aj-regpanel-shift-css">
   .rg-top{ transform: translate(calc(-50% + var(--rg-shift, 0px)), var(--rg-shiftY, 0px)) !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-regpanel-shift-css-js">
 (function(){
   function getSquarePx(){
@@ -12763,24 +9056,7 @@ div[style="height:var(--toolbar-gap)"]{
   #regv2-input{width:100%;height:220px;border:1px solid #ccc;border-radius:10px;padding:8px;font-family:ui-monospace,Consolas,monospace}
   .regv2-btn{background:#111;color:#fff;border:2px solid #fff;border-radius:10px;padding:8px 10px;font-weight:800;cursor:pointer}
   .regv2-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <button id="regv2-open" type="button">Registro de partidas</button>
 <div aria-hidden="true" id="regv2-overlay">
 <div aria-labelledby="regv2-title" aria-modal="true" id="regv2-panel" role="dialog">
@@ -12973,24 +9249,7 @@ div[style="height:var(--toolbar-gap)"]{
   }
   #regv2-clock-btn.small{ font-size:12px; padding:5px 9px; }
   #regv2-clock-btn .dot{ width:6px; height:6px; border-radius:50%; background:#4ade80; display:inline-block }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="regv2-clock-btn-script">
 (function(){
   function moveBtn(){
@@ -13032,24 +9291,7 @@ div[style="height:var(--toolbar-gap)"]{
   }
   /* Make sure the board container can host an absolute child */
   #board{ position: relative; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="regv2-boardmask-script">
 (function(){
   function ensureMask(){
@@ -13429,24 +9671,7 @@ catch(_){}
     transform: scale(1.08);
     box-shadow:inset 0 0 0 2px #fff, 0 4px 16px rgba(0,0,0,.45);
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="regv2-esc-exit">
 (function(){
   function isPaneVisible(){
@@ -13529,24 +9754,7 @@ catch(_){}
   #rp2-status{ font-size:12px; opacity:.85; }
   #rp2-speed{ background:#222; color:#fff; border:1px solid #555; border-radius:8px; padding:3px 6px; }
   #regv2-replayer.disabled{ opacity:.5; pointer-events:none; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="regv2-replayer-script">
 (function(){
   function $(s,root=document){ return root.querySelector(s); }
@@ -14914,24 +11122,7 @@ function showToast(){
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-megapanel-bg-white-fix-2025-09-12">
   /* Evita transparencias en el cuerpo del panel del menú */
   #megaPanel{
@@ -14963,48 +11154,14 @@ function showToast(){
   #megaPanel .backdrop {
     background: transparent !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <style id="aj-regv2-open-from-tab-up4mm-2025-09-12">
   /* Sube el botón "Abrir panel de registros" ~4mm */
   #regv2-open-from-tab{
     position: relative !important;
     top: -8mm !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="regv2-move-left-of-fs">
 (function(){
   if(window.__regv2MoveFS__) return; window.__regv2MoveFS__=true;
@@ -15106,24 +11263,7 @@ function showToast(){
     margin-top: 0 !important; /* anula el offset de 3mm cuando centramos */
     z-index: 2147483646 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-center-reg-fs-js">
 (function(){
   if(window.__AJ_CENTER_REG_FS__) return; window.__AJ_CENTER_REG_FS__ = true;
@@ -15235,24 +11375,7 @@ function showToast(){
 
   /* If some script sets display:none inline, bring it back */
   #timeIndicator #regv2-open[style*="display: none"]{ display: inline-flex !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-kings-adjacency-guard">
 (function(){
   function kingsAdjacent(vis){
@@ -17019,24 +13142,7 @@ function showVeteranBanner(color){
     opacity: 0 !important;
     pointer-events: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <!-- Ajetrez: Opening Book + Bot style wrapper (synchronous) -->
 <script id="aj-opening-book">
@@ -17215,24 +13321,7 @@ function showVeteranBanner(color){
   .mp-tabs .tab-btn.aj-hide-versions {
     display: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <script id="aj-versions-override">
 document.addEventListener('DOMContentLoaded', () => {
@@ -17711,24 +13800,7 @@ Final: jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insufi
 .rules-scroll ul{
   padding-left: 18px;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <script>
 function openRulesModoSimple(){
@@ -17861,24 +13933,7 @@ document.addEventListener("DOMContentLoaded", () => {
   overflow-y:auto;
   flex:1;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <div class="internal-float-backdrop" id="rulesSimpleFloat">
   <div class="internal-float">
@@ -17925,24 +13980,7 @@ document.addEventListener("DOMContentLoaded", () => {
   height: calc(var(--square) * 8);
   max-height: calc(var(--square) * 8);
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <template id="rulesModoAmenazaTemplate">
@@ -18170,335 +14208,166 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- AJETREZ ONLINE FINAL FIX -->
-<script id="aj-online-final">
-document.addEventListener('DOMContentLoaded', ()=>{
-  /* ===== 1) BOTÓN EXTERNO ROJO + LATIDO (INLINE, NO CSS) ===== */
-  const topBar = document.querySelector('#topBar') || document.body;
-  const modeGroup = topBar.querySelector('.mode-group') || topBar;
-
-  let btnExt = document.getElementById('btnOnlineExternal');
-  if(!btnExt){
-    btnExt = document.createElement('button');
-    btnExt.id = 'btnOnlineExternal';
-    btnExt.textContent = 'Jugar Online';
-    btnExt.className = 'btn';
-    modeGroup.appendChild(btnExt);
-  }
-
-  // Fuerza visual inline (imposible de pisar por CSS)
-  Object.assign(btnExt.style,{
-    background:'#c8102e',
-    color:'#fff',
-    border:'2px solid #fff',
-    borderRadius:'999px',
-    fontWeight:'900',
-    animation:'onlinePulse 1.6s ease-in-out infinite'
-  });
-
-  /* ===== 2) INTEGRACIÓN ONLINE DENTRO DE #modeHelp ===== */
-  const tab = document.querySelector('#tab-modos') || document.querySelector('[data-tab="modos"]');
-  if(!tab) return;
-
-  const sharedHelp = tab.querySelector('#modeHelp');
-  if(!sharedHelp) return;
-
-  const btnRow = tab.querySelector('.row') || tab;
-
-  let btnOnline = document.getElementById('btnOnlineMode');
-  if(!btnOnline){
-    btnOnline = document.createElement('button');
-    btnOnline.id = 'btnOnlineMode';
-    btnOnline.className = 'btn mode';
-    btnOnline.textContent = 'Jugar Online';
-    btnRow.appendChild(btnOnline);
-  }
-
-  
-const onlineHTML = `
-  <span class="title">Modo Online</span>
-  <p>
-    Estamos trabajando para que puedas jugar de manera online contra otros usuarios.
-    Para ello, necesitamos que colabores con el proyecto.
-    Cualquier monto que puedas donar nos ayuda a alcanzar la meta.
-    Quienes colaboren, recibirán premios y tendrán además, la posibilidad de probar nuevas funciones,
-    antes de que sean publicadas oficialmente.
-    Desde ya, muchas gracias.
-  </p>
-
-  <div id="online-donations"
-    style="margin-top:28px;display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;">
-
-    <a href="https://www.paypal.com/ncp/payment/PTRWET3UWGEY8" target="_blank" rel="noopener">
-      <img src="logo paypal.png" alt="Donar con PayPal"
-        style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
-    </a>
-
-    <a href="https://link.mercadopago.com.ar/ajetrez" target="_blank" rel="noopener">
-      <img src="mercadopago.jpg" alt="Donar con MercadoPago"
-        style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
-    </a>
-  </div>
-`;
-
-
-  function resetModes(){
-    tab.querySelectorAll('.btn.mode').forEach(b=>b.classList.remove('active','selected'));
-  }
-
-  btnOnline.addEventListener('click', ()=>{
-    resetModes();
-    btnOnline.classList.add('active','selected');
-    sharedHelp.innerHTML = onlineHTML;
-  });
-
-  /* ===== 3) BOTÓN EXTERNO ABRE PANEL + ONLINE ===== */
-  btnExt.addEventListener('click', ()=>{
-    const menuBtn = document.getElementById('btnMegaMenu');
-    if(menuBtn) menuBtn.click();
-
-    setTimeout(()=>{
-      const modosTabBtn = Array.from(document.querySelectorAll('.tab-btn, .btn'))
-        .find(b=>/modos de juego/i.test(b.textContent||''));
-      if(modosTabBtn) modosTabBtn.click();
-
-      setTimeout(()=>btnOnline.click(),60);
-    },60);
-  });
-});
-</script>
-
-<style>
-@keyframes onlinePulse{
-  0%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0);}
-  50%{transform:scale(1.08);box-shadow:0 0 32px rgba(200,16,46,.85);}
-  100%{transform:scale(1);box-shadow:0 0 0 rgba(200,16,46,0);}
-}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-
-
-
-<!-- AJETREZ MODEHELP SCROLL FIX -->
-<script id="aj-modehelp-scroll-fix">
-document.addEventListener('DOMContentLoaded', ()=>{
-  const tab = document.querySelector('#tab-modos') || document.querySelector('[data-tab="modos"]');
-  if(!tab) return;
-
-  const help = tab.querySelector('#modeHelp');
-  if(!help) return;
-
-  // Wrap existing content into an inner scroll container
-  if(!help.querySelector('.modehelp-inner')){
-    const inner = document.createElement('div');
-    inner.className = 'modehelp-inner';
-    while(help.firstChild){
-      inner.appendChild(help.firstChild);
-    }
-    help.appendChild(inner);
-  }
-});
-</script>
-
-<style id="aj-modehelp-scroll-fix-style">
-  #modeHelp{
-    max-height: 260px;
-    overflow: hidden;
-    position: relative;
-  }
-  #modeHelp .modehelp-inner{
-    max-height: 260px;
-    overflow-y: auto;
-    padding-right: 10px;
-    box-sizing: border-box;
-  }
-  #modeHelp .modehelp-inner::-webkit-scrollbar{
-    width: 8px;
-  }
-  #modeHelp .modehelp-inner::-webkit-scrollbar-thumb{
-    background: rgba(0,0,0,.4);
-    border-radius: 6px;
-  }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-
-
-
-<!-- AJETREZ INTERNAL ONLINE BUTTON ACTIVE FIX -->
-<script id="aj-internal-online-active-fix">
-document.addEventListener('DOMContentLoaded', ()=>{
-  const tab = document.querySelector('#tab-modos') || document.querySelector('[data-tab="modos"]');
-  if(!tab) return;
-
-  const btnOnline = document.getElementById('btnOnlineMode');
-  if(!btnOnline) return;
-
-  // All mode buttons inside menu
-  const modeButtons = Array.from(tab.querySelectorAll('.btn.mode'));
-
-  modeButtons.forEach(btn=>{
-    if(btn === btnOnline) return;
-    btn.addEventListener('click', ()=>{
-      // When any other mode is clicked, force Online to normal state
-      btnOnline.classList.remove('active','selected');
-    });
-  });
-});
-</script>
-
-
-<!-- AJETREZ HIDE BOT DIFFICULTY WHEN ONLINE -->
-<script id="aj-hide-bot-difficulty-online">
-document.addEventListener('DOMContentLoaded', ()=>{
-  const tab = document.querySelector('#tab-modos') || document.querySelector('[data-tab="modos"]');
-  if(!tab) return;
-
-  const btnOnline = document.getElementById('btnOnlineMode');
-  if(!btnOnline) return;
-
-  // Function to find any bot difficulty UI (label/chip)
-  function getBotDifficultyNodes(){
-    return Array.from(tab.querySelectorAll('*')).filter(el=>{
-      const t = (el.textContent||'').toLowerCase();
-      return t.includes('player vs bot') && (t.includes('fácil') || t.includes('medio') || t.includes('difícil'));
-    });
-  }
-
-  // Hide when Online is clicked
-  btnOnline.addEventListener('click', ()=>{
-    getBotDifficultyNodes().forEach(el=>{
-      el.style.display = 'none';
-    });
-  });
-
-  // Restore when any other mode is clicked
-  tab.querySelectorAll('.btn.mode').forEach(btn=>{
-    if(btn === btnOnline) return;
-    btn.addEventListener('click', ()=>{
-      getBotDifficultyNodes().forEach(el=>{
-        el.style.display = '';
-      });
-    });
-  });
-});
-</script>
-
-
-<script id="force-howto-first">
-document.addEventListener('DOMContentLoaded', () => {
-  const openPanel = document.getElementById('btnMegaMenu');
-  if (!openPanel) return;
-
-  openPanel.addEventListener('click', () => {
-    setTimeout(() => {
-      const tabs = [...document.querySelectorAll('.mp-tabs .tab-btn')];
-      const how = tabs.find(b => b.textContent.includes('Cómo jugar'));
-      if (how) how.click();
-    }, 50);
-  });
-});
-</script>
-
-
-<script id="insert-mercadopago">
-document.addEventListener('DOMContentLoaded', function(){
-  var paypal = document.querySelector('a[href*="paypal"], a[href*="PayPal"], #btnPaypal');
-  if(!paypal) return;
-
-  var container = paypal.parentElement;
-  container.classList.add('payment-buttons');
-
-  if(document.getElementById('btnMercadoPago')) return;
-
-  var mp = document.createElement('a');
-  mp.href = 'https://www.mercadopago.com';
-  mp.target = '_blank';
-  mp.rel = 'noopener';
-  mp.id = 'btnMercadoPago';
-
-  var img = document.createElement('img');
-  img.src = 'https://www.mercadopago.com/org-img/MP3/logos/mp-logo-vertical.png';
-  img.alt = 'MercadoPago';
-
-  mp.appendChild(img);
-  container.appendChild(mp);
-});
-</script>
-
-
-<script id="show-payments-when-ready">
+<script>
+/* === PARCHE RÁPIDO BOT INTERNO (demo) === */
 (function(){
-  function tryShow(){
-    var board = document.getElementById('board');
-    if(board && board.children.length > 0){
-      var pb = document.querySelector('.payment-buttons');
-      if(pb){
-        pb.style.display = 'flex';
-      }
-      return true;
+  if(!window.pickMove) return;
+  const origPick = window.pickMove;
+  let lastMoves = [];
+
+  window.pickMove = function(moves, color){
+    if(lastMoves.length >= 2){
+      const a = lastMoves[lastMoves.length-1];
+      const b = lastMoves[lastMoves.length-2];
+      moves = moves.filter(m => !(m.from.r===b.to.r && m.from.c===b.to.c &&
+                                  m.to.r===b.from.r && m.to.c===b.from.c));
     }
-    return false;
+    if(moves.length > 1) moves = moves.sort(()=>Math.random()-0.5);
+    const m = origPick(moves, color);
+    if(m){
+      lastMoves.push({from:m.from, to:m.to});
+      if(lastMoves.length>6) lastMoves.shift();
+    }
+    return m;
+  };
+  console.log('[AJ] Parche rápido bot interno activo');
+})();
+</script>
+
+
+<script>
+/* === PARCHE EXTRA BOT vs BOT (aperturas variadas) === */
+(function(){
+  if(!window.pickMove) return;
+
+  const origPick = window.pickMove;
+  let botPlies = { w:0, b:0 };
+
+  window.pickMove = function(moves, color){
+    botPlies[color] = (botPlies[color] || 0) + 1;
+
+    // Primeras jugadas: evitar caballos dominantes
+    if(botPlies[color] <= 3){
+      const pawnMoves = moves.filter(m => m.piece === 'p' || m.piece === 'pawn');
+      if(pawnMoves.length){
+        pawnMoves.sort(()=>Math.random()-0.5);
+        return pawnMoves[0];
+      }
+    }
+
+    return origPick(moves, color);
+  };
+
+  console.log('[AJ] Parche aperturas bot-vs-bot activo');
+})();
+</script>
+
+
+<script>
+/* === FIX REINICIAR BOT vs BOT ===
+   Reengancha el ciclo de bots después de Reiniciar
+*/
+(function(){
+  // Esperamos a que exista la función original de reinicio
+  if(typeof window.resetGame !== 'function') return;
+
+  const __origReset = window.resetGame;
+
+  window.resetGame = function(){
+    // llamar reset original
+    __origReset.apply(this, arguments);
+
+    // limpiar estados internos del bot
+    if(window.botPlies){
+      window.botPlies = { w:0, b:0 };
+    }
+
+    // reactivar ciclo bot vs bot
+    setTimeout(function(){
+      if(window.GAME_MODE === 'bot' && window.BOT_VS_BOT){
+        if(typeof window.scheduleBotMove === 'function'){
+          window.scheduleBotMove();
+        }
+      }
+    }, 100);
+
+    console.log('[AJ] Fix reinicio bot-vs-bot aplicado');
+  };
+})();
+</script>
+
+
+<script>
+/* === DOBLE BOT INTERNO (alternancia) ===
+   Bot A: estilo actual
+   Bot B: estilo alternativo (menos caballos, más peones)
+*/
+(function(){
+  if(!window.pickMove) return;
+
+  const origPick = window.pickMove;
+
+  let botTurnCounter = 0;
+
+  function pickBotA(moves, color){
+    // comportamiento base (ligeramente aleatorio)
+    if(moves.length > 1){
+      moves = moves.slice().sort(()=>Math.random()-0.5);
+    }
+    return origPick(moves, color);
   }
 
-  // intentar varias veces durante el refresh
-  var attempts = 0;
-  var iv = setInterval(function(){
-    attempts++;
-    if(tryShow() || attempts > 50){
-      clearInterval(iv);
+  function pickBotB(moves, color){
+    // Bot alternativo: prioriza peones y evita caballos al inicio
+    let filtered = moves;
+
+    if(filtered.length){
+      const pawnMoves = filtered.filter(m => m.piece === 'p' || m.piece === 'pawn');
+      if(pawnMoves.length){
+        pawnMoves.sort(()=>Math.random()-0.5);
+        return pawnMoves[0];
+      }
     }
-  }, 50);
+
+    // fallback
+    return pickBotA(moves, color);
+  }
+
+  window.pickMove = function(moves, color){
+    botTurnCounter++;
+
+    // alternar bots por turno
+    if(botTurnCounter % 2 === 0){
+      return pickBotA(moves, color);
+    } else {
+      return pickBotB(moves, color);
+    }
+  };
+
+  console.log('[AJ] Sistema de doble bot interno activo');
+})();
+</script>
+
+
+<script>
+/* === DESACTIVAR LIBRO DE APERTURAS (DEMO) === */
+(function(){
+  try{
+    if (window.AJ_BOOK) {
+      window.AJ_BOOK = {};
+      console.log('[AJ] Libro de aperturas DESACTIVADO');
+    }
+    if (typeof window.useOpeningBook !== 'undefined') {
+      window.useOpeningBook = false;
+      console.log('[AJ] useOpeningBook = false');
+    }
+    if (typeof window.pickFromBook === 'function') {
+      window.pickFromBook = function(){ return null; };
+      console.log('[AJ] pickFromBook neutralizado');
+    }
+  }catch(e){
+    console.warn('[AJ] Error desactivando libro', e);
+  }
 })();
 </script>
 
@@ -18527,24 +14396,7 @@ document.addEventListener('DOMContentLoaded', function(){
     50%{ transform: translate(-50%,-50%) scale(1.035); }
     100%{ transform: translate(-50%,-50%) scale(1); }
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-replay-glass-logic">
 (function(){
   if(window.__AJ_REPLAY_GLASS_V6__) return; window.__AJ_REPLAY_GLASS_V6__=true;
@@ -18807,24 +14659,7 @@ document.addEventListener('DOMContentLoaded', function(){
   #bottomBar{
     height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 3mm) !important;
    position: relative;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-bars-trim-system">
+</style><style id="aj-bars-trim-system">
   /* Sistema de recorte para barras superior e inferior
      Problemas detectados que impedían achicar más:
      1) .bar { height: var(--toolbar-h); } fija la altura del #topBar en 64px.
@@ -18862,70 +14697,19 @@ document.addEventListener('DOMContentLoaded', function(){
   #bottomBar .button{
     transform: none !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-regpanel-trim-1sq">
+</style><style id="aj-regpanel-trim-1sq">
   /* Recorte simétrico del panel de Registros: -1 casillero arriba y -1 abajo */
   #regPanel.rg-top{
     top: calc(3mm + var(--square)) !important;
     max-height: calc(100vh - 6mm - (var(--square) * 2)) !important;
   }
   /* Si hay desborde, permitimos scroll interno (ya está activo por overflow:auto) */
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<style id="aj-bottombar-extra-minus-3mm">
+</style><style id="aj-bottombar-extra-minus-3mm">
   /* Recorte adicional del contenedor inferior: -3mm desde abajo hacia arriba */
   #bottomBar{
     height: calc(var(--toolbar-h) - (var(--square) * 1.5) - var(--bar-trim) - 3mm) !important;
    position: relative;}
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
-</style>
-<!-- Ajetrez: move ALL bottom bar buttons DOWN by 1mm --><!-- LEGACY AUDIO CSS REMOVED -->
+</style><!-- Ajetrez: move ALL bottom bar buttons DOWN by 1mm --><!-- LEGACY AUDIO CSS REMOVED -->
 <!-- AJETREZ: Drop megaPanel an additional 2mm and allow Menu button to be movable -->
 <style id="aj-drop-panel-2mm-more">
   #megaPanel{
@@ -18953,24 +14737,7 @@ document.addEventListener('DOMContentLoaded', function(){
     left: initial !important;
     right: initial !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Flexible bottom bar & centered, narrower Menu button -->
 <style id="aj-bottomBar-flex-center-menu">
   /* Use a flexible layout (not grid) to avoid 'forced' positioning */
@@ -18992,24 +14759,7 @@ document.addEventListener('DOMContentLoaded', function(){
     left: auto !important;
     right: auto !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Menu button down 3mm + centered -->
 <style id="aj-menu-btn-down-3mm-center">
   #btnMegaMenu{
@@ -19018,24 +14768,7 @@ document.addEventListener('DOMContentLoaded', function(){
     margin-left: auto !important;       /* centrado horizontal */
     margin-right: auto !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ CLEAN: Standardize bottom bar layout, center Menu, keep narrow width -->
 <style id="aj-clean-bottombar-flex">
   #bottomBar{
@@ -19063,48 +14796,14 @@ document.addEventListener('DOMContentLoaded', function(){
     margin-right: 0 !important;
     justify-self: auto !important;  /* neutralize any grid remnants */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Move Menu button 2 squares to the right -->
 <style id="aj-menu-btn-right-2squares">
   #btnMegaMenu{
     position: relative !important;
     left: calc(var(--square) * 2) !important;   /* +2 casilleros a la derecha */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Center bottom bar buttons vertically inside the container -->
 <style id="aj-bottomBar-center-vert">
   #bottomBar{ align-items: center !important;  position: relative;}
@@ -19113,24 +14812,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     top: 10mm !important;   /* igual a Menú para que queden parejos y dentro del contenedor */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Subir botones inferiores 2mm (quedan en 8mm) -->
 <style id="aj-bottomBar-up-2mm">
   /* Todos los botones de la barra */
@@ -19143,24 +14825,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     top: 8mm !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Subir botones inferiores 2mm más (quedan en 6mm) -->
 <style id="aj-bottomBar-up-2mm-more">
   #bottomBar .btn{
@@ -19171,24 +14836,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     top: 6mm !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Menú +3mm a la derecha (mantiene +2 casilleros) -->
 <style id="aj-menu-right-plus-3mm">
   #btnMegaMenu{
@@ -19196,24 +14844,7 @@ document.addEventListener('DOMContentLoaded', function(){
     left: calc(var(--square) * 2 + 3mm) !important;
     top: 6mm !important; /* mantener alineación vertical actual */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Panel menú con altura REAL igual a 8 casilleros (mismo alto que las secciones del juego) -->
 <style id="aj-panel-equal-sections">
   /* Altura objetivo: 8 × --square */
@@ -19234,24 +14865,7 @@ document.addEventListener('DOMContentLoaded', function(){
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Bajar panel de menú 0.5 casillero más -->
 <style id="aj-panel-down-half-square-more">
   #megaPanel{
@@ -19270,24 +14884,7 @@ document.addEventListener('DOMContentLoaded', function(){
   z-index: 40;
   border: 2px solid #111;
 }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Registros con altura REAL igual a las secciones (8 casilleros) -->
 <style id="aj-regpanel-equal-sections">
   :root{ --reg-h: 8; } /* puedes ajustar finamente (p.ej., 7.9) */
@@ -19296,45 +14893,11 @@ document.addEventListener('DOMContentLoaded', function(){
     max-height: none !important;   /* que no limite por viewport */
     overflow: auto !important;     /* scroll interno si hace falta */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Bajar Registros 2mm (refuerzo) -->
 <style id="aj-regpanel-down-2mm">
   #regPanel.rg-top{ top: calc(3mm + 2mm) !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Registros +2mm (sumado al -1 casillero previo) y esquinas redondeadas visibles -->
 <style id="aj-regpanel-down2mm-rounded">
   /* Posición: respeta el offset previo de -1 casillero y añade +2mm */
@@ -19344,48 +14907,14 @@ document.addEventListener('DOMContentLoaded', function(){
     border-radius: 16px !important;
     clip-path: inset(0 round 16px);
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Bajar reproductor (replayBar) medio casillero -->
 <style id="aj-replaybar-down-half-square">
   /* Mantiene centrado con left:50% y ajuste X, añadiendo desplazamiento Y */
   #replayBar{
     transform: translate(-50%, calc(var(--square) * 0.5)) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Replay compacto + velocidad con desplegable -->
 <style id="aj-replay-compact">
   /* Limitar ancho del reproductor: aprox 12 casilleros */
@@ -19399,24 +14928,7 @@ document.addEventListener('DOMContentLoaded', function(){
   #rp-slider{ min-width: 220px !important; }
   /* Dropdown de velocidad compacto */
   #rp-speed.sel.small{ padding: 4px 8px; border-radius: 10px; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-replay-speed-shim">
 (function(){
   var el = document.getElementById('rp-speed');
@@ -19437,24 +14949,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   /* Hacer que el slider no empuje tanto el ancho */
   #rp-slider{ min-width: 120px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Reproductor ancho 8 casilleros -->
 <style id="aj-replay-8squares">
   #replayBar{
@@ -19462,24 +14957,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   /* Ajuste del slider para 8 casilleros */
   #rp-slider{ min-width: 160px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Ajuste de ancho: selector más angosto + todo cabe dentro -->
 <style id="aj-replay-fit-8sq">
   /* Contenedor: que calcule padding/borde dentro del width y reduzca separaciones */
@@ -19494,24 +14972,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* Botón Salir sin margen extra ni crecimiento */
   #rp-exit{ flex: 0 0 auto !important; margin-left: 4px !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Botón de cierre (✕) compacto -->
 <style id="aj-replay-exit-compact">
   #rp-exit{
@@ -19522,24 +14983,7 @@ document.addEventListener('DOMContentLoaded', function(){
     line-height: 28px !important;
     text-align: center !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Menú +0.5 casillero extra a la derecha (2025-09-13) -->
 <style id="aj-menu-right-plus-0_5sq-2025-09-13">
   /* Desplaza el botón de Menú medio casillero adicional a la derecha
@@ -19548,24 +14992,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: calc(var(--square) * 2.5 + 3mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Reiniciar +1 casillero a la derecha (2025-09-13) -->
 <style id="aj-restart-right-plus-1sq-2025-09-13">
   /* Desplaza el botón Reiniciar 1 casillero a la derecha */
@@ -19573,24 +15000,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: calc(var(--square) * 1) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Reiniciar ajustar -0.5 casillero desde el último cambio (2025-09-13) -->
 <style id="aj-restart-left-minus-0_5sq-2025-09-13">
   /* Ahora, respecto al ajuste previo de +1c, lo movemos 0.5c a la izquierda => queda +0.5c */
@@ -19598,24 +15008,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: calc(var(--square) * 0.5) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Reiniciar ajustar -0.5 casillero adicional (2025-09-13) -->
 <style id="aj-restart-left-minus-0_5sq-ADICIONAL-2025-09-13">
   /* Desde +0.5c, movemos 0.5c más a la izquierda => 0c neto */
@@ -19623,24 +15016,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: 0 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Reiniciar neto -0.5 casillero a la izquierda (2025-09-13) -->
 <style id="aj-restart-left-net-minus-0_5sq-2025-09-13">
   /* Mueve el botón Reiniciar medio casillero a la izquierda con respecto a su posición original */
@@ -19648,24 +15024,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: calc(var(--square) * -0.5) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Menú +0.5 casillero adicional (ahora +3c + 3mm) - 2025-09-13 -->
 <style id="aj-menu-right-plus-ANOTHER-0_5sq-2025-09-13">
   /* Mueve el botón de Menú medio casillero más a la derecha respecto del estado actual */
@@ -19673,24 +15032,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: calc(var(--square) * 3 + 3mm) !important; /* antes: 2.5c + 3mm */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Menú +3 mm adicionales (quedan +3c + 6mm) - 2025-09-13 -->
 <style id="aj-menu-right-plus-3mm-2025-09-13">
   /* Desde +3c + 3mm, sumamos +3mm más */
@@ -19698,24 +15040,7 @@ document.addEventListener('DOMContentLoaded', function(){
     position: relative !important;
     left: calc(var(--square) * 3 + 6mm) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Achicar botón 'Registro de partidas' en 5% (2025-09-13) -->
 <style id="aj-regv2-open-scale-95-2025-09-13">
   /* Reduce visualmente el botón flotante de Registros sin afectar layout */
@@ -19723,24 +15048,7 @@ document.addEventListener('DOMContentLoaded', function(){
     transform: scale(0.95);
     transform-origin: center;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <!-- AJETREZ: Centrar horizontalmente el botón de Pausa (#pauseBtn) sobre el tablero (2025-09-13) -->
 <style id="aj-pause-center-css-2025-09-13">
   /* Neutralizar orden/márgenes previos cuando esté centrado */
@@ -19753,24 +15061,7 @@ document.addEventListener('DOMContentLoaded', function(){
     margin: 0 !important;
     z-index: 2147483000 !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-pause-center-js-2025-09-13">
 (function(){
   if(window.__AJ_PAUSE_CENTERED__) return; window.__AJ_PAUSE_CENTERED__ = true;
@@ -19839,24 +15130,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   /* Evitar que los wrappers/topbar afecten el layout del botón cuando está centrado */
   #timeIndicator #pauseBtn.__ajCentered{ order: initial !important; margin-left: 0 !important; }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 <script id="aj-pause-center-hardening-js-2025-09-13">
 (function(){
   if(window.__AJ_PAUSE_CENTER_HARDENED__) return; window.__AJ_PAUSE_CENTER_HARDENED__=true;
@@ -19946,24 +15220,7 @@ document.addEventListener('DOMContentLoaded', function(){
     height: calc((100vh - 6mm) * 0.27625) !important;
     max-height: calc((100vh - 6mm) * 0.27625) !important;
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 
 <style id="aj-zones-float-css-2025-09-13-width-20-height-plus20">
@@ -19975,24 +15232,7 @@ document.addEventListener('DOMContentLoaded', function(){
     transform-origin: top center;
     transform: scaleX(0.8); /* 20% más angosto */
   }
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style>
 
@@ -20027,24 +15267,7 @@ document.addEventListener('DOMContentLoaded', function(){
   color: #111;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style>
 
@@ -20073,24 +15296,7 @@ document.addEventListener('DOMContentLoaded', function(){
   margin-top: -4px;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
 
 <style>
 
@@ -20109,21 +15315,4 @@ document.addEventListener('DOMContentLoaded', function(){
   pointer-events: auto;
 }
 
-
-/* --- Botones de pago (PayPal + MercadoPago) --- */
-.payment-buttons{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:20;
-}
-.payment-buttons .btn.imgbtn img{
-  height:36px;
-  width:auto;
-  display:block;
-}
 </style>
-
