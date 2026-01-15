@@ -103,6 +103,33 @@
 }
 /* ===== END PANEL SECTION SCROLL FIX ===== */
 
+
+/* ===== DEEP MOBILE HORIZONTAL SCROLL FIX ===== */
+@media (max-width: 900px){
+
+  /* Allow horizontal scroll to be visible */
+  #megaPanel{
+    overflow-x: visible;
+  }
+
+  /* Dedicated horizontal scroller */
+  .mp-content{
+    overflow-x: auto !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  /* Each section behaves like a wide page */
+  .mp-content > *{
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+    min-width: 520px;
+  }
+}
+/* ===== END DEEP MOBILE HORIZONTAL SCROLL FIX ===== */
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square: 56px;
