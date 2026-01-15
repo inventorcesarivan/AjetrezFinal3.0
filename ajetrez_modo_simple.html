@@ -45,6 +45,50 @@
   /* Desplazar los botones de pago 1 casillero a la derecha */
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
 
+
+/* ===== MOBILE UI PROPORTIONAL FIX ===== */
+@media (max-width: 900px){
+  :root{
+    --ui-scale: 0.82;
+    --square: calc(56px * var(--ui-scale));
+    --toolbar-h: calc(64px * var(--ui-scale));
+    --toolbar-gap: calc(10px * var(--ui-scale));
+  }
+
+  .btn{
+    padding: calc(8px * var(--ui-scale)) calc(12px * var(--ui-scale));
+    font-size: calc(15px * var(--ui-scale));
+  }
+
+  #btnMegaMenu{
+    min-width: calc(160px * var(--ui-scale));
+  }
+
+  .bar{
+    height: var(--toolbar-h);
+  }
+
+  .right-ctrls{
+    gap: calc(var(--square) * 0.35);
+  }
+
+  #megaPanel{
+    width: calc(var(--square) * 14);
+    height: calc(var(--square) * 7.5);
+    border-radius: 14px;
+  }
+
+  .mp-content{
+    padding: 12px;
+  }
+
+  .bot-hud-inner{
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+/* ===== END MOBILE UI FIX ===== */
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square: 56px;
