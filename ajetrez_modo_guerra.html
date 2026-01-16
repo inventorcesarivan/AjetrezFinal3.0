@@ -98,6 +98,7 @@
 
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
+    --square-menu: 56px; /* tamaño base menú desktop */
     --square: 56px;
     --border: 2px;
     --board-cols: 24;
@@ -209,8 +210,8 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
+  width: calc(var(--square-menu) * 16);
+  height: calc(var(--square-menu) * 8);
   background:#fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
@@ -15584,6 +15585,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /* Caso específico: botones clonados dentro de descripciones */
 #megaPanel .mp-content .btn.mode:not(.active){
   pointer-events: auto;
+}
+
+</style>
+
+<style>
+
+@media (max-width: 900px){
+  :root{
+    --square-menu: 40px; /* menú proporcional a desktop */
+  }
 }
 
 </style>
