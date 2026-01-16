@@ -46,89 +46,55 @@
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
 
 
-/* ===== MOBILE UI PROPORTIONAL FIX ===== */
+/* ===== MOBILE INTERNAL UI SCALE REDUCTION ===== */
 @media (max-width: 900px){
-  :root{
-    --ui-scale: 0.82;
-    --square: calc(56px * var(--ui-scale));
-    --toolbar-h: calc(64px * var(--ui-scale));
-    --toolbar-gap: calc(10px * var(--ui-scale));
+
+  /* General text scaling */
+  body{
+    font-size: 14px;
   }
 
-  .btn{
-    padding: calc(8px * var(--ui-scale)) calc(12px * var(--ui-scale));
-    font-size: calc(15px * var(--ui-scale));
-  }
-
-  #btnMegaMenu{
-    min-width: calc(160px * var(--ui-scale));
-  }
-
-  .bar{
-    height: var(--toolbar-h);
-  }
-
-  .right-ctrls{
-    gap: calc(var(--square) * 0.35);
-  }
-
-  #megaPanel{
-    width: calc(var(--square) * 14);
-    height: calc(var(--square) * 7.5);
-    border-radius: 14px;
-  }
-
-  .mp-content{
-    padding: 12px;
-  }
-
-  .bot-hud-inner{
+  /* Buttons */
+  .btn,
+  .tab-btn{
     font-size: 13px;
     padding: 6px 10px;
   }
-}
-/* ===== END MOBILE UI FIX ===== */
 
+  /* Menu tabs */
+  .mp-tabs{
+    gap: 6px;
+  }
 
-/* ===== MOBILE PANEL SECTION SCROLL FIX ===== */
-@media (max-width: 900px){
+  /* Panel titles */
+  .mp-content h1,
+  .mp-content h2,
+  .mp-content h3{
+    font-size: 16px;
+  }
+
+  /* Paragraphs */
+  .mp-content p,
+  .mp-content span,
+  .mp-content li,
+  .mp-content label{
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  /* Selects & inputs */
+  .mp-content select,
+  .mp-content input{
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  /* Reduce panel padding slightly */
   .mp-content{
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .mp-content > *{
-    min-width: 520px;
+    padding: 10px;
   }
 }
-/* ===== END PANEL SECTION SCROLL FIX ===== */
-
-
-/* ===== DEEP MOBILE HORIZONTAL SCROLL FIX ===== */
-@media (max-width: 900px){
-
-  /* Allow horizontal scroll to be visible */
-  #megaPanel{
-    overflow-x: visible;
-  }
-
-  /* Dedicated horizontal scroller */
-  .mp-content{
-    overflow-x: auto !important;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-  }
-
-  /* Each section behaves like a wide page */
-  .mp-content > *{
-    display: inline-block;
-    vertical-align: top;
-    white-space: normal;
-    min-width: 520px;
-  }
-}
-/* ===== END DEEP MOBILE HORIZONTAL SCROLL FIX ===== */
+/* ===== END MOBILE UI REDUCTION ===== */
 
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
