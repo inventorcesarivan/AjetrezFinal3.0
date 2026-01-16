@@ -91,8 +91,12 @@
 
   /* Reduce panel padding slightly */
   .mp-content{
-    padding: 10px;
-  }
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px;
+  max-height: calc(100% - 140px); /* header + tabs */
+}
 }
 /* ===== END MOBILE UI REDUCTION ===== */
 
@@ -15631,4 +15635,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 }
 
+</style>
+
+<style>
+@media (max-width: 900px){
+  .mp-content{
+    max-height: calc(100% - 120px);
+    padding: 10px;
+  }
+}
 </style>
