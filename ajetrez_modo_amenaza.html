@@ -14720,21 +14720,77 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 
 
-<!-- === MOBILE MENU FULLSCREEN PATCH (same as desktop) === -->
+<!-- === MOBILE: MENU IDENTICO A DESKTOP (FIX FINAL) === -->
 <style>
-@media (max-width:900px){
+@media (max-width: 900px){
+
+  :root{
+    --square-menu: 56px !important;
+  }
+
   #megaPanel{
-    width:100vw !important;
-    height:100vh !important;
-    top:0 !important;
-    left:0 !important;
-    transform:none !important;
-    border-radius:0 !important;
+    width: calc(var(--square-menu) * 16) !important;
+    height: calc(var(--square-menu) * 8) !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    border-radius: 16px !important;
   }
+
+  /* Anular cualquier compactado móvil interno */
   .mp-content{
-    padding:14px !important;
-    max-height:none !important;
+    padding: 14px !important;
+    max-height: calc(100% - 160px) !important;
   }
+
+  body{
+    font-size: initial !important;
+  }
+
+  .btn,
+  .tab-btn,
+  .mp-content p,
+  .mp-content span,
+  .mp-content li,
+  .mp-content label{
+    font-size: initial !important;
+  }
+}
+</style>
+
+
+<!-- === MENU ALWAYS ON TOP (Z-INDEX FIX FINAL) === -->
+<style>
+/* Crear un stacking context superior */
+.frame,
+.shell,
+.board-wrap,
+#board,
+#bottomBar,
+.bar{
+  position: relative;
+  z-index: 1;
+}
+
+/* Backdrop del menú */
+#panelBackdrop{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9998 !important;
+}
+
+/* Panel del menú: SIEMPRE adelante */
+#megaPanel{
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+/* Evitar que overlays del juego lo tapen */
+#overlay,
+.bot-hud,
+.shift-ctrl,
+.apply-toast{
+  z-index: 2 !important;
 }
 </style>
 
