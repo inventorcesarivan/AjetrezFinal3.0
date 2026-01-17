@@ -14676,6 +14676,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 
+
+<script>
+(function(){
+  const isMobile = () => window.matchMedia("(max-width: 900px)").matches;
+  function reqFS(){
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  }
+  // Try immediately (may be blocked by browser policies)
+  if (isMobile()) {
+    try { reqFS(); } catch(e){}
+    // Fallback: first user interaction
+    const once = () => { try{ reqFS(); }catch(e){}; 
+      document.removeEventListener('touchstart', once);
+      document.removeEventListener('click', once);
+    };
+    document.addEventListener('touchstart', once, {once:true, passive:true});
+    document.addEventListener('click', once, {once:true});
+  }
+})();
+</script>
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
