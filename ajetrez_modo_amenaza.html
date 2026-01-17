@@ -15717,66 +15717,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 <style>
-/* ===== HIDE BOARD CONTROLS WHEN MOBILE MENU IS OPEN ===== */
+/* ===== MOBILE MENU CLIP FRAME (OPTION 1 SAFE) ===== */
 @media (max-width: 900px){
-  body.menu-open #bottomBar,
-  body.menu-open .bar,
-  body.menu-open .right-ctrls,
-  body.menu-open #btnMegaMenu,
-  body.menu-open #btnRestartBR,
-  body.menu-open #btnFSBR{
-    display: none !important;
+
+  body.menu-open .frame > *:not(#panelBackdrop):not(#megaPanel){
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
-}
-/* ===== END HIDE FIX ===== */
-</style>
 
-
-
-<style>
-/* ===== GLOBAL OVERLAY PORTAL (MENU OUTSIDE FRAME) ===== */
-#panelBackdrop{
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 9998 !important;
-}
-#megaPanel{
-  position: fixed !important;
-  z-index: 9999 !important;
-}
-@media (max-width: 900px){
-  #megaPanel{
+  #panelBackdrop{
+    position: absolute !important;
     inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
+    z-index: 50 !important;
+  }
+
+  #megaPanel{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     max-width: none !important;
     max-height: none !important;
     border-radius: 0 !important;
+    z-index: 51 !important;
   }
 }
-/* ===== END GLOBAL OVERLAY PORTAL ===== */
+/* ===== END MOBILE MENU CLIP FRAME ===== */
 </style>
-
-
-<script>
-/* ===== MOVE MENU TO BODY (PORTAL) ===== */
-(function(){
-  function moveToBody(){
-    var backdrop = document.getElementById('panelBackdrop');
-    var panel = document.getElementById('megaPanel');
-    if(backdrop && backdrop.parentElement !== document.body){
-      document.body.appendChild(backdrop);
-    }
-    if(panel && panel.parentElement !== document.body){
-      document.body.appendChild(panel);
-    }
-  }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', moveToBody);
-  } else {
-    moveToBody();
-  }
-})();
-/* ===== END MOVE MENU TO BODY ===== */
-</script>
 
