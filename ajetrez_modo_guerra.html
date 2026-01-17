@@ -4,7 +4,7 @@
 
 
 <style id="bottomBarSizingFix">
-#bottomBar{ width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto;  position: relative;}
+#bottomBar{ position: relative; }
 
   /* Desplazar los botones de pago 1 casillero a la derecha */
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
@@ -73,9 +73,7 @@
   #megaPanel{
     z-index: 110;
   }
-  #bottomBar{
-    z-index: 10;
-  }
+  #bottomBar{ position: relative; }
 }
 /* ===== END MOBILE FIX ===== */
 
@@ -103,7 +101,7 @@
 }
   .shell{ display:grid; grid-template-rows: var(--toolbar-h) var(--toolbar-gap) auto var(--toolbar-gap) var(--toolbar-h); justify-items:center; }
   .bar, .board-wrap{ width: calc(var(--square) * var(--board-cols)); }
-  .board-wrap{ position:relative; overflow: visible; }
+  .board-wrap{ position:relative; }
   .bar{ position: relative; height: var(--toolbar-h); border-radius: 10px; background: transparent; }
 
   
@@ -157,13 +155,7 @@
   .shift-ctrl .confirm:hover{ background:#149143; }
   .shift-ctrl.locked{ opacity:.55; pointer-events:none; filter: grayscale(20%); }
 
-  #bottomBar{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(-1 * var(--square) * 0.9);
-  z-index: 20;
-}
+  #bottomBar{ position: relative; }
   #btnMegaMenu{ min-width: 160px; font-size: 15px; }
 
   .hint{ position:absolute; top: 6px; font-size: 12px; color:#444; opacity:.55; user-select: none; pointer-events:none; }
@@ -574,10 +566,10 @@ body, html{overflow:visible!important;}
   }
 </style><!-- AJETREZ PATCH: Reajuste de posición de la barra inferior --><style id="aj-bottombar-fix">
   /* Sube la barra ~1 casillero sin afectar layout */
-  #bottomBar{ position: relative; top: calc(var(--square) * -1); }
+  #bottomBar{ position: relative; }
   /* Opcional: en pantallas estrechas mantenemos el ajuste */
   @media (max-width: 820px){
-    #bottomBar{ top: calc(var(--square) * -1);  position: relative;}
+    #bottomBar{ position: relative; }
   }
 </style><style>
 
@@ -838,13 +830,10 @@ body, html{overflow:visible!important;}
 }
 </style><style id="aj-bottombar-height-patch">
   /* Achicar altura del contenedor de botones inferior ~1 casillero (desde abajo hacia arriba) */
-  #bottomBar{
-    /* Reduce el alto reservado del contenedor sin afectar los botones (pueden sobresalir si es necesario) */
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5));
-   position: relative;}
+  #bottomBar{ position: relative; }
   /* Mantener el ajuste también en pantallas angostas */
   @media (max-width: 820px){
-    #bottomBar{ height: calc(var(--toolbar-h) - (var(--square) * 1.5));  position: relative;}
+    #bottomBar{ position: relative; }
   }
 </style><style id="aj-contraste-selector-bot">
   /* Legibilidad del Selector de Bot (panel blanco) en cualquier tema */
@@ -875,9 +864,7 @@ body, html{overflow:visible!important;}
 #bottomBar a.btn,
 #bottomBar .button { transform: translateY(-3mm); }
 </style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-minus4mm">
-#bottomBar{
-  height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 4mm) !important;
- position: relative;}
+#bottomBar{ position: relative; }
 </style><style id="aj-topbar-down-3mm">
   /* Bajar ~3mm los controles superiores (modo + indicador) sin afectar layout */
   :root{ --mode-y: calc(6px + 3mm); } /* mantiene alineado el dropdown del modo */
@@ -897,16 +884,11 @@ body, html{overflow:visible!important;}
 
   /* Asegurar que el alto del bottom bar vuelva a su valor base para mantener simetría
      (ya no restamos 3mm aquí, porque los recortamos con el separador inferior). */
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5)) !important;
-   position: relative;}
+  #bottomBar{ position: relative; }
 </style><style id="aj-bottomBase-trim-2mm">
   /* Base de color de la barra inferior: recorta visualmente 2mm desde abajo
      sin mover los botones (no altera la altura ni el layout del contenedor). */
-  #bottomBar{
-    position: relative !important;
-    background: transparent !important; /* dejamos el fondo real transparente */
-  }
+  #bottomBar{ position: relative; }
   #bottomBar::before{
     content: "";
     position: absolute;
@@ -927,7 +909,7 @@ body, html{overflow:visible!important;}
   }
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBase-trim-6mm">
   /* Achica el alto total de la base de color: -6mm en total (3mm arriba + 3mm abajo) */
-  #bottomBar{ position: relative !important; }
+  #bottomBar{ position: relative; }
   #bottomBar::before{
     top: 3mm !important;
     bottom: 3mm !important;
@@ -1041,9 +1023,7 @@ body, html{overflow:visible!important;}
   }
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-align-to-dashed">
   /* Subir la barra inferior para que su borde superior toque la línea punteada del área del tablero */
-  #bottomBar{
-    margin-top: calc(-1 * var(--toolbar-gap)) !important; /* neutraliza el separador de 10px */
-   position: relative;}
+  #bottomBar{ position: relative; }
 </style><style id="aj-frame-trim-top-plus-2mm">
   /* Achica la base que contiene todo el juego 2mm SOLO desde arriba */
   .frame::before{
@@ -1058,10 +1038,7 @@ body, html{overflow:visible!important;}
       bottom: 0 !important; /* antes: 3mm */
     }
     /* Asegura que no haya offsets residuales */
-    #bottomBar{
-      margin-bottom: 0 !important;
-      transform: none !important;
-     position: relative;}
+    #bottomBar{ position: relative; }
   }
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-frame-trim-plus4mm">
   /* Achicar 4mm en total la base que contiene todo (2mm arriba + 2mm abajo) */
@@ -1211,23 +1188,11 @@ body, html{overflow:visible!important;}
      Eso puede producir una separación aparente por redondeo/altura disponible.
      Neutralizamos 'top' y compensamos con un micro-offset adicional. */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      position: relative !important;
-      top: 0 !important;                                 /* anula desplazamiento vertical previo */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm) !important; /* acércalo 2mm más */
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; }
   }
 </style><!-- AJETREZ: Mobile — subir barra inferior ~1 casillero --><style id="aj-bottomBar-mobile-up-1square-0909">
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      /* Mantener neutralización previa del 'top' */
-      position: relative !important;
-      top: 0 !important;
-      /* Subir ~1 casillero adicional respecto al estado actual */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm - var(--square)) !important;
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; }
   }
 </style><!-- AJETREZ: UNIFICACIÓN DE CONFIGURACIÓN (web = todas las versiones) --><!-- LEGACY AUDIO CSS REMOVED -->
 <style id="aj-donate-buttons-0910">
@@ -1950,10 +1915,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 <style>
 
 /* === Ajetrez: Centrar botón Menú en bottomBar SIN fijar posiciones === */
-#bottomBar{
-  display:flex !important;
-  justify-content:flex-start !important; /* evitamos space-between */
-}
+#bottomBar{ position: relative; }
 #btnMegaMenu{
   margin-left:auto !important;
   margin-right:auto !important; /* esto centra el Menú entre izquierda y derecha */
@@ -1977,11 +1939,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   margin-right:auto !important;
 }
 /* Asegurar contenedor: flex y permitir que Menú se centre con márgenes auto */
-#bottomBar{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-}
+#bottomBar{ position: relative; }
 /* Grupo derecho queda al final de la fila sin empujar el centro */
 #rightControls{ margin-left: 0 !important; }
 
@@ -2255,7 +2213,7 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 <style id="aj-bottom-menu-center">
   /* Centrar el botón Menú (horizontalmente) en la barra inferior */
-  #bottomBar { position: relative !important; }
+  #bottomBar{ position: relative; }
   #btnMegaMenu{
     position: absolute !important;
     left: 50% !important;
@@ -2315,7 +2273,7 @@ body[data-theme="noche"] .regv2-btn{
     margin:0;
   }
   /* Asegurar que la barra no recorte el botón */
-  #bottomBar{ overflow: visible; }
+  #bottomBar{ position: relative; }
 </style>
 <style id="regv2-offset-3mm">
   /* Desplazar el panel de Registros 3mm hacia abajo para centrar mejor */
@@ -3347,7 +3305,20 @@ body[data-theme="noche"] .regv2-btn{
 })();
 </script>
 
-</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
+
+<style id="aj-hide-bottom-on-menu">
+body.menu-open #bottomBar{
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+#bottomBar{
+  transition: opacity .2s ease, transform .2s ease;
+}
+</style>
+</head>
+<body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
 <button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
@@ -8518,9 +8489,7 @@ function setHelp(mode){
 div[style="height:var(--toolbar-gap)"]{
   height: calc(var(--toolbar-gap) - 4mm) !important;
 }
-#bottomBar{
-  height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 4mm) !important;
- position: relative;}
+#bottomBar{ position: relative; }
 </style><style id="aj-mode-controls-size">
 /* Reducir 15% el tamaño del selector de modo y del indicador de modo (arriba a la izquierda) */
 #btnMode, #gameModeBtn, #modeToggle, #btnGameMode, #modeBtn,
@@ -8557,12 +8526,7 @@ div[style="height:var(--toolbar-gap)"]{
 <style id="aj-bottomBar-mobile-up-1more-square-0909b">
   /* Subir TODOS los botones inferiores +1 casillero en versión móvil */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      position: relative !important;
-      top: 0 !important; /* neutraliza desplazamientos previos */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm - (var(--square) * 2)) !important;
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; }
   }
 </style>
 <style id="aj-frame-mobile-taller-bottom-2sq-0909">
@@ -8581,13 +8545,7 @@ div[style="height:var(--toolbar-gap)"]{
 <style id="aj-bottomBar-mobile-down-half-square-0909c">
   /* Versión móvil: bajar los botones inferiores medio casillero */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      position: relative !important;
-      top: 0 !important; /* neutraliza otros 'top' previos */
-      /* respecto al estado actual (subido 2 casilleros), bajamos 0.5 */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm - (var(--square) * 1.5)) !important;
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; }
   }
 </style>
 <!-- === Ajetrez: Panels follow fullscreen (bot chooser + registros + replay) === -->
@@ -14655,7 +14613,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 
+
+<script id="aj-menu-open-flag">
+(function(){
+  const origOpen = window.openMegaPanel;
+  const origClose = window.closeMegaPanel;
+
+  window.openMegaPanel = function(){
+    document.body.classList.add('menu-open');
+    if(origOpen) origOpen.apply(this, arguments);
+  };
+
+  window.closeMegaPanel = function(){
+    document.body.classList.remove('menu-open');
+    if(origClose) origClose.apply(this, arguments);
+  };
+})();
+</script>
 </body>
+
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
   #aj-replay-glass-pane{
@@ -14940,9 +14916,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   #topBar{
     min-height: calc(var(--toolbar-h) - 3mm) !important;
   }
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 3mm) !important;
-   position: relative;}
+  #bottomBar{ position: relative; }
 </style><style id="aj-bars-trim-system">
   /* Sistema de recorte para barras superior e inferior
      Problemas detectados que impedían achicar más:
@@ -14969,9 +14943,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   #timeIndicator{ top: calc(6px + var(--bar-trim)) !important; }
 
   /* BOTTOM BAR: recorte explícito adicional coherente con el cálculo existente */
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5) - var(--bar-trim)) !important;
-   position: relative;}
+  #bottomBar{ position: relative; }
 
   /* Evitar que el transform de los botones “suba” el contenido,
      enmascarando el recorte real del contenedor */
@@ -14990,9 +14962,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   /* Si hay desborde, permitimos scroll interno (ya está activo por overflow:auto) */
 </style><style id="aj-bottombar-extra-minus-3mm">
   /* Recorte adicional del contenedor inferior: -3mm desde abajo hacia arriba */
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5) - var(--bar-trim) - 3mm) !important;
-   position: relative;}
+  #bottomBar{ position: relative; }
 </style><!-- Ajetrez: move ALL bottom bar buttons DOWN by 1mm --><!-- LEGACY AUDIO CSS REMOVED -->
 <!-- AJETREZ: Drop megaPanel an additional 2mm and allow Menu button to be movable -->
 <style id="aj-drop-panel-2mm-more">
@@ -15025,11 +14995,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 <!-- AJETREZ: Flexible bottom bar & centered, narrower Menu button -->
 <style id="aj-bottomBar-flex-center-menu">
   /* Use a flexible layout (not grid) to avoid 'forced' positioning */
-  #bottomBar{
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-   position: relative;}
+  #bottomBar{ position: relative; }
   /* Make Menu button size to content and center via auto margins */
   #btnMegaMenu{
     flex: 0 0 auto !important;
@@ -15055,12 +15021,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </style>
 <!-- AJETREZ CLEAN: Standardize bottom bar layout, center Menu, keep narrow width -->
 <style id="aj-clean-bottombar-flex">
-  #bottomBar{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 10px !important;
-   position: relative;}
+  #bottomBar{ position: relative; }
   /* Left spacer, Menu centered by auto margins, rightControls keeps right-aligned cluster */
   #btnMegaMenu{
     flex: 0 0 auto !important;
@@ -15090,7 +15051,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </style>
 <!-- AJETREZ: Center bottom bar buttons vertically inside the container -->
 <style id="aj-bottomBar-center-vert">
-  #bottomBar{ align-items: center !important;  position: relative;}
+  #bottomBar{ position: relative; }
   /* Colocar todos los botones de la barra a la misma altura visual */
   #bottomBar .btn{
     position: relative !important;
