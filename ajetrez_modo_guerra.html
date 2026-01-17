@@ -15752,19 +15752,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-/* === BOTTOM BAR UNIFIED (WEB + MOBILE) === */
+/* === BOTTOM BAR DESKTOP PIXEL-IDENTICAL (WEB + MOBILE) === */
 #bottomBar{
   width: calc(var(--square) * var(--board-cols));
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: calc(var(--square) * 0.4);
+  gap: calc(var(--square) * 0.35);
   position: relative;
-  flex-wrap: nowrap;
 }
 
 #bottomBar .btn,
 #bottomBar .imgbtn{
   position: static !important;
+  transform: none !important;
+}
+
+#bottomBar img{
+  max-height: 32px;
+}
+
+/* Force identical behavior on mobile */
+@media (max-width: 900px){
+  #bottomBar{
+    transform: none !important;
+    scale: 1 !important;
+  }
 }
