@@ -15672,6 +15672,46 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 }
 /* ===== END MOBILE FULLSCREEN MENU ===== */
+
+/* ===== MOBILE: MENU PANEL FLOTANTE ===== */
+@media (max-width: 900px){
+
+  #megaPanel{
+    top: auto !important;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 16px);
+    height: auto;
+    max-height: 85vh;
+
+    border-radius: 20px 20px 14px 14px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
+
+    display: none;
+    animation: slideUpMenu .22s ease-out;
+  }
+
+  #panelBackdrop{
+    backdrop-filter: blur(2px);
+  }
+
+  .mp-content{
+    max-height: calc(85vh - 150px);
+  }
+}
+
+@keyframes slideUpMenu{
+  from{
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to{
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
 </style>
 
 
