@@ -15731,3 +15731,52 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /* ===== END HIDE FIX ===== */
 </style>
 
+
+
+<style>
+/* ===== GLOBAL OVERLAY PORTAL (MENU OUTSIDE FRAME) ===== */
+#panelBackdrop{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9998 !important;
+}
+#megaPanel{
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+@media (max-width: 900px){
+  #megaPanel{
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+  }
+}
+/* ===== END GLOBAL OVERLAY PORTAL ===== */
+</style>
+
+
+<script>
+/* ===== MOVE MENU TO BODY (PORTAL) ===== */
+(function(){
+  function moveToBody(){
+    var backdrop = document.getElementById('panelBackdrop');
+    var panel = document.getElementById('megaPanel');
+    if(backdrop && backdrop.parentElement !== document.body){
+      document.body.appendChild(backdrop);
+    }
+    if(panel && panel.parentElement !== document.body){
+      document.body.appendChild(panel);
+    }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', moveToBody);
+  } else {
+    moveToBody();
+  }
+})();
+/* ===== END MOVE MENU TO BODY ===== */
+</script>
+
