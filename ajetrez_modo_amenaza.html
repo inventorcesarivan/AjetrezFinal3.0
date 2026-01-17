@@ -103,7 +103,7 @@
 }
   .shell{ display:grid; grid-template-rows: var(--toolbar-h) var(--toolbar-gap) auto var(--toolbar-gap) var(--toolbar-h); justify-items:center; }
   .bar, .board-wrap{ width: calc(var(--square) * var(--board-cols)); }
-  .board-wrap{ position:relative; }
+  .board-wrap{ position:relative; overflow: visible; }
   .bar{ position: relative; height: var(--toolbar-h); border-radius: 10px; background: transparent; }
 
   
@@ -157,7 +157,13 @@
   .shift-ctrl .confirm:hover{ background:#149143; }
   .shift-ctrl.locked{ opacity:.55; pointer-events:none; filter: grayscale(20%); }
 
-  #bottomBar{  position: relative;}
+  #bottomBar{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(-1 * var(--square) * 0.9);
+  z-index: 20;
+}
   #btnMegaMenu{ min-width: 160px; font-size: 15px; }
 
   .hint{ position:absolute; top: 6px; font-size: 12px; color:#444; opacity:.55; user-select: none; pointer-events:none; }
