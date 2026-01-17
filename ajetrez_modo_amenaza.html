@@ -14815,6 +14815,79 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
 })();
 </script>
+
+<style>
+/* === REFINED FLOATING BOTTOM BAR (CENTERED & TALLER) === */
+#floatingBottomBar{
+  position: fixed;
+  left: 50%;
+  bottom: calc(14px + var(--square));
+  transform: translateX(-50%);
+  background: #f3ead7;
+  border-radius: 22px;
+  padding: 18px 20px;              /* más alto */
+  min-height: calc(var(--square) * 0.9);
+  box-shadow: 0 14px 34px rgba(0,0,0,.22);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fila principal de botones */
+#floatingBottomBar{
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Todos los botones perfectamente centrados */
+#floatingBottomBar .btn{
+  position: static !important;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+
+/* Neutralizar offsets viejos */
+#btnRestartBR,
+#btnRecordsBR,
+#btnFSBR{
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  #floatingBottomBar{
+    bottom: calc(10px + var(--square));
+    padding: 16px 16px;
+    gap: 12px;
+    min-height: calc(var(--square) * 1.05);
+  }
+}
+</style>
+
+<script>
+(function(){
+  const wrapper = document.getElementById('floatingBottomBar');
+  if(!wrapper) return;
+
+  // Orden lógico deseado
+  const order = [
+    'btnMegaMenu',   // Menú
+    'btnRestartBR',  // Reiniciar
+    'btnRecordsBR',  // Registros
+    'btnFSBR'        // Pantalla completa
+  ];
+
+  order.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && wrapper.contains(el)){
+      wrapper.appendChild(el);
+    }
+  });
+})();
+</script>
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
