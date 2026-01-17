@@ -15757,6 +15757,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 }
 
+
+/* ===== MOBILE: ESCALADO PANEL MENU (-15%) ===== */
+@media (max-width: 900px){
+  #megaPanel{
+    transform: scale(0.85) !important;
+    transform-origin: top center;
+  }
+
+  /* compensar para que siga ocupando pantalla visualmente */
+  #megaPanel{
+    width: 118vw !important;
+    height: 118dvh !important;
+  }
+}
+
 </style>
 
 
