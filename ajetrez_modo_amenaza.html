@@ -100,6 +100,21 @@
 }
 /* ===== END MOBILE UI REDUCTION ===== */
 
+
+/* ===== MOBILE FIX: MENU OVER BOTTOM BAR (CSS ONLY) ===== */
+@media (max-width: 900px){
+  #panelBackdrop{
+    z-index: 100;
+  }
+  #megaPanel{
+    z-index: 110;
+  }
+  #bottomBar{
+    z-index: 10;
+  }
+}
+/* ===== END MOBILE FIX ===== */
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
