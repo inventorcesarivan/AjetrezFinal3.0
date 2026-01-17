@@ -15730,34 +15730,3 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 </script>
 
-
-
-<style>
-/* ===== MOBILE MENU CLIP FRAME (OPTION 1 SAFE) ===== */
-@media (max-width: 900px){
-
-  body.menu-open .frame > *:not(#panelBackdrop):not(#megaPanel){
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
-  #panelBackdrop{
-    position: absolute !important;
-    inset: 0 !important;
-    z-index: 50 !important;
-  }
-
-  #megaPanel{
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-    border-radius: 0 !important;
-    z-index: 51 !important;
-  }
-}
-/* ===== END MOBILE MENU CLIP FRAME ===== */
-</style>
-
