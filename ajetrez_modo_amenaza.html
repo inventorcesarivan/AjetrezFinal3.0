@@ -15645,3 +15645,72 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 }
 </style>
+
+
+<style>
+/* ===== MOBILE FULLSCREEN MENU (OPTION A) ===== */
+@media (max-width: 900px){
+  body.menu-open{
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  #panelBackdrop{
+    position: fixed;
+    inset: 0;
+  }
+
+  #megaPanel{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    transform: none;
+  }
+
+  .mp-header,
+  .mp-tabs{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .mp-content{
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: none;
+    padding: 12px;
+  }
+
+  .mp-footer{
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+  }
+}
+/* ===== END MOBILE FULLSCREEN MENU ===== */
+</style>
+
+
+<script>
+(function(){
+  const panel = document.getElementById('megaPanel');
+  const backdrop = document.getElementById('panelBackdrop');
+  function update(){
+    if(panel && panel.style.display !== 'none'){
+      document.body.classList.add('menu-open');
+    }else{
+      document.body.classList.remove('menu-open');
+    }
+  }
+  const obs = new MutationObserver(update);
+  if(panel) obs.observe(panel, { attributes:true, attributeFilter:['style','class'] });
+  if(backdrop) obs.observe(backdrop, { attributes:true, attributeFilter:['style','class'] });
+  update();
+})();
+</script>
+
