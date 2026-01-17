@@ -14676,34 +14676,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 
-
-<script>
-(function(){
-  const panel = document.getElementById('megaPanel');
-  const backdrop = document.getElementById('panelBackdrop');
-  const bottomBar = document.getElementById('bottomBar');
-
-  if(!panel || !bottomBar) return;
-
-  const update = ()=>{
-    const visible = panel.style.display !== 'none' && getComputedStyle(panel).display !== 'none';
-    bottomBar.style.display = visible ? 'none' : '';
-  };
-
-  // Observe changes
-  const obs = new MutationObserver(update);
-  obs.observe(panel, { attributes:true, attributeFilter:['style','class'] });
-
-  if(backdrop){
-    const obs2 = new MutationObserver(update);
-    obs2.observe(backdrop, { attributes:true, attributeFilter:['style','class'] });
-  }
-
-  // Initial check
-  document.addEventListener('click', ()=>setTimeout(update,0));
-})();
-</script>
-
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
@@ -15804,48 +15776,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     bottom: 0 !important;
     margin-top: 0 !important;
     padding-top: env(safe-area-inset-top);
-  }
-}
-
-
-/* ===== MOBILE: ESCALADO PROPORCIONAL REAL (-15%) SIN DESPLAZAMIENTO ===== */
-@media (max-width: 900px){
-
-  /* Escala base tipográfica */
-  #megaPanel{
-    transform: none !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    left: 0 !important;
-    right: 0 !important;
-  }
-
-  #megaPanel,
-  #megaPanel *{
-    font-size: 0.85em;
-  }
-
-  /* Ajuste de paddings generales */
-  .mp-header{
-    padding: 8px 10px;
-  }
-
-  .mp-tabs{
-    padding: 6px 10px;
-    gap: 6px;
-  }
-
-  .mp-content{
-    padding: 12px;
-  }
-
-  .mp-footer{
-    padding: 8px 10px;
-  }
-
-  .btn,
-  .tab-btn{
-    padding: 6px 10px;
   }
 }
 
