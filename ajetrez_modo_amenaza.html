@@ -2,43 +2,7 @@
 
 <html lang="es"><head>
 
-<script id="aj-remove-mercadopago-flash">
-/*
-  Elimina de raíz cualquier cartel/botón de MercadoPago
-  antes de que llegue a mostrarse durante recargas.
-*/
-(function(){
-  function killMP(){
-    try{
-      // eliminar por id conocidos
-      ['btnMercadoPago','btnMP','mercadopago','mpBanner','mp-banner'].forEach(id=>{
-        const el=document.getElementById(id);
-        if(el) el.remove();
-      });
 
-      // eliminar por texto o links
-      document.querySelectorAll('a,button,div,img').forEach(el=>{
-        const t=(el.textContent||'').toLowerCase();
-        const src=(el.src||'').toLowerCase();
-        const href=(el.href||'').toLowerCase();
-        if(t.includes('mercado') || src.includes('mercado') || href.includes('mercado')){
-          el.remove();
-        }
-      });
-    }catch(_){}
-  }
-
-  // lo antes posible
-  killMP();
-
-  // refuerzo al cargar DOM
-  document.addEventListener('DOMContentLoaded', killMP, {once:true});
-
-  // refuerzo post-render por si algún script lo reinyecta
-  setTimeout(killMP, 0);
-  setTimeout(killMP, 50);
-})();
-</script>
 <style id="bottomBarSizingFix">
 #bottomBar{ width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto;  position: relative;}
 
