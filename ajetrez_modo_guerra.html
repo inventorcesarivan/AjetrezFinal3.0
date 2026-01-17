@@ -3362,6 +3362,32 @@ body[data-theme="noche"] .regv2-btn{
 })();
 </script>
 
+
+<script id="aj-hide-bottom-on-menu">
+(function(){
+  function setBottom(hidden){
+    var bb = document.getElementById('bottomBar');
+    if(!bb) return;
+    bb.style.display = hidden ? 'none' : '';
+  }
+
+  function hook(){
+    var panel = document.getElementById('megaPanel');
+    var back = document.getElementById('panelBackdrop');
+    if(!panel || !back) return;
+
+    var obs = new MutationObserver(function(){
+      var open = panel.style.display !== 'none' && panel.offsetParent !== null;
+      setBottom(open);
+    });
+    obs.observe(panel, {attributes:true, attributeFilter:['style','class']});
+    obs.observe(back, {attributes:true, attributeFilter:['style','class']});
+  }
+
+  document.addEventListener('DOMContentLoaded', hook);
+})();
+</script>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
