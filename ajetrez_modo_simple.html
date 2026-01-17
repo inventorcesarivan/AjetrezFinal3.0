@@ -15800,34 +15800,3 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 </script>
 
-
-
-/* === BOTTOM BAR DESKTOP PIXEL-IDENTICAL (WEB + MOBILE) === */
-#bottomBar{
-  width: calc(var(--square) * var(--board-cols));
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: calc(var(--square) * 0.35);
-  position: relative;
-}
-
-#bottomBar .btn,
-#bottomBar .imgbtn{
-  position: static !important;
-  transform: none !important;
-}
-
-#bottomBar img{
-  max-height: 32px;
-}
-
-/* Force identical behavior on mobile */
-@media (max-width: 900px){
-  #bottomBar{
-    transform: none !important;
-    scale: 1 !important;
-  }
-}
