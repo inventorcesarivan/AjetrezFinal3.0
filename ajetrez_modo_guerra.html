@@ -3363,25 +3363,44 @@ body[data-theme="noche"] .regv2-btn{
 </script>
 
 
-<script id="aj-hide-bottom-on-menu">
+<script id="aj-hide-bottom-container-on-menu">
 (function(){
-  function setBottom(hidden){
-    var bb = document.getElementById('bottomBar');
-    if(!bb) return;
-    bb.style.display = hidden ? 'none' : '';
+  function hideAll(hide){
+    var ids = ['bottomBar','bottom-bar','bottomControls'];
+    ids.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.style.display = hide ? 'none' : '';
+    });
+
+    // fallback: hide last shell row (bottom toolbar)
+    var shell = document.querySelector('.shell');
+    if(shell){
+      var rows = shell.children;
+      if(rows && rows.length >= 5){
+        rows[rows.length-1].style.display = hide ? 'none' : '';
+      }
+    }
   }
+
+  function isOpen(){
+    var panel = document.getElementById('megaPanel');
+    var back = document.getElementById('panelBackdrop');
+    if(!panel || !back) return false;
+    return (panel.style.display !== 'none' && panel.offsetParent !== null) ||
+           (back.style.display !== 'none' && back.offsetParent !== null);
+  }
+
+  function sync(){ hideAll(isOpen()); }
 
   function hook(){
     var panel = document.getElementById('megaPanel');
     var back = document.getElementById('panelBackdrop');
     if(!panel || !back) return;
 
-    var obs = new MutationObserver(function(){
-      var open = panel.style.display !== 'none' && panel.offsetParent !== null;
-      setBottom(open);
-    });
+    var obs = new MutationObserver(sync);
     obs.observe(panel, {attributes:true, attributeFilter:['style','class']});
     obs.observe(back, {attributes:true, attributeFilter:['style','class']});
+    sync();
   }
 
   document.addEventListener('DOMContentLoaded', hook);
