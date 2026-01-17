@@ -14685,6 +14685,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 
+
+<!-- === MOBILE MENU FULLSCREEN PATCH (same as desktop) === -->
+<style>
+@media (max-width:900px){
+  #megaPanel{
+    width:100vw !important;
+    height:100vh !important;
+    top:0 !important;
+    left:0 !important;
+    transform:none !important;
+    border-radius:0 !important;
+  }
+  .mp-content{
+    padding:14px !important;
+    max-height:none !important;
+  }
+}
+</style>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
