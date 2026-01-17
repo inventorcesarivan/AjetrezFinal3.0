@@ -71,8 +71,22 @@
     z-index: 100;
   }
   #megaPanel{
-    z-index: 110;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  border: 2px solid #111;
+}
   #bottomBar{
     z-index: 10;
   }
@@ -189,18 +203,19 @@
   z-index: 9998;
 }
   #megaPanel{
-  position:fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: calc(var(--square-menu) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -625,18 +640,19 @@ body, html{overflow:visible!important;}
   z-index: 9998;
 }
 #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -815,18 +831,19 @@ body, html{overflow:visible!important;}
 
 /* === Contorno blanco alrededor del panel completo del menú === */
 #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -1074,90 +1091,95 @@ body, html{overflow:visible!important;}
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-megaPanel-scale-95">
   /* Achicar el panel de menú un 5% (general: web + móvil) */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-scale-90">
   /* Achicar el panel de menú un 5% adicional (total ~10%) */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-shift">
   /* Desplazar un poco a la derecha y hacia abajo, manteniendo scale(0.90) */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-shift-half-square">
   /* Desplazar medio casillero a la derecha (+ mantener 3mm abajo) */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-centered-to-board">
   /* Centrado perfecto entre derecha e izquierda respecto al tablero */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -2277,18 +2299,19 @@ body[data-theme="noche"] .regv2-btn{
 <style id="aj-megaPanel-height-plus4mm">
   /* Aumentar altura del panel completo de menú ~4mm (aprox) */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -3265,7 +3288,21 @@ body[data-theme="noche"] .regv2-btn{
 
 /* Permitir crecimiento vertical real del contenido */
 #megaPanel{
-  overflow: hidden !important; /* mantiene borde */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  border: 2px solid #111;
 }
 
 /* El scroll debe vivir SOLO en mp-content */
@@ -5676,18 +5713,19 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 </style><style id="panelMinus10">
 /* Reducir tamaño total del panel (ancho y alto) un 10% */
 #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -5748,18 +5786,19 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 </style><style id="panelWidthVar">
 :root{ --panel-w: 18.2952; }
 #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -5826,18 +5865,19 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 /* Altura del panel +~5% y ajuste simétrico (sube y baja por igual) */
 :root{ --panel-h: 9.45; } /* antes 9 */
 #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -11345,18 +11385,19 @@ function showToast(){
 <!-- Canonical override: tamaño del panel del menú unificado (+4mm hacia ARRIBA) -->
 <style id="aj-megaPanel-canonical-2025-09-12">
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -11364,18 +11405,19 @@ function showToast(){
 <style id="aj-megapanel-bg-white-fix-2025-09-12">
   /* Evita transparencias en el cuerpo del panel del menú */
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -15018,18 +15060,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 <!-- AJETREZ: Drop megaPanel an additional 2mm and allow Menu button to be movable -->
 <style id="aj-drop-panel-2mm-more">
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -15155,18 +15198,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
   /* Altura objetivo: 8 × --square */
   :root{ --panel-h: 8; }
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -15174,18 +15218,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 <!-- AJETREZ: Bajar panel de menú 0.5 casillero más -->
 <style id="aj-panel-down-half-square-more">
   #megaPanel{
-  position:fixed;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * 16);
-  height: calc(var(--square) * 8);
-  background:#fff;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 9999;
   border: 2px solid #111;
 }
@@ -15656,15 +15701,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
   #megaPanel{
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: none;
-    max-height: none;
-    border-radius: 0;
-    transform: none;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--square-menu) * 16);
+  height: var(--panel-h);
+  max-height: var(--panel-h);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  border: 2px solid #111;
+}
 
   .mp-header,
   .mp-tabs{
@@ -15690,23 +15742,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /* ===== END MOBILE FULLSCREEN MENU ===== */
 
 /* ===== MOBILE: MENU PANEL FLOTANTE ===== */
-@media (max-width: 900px){
 
-  #megaPanel{
-    top: auto !important;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 16px);
-    height: auto;
-    max-height: 85vh;
-
-    border-radius: 20px 20px 14px 14px;
-    box-shadow: 0 18px 40px rgba(0,0,0,.35);
-
-    display: none;
-    animation: slideUpMenu .22s ease-out;
-  }
 
   #panelBackdrop{
     backdrop-filter: blur(2px);
@@ -15730,36 +15766,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 /* ===== MOBILE: AJUSTE ALTURA PANEL FLOTANTE ===== */
-@media (max-width: 900px){
-  #megaPanel{
-    bottom: 72px !important; /* sube el panel para no tapar la barra inferior */
-  }
+
 }
 
 
 /* ===== MOBILE: AJUSTE FINO ALTURA PANEL FLOTANTE (MAS ALTO) ===== */
-@media (max-width: 900px){
-  #megaPanel{
-    bottom: 26px !important; /* baja aprox 1 casillero respecto a v2 */
-    max-height: 90vh;        /* permite un poco más de contenido visible */
-  }
+
 }
 
 
 /* ===== MOBILE: MENU PANTALLA COMPLETA (TAMAÑO FIJO) ===== */
-@media (max-width: 900px){
-  #megaPanel{
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    max-height: none !important;
-    transform: none !important;
-    border-radius: 0 !important;
-    animation: none !important;
-  }
+
 
   .mp-content{
     max-height: none !important;
@@ -15770,13 +15787,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 /* ===== MOBILE: MENU FULLSCREEN ALINEADO ARRIBA ===== */
-@media (max-width: 900px){
-  #megaPanel{
-    top: 0 !important;
-    bottom: 0 !important;
-    margin-top: 0 !important;
-    padding-top: env(safe-area-inset-top);
-  }
+
 }
 
 </style>
