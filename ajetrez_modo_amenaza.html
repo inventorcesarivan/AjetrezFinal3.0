@@ -3418,16 +3418,18 @@ body[data-theme="noche"] .regv2-btn{
 </script>
 
 
-<style id="aj-main-menu-button-style">
+<style id="aj-main-menu-button-style-v2">
+.frame{ position: relative; }
 #btnMenuPrincipalTop{
   position:absolute;
-  top: 8px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 25;
-  padding: 8px 14px;
-  font-size: 14px;
+  z-index: 50;
+  padding: 10px 18px;
+  font-size: 15px;
   font-weight: 900;
+  pointer-events: auto;
 }
 </style>
 
@@ -14764,7 +14766,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 
 
-<script id="aj-main-menu-button-js">
+<script id="aj-main-menu-button-js-v2">
 (function(){
   function openMenu(){
     var panel = document.getElementById('megaPanel');
@@ -14774,15 +14776,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
       panel.style.display = 'flex';
     }
   }
-
-  function hook(){
+  document.addEventListener('DOMContentLoaded', function(){
     var btn = document.getElementById('btnMenuPrincipalTop');
-    if(btn){
-      btn.addEventListener('click', openMenu);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', hook);
+    if(btn) btn.addEventListener('click', openMenu);
+  });
 })();
 </script>
 
