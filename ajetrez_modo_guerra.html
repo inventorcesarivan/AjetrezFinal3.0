@@ -15680,3 +15680,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 </script>
 
+
+
+<style>
+/* ===== HIDE BOARD CONTROLS WHEN MOBILE MENU IS OPEN ===== */
+@media (max-width: 900px){
+  body.menu-open #bottomBar,
+  body.menu-open .bar,
+  body.menu-open .right-ctrls,
+  body.menu-open #btnMegaMenu,
+  body.menu-open #btnRestartBR,
+  body.menu-open #btnFSBR{
+    display: none !important;
+  }
+}
+/* ===== END HIDE FIX ===== */
+</style>
+
