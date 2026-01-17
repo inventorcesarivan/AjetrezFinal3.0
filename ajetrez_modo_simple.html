@@ -110,6 +110,16 @@
 }
 /* ===== END MOBILE MENU SCALE ===== */
 
+
+/* ===== MOBILE: HIDE BOTTOM BAR WHEN MENU OPEN ===== */
+@media (max-width: 900px){
+  body.menu-open #bottomBar{
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+/* ===== END MOBILE HIDE BOTTOM BAR ===== */
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
@@ -14705,6 +14715,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   });
 });
+</script>
+
+
+<script>
+(function(){
+  function addMenuState(){
+    document.body.classList.add('menu-open');
+  }
+  function removeMenuState(){
+    document.body.classList.remove('menu-open');
+  }
+
+  // Observe menu open/close
+  const panel = document.getElementById('megaPanel');
+  const backdrop = document.getElementById('panelBackdrop');
+  if(!panel || !backdrop) return;
+
+  const obs = new MutationObserver(()=>{
+    const open = panel.style.display === 'flex' || panel.classList.contains('open');
+    if(open) addMenuState(); else removeMenuState();
+  });
+
+  obs.observe(panel, {attributes:true, attributeFilter:['style','class']});
+
+  backdrop.addEventListener('click', removeMenuState);
+})();
 </script>
 
 </body>
