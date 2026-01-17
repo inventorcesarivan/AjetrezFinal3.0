@@ -203,6 +203,8 @@
 
   /* === PANEL COMPLETO === */
   #panelBackdrop{
+  width:100%;
+  height:100%;
   position:absolute;
   inset:0;
   background: rgba(0,0,0,.35);
@@ -639,6 +641,8 @@ body, html{overflow:visible!important;}
 </style><style id="menu-panel-zfix">
 /* --- Menu panel layering fix: ensure menu is above board/overlays but below replay modal --- */
 #panelBackdrop{
+  width:100%;
+  height:100%;
   position:absolute;
   inset:0;
   background: rgba(0,0,0,.35);
@@ -15672,6 +15676,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
   #panelBackdrop{
+  width:100%;
+  height:100%;
     position: fixed;
     inset: 0;
   }
@@ -15730,3 +15736,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 </script>
 
+
+
+@media (max-width: 900px){
+  #megaPanel{
+    inset: auto !important;
+  }
+}
