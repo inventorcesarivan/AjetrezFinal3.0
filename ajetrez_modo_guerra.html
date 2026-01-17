@@ -218,14 +218,14 @@
 
   /* === PANEL COMPLETO === */
   #panelBackdrop{
-  position:absolute;
+  position:fixed;
   inset:0;
   background: rgba(0,0,0,.35);
   display:none;
-  z-index: 30;
+  z-index: 9998;
 }
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -237,7 +237,7 @@
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
   .mp-header{
@@ -654,14 +654,14 @@ body, html{overflow:visible!important;}
 </style><style id="menu-panel-zfix">
 /* --- Menu panel layering fix: ensure menu is above board/overlays but below replay modal --- */
 #panelBackdrop{
-  position:absolute;
+  position:fixed;
   inset:0;
   background: rgba(0,0,0,.35);
   display:none;
-  z-index: 30;
+  z-index: 9998;
 }
 #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -673,7 +673,7 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="menu-panel-pointerfix">
@@ -851,7 +851,7 @@ body, html{overflow:visible!important;}
 
 /* === Contorno blanco alrededor del panel completo del menú === */
 #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -863,7 +863,7 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-bottombar-height-patch">
@@ -1110,7 +1110,7 @@ body, html{overflow:visible!important;}
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-megaPanel-scale-95">
   /* Achicar el panel de menú un 5% (general: web + móvil) */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -1122,13 +1122,13 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-scale-90">
   /* Achicar el panel de menú un 5% adicional (total ~10%) */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -1140,13 +1140,13 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-shift">
   /* Desplazar un poco a la derecha y hacia abajo, manteniendo scale(0.90) */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -1158,13 +1158,13 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-shift-half-square">
   /* Desplazar medio casillero a la derecha (+ mantener 3mm abajo) */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -1176,13 +1176,13 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-megaPanel-centered-to-board">
   /* Centrado perfecto entre derecha e izquierda respecto al tablero */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -1194,7 +1194,7 @@ body, html{overflow:visible!important;}
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="aj-registro-minus-1_5-square">
@@ -2313,7 +2313,7 @@ body[data-theme="noche"] .regv2-btn{
 <style id="aj-megaPanel-height-plus4mm">
   /* Aumentar altura del panel completo de menú ~4mm (aprox) */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -2325,7 +2325,7 @@ body[data-theme="noche"] .regv2-btn{
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style>
@@ -5598,7 +5598,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 </style><style id="panelMinus10">
 /* Reducir tamaño total del panel (ancho y alto) un 10% */
 #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -5610,7 +5610,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="loginTighten">
@@ -5670,7 +5670,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 </style><style id="panelWidthVar">
 :root{ --panel-w: 18.2952; }
 #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -5682,7 +5682,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="panelCompact">
@@ -5748,7 +5748,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 /* Altura del panel +~5% y ajuste simétrico (sube y baja por igual) */
 :root{ --panel-h: 9.45; } /* antes 9 */
 #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -5760,7 +5760,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style><style id="panelTopTighten">
@@ -11267,7 +11267,7 @@ function showToast(){
 <!-- Canonical override: tamaño del panel del menú unificado (+4mm hacia ARRIBA) -->
 <style id="aj-megaPanel-canonical-2025-09-12">
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -11279,14 +11279,14 @@ function showToast(){
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style>
 <style id="aj-megapanel-bg-white-fix-2025-09-12">
   /* Evita transparencias en el cuerpo del panel del menú */
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -11298,7 +11298,7 @@ function showToast(){
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
   #megaPanel .mp-content{
@@ -15027,7 +15027,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 <!-- AJETREZ: Drop megaPanel an additional 2mm and allow Menu button to be movable -->
 <style id="aj-drop-panel-2mm-more">
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -15039,7 +15039,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
   /* Remove any forced centering on the Menu button so it can be shifted horizontally */
@@ -15164,7 +15164,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   /* Altura objetivo: 8 × --square */
   :root{ --panel-h: 8; }
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -15176,14 +15176,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style>
 <!-- AJETREZ: Bajar panel de menú 0.5 casillero más -->
 <style id="aj-panel-down-half-square-more">
   #megaPanel{
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -15195,7 +15195,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   display:none;
   flex-direction:column;
   overflow:hidden;
-  z-index: 40;
+  z-index: 9999;
   border: 2px solid #111;
 }
 </style>
