@@ -14683,6 +14683,34 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 
+
+<script>
+(function(){
+  const panel = document.getElementById('megaPanel');
+  const backdrop = document.getElementById('panelBackdrop');
+  const bottomBar = document.getElementById('bottomBar');
+
+  if(!panel || !bottomBar) return;
+
+  const update = ()=>{
+    const visible = panel.style.display !== 'none' && getComputedStyle(panel).display !== 'none';
+    bottomBar.style.display = visible ? 'none' : '';
+  };
+
+  // Observe changes
+  const obs = new MutationObserver(update);
+  obs.observe(panel, { attributes:true, attributeFilter:['style','class'] });
+
+  if(backdrop){
+    const obs2 = new MutationObserver(update);
+    obs2.observe(backdrop, { attributes:true, attributeFilter:['style','class'] });
+  }
+
+  // Initial check
+  document.addEventListener('click', ()=>setTimeout(update,0));
+})();
+</script>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
