@@ -14771,6 +14771,44 @@ document.addEventListener('DOMContentLoaded', ()=>{
 }
 </style>
 
+
+<!-- === MOBILE MENU SIZE -15% + PERFECT CENTER (PORTRAIT & LANDSCAPE) === -->
+<style>
+@media (max-width: 900px){
+
+  /* Mantener base desktop pero reducir 15% */
+  :root{
+    --square-menu: 56px !important;
+  }
+
+  #megaPanel{
+    width: calc(var(--square-menu) * 16 * 0.85) !important;
+    height: calc(var(--square-menu) * 8 * 0.85) !important;
+
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+
+    border-radius: 16px !important;
+  }
+
+  /* Asegurar centrado correcto incluso en landscape */
+  @supports (height: 100svh){
+    #megaPanel{
+      top: 50svh !important;
+      left: 50vw !important;
+    }
+  }
+
+  /* Mantener layout interno limpio */
+  .mp-content{
+    padding: 14px !important;
+    max-height: calc(100% - 160px) !important;
+  }
+}
+</style>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
