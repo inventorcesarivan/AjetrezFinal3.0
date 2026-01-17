@@ -15695,6 +15695,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 }
 
+
+/* ===== MOBILE: MENU PANTALLA COMPLETA (TAMAÑO FIJO) ===== */
+@media (max-width: 900px){
+  #megaPanel{
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: none !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    animation: none !important;
+  }
+
+  .mp-content{
+    max-height: none !important;
+    height: calc(100dvh - 140px); /* header + tabs + footer */
+    overflow-y: auto;
+  }
+}
+
 </style>
 
 
