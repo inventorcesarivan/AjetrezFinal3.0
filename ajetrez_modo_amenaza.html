@@ -3417,6 +3417,20 @@ body[data-theme="noche"] .regv2-btn{
 })();
 </script>
 
+
+<style id="aj-main-menu-button-style">
+#btnMenuPrincipalTop{
+  position:absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 900;
+}
+</style>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar"><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
@@ -14747,6 +14761,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   });
 });
+</script>
+
+
+<script id="aj-main-menu-button-js">
+(function(){
+  function openMenu(){
+    var panel = document.getElementById('megaPanel');
+    var back  = document.getElementById('panelBackdrop');
+    if(panel && back){
+      back.style.display = 'block';
+      panel.style.display = 'flex';
+    }
+  }
+
+  function hook(){
+    var btn = document.getElementById('btnMenuPrincipalTop');
+    if(btn){
+      btn.addEventListener('click', openMenu);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', hook);
+})();
 </script>
 
 </body>
