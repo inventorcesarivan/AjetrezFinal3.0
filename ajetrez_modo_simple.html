@@ -14704,7 +14704,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 #floatingBottomBar{
   position: fixed;
   left: 50%;
-  bottom: 14px;
+  bottom: calc(14px + var(--square));
   transform: translateX(-50%);
   background: #f3ead7; /* crema */
   border-radius: 18px;
@@ -14723,7 +14723,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /* Mobile ajuste */
 @media (max-width: 900px){
   #floatingBottomBar{
-    bottom: 10px;
+    bottom: calc(10px + var(--square));
     padding: 8px 10px;
     border-radius: 16px;
   }
@@ -14748,7 +14748,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 #floatingBottomBar{
   position: fixed;
   left: 50%;
-  bottom: 14px;
+  bottom: calc(14px + var(--square));
   transform: translateX(-50%);
   background: #f3ead7;
   border-radius: 20px;
@@ -14782,7 +14782,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /* Mobile */
 @media (max-width: 900px){
   #floatingBottomBar{
-    bottom: 10px;
+    bottom: calc(10px + var(--square));
     padding: 8px 12px;
     gap: 8px;
   }
