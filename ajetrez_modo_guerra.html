@@ -101,8 +101,21 @@
   padding: 14px;
   box-shadow: 0 6px 20px rgba(0,0,0,.08);
 }
-  .shell{ display:grid; grid-template-rows: var(--toolbar-h) var(--toolbar-gap) auto var(--toolbar-gap) var(--toolbar-h); justify-items:center; }
-  .bar, .board-wrap{ width: calc(var(--square) * var(--board-cols)); }
+  .shell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height: calc(var(--square) * 8);
+}
+  .bar, .board-wrap{
+  position: relative;
+  width: calc(var(--square) * var(--board-cols));
+  height: calc(var(--square) * 8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   .board-wrap{ position:relative; }
   .bar{ position: relative; height: var(--toolbar-h); border-radius: 10px; background: transparent; }
 
@@ -190,9 +203,9 @@
 }
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square-menu) * 16);
   height: calc(var(--square-menu) * 8);
   background:#fff;
@@ -626,9 +639,9 @@ body, html{overflow:visible!important;}
 }
 #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -816,9 +829,9 @@ body, html{overflow:visible!important;}
 /* === Contorno blanco alrededor del panel completo del menú === */
 #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -1075,9 +1088,9 @@ body, html{overflow:visible!important;}
   /* Achicar el panel de menú un 5% (general: web + móvil) */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -1093,9 +1106,9 @@ body, html{overflow:visible!important;}
   /* Achicar el panel de menú un 5% adicional (total ~10%) */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -1111,9 +1124,9 @@ body, html{overflow:visible!important;}
   /* Desplazar un poco a la derecha y hacia abajo, manteniendo scale(0.90) */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -1129,9 +1142,9 @@ body, html{overflow:visible!important;}
   /* Desplazar medio casillero a la derecha (+ mantener 3mm abajo) */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -1147,9 +1160,9 @@ body, html{overflow:visible!important;}
   /* Centrado perfecto entre derecha e izquierda respecto al tablero */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -2278,9 +2291,9 @@ body[data-theme="noche"] .regv2-btn{
   /* Aumentar altura del panel completo de menú ~4mm (aprox) */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -5563,9 +5576,9 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 /* Reducir tamaño total del panel (ancho y alto) un 10% */
 #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -5635,9 +5648,9 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 :root{ --panel-w: 18.2952; }
 #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -5713,9 +5726,9 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 :root{ --panel-h: 9.45; } /* antes 9 */
 #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -11232,9 +11245,9 @@ function showToast(){
 <style id="aj-megaPanel-canonical-2025-09-12">
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -11251,9 +11264,9 @@ function showToast(){
   /* Evita transparencias en el cuerpo del panel del menú */
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -14992,9 +15005,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 <style id="aj-drop-panel-2mm-more">
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -15129,9 +15142,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
   :root{ --panel-h: 8; }
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
@@ -15148,9 +15161,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 <style id="aj-panel-down-half-square-more">
   #megaPanel{
   position:fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: calc(var(--square) * 16);
   height: calc(var(--square) * 8);
   background:#fff;
