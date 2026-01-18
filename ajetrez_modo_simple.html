@@ -338,28 +338,26 @@ button[data-action="restart"]{
 }
 
 
-/* === BOTÓN MENÚ INDEPENDIENTE FINAL (ABAJO CENTRO REAL) === */
-#menuBottomCenter{
-  position: absolute;
-  left: 50%;
-  bottom: calc(-1 * var(--square) * 1.1);
-  transform: translateX(-50%);
-  z-index: 999;
-  pointer-events: auto;
+/* === BOTÓN MENÚ HARD-FORCE (ABAJO CENTRO) === */
+#menuBottomCenterHard{
+  position:absolute;
+  left:50%;
+  bottom: calc(-1 * var(--square) * 1.2);
+  transform:translateX(-50%);
+  z-index:100000;
+  pointer-events:auto;
 
-  background:#111;
+  background:#000;
   color:#fff;
   border-radius:999px;
-  padding:12px 22px;
+  padding:14px 26px;
   font-weight:900;
-  font-size:15px;
+  font-size:16px;
   cursor:pointer;
 
-  box-shadow:0 6px 20px rgba(0,0,0,.3);
-  border:2px solid rgba(255,255,255,.85);
+  box-shadow:0 8px 28px rgba(0,0,0,.45);
+  border:3px solid #fff;
 }
-
-#menuBottomCenter:hover{ background:#222; }
 
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
@@ -15330,39 +15328,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script>
 (function(){
-  function openMenu(){
+  function forceShow(el){
+    if(!el) return;
+    el.style.setProperty('display','flex','important');
+    el.style.setProperty('visibility','visible','important');
+    el.style.setProperty('opacity','1','important');
+    el.style.setProperty('pointer-events','auto','important');
+    el.hidden = false;
+    el.removeAttribute('hidden');
+    el.classList.add('force-open');
+  }
+
+  function openMenuHard(){
     const panel = document.getElementById('megaPanel');
     const back  = document.getElementById('panelBackdrop');
+
     if(!panel || !back){
-      console.error('[MENU BTN] megaPanel o panelBackdrop no encontrados');
+      alert('ERROR: megaPanel o panelBackdrop no encontrados');
       return;
     }
 
-    back.style.display = 'flex';
-    panel.style.display = 'flex';
+    forceShow(back);
+    forceShow(panel);
 
-    back.style.zIndex = 9998;
-    panel.style.zIndex = 9999;
+    back.style.zIndex = '99998';
+    panel.style.zIndex = '99999';
   }
 
-  function closeMenu(){
+  function closeMenuHard(){
     const panel = document.getElementById('megaPanel');
     const back  = document.getElementById('panelBackdrop');
-    if(panel) panel.style.display = 'none';
-    if(back)  back.style.display = 'none';
+    if(panel) panel.style.display='none';
+    if(back)  back.style.display='none';
   }
 
   document.addEventListener('DOMContentLoaded', ()=>{
-    const btn = document.getElementById('menuBottomCenter');
+    const btn = document.getElementById('menuBottomCenterHard');
     const back = document.getElementById('panelBackdrop');
 
-    if(btn){
-      btn.addEventListener('click', openMenu);
-    }
+    if(btn) btn.addEventListener('click', openMenuHard);
+    if(back) back.addEventListener('click', closeMenuHard);
 
-    if(back){
-      back.addEventListener('click', closeMenu);
-    }
+    // watchdog: if some script re-hides the menu, re-open it
+    const mo = new MutationObserver(()=>{
+      const panel = document.getElementById('megaPanel');
+      if(panel && panel.classList.contains('force-open') && panel.style.display==='none'){
+        forceShow(panel);
+      }
+    });
+    const panel = document.getElementById('megaPanel');
+    if(panel) mo.observe(panel,{attributes:true,attributeFilter:['style','class']});
   });
 })();
 </script>
