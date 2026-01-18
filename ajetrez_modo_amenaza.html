@@ -21296,6 +21296,21 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
+
+<script>
+(function(){
+  function killRegistroTab(){
+    document.querySelectorAll('.mp-tabs .tab-btn').forEach(btn=>{
+      const txt = (btn.textContent||'').trim().toLowerCase();
+      if(txt === 'registro de partidas' || txt === 'registros de partidas'){
+        btn.remove();
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', killRegistroTab);
+})();
+</script>
+
 </body>
 
 
