@@ -21304,6 +21304,32 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
+
+<script>
+(function(){
+  function killRegistroTabHard(){
+    const tabs = document.querySelectorAll('.mp-tabs .tab-btn');
+    tabs.forEach(btn=>{
+      const txt = (btn.textContent||'').trim().toLowerCase();
+      if(txt === 'registro de partidas' || txt === 'registros de partidas'){
+        btn.remove();
+      }
+    });
+  }
+
+  // 1) al cargar
+  document.addEventListener('DOMContentLoaded', killRegistroTabHard);
+
+  // 2) cada vez que se abre el menú (display cambia)
+  const obs = new MutationObserver(killRegistroTabHard);
+  obs.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+})();
+</script>
+
 </body>
 
 
