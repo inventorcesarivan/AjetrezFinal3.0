@@ -100,7 +100,14 @@
 }
 /* ===== END MOBILE UI REDUCTION ===== */
 
-</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
+
+.top-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+</style>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
     --square: 56px;
@@ -950,6 +957,12 @@ body, html{overflow:visible!important;}
 </style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-tidy">
   /* Quitar empuje vertical extra en la barra superior */
   #topBar{
+  height: calc(var(--toolbar-h) * 1.6);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
     --bar-trim: 0mm !important;
     transform: none !important;
   }
@@ -1027,7 +1040,13 @@ body, html{overflow:visible!important;}
   }
 </style><style id="aj-topbar-align-bottom">
   /* Alinear EXACTAMENTE con el borde inferior del top bar */
-  #topBar{ position: relative !important; }
+  #topBar{
+  height: calc(var(--toolbar-h) * 1.6);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+ position: relative !important; }
 
   /* Grupos y bloques principales anclados al borde inferior */
   #topBar #modeGroup,
@@ -1758,7 +1777,13 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 </style>
 <style id="aj-top-right-compact-2025-09-11">
   /* En el topbar, empuja el timer hacia la derecha */
-  #topBar{ position: relative !important; }
+  #topBar{
+  height: calc(var(--toolbar-h) * 1.6);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+ position: relative !important; }
   #topBar #timeIndicator{ position: absolute !important; right: 10px !important; top: 6px !important; }
   /* Achicar ancho de los botones internos (registro/reproductor) */
   #timeIndicator #regv2-replayer,
@@ -15067,6 +15092,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script><style id="aj-bars-minus-3mm">
   /* Achicar 3 mm los contenedores de botones superior e inferior */
   #topBar{
+  height: calc(var(--toolbar-h) * 1.6);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
     min-height: calc(var(--toolbar-h) - 3mm) !important;
   }
   #bottomBar{
