@@ -101,23 +101,33 @@
 /* ===== END MOBILE UI REDUCTION ===== */
 
 
-/* === AJETREZ PATCH SEGURO === */
+/* === AJETREZ PATCH RADICAL: BOTÓN MENU 100% FLOTANTE === */
 
-/* 1. Ocultar botón de Registros (no rompe panel) */
-#btnRegistros{
-  display: none !important;
-}
-
-/* 2. Liberar y posicionar botón Menú */
-.bar{
-  position: relative;
-}
-
+/* Neutralizar cualquier layout previo */
 #btnMegaMenu{
-  position: absolute !important;
-  top: 6px;
-  left: calc(var(--square) * 10);
-  z-index: 25;
+  all: unset;
+  position: fixed !important;
+  top: 24px;
+  left: 50%;
+  transform: translateX(calc(-50% + (var(--square) * 10)));
+  z-index: 9999;
+
+  /* Reaplicar estilo base del botón */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
+
+/* Evitar que algún contenedor lo afecte */
+.right-ctrls,
+.mode-group,
+.bar *{
+  pointer-events: auto;
 }
 
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
