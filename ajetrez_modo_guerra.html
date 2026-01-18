@@ -107,7 +107,7 @@
 #btnMegaMenu{
   all: unset;
   position: fixed !important;
-  top: 24px;
+  top: calc(24px + (var(--square) * 5));
   left: 50%;
   transform: translateX(calc(-50% + (var(--square) * 10)));
   z-index: 9999;
