@@ -40,7 +40,7 @@
 })();
 </script>
 <style id="bottomBarSizingFix">
-#bottomBar{ width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto;  position: relative;}
+#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
   /* Desplazar los botones de pago 1 casillero a la derecha */
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
@@ -154,10 +154,20 @@
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -239,7 +249,7 @@
   .shift-ctrl .confirm:hover{ background:#149143; }
   .shift-ctrl.locked{ opacity:.55; pointer-events:none; filter: grayscale(20%); }
 
-  #bottomBar{  position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   #btnMegaMenu{
   all: unset;
   position: absolute;
@@ -267,7 +277,9 @@
 
   #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -557,10 +569,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -595,10 +617,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -609,10 +641,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -646,10 +688,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -670,10 +722,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -704,10 +766,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -723,10 +795,20 @@ body[data-theme="madera"] .board-wrap{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -744,10 +826,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -774,10 +866,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -794,28 +896,48 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><!-- AJETREZ PATCH: Reajuste de posición de la barra inferior --><style id="aj-bottombar-fix">
   /* Sube la barra ~1 casillero sin afectar layout */
-  #bottomBar{ position: relative; top: calc(var(--square) * -1); }
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   /* Opcional: en pantallas estrechas mantenemos el ajuste */
   @media (max-width: 820px){
-    #bottomBar{ top: calc(var(--square) * -1);  position: relative;}
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -865,10 +987,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -901,10 +1033,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -917,10 +1059,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -932,10 +1084,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -960,10 +1122,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -979,10 +1151,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1146,31 +1328,48 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><style id="aj-bottombar-height-patch">
   /* Achicar altura del contenedor de botones inferior ~1 casillero (desde abajo hacia arriba) */
-  #bottomBar{
-    /* Reduce el alto reservado del contenedor sin afectar los botones (pueden sobresalir si es necesario) */
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5));
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   /* Mantener el ajuste también en pantallas angostas */
   @media (max-width: 820px){
-    #bottomBar{ height: calc(var(--toolbar-h) - (var(--square) * 1.5));  position: relative;}
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1200,10 +1399,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1217,25 +1426,43 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-minus4mm">
-#bottomBar{
-  height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 4mm) !important;
- position: relative;}
+#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1251,10 +1478,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1269,27 +1506,32 @@ body, html{overflow:visible!important;}
 
   /* Asegurar que el alto del bottom bar vuelva a su valor base para mantener simetría
      (ya no restamos 3mm aquí, porque los recortamos con el separador inferior). */
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5)) !important;
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><style id="aj-bottomBase-trim-2mm">
   /* Base de color de la barra inferior: recorta visualmente 2mm desde abajo
      sin mover los botones (no altera la altura ni el layout del contenedor). */
-  #bottomBar{
-    position: relative !important;
-    background: transparent !important; /* dejamos el fondo real transparente */
-  }
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   #bottomBar::before{
     content: "";
     position: absolute;
@@ -1306,10 +1548,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1323,16 +1575,26 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBase-trim-6mm">
   /* Achica el alto total de la base de color: -6mm en total (3mm arriba + 3mm abajo) */
-  #bottomBar{ position: relative !important; }
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   #bottomBar::before{
     top: 3mm !important;
     bottom: 3mm !important;
@@ -1341,10 +1603,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1373,10 +1645,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1402,10 +1684,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1420,10 +1712,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1435,10 +1737,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1452,10 +1764,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1485,10 +1807,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1525,26 +1857,44 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-align-to-dashed">
   /* Subir la barra inferior para que su borde superior toque la línea punteada del área del tablero */
-  #bottomBar{
-    margin-top: calc(-1 * var(--toolbar-gap)) !important; /* neutraliza el separador de 10px */
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1558,10 +1908,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1573,19 +1933,26 @@ body, html{overflow:visible!important;}
       bottom: 0 !important; /* antes: 3mm */
     }
     /* Asegura que no haya offsets residuales */
-    #bottomBar{
-      margin-bottom: 0 !important;
-      transform: none !important;
-     position: relative;}
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1599,10 +1966,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1618,10 +1995,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1647,10 +2034,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1676,10 +2073,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1705,10 +2112,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1734,10 +2151,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1763,10 +2190,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1788,10 +2225,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1809,10 +2256,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1821,43 +2278,51 @@ body, html{overflow:visible!important;}
      Eso puede producir una separación aparente por redondeo/altura disponible.
      Neutralizamos 'top' y compensamos con un micro-offset adicional. */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      position: relative !important;
-      top: 0 !important;                                 /* anula desplazamiento vertical previo */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm) !important; /* acércalo 2mm más */
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><!-- AJETREZ: Mobile — subir barra inferior ~1 casillero --><style id="aj-bottomBar-mobile-up-1square-0909">
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      /* Mantener neutralización previa del 'top' */
-      position: relative !important;
-      top: 0 !important;
-      /* Subir ~1 casillero adicional respecto al estado actual */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm - var(--square)) !important;
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1943,10 +2408,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -1972,10 +2447,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2013,10 +2498,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2034,10 +2529,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2053,10 +2558,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2068,10 +2583,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2088,10 +2613,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2111,10 +2646,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2134,10 +2679,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2150,10 +2705,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2182,10 +2747,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2196,10 +2771,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2285,10 +2870,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2350,10 +2945,20 @@ body, html{overflow:visible!important;}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2366,10 +2971,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2381,10 +2996,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2408,10 +3033,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2449,10 +3084,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2478,10 +3123,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2499,10 +3154,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2515,10 +3180,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2539,10 +3214,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2564,10 +3249,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2602,10 +3297,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2633,10 +3338,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2647,10 +3362,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2662,10 +3387,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2686,10 +3421,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2718,10 +3463,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2759,10 +3514,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2776,10 +3541,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2793,10 +3568,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2810,10 +3595,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2827,10 +3622,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2847,10 +3652,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2864,10 +3679,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2880,10 +3705,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2905,10 +3740,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2954,10 +3799,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -2985,10 +3840,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3008,10 +3873,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3029,10 +3904,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3040,10 +3925,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 <style>
 
 /* === Ajetrez: Centrar botón Menú en bottomBar SIN fijar posiciones === */
-#bottomBar{
-  display:flex !important;
-  justify-content:flex-start !important; /* evitamos space-between */
-}
+#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 #btnMegaMenu{
   all: unset;
   position: absolute;
@@ -3069,10 +3951,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3098,11 +3990,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* Asegurar contenedor: flex y permitir que Menú se centre con márgenes auto */
-#bottomBar{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-}
+#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 /* Grupo derecho queda al final de la fila sin empujar el centro */
 #rightControls{ margin-left: 0 !important; }
 
@@ -3110,10 +3998,20 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3163,10 +4061,20 @@ body[data-theme="pizarra"]#regv2-panel *{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3183,10 +4091,20 @@ body[data-theme="pizarra"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3205,10 +4123,20 @@ body[data-theme="pizarra"] .tab-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3228,10 +4156,20 @@ body[data-theme="noche"] #regv2-panel .btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3253,10 +4191,20 @@ body[data-theme="noche"] #verDevToastClose{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3273,10 +4221,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3285,7 +4243,9 @@ body[data-theme="noche"] .regv2-btn{
   /* Place restart right next to Menu with a small gap */
   #btnMegaMenu + #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -3301,10 +4261,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3313,7 +4283,9 @@ body[data-theme="noche"] .regv2-btn{
   /* Desplaza el botón Reiniciar 4 casilleros a la izquierda */
   #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -3329,10 +4301,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3365,10 +4347,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3405,10 +4397,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3428,10 +4430,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3448,10 +4460,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3481,10 +4503,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3520,10 +4552,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3542,10 +4584,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3567,10 +4619,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3587,10 +4649,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3609,17 +4681,27 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style>
 <style id="aj-bottom-menu-center">
   /* Centrar el botón Menú (horizontalmente) en la barra inferior */
-  #bottomBar { position: relative !important; }
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   #btnMegaMenu{
   all: unset;
   position: absolute;
@@ -3640,7 +4722,9 @@ body[data-theme="noche"] .regv2-btn{
   /* Espaciado limpio entre Pantalla activa y Reiniciar */
   #rightControls #wakeLockToggle + #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -3656,10 +4740,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3678,10 +4772,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3708,10 +4812,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3732,15 +4846,25 @@ body[data-theme="noche"] .regv2-btn{
     margin:0;
   }
   /* Asegurar que la barra no recorte el botón */
-  #bottomBar{ overflow: visible; }
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3760,10 +4884,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3780,10 +4914,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3803,10 +4947,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3821,10 +4975,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3872,10 +5036,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3891,10 +5065,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3910,10 +5094,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3929,10 +5123,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3948,10 +5152,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3967,10 +5181,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -3981,10 +5205,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4009,10 +5243,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4029,10 +5273,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4062,10 +5316,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4098,10 +5362,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4128,10 +5402,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4163,10 +5447,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4183,10 +5477,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4209,10 +5513,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4230,10 +5544,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4249,10 +5573,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4279,10 +5613,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4300,10 +5644,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4325,10 +5679,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4354,10 +5718,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4390,10 +5764,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4422,10 +5806,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4441,10 +5835,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4459,10 +5863,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4483,10 +5897,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4518,10 +5942,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4549,10 +5983,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4572,10 +6016,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4605,10 +6059,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4638,10 +6102,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4670,10 +6144,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4702,10 +6186,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4737,10 +6231,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4775,10 +6279,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4823,10 +6337,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4853,10 +6377,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4913,10 +6447,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -4950,10 +6494,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5004,10 +6558,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5035,10 +6599,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5073,10 +6647,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5115,10 +6699,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5136,10 +6730,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5153,10 +6757,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5192,10 +6806,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5220,10 +6844,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5241,10 +6875,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5262,10 +6906,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5296,10 +6950,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5335,10 +6999,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5361,10 +7035,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5405,10 +7089,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -5492,10 +7186,20 @@ body[data-theme="noche"] .regv2-btn{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -7870,10 +9574,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -7887,10 +9601,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -7918,10 +9642,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -7944,10 +9678,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -7973,10 +9717,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8002,10 +9756,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8019,10 +9783,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8046,10 +9820,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 }
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8072,10 +9856,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8090,10 +9884,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8119,10 +9923,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8189,10 +10003,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8219,10 +10043,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8245,10 +10079,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -8972,10 +10816,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9279,10 +11133,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9329,10 +11193,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9353,10 +11227,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9381,10 +11265,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9487,10 +11381,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9621,10 +11525,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -9675,10 +11589,20 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11107,17 +13031,25 @@ function setHelp(mode){
 div[style="height:var(--toolbar-gap)"]{
   height: calc(var(--toolbar-gap) - 4mm) !important;
 }
-#bottomBar{
-  height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 4mm) !important;
- position: relative;}
+#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11139,10 +13071,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11168,10 +13110,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11179,21 +13131,26 @@ div[style="height:var(--toolbar-gap)"]{
 <style id="aj-bottomBar-mobile-up-1more-square-0909b">
   /* Subir TODOS los botones inferiores +1 casillero en versión móvil */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      position: relative !important;
-      top: 0 !important; /* neutraliza desplazamientos previos */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm - (var(--square) * 2)) !important;
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11214,10 +13171,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11225,22 +13192,26 @@ div[style="height:var(--toolbar-gap)"]{
 <style id="aj-bottomBar-mobile-down-half-square-0909c">
   /* Versión móvil: bajar los botones inferiores medio casillero */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{
-      position: relative !important;
-      top: 0 !important; /* neutraliza otros 'top' previos */
-      /* respecto al estado actual (subido 2 casilleros), bajamos 0.5 */
-      margin-top: calc(-1 * var(--toolbar-gap) - 2mm - (var(--square) * 1.5)) !important;
-      padding-top: 2px !important;
-    }
+    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11600,10 +13571,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11790,10 +13771,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11834,10 +13825,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -11878,10 +13879,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -12082,10 +14093,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -12135,10 +14156,20 @@ div[style="height:var(--toolbar-gap)"]{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -12526,10 +14557,20 @@ catch(_){}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -12620,10 +14661,20 @@ catch(_){}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -13999,10 +16050,20 @@ function showToast(){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -14042,10 +16103,20 @@ function showToast(){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -14060,10 +16131,20 @@ function showToast(){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -14173,10 +16254,20 @@ function showToast(){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -14296,10 +16387,20 @@ function showToast(){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -16074,10 +18175,20 @@ function showVeteranBanner(color){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -16264,10 +18375,20 @@ function showVeteranBanner(color){
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -16754,10 +18875,20 @@ Final: jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insufi
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -16898,10 +19029,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -16956,10 +19097,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -17317,10 +19468,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -17506,10 +19667,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -17588,10 +19759,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -17645,10 +19826,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -17723,10 +19914,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -17990,17 +20191,25 @@ document.addEventListener('DOMContentLoaded', () => {
   #topBar{
     min-height: calc(var(--toolbar-h) - 3mm) !important;
   }
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5) - 3mm) !important;
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18030,9 +20239,7 @@ document.addEventListener('DOMContentLoaded', () => {
   #timeIndicator{ top: calc(6px + var(--bar-trim)) !important; }
 
   /* BOTTOM BAR: recorte explícito adicional coherente con el cálculo existente */
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5) - var(--bar-trim)) !important;
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
   /* Evitar que el transform de los botones “suba” el contenido,
      enmascarando el recorte real del contenedor */
@@ -18046,10 +20253,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18064,26 +20281,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><style id="aj-bottombar-extra-minus-3mm">
   /* Recorte adicional del contenedor inferior: -3mm desde abajo hacia arriba */
-  #bottomBar{
-    height: calc(var(--toolbar-h) - (var(--square) * 1.5) - var(--bar-trim) - 3mm) !important;
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18128,10 +20363,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18139,11 +20384,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- AJETREZ: Flexible bottom bar & centered, narrower Menu button -->
 <style id="aj-bottomBar-flex-center-menu">
   /* Use a flexible layout (not grid) to avoid 'forced' positioning */
-  #bottomBar{
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   /* Make Menu button size to content and center via auto margins */
   #btnMegaMenu{
   all: unset;
@@ -18166,10 +20407,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18197,22 +20448,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style>
 <!-- AJETREZ CLEAN: Standardize bottom bar layout, center Menu, keep narrow width -->
 <style id="aj-clean-bottombar-flex">
-  #bottomBar{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 10px !important;
-   position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   /* Left spacer, Menu centered by auto margins, rightControls keeps right-aligned cluster */
   #btnMegaMenu{
   all: unset;
@@ -18243,10 +20499,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18274,17 +20540,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style>
 <!-- AJETREZ: Center bottom bar buttons vertically inside the container -->
 <style id="aj-bottomBar-center-vert">
-  #bottomBar{ align-items: center !important;  position: relative;}
+  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
   /* Colocar todos los botones de la barra a la misma altura visual */
   #bottomBar .btn{
     position: relative !important;
@@ -18294,10 +20570,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18331,10 +20617,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18366,10 +20662,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18397,10 +20703,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18429,10 +20745,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18459,10 +20785,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18479,10 +20815,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18494,10 +20840,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18515,10 +20871,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18533,10 +20899,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18558,10 +20934,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18590,10 +20976,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18609,10 +21005,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18635,10 +21041,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18657,10 +21073,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18690,10 +21116,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18703,7 +21139,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Desplaza el botón Reiniciar 1 casillero a la derecha */
   #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -18719,10 +21157,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18732,7 +21180,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Ahora, respecto al ajuste previo de +1c, lo movemos 0.5c a la izquierda => queda +0.5c */
   #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -18748,10 +21198,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18761,7 +21221,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Desde +0.5c, movemos 0.5c más a la izquierda => 0c neto */
   #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -18777,10 +21239,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18790,7 +21262,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Mueve el botón Reiniciar medio casillero a la izquierda con respecto a su posición original */
   #btnRestartBR{
   all: unset;
-  position: relative;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
   z-index: 50;
 
   background: #111;
@@ -18806,10 +21280,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18838,10 +21322,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18870,10 +21364,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18889,10 +21393,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18913,10 +21427,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -18993,10 +21517,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -19118,10 +21652,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -19158,10 +21702,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -19188,10 +21742,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -19209,10 +21773,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -19229,10 +21803,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
@@ -19289,10 +21873,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 #btnRestartBR{
-  transform: translate(
-    calc(var(--square) * 10),
-    calc(var(--square) * 3)
-  );
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
