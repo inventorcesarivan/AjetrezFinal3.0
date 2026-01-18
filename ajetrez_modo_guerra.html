@@ -226,6 +226,14 @@
   height: 0;
 }
 
+
+/* === AJETREZ: ELIMINAR BOTÓN REINICIAR COMPLETAMENTE === */
+#btnRestart,
+#btnRestartBR,
+button[data-action="restart"]{
+  display: none !important;
+}
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
@@ -3711,7 +3719,7 @@ body[data-theme="noche"] .regv2-btn{
 <img alt="PayPal" src="logo paypal.png"/>
 </a>
 </div>
-<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
+<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
   function make(src){ try{ const a = new Audio(src); a.preload='auto'; a.volume = 0.85; return a; }catch(_){ return null; } }
