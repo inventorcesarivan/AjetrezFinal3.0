@@ -151,6 +151,41 @@
   border: 1.5px solid rgba(255,255,255,0.7);
 }
 
+
+/* === AJETREZ: BARRA SUPERIOR DEL TABLERO (AUTO-INYECTADA) === */
+.board-wrap{
+  position: relative;
+}
+.board-topbar{
+  position: absolute;
+  top: calc(-1 * var(--square) * 1.05);
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--square) * 0.6);
+  z-index: 20;
+  pointer-events: auto;
+}
+.board-topbar .btn{
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  border: 2px solid rgba(255,255,255,.8);
+}
+.board-topbar .btn:hover{ background:#222; }
+
+/* Neutralizar parches fixed antiguos */
+#btnMegaMenu, #btnOnline{
+  position: static !important;
+  transform: none !important;
+}
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
