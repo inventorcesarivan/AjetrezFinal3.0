@@ -14953,37 +14953,46 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<script id="aj-fix-menu-position">
+
+
+
+<script id="aj-menu-guard">
 (function(){
-  function fixMenu(){
+  const APPLY = () => {
     const btn = document.getElementById('btnMegaMenu');
     if(!btn) return;
 
-    // asegurar flotante y libre
-    btn.style.all = 'unset';
-    btn.style.position = 'fixed';
+    // sacarlo del flujo si alguien lo reinsertó
+    if(btn.parentElement !== document.body){
+      document.body.appendChild(btn);
+    }
 
-    // posición: 6 casilleros a la derecha y medio casillero hacia arriba
-    btn.style.top = 'calc(18px - (var(--square) * 0.5))';
+    // forzar posición FINAL deseada
+    btn.style.position = 'fixed';
     btn.style.left = '50%';
+    btn.style.top = 'calc(18px - (var(--square) * 0.5))';
     btn.style.transform = 'translateX(calc(-50% + (var(--square) * 6)))';
     btn.style.zIndex = '9999';
 
-    // estilo visual consistente
-    btn.style.background = '#111';
-    btn.style.color = '#fff';
-    btn.style.borderRadius = '999px';
-    btn.style.padding = '8px 14px';
-    btn.style.fontWeight = '800';
-    btn.style.cursor = 'pointer';
-    btn.style.boxShadow = '0 2px 8px rgba(0,0,0,.15)';
-    btn.style.border = '1.5px solid rgba(255,255,255,0.7)';
-  }
+    // asegurar que ningún style inline previo gane
+    btn.style.margin = '0';
+  };
 
-  window.addEventListener('load', fixMenu);
-  setTimeout(fixMenu, 0);
-  setTimeout(fixMenu, 150);
-  setTimeout(fixMenu, 350);
+  // aplicar al cargar
+  window.addEventListener('load', APPLY);
+
+  // aplicar en los primeros frames (renders tardíos)
+  requestAnimationFrame(APPLY);
+  setTimeout(APPLY, 100);
+  setTimeout(APPLY, 300);
+
+  // OBSERVAR cambios de DOM que afecten al botón
+  const mo = new MutationObserver(() => APPLY());
+  mo.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true
+  });
 })();
 </script>
 
