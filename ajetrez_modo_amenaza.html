@@ -8206,6 +8206,56 @@ body[data-theme="noche"] .regv2-btn{
 })();
 </script>
 
+
+<style>
+/* 🔒 BLOQUEO TOTAL UI REGISTROS DUPLICADOS */
+
+/* 1) Tab blanca interna */
+.mp-tabs .tab-btn.registros,
+.mp-tabs .tab-btn[data-tab="registros"],
+.mp-tabs .tab-btn[aria-controls*="registro"]{
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* 2) Botón externo superior */
+#btnRegistros,
+.btn-registros,
+[data-role="registros"],
+button[aria-label*="registro"],
+button[title*="registro"]{
+  display: none !important;
+  pointer-events: none !important;
+}
+</style>
+
+<script>
+(function(){
+  function hardKillRegistros(){
+    // Tabs internas
+    document.querySelectorAll('.mp-tabs .tab-btn').forEach(btn=>{
+      const t=(btn.textContent||'').toLowerCase();
+      if(t.includes('registro')){
+        btn.remove();
+      }
+    });
+
+    // Botones externos
+    document.querySelectorAll('button, .btn').forEach(btn=>{
+      const t=(btn.textContent||'').toLowerCase();
+      if(t.includes('registro de partidas')){
+        btn.remove();
+      }
+    });
+  }
+
+  // ejecutar siempre
+  document.addEventListener('DOMContentLoaded', hardKillRegistros);
+  const mo=new MutationObserver(hardKillRegistros);
+  mo.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
