@@ -8207,32 +8207,31 @@ body[data-theme="noche"] .regv2-btn{
 </script>
 
 
-<script id="aj-kill-registros-hard">
+<script id="aj-hide-registros-safe">
 (function(){
-  function kill(){
+  function hide(){
     try{
-      // Barra superior (botón registro + reloj contenedor)
-      document.querySelectorAll('*').forEach(el=>{
-        const t=(el.textContent||'').toLowerCase();
-        if(t.includes('registro de partidas')){
-          el.remove();
+      // Barra superior: solo ocultar el bloque derecho (registro + reloj)
+      document.querySelectorAll('.right-ctrls').forEach(el=>{
+        const t = (el.textContent||'').toLowerCase();
+        if(t.includes('registro')){
+          el.style.display = 'none';
         }
       });
 
-      // Tabs del panel por texto exacto
-      document.querySelectorAll('button,div,span').forEach(el=>{
-        const t=(el.textContent||'').toLowerCase().trim();
-        if(t==='registro de partidas' || t==='registros'){
-          el.remove();
+      // Tabs del panel: ocultar SOLO el botón, no su contenedor
+      document.querySelectorAll('.mp-tabs button, .mp-tabs .tab-btn').forEach(btn=>{
+        const t = (btn.textContent||'').toLowerCase().trim();
+        if(t === 'registro de partidas' || t === 'registros'){
+          btn.style.display = 'none';
         }
       });
     }catch(e){}
   }
 
-  kill();
-  document.addEventListener('DOMContentLoaded', kill);
-  setTimeout(kill, 50);
-  setTimeout(kill, 200);
+  document.addEventListener('DOMContentLoaded', hide);
+  setTimeout(hide, 50);
+  setTimeout(hide, 200);
 })();
 </script>
 
