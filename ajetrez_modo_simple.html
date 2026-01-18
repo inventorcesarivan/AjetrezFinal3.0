@@ -254,7 +254,22 @@
   .bot-hud{ position:absolute; left: calc(var(--square) * 20); top:50%; transform: translate(-50%, -50%); display:none; pointer-events:none; z-index:15; }
   .bot-hud-inner{ background: rgba(0,0,0,.85); color:#fff; border-radius:999px; padding:8px 13px; font-weight:800; letter-spacing:.1px; box-shadow:0 8px 20px rgba(0,0,0,.3); max-width: 572px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size:14px; text-align:center; }
 
-  #btnRestartBR{ position: static; }
+  #btnRestartBR{
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
   #btnRestartBR:hover{ background:#222; }
 
   Hpx;
@@ -2200,16 +2215,41 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 <style id="aj-menu-restart-adjacency">
   /* Place restart right next to Menu with a small gap */
-  #btnMegaMenu + #btnRestartBR {
-    margin-left: 8px !important;
-  }
+  #btnMegaMenu + #btnRestartBR{
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <style id="aj-restart-left-4">
   /* Desplaza el botón Reiniciar 4 casilleros a la izquierda */
-  #btnRestartBR {
-    position: relative !important;
-    left: calc(-4 * var(--square)) !important;
-  }
+  #btnRestartBR{
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <style id="aj-menu-size-match-restart">
   /* Hacer que el botón Menú tenga el mismo tamaño visual que Reiniciar (.btn.small) */
@@ -2403,8 +2443,21 @@ body[data-theme="noche"] .regv2-btn{
 }
   /* Espaciado limpio entre Pantalla activa y Reiniciar */
   #rightControls #wakeLockToggle + #btnRestartBR{
-    margin-left: 8px !important;
-  }
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <style id="patch-regv2-open-from-tab-2025-09-12">
   /* Ajuste solicitado: subir ~1 casillero y achicar 15% el botón "Abrir panel de registros" del menú principal */
@@ -15954,33 +16007,81 @@ document.addEventListener('DOMContentLoaded', () => {
 <style id="aj-restart-right-plus-1sq-2025-09-13">
   /* Desplaza el botón Reiniciar 1 casillero a la derecha */
   #btnRestartBR{
-    position: relative !important;
-    left: calc(var(--square) * 1) !important;
-  }
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Reiniciar ajustar -0.5 casillero desde el último cambio (2025-09-13) -->
 <style id="aj-restart-left-minus-0_5sq-2025-09-13">
   /* Ahora, respecto al ajuste previo de +1c, lo movemos 0.5c a la izquierda => queda +0.5c */
   #btnRestartBR{
-    position: relative !important;
-    left: calc(var(--square) * 0.5) !important;
-  }
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Reiniciar ajustar -0.5 casillero adicional (2025-09-13) -->
 <style id="aj-restart-left-minus-0_5sq-ADICIONAL-2025-09-13">
   /* Desde +0.5c, movemos 0.5c más a la izquierda => 0c neto */
   #btnRestartBR{
-    position: relative !important;
-    left: 0 !important;
-  }
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Reiniciar neto -0.5 casillero a la izquierda (2025-09-13) -->
 <style id="aj-restart-left-net-minus-0_5sq-2025-09-13">
   /* Mueve el botón Reiniciar medio casillero a la izquierda con respecto a su posición original */
   #btnRestartBR{
-    position: relative !important;
-    left: calc(var(--square) * -0.5) !important;
-  }
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 50;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Menú +0.5 casillero adicional (ahora +3c + 3mm) - 2025-09-13 -->
 <style id="aj-menu-right-plus-ANOTHER-0_5sq-2025-09-13">
