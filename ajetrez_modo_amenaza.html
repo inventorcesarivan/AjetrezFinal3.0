@@ -151,192 +151,6 @@
   border: 1.5px solid rgba(255,255,255,0.7);
 }
 
-
-/* === AJETREZ: BARRA SUPERIOR DEL TABLERO (AUTO-INYECTADA) === */
-.board-wrap{
-  position: relative;
-}
-.board-topbar{
-  position: absolute;
-  top: calc(-1 * var(--square) * 1.05);
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: calc(var(--square) * 0.6);
-  z-index: 20;
-  pointer-events: auto;
-}
-.board-topbar .btn{
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-weight: 900;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,.25);
-  border: 2px solid rgba(255,255,255,.8);
-}
-.board-topbar .btn:hover{ background:#222; }
-
-/* Neutralizar parches fixed antiguos */
-#btnMegaMenu, #btnOnline{
-  position: static !important;
-  transform: none !important;
-}
-
-
-/* === AJETREZ: CONTENEDOR SUPERIOR CREMA FLOTANTE === */
-.top-ui-float{
-  position: absolute;
-  top: calc(-1 * var(--square) * 2.2); /* arriba del contenedor actual */
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--square) * var(--board-cols));
-  background: linear-gradient(#f3e6cf, #e8d7b8);
-  border-radius: 14px;
-  padding: 10px 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: calc(var(--square) * 0.5);
-  box-shadow: 0 8px 24px rgba(0,0,0,.25);
-  z-index: 30;
-}
-
-/* asegurar referencia */
-.board-wrap{ position: relative; }
-
-/* botones dentro del contenedor crema */
-.top-ui-float .btn{
-  background:#111;
-  color:#fff;
-  border-radius:999px;
-  padding:8px 14px;
-  font-weight:900;
-  border:2px solid rgba(255,255,255,.75);
-  box-shadow:0 4px 14px rgba(0,0,0,.25);
-}
-
-/* ocultar visualmente la barra anterior pero mantener JS */
-.board-topbar{
-  visibility: hidden;
-  pointer-events: none;
-  height: 0;
-}
-
-
-/* === AJETREZ: ELIMINAR BOTÓN REINICIAR COMPLETAMENTE === */
-#btnRestart,
-#btnRestartBR,
-button[data-action="restart"]{
-  display: none !important;
-}
-
-
-/* === AJETREZ: BOTÓN MENÚ ABAJO DERECHA DEL TABLERO === */
-#btnMegaMenu{
-  position: absolute !important;
-  bottom: calc(-1 * var(--square) * 0.9);
-  right: 0;
-  left: auto;
-  top: auto;
-  transform: none !important;
-  z-index: 40;
-}
-
-/* asegurar referencia correcta */
-.board-wrap{
-  position: relative;
-}
-
-
-/* === AJETREZ FIX DEFINITIVO: MENÚ ABAJO DERECHA (REAL) === */
-
-/* eliminar cualquier ocultamiento previo */
-#btnMegaMenu{
-  display: inline-flex !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-/* contenedor real abajo derecha */
-.board-menu-br{
-  position: absolute;
-  right: 0;
-  bottom: calc(-1 * var(--square) * 0.9);
-  z-index: 60;
-}
-
-/* botón menú real */
-.board-menu-br #btnMegaMenu{
-  position: static !important;
-  transform: none !important;
-  background:#111;
-  color:#fff;
-  border-radius:999px;
-  padding:10px 18px;
-  font-weight:900;
-  box-shadow:0 6px 18px rgba(0,0,0,.25);
-  border:2px solid rgba(255,255,255,.8);
-}
-
-/* asegurar anclaje */
-.board-wrap{ position: relative; }
-
-/* limpiar clones si existen */
-#uiMenuClone,
-#uiOnlineClone,
-#uiModoClone{
-  display:none !important;
-}
-
-
-/* === AJETREZ: MENÚ TOTALMENTE FLOTANTE (SIN ANCLAJES) === */
-
-/* wrapper flotante libre */
-.menu-free-float{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -110%);
-  z-index: 80;
-  pointer-events: auto;
-}
-
-/* botón menú sin restricciones */
-.menu-free-float #btnMegaMenu{
-  all: unset;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 12px 20px;
-  font-weight: 900;
-  font-size: 15px;
-
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0,0,0,.28);
-  border: 2px solid rgba(255,255,255,.85);
-}
-
-/* eliminar cualquier regla previa que lo ancle */
-#btnMegaMenu{
-  position: static !important;
-  margin: 0 !important;
-  inset: auto !important;
-  transform: none !important;
-}
-
-/* asegurar referencia solo visual */
-.board-wrap{
-  position: relative;
-}
-
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
@@ -3697,7 +3511,7 @@ body[data-theme="noche"] .regv2-btn{
 </script>
 
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
-<div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
+<button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
 <button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
@@ -3940,7 +3754,7 @@ body[data-theme="noche"] .regv2-btn{
 <img alt="PayPal" src="logo paypal.png"/>
 </a>
 </div>
-<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
+<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
   function make(src){ try{ const a = new Audio(src); a.preload='auto'; a.volume = 0.85; return a; }catch(_){ return null; } }
