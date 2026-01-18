@@ -234,6 +234,23 @@ button[data-action="restart"]{
   display: none !important;
 }
 
+
+/* === AJETREZ: BOTÓN MENÚ ABAJO DERECHA DEL TABLERO === */
+#btnMegaMenu{
+  position: absolute !important;
+  bottom: calc(-1 * var(--square) * 0.9);
+  right: 0;
+  left: auto;
+  top: auto;
+  transform: none !important;
+  z-index: 40;
+}
+
+/* asegurar referencia correcta */
+.board-wrap{
+  position: relative;
+}
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
