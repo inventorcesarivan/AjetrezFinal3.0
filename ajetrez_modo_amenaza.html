@@ -338,29 +338,28 @@ button[data-action="restart"]{
 }
 
 
-/* === NUEVO BOTÓN MENÚ INDEPENDIENTE (ABAJO CENTRO) === */
-#btnMenuBottomCenter{
-  all: unset;
+/* === BOTÓN MENÚ INDEPENDIENTE FINAL (ABAJO CENTRO REAL) === */
+#menuBottomCenter{
   position: absolute;
   left: 50%;
-  bottom: calc(-1 * var(--square) * 0.9);
+  bottom: calc(-1 * var(--square) * 1.1);
   transform: translateX(-50%);
-  z-index: 80;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 999;
+  pointer-events: auto;
 
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 12px 20px;
-  font-weight: 900;
-  font-size: 15px;
-  cursor: pointer;
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  padding:12px 22px;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
 
-  box-shadow: 0 6px 20px rgba(0,0,0,.28);
-  border: 2px solid rgba(255,255,255,.85);
+  box-shadow:0 6px 20px rgba(0,0,0,.3);
+  border:2px solid rgba(255,255,255,.85);
 }
+
+#menuBottomCenter:hover{ background:#222; }
 
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
@@ -15338,24 +15337,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script>
 (function(){
-  function openMenuFromBottom(){
-    const mainBtn = document.getElementById('btnMegaMenu');
-    if(mainBtn){
-      mainBtn.click();
+  function openMenu(){
+    const panel = document.getElementById('megaPanel');
+    const back  = document.getElementById('panelBackdrop');
+    if(!panel || !back){
+      console.error('[MENU BTN] megaPanel o panelBackdrop no encontrados');
       return;
     }
-    // fallback directo
-    const panel = document.getElementById('megaPanel');
-    const back = document.getElementById('panelBackdrop');
-    if(panel && back){
-      back.style.display = 'flex';
-      panel.style.display = 'flex';
-    }
+
+    back.style.display = 'flex';
+    panel.style.display = 'flex';
+
+    back.style.zIndex = 9998;
+    panel.style.zIndex = 9999;
   }
-  document.addEventListener('DOMContentLoaded', function(){
-    const btn = document.getElementById('btnMenuBottomCenter');
+
+  function closeMenu(){
+    const panel = document.getElementById('megaPanel');
+    const back  = document.getElementById('panelBackdrop');
+    if(panel) panel.style.display = 'none';
+    if(back)  back.style.display = 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const btn = document.getElementById('menuBottomCenter');
+    const back = document.getElementById('panelBackdrop');
+
     if(btn){
-      btn.addEventListener('click', openMenuFromBottom);
+      btn.addEventListener('click', openMenu);
+    }
+
+    if(back){
+      back.addEventListener('click', closeMenu);
     }
   });
 })();
