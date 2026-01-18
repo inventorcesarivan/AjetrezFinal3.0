@@ -21186,63 +21186,46 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-/* === MENU PANEL: BULLETPROOF CLOSE HANDLER === */
+
+</script>
+
+<script>
+/* === MENU PANEL: FINAL HARD FIX === */
 document.addEventListener('DOMContentLoaded', () => {
-  const boardWrap = document.querySelector('.board-wrap');
-  if(!boardWrap) return;
-
-  // Ensure menu button exists
-  let btn = document.getElementById('btnMenuMain');
-  if(!btn){
-    btn = document.createElement('button');
-    btn.id = 'btnMenuMain';
-    btn.textContent = 'MENÚ';
-    boardWrap.appendChild(btn);
-  }
-
   const mp = document.getElementById('megaPanel');
   const backdrop = document.getElementById('panelBackdrop');
 
-  function openMenu(){
-    if(backdrop) backdrop.style.display = 'block';
-    if(mp) mp.style.display = 'flex';
-  }
   function closeMenu(){
     if(backdrop) backdrop.style.display = 'none';
     if(mp) mp.style.display = 'none';
   }
-  function isOpen(){
-    return mp && mp.style.display === 'flex';
-  }
 
-  // Toggle from main menu button
-  btn.addEventListener('click', () => {
-    isOpen() ? closeMenu() : openMenu();
-  });
-
-  // Backdrop always closes
-  if(backdrop){
-    backdrop.addEventListener('click', closeMenu);
-  }
-
-  // 🔑 DELEGATED CLOSE HANDLER INSIDE PANEL
+  /* 1) HARD CLOSE: top-right header area */
   if(mp){
+    const header = mp.querySelector('div, header');
     mp.addEventListener('click', (e) => {
       const t = e.target;
 
-      // Any element explicitly marked
-      if(t.closest('[data-close], [data-action="close"]')){
-        closeMenu();
-        return;
+      // Any element in top-right zone of panel header
+      const rect = mp.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      // Top-right quadrant heuristic
+      if(clickX > rect.width * 0.7 && clickY < 80){
+        const txt = (t.textContent || '').toLowerCase();
+        if(txt.includes('cerrar') || t.closest('button,a,div')){
+          closeMenu();
+          return;
+        }
       }
 
-      // Buttons / elements whose text, title or aria-label says "cerrar"
+      // Fallback: any element explicitly saying cerrar
       const el = t.closest('button, a, div');
       if(el){
         const txt = (el.textContent || '').toLowerCase();
         const title = (el.getAttribute('title') || '').toLowerCase();
         const aria = (el.getAttribute('aria-label') || '').toLowerCase();
-
         if(txt.includes('cerrar') || title.includes('cerrar') || aria.includes('cerrar')){
           closeMenu();
           return;
@@ -21250,10 +21233,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* 2) REMOVE DUPLICATED REGISTRO BUTTON (white one) */
+  document.querySelectorAll('button, a, div').forEach(el => {
+    const txt = (el.textContent || '').toLowerCase();
+    if(txt.includes('registro de partidas') && el.closest('#megaPanel')){
+      // keep the main tab inside the panel header, remove extra openers
+      if(!el.classList.contains('tab') && !el.closest('.tabs')){
+        el.remove();
+      }
+    }
+  });
+
 });
-/* === END MENU PANEL CLOSE HANDLER === */
+/* === END MENU PANEL FINAL HARD FIX === */
 </script>
 </body>
+
 
 
 
