@@ -8199,63 +8199,54 @@ body[data-theme="noche"] .regv2-btn{
 </script>
 
 
-<script id="aj-fix-rules-modal-correct">
+<script id="aj-menu-and-rules-close-restore">
 (function(){
-
-  function isVisible(el){
-    return el && el.offsetParent !== null && getComputedStyle(el).display !== 'none';
+  function ready(fn){
+    if(document.readyState!=='loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  function getRulesPanel(){
-    // panel de reglas: suele ser el modal más chico encima del menú
-    return Array.from(document.querySelectorAll('div'))
-      .filter(el => {
-        const z = parseInt(getComputedStyle(el).zIndex || '0', 10);
-        return z >= 50 && el.offsetWidth > 150 && el.offsetHeight > 120;
-      })
-      .sort((a,b)=>{
-        const za = parseInt(getComputedStyle(a).zIndex || '0', 10);
-        const zb = parseInt(getComputedStyle(b).zIndex || '0', 10);
-        return zb - za;
-      })[0];
-  }
+  ready(function(){
+    // === MENU CLOSE (RESTORED) ===
+    const panel = document.getElementById('megaPanel');
+    const backdrop = document.getElementById('panelBackdrop');
+    const btnClose = document.getElementById('btnClosePanel');
 
-  function attach(){
-    try{
-      document.querySelectorAll('button,.btn').forEach(btn=>{
-        const t = (btn.textContent||'').toLowerCase().trim();
-        if(t === 'cerrar' || t === 'close'){
-          btn.addEventListener('click', function(e){
-            const rules = getRulesPanel();
-            if(rules){
-              e.preventDefault();
-              e.stopImmediatePropagation();
-              e.stopPropagation();
-              rules.style.display = 'none';
-              return false;
-            }
-          }, true);
-        }
-      });
+    function closeMenu(){
+      if(backdrop) backdrop.style.display = 'none';
+      if(panel) panel.style.display = 'none';
+      document.body.classList.remove('menu-open');
+    }
 
-      // ESC siempre cierra reglas primero
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape'){
-          const rules = getRulesPanel();
-          if(rules){
-            rules.style.display = 'none';
+    if(btnClose){
+      btnClose.onclick = function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        closeMenu();
+      };
+    }
+
+    if(backdrop){
+      backdrop.onclick = function(){
+        closeMenu();
+      };
+    }
+
+    // === RULES / FLOATING PANELS CLOSE ===
+    document.querySelectorAll('button').forEach(btn=>{
+      const t = (btn.textContent||'').trim().toLowerCase();
+      if(t === 'cerrar'){
+        btn.addEventListener('click', function(e){
+          const p = btn.closest('.rule-panel, .floating-panel, #rulesPanel, #rulePanel');
+          if(p){
+            e.preventDefault();
             e.stopPropagation();
+            p.style.display = 'none';
           }
-        }
-      }, true);
-
-    }catch(err){}
-  }
-
-  document.addEventListener('DOMContentLoaded', attach);
-  setTimeout(attach, 200);
-  setTimeout(attach, 500);
-
+        });
+      }
+    });
+  });
 })();
 </script>
 
