@@ -15011,6 +15011,70 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <!-- === FIN MENU LIBRE === -->
 
+
+<!-- === REINICIAR LIBRE (SOLUCIÓN LIMPIA) === -->
+<style>
+/* Ocultar botón original de Reiniciar del HUD */
+#btnReset,
+#btnReiniciar{
+  display: none !important;
+}
+
+/* Botón Reiniciar libre */
+#reiniciarLibre{
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  bottom: calc(var(--square) * 0.5);
+  z-index: 9999;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const originalBtn =
+    document.getElementById('btnReset') ||
+    document.getElementById('btnReiniciar');
+
+  if(!originalBtn){
+    console.warn('No se encontró botón original de Reiniciar');
+    return;
+  }
+
+  const board =
+    document.getElementById('board') ||
+    document.getElementById('game') ||
+    document.querySelector('.board');
+
+  if(!board){
+    console.warn('No se encontró el tablero');
+    return;
+  }
+
+  board.style.position = 'relative';
+
+  // Crear botón libre
+  const btn = document.createElement('button');
+  btn.id = 'reiniciarLibre';
+  btn.textContent = 'Reiniciar';
+
+  // Proxy exacto al comportamiento original
+  btn.onclick = () => originalBtn.click();
+
+  board.appendChild(btn);
+});
+</script>
+<!-- === FIN REINICIAR LIBRE === -->
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
