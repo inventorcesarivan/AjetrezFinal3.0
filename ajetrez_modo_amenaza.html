@@ -3466,7 +3466,7 @@ body[data-theme="noche"] .regv2-btn{
 </div></div></div><div aria-label="Ajetrez base limpia" id="board"></div><div aria-label="Decidir desplazamiento de fila" class="shift-ctrl" id="shiftCtrl" role="group"><span class="lbl" id="shiftLbl">Fila</span><span id="chooseWrap"><button aria-label="Mantener" id="btnKeep" type="button">Mantener</button><button aria-label="Desplazar sección" id="btnShift" type="button">Desplazar sección</button></span><span id="confirmWrap" style="display:none"><span id="choiceTxt" style="font-size:12px;font-weight:700;margin-right:6px;opacity:.85">Confirmar:</span><button aria-label="Confirmar" class="confirm" id="btnConfirm" type="button">Confirmar</button><button aria-label="Volver a elegir" id="btnBack" type="button">Cambiar elección</button></span></div><div id="overlay"><div id="banner">FIN</div></div><div id="panelBackdrop"></div><div aria-labelledby="mpTitle" aria-modal="true" id="megaPanel" role="dialog"><div class="apply-toast" id="applyToast">✔ Cambios guardados
 </div><div class="mp-header"><div id="mpTitle">Panel de Ajetrez
 </div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="btnClosePanel" type="button">Cerrar</button></div></div><div id="tabsView"><div class="mp-tabs">
-    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button></div><div class="mp-content">
+    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button></div><div class="mp-content">
 
     <div class="tab" id="tab-personalizacion" style="display:none"><h3>Personalización del juego</h3><div class="row"><div class="field"><label>Estilo de piezas</label><select id="selSprites"><option value="auto">Auto (usar sprites si están disponibles)</option><option value="sprites">Sprites (imágenes)</option><option value="unicode">Unicode (símbolos)</option></select>
 
@@ -3666,7 +3666,7 @@ body[data-theme="noche"] .regv2-btn{
 </div></div><div class="field"><label>Victorias Negras</label><div class="pill" id="statB">0
 </div></div><div class="field"><label>Tablas</label><div class="pill" id="statD">0
 </div></div></div><div id="infoSplit"><div id="infoLeft"><div style="margin-top:10px;max-height:120px;overflow:auto;border:1px solid #eee;border-radius:10px;"><table class="simple" id="logsTable"><thead><tr><th>Fecha</th><th>Modo</th><th>Resultado</th><th>Ganador</th><th>Movs</th></tr></thead><tbody></tbody></table></div><div id="replayDock" style="display:none"></div><!-- Replay panel will be injected here --><div id="replayDock"></div></div></div></div><div class="row" style="margin-top:8px;"></div></div><div class="tab" id="tab-mas" style="display:none"><h3>Más funciones</h3><p>Acá vamos a agregar: estilos claros/oscuros, selector de temas, perfiles, estadísticas detalladas, etc.</p></div></div></div></div></div><div style="height:var(--toolbar-gap)"></div>
-<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
+<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
   function make(src){ try{ const a = new Audio(src); a.preload='auto'; a.volume = 0.85; return a; }catch(_){ return null; } }
@@ -5123,7 +5123,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     });
   }
   const fsRoot  = document.getElementById('fsRoot');
-  const btnFSBR = document.getElementById('btnFSBR');
+  const btnFSBR = 
   if(btnFSBR){
     btnFSBR.addEventListener('click', async ()=>{
       try{
@@ -11246,7 +11246,7 @@ function showToast(){
   function all(s,r){ return Array.from((r||document).querySelectorAll(s)); }
 
   // 1) Ocultar/deshabilitar la pestaña antigua que dispara el overlay automáticamente
-  var oldBtn = document.getElementById('btnRegistrosTab');
+  var oldBtn = 
   if(oldBtn){ oldBtn.style.display = 'none'; oldBtn.id = 'btnRegistrosTab__disabled'; }
   var oldTab = document.getElementById('tab-registros');
   if(oldTab){ oldTab.style.display='none'; oldTab.id = 'tab-registros__disabled'; }
