@@ -14934,94 +14934,54 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+<!-- === MENU LIBRE (SOLUCIÓN LIMPIA) === -->
+<style>
+/* Ocultar SOLO el botón de menú del HUD, sin tocar lógica */
+#btnMegaMenu{
+  display: none !important;
+}
 
+/* Botón de menú independiente */
+#menuLibre{
+  position: fixed;
+  top: calc(18px - (var(--square) * 0.5));
+  left: 50%;
+  transform: translateX(calc(-50% + (var(--square) * 6)));
+  z-index: 9999;
 
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+</style>
 
-<script id="aj-fix-play-online-center">
-(function(){
-  function fixPlayOnline(){
-    // posibles IDs usados para el botón jugar online
-    const btn =
-      document.getElementById('btnPlayOnline') ||
-      document.getElementById('btnOnline') ||
-      document.getElementById('btnJugarOnline');
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Crear botón libre
+  const btn = document.createElement('button');
+  btn.id = 'menuLibre';
+  btn.textContent = 'Menú';
 
-    if(!btn) return;
-
-    // llevarlo al body para evitar interferencias de layout
-    if(btn.parentElement !== document.body){
-      document.body.appendChild(btn);
+  // Al hacer click, llamar al MISMO menú real
+  btn.onclick = () => {
+    if(typeof openMegaPanel === 'function'){
+      openMegaPanel();
+    } else if(typeof toggleMenu === 'function'){
+      toggleMenu();
+    } else {
+      console.warn('No se encontró función de menú');
     }
-
-    // centrarlo horizontalmente respecto a la pantalla (tablero está centrado)
-    btn.style.all = 'unset';
-    btn.style.position = 'fixed';
-    btn.style.top = '18px';
-    btn.style.left = '50%';
-    btn.style.transform = 'translateX(-50%)';
-    btn.style.zIndex = '9998';
-
-    // estilo coherente con el resto
-    btn.style.background = '#111';
-    btn.style.color = '#fff';
-    btn.style.borderRadius = '999px';
-    btn.style.padding = '8px 14px';
-    btn.style.fontWeight = '800';
-    btn.style.cursor = 'pointer';
-    btn.style.boxShadow = '0 2px 8px rgba(0,0,0,.15)';
-    btn.style.border = '1.5px solid rgba(255,255,255,0.7)';
-  }
-
-  window.addEventListener('load', fixPlayOnline);
-  setTimeout(fixPlayOnline, 0);
-  setTimeout(fixPlayOnline, 150);
-  setTimeout(fixPlayOnline, 350);
-})();
-</script>
-
-
-
-
-
-<script id="aj-menu-guard">
-(function(){
-  const APPLY = () => {
-    const btn = document.getElementById('btnMegaMenu');
-    if(!btn) return;
-
-    // sacarlo del flujo si alguien lo reinsertó
-    if(btn.parentElement !== document.body){
-      document.body.appendChild(btn);
-    }
-
-    // forzar posición FINAL deseada
-    btn.style.position = 'fixed';
-    btn.style.left = '50%';
-    btn.style.top = 'calc(18px - (var(--square) * 0.5))';
-    btn.style.transform = 'translateX(calc(-50% + (var(--square) * 6)))';
-    btn.style.zIndex = '9999';
-
-    // asegurar que ningún style inline previo gane
-    btn.style.margin = '0';
   };
 
-  // aplicar al cargar
-  window.addEventListener('load', APPLY);
-
-  // aplicar en los primeros frames (renders tardíos)
-  requestAnimationFrame(APPLY);
-  setTimeout(APPLY, 100);
-  setTimeout(APPLY, 300);
-
-  // OBSERVAR cambios de DOM que afecten al botón
-  const mo = new MutationObserver(() => APPLY());
-  mo.observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    attributes: true
-  });
-})();
+  document.body.appendChild(btn);
+});
 </script>
+<!-- === FIN MENU LIBRE === -->
 
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
