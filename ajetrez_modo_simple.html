@@ -14829,19 +14829,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 
 
-<script id="aj-remove-donation">
+
+
+
+<script id="aj-remove-donation-safe">
 document.addEventListener('DOMContentLoaded', () => {
-  // eliminar por IDs conocidos
-  ['btnDonar','btnDonacion','btnPayPal','btnMercadoPago','donate','donacion'].forEach(id=>{
+  const ids = [
+    'btnDonar','btnDonacion','btnPayPal','btnMercadoPago',
+    'donate','donacion','donations','donationBox'
+  ];
+  ids.forEach(id => {
     const el = document.getElementById(id);
     if(el) el.remove();
-  });
-
-  // eliminar por texto indicativo "colabora"
-  document.querySelectorAll('button,div,span,p').forEach(el=>{
-    if((el.textContent || '').toLowerCase().includes('colabora')){
-      el.remove();
-    }
   });
 });
 </script>
