@@ -8501,96 +8501,6 @@ button#btnOnlineExternal:active{
 })();
 </script>
 
-
-<script id="aj-hide-registros-safe">
-(function(){
-  function hide(){
-    try{
-      // Barra superior: solo ocultar el bloque derecho (registro + reloj)
-      document.querySelectorAll('.right-ctrls').forEach(el=>{
-        const t = (el.textContent||'').toLowerCase();
-        if(t.includes('registro')){
-          el.style.display = 'none';
-        }
-      });
-
-      // Tabs del panel: ocultar SOLO el botón, no su contenedor
-      document.querySelectorAll('.mp-tabs button, .mp-tabs .tab-btn').forEach(btn=>{
-        const t = (btn.textContent||'').toLowerCase().trim();
-        if(t === 'registro de partidas' || t === 'registros'){
-          btn.style.display = 'none';
-        }
-      });
-    }catch(e){}
-  }
-
-  document.addEventListener('DOMContentLoaded', hide);
-  setTimeout(hide, 50);
-  setTimeout(hide, 200);
-})();
-</script>
-
-
-<script id="aj-fix-rules-modal-correct">
-(function(){
-
-  function isVisible(el){
-    return el && el.offsetParent !== null && getComputedStyle(el).display !== 'none';
-  }
-
-  function getRulesPanel(){
-    // panel de reglas: suele ser el modal más chico encima del menú
-    return Array.from(document.querySelectorAll('div'))
-      .filter(el => {
-        const z = parseInt(getComputedStyle(el).zIndex || '0', 10);
-        return z >= 50 && el.offsetWidth > 150 && el.offsetHeight > 120;
-      })
-      .sort((a,b)=>{
-        const za = parseInt(getComputedStyle(a).zIndex || '0', 10);
-        const zb = parseInt(getComputedStyle(b).zIndex || '0', 10);
-        return zb - za;
-      })[0];
-  }
-
-  function attach(){
-    try{
-      document.querySelectorAll('button,.btn').forEach(btn=>{
-        const t = (btn.textContent||'').toLowerCase().trim();
-        if(t === 'cerrar' || t === 'close'){
-          btn.addEventListener('click', function(e){
-            const rules = getRulesPanel();
-            if(rules){
-              e.preventDefault();
-              e.stopImmediatePropagation();
-              e.stopPropagation();
-              rules.style.display = 'none';
-              return false;
-            }
-          }, true);
-        }
-      });
-
-      // ESC siempre cierra reglas primero
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape'){
-          const rules = getRulesPanel();
-          if(rules){
-            rules.style.display = 'none';
-            e.stopPropagation();
-          }
-        }
-      }, true);
-
-    }catch(err){}
-  }
-
-  document.addEventListener('DOMContentLoaded', attach);
-  setTimeout(attach, 200);
-  setTimeout(attach, 500);
-
-})();
-</script>
-
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
@@ -20238,7 +20148,11 @@ Final: jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insufi
 
 
 <script>
-);
+function openRulesModoSimple(){
+  openMegaPanel({
+    title: "Cómo jugar — Modo simple",
+    content: document.getElementById("rulesModoSimpleTemplate").innerHTML
+  });
 }
 </script>
 
@@ -20266,7 +20180,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 // Reimplementación usando el MISMO sistema que los otros botones funcionales
-);
+function openRulesModoSimple(){
+  if(typeof openInfoPanel === "function"){
+    openInfoPanel({
+      title: "Reglas modo simple",
+      html: document.getElementById("rulesModoSimpleTemplate").innerHTML,
+      size: "full" // misma configuración que los otros botones grandes
+    });
   } else if(typeof openMegaPanel === "function"){
     openMegaPanel({
       title: "Cómo jugar — Modo simple",
@@ -20294,7 +20214,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 /* === Integración correcta: reutilizar panel activo === */
+function showRulesModoSimpleInsideMenu(){
+  const panel = document.getElementById("megaPanel");
+  if(!panel) return;
 
+  const header = panel.querySelector(".mp-header");
+  const titleEl = header ? header.querySelector("span, h2, div") : null;
+  const content = panel.querySelector(".mp-content");
+
+  if(titleEl) titleEl.textContent = "Reglas modo simple";
+  if(content){
+    content.innerHTML = document.getElementById("rulesModoSimpleTemplate").innerHTML;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20387,7 +20318,14 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <script>
+function openRulesModoSimple(){
+  const backdrop = document.getElementById("rulesSimpleFloat");
+  const content = document.getElementById("rulesSimpleContent");
+  if(!backdrop || !content) return;
 
+  content.innerHTML = document.getElementById("rulesModoSimpleTemplate").innerHTML;
+  backdrop.style.display = "flex";
+}
 
 function closeRulesModoSimple(){
   const backdrop = document.getElementById("rulesSimpleFloat");
@@ -20529,7 +20467,14 @@ podés verlas y alcanzarlas.
 
 
 <script>
+function openRulesModoAmenaza(){
+  const backdrop = document.getElementById("rulesSimpleFloat");
+  const content = document.getElementById("rulesSimpleContent");
+  if(!backdrop || !content) return;
 
+  content.innerHTML = document.getElementById("rulesModoAmenazaTemplate").innerHTML;
+  backdrop.style.display = "flex";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = Array.from(document.querySelectorAll("button"))
@@ -20639,7 +20584,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script>
+function openRulesModoGuerra(){
+  const backdrop = document.getElementById("rulesSimpleFloat");
+  const content = document.getElementById("rulesSimpleContent");
+  if(!backdrop || !content) return;
 
+  content.innerHTML = document.getElementById("rulesModoGuerraTemplate").innerHTML;
+  backdrop.style.display = "flex";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = Array.from(document.querySelectorAll("button"))
@@ -21456,26 +21408,26 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<!-- === NEW CLEAN RULES MODAL (MODE SIMPLE) === -->
-<style id="rules-modal-style">
-#rulesOverlay{
+<!-- === HARD RESET RULES / GUIDE SYSTEM (SIMPLE) === -->
+<style>
+#ajRulesOverlay{
   position:fixed; inset:0;
   background:rgba(0,0,0,.45);
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:2000;
+  z-index:5000;
 }
-.rules-modal{
-  width:min(90vw,480px);
-  max-height:80vh;
+#ajRulesModal{
+  width:min(92vw,520px);
+  max-height:82vh;
   background:#fff;
   border-radius:16px;
-  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  box-shadow:0 24px 48px rgba(0,0,0,.4);
   display:flex;
   flex-direction:column;
 }
-.rules-header{
+#ajRulesHeader{
   background:#111;
   color:#fff;
   padding:12px 16px;
@@ -21484,12 +21436,12 @@ document.addEventListener('DOMContentLoaded', () => {
   justify-content:space-between;
   align-items:center;
 }
-.rules-body{
+#ajRulesBody{
   padding:16px;
   overflow:auto;
   font-size:14px;
 }
-.rules-close{
+#ajRulesClose{
   background:#b91c1c;
   color:#fff;
   border:none;
@@ -21500,80 +21452,66 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 </style>
 
-<div id="rulesOverlay">
-  <div class="rules-modal" role="dialog" aria-modal="true">
-    <div class="rules-header">
-      <span>Reglas – Modo Simple</span>
-      <button class="rules-close" id="rulesCloseBtn">Cerrar</button>
+<div id="ajRulesOverlay">
+  <div id="ajRulesModal" role="dialog" aria-modal="true">
+    <div id="ajRulesHeader">
+      <span id="ajRulesTitle">Reglas</span>
+      <button id="ajRulesClose">Cerrar</button>
     </div>
-    <div class="rules-body">
-      <p><em>Contenido de reglas (placeholder).</em></p>
+    <div id="ajRulesBody">
+      <p><em>Contenido placeholder.</em></p>
     </div>
   </div>
 </div>
 
-<script id="rules-modal-script">
+<script>
 (function(){
-  const overlay = document.getElementById('rulesOverlay');
-  const closeBtn = document.getElementById('rulesCloseBtn');
+  const overlay = document.getElementById('ajRulesOverlay');
+  const closeBtn = document.getElementById('ajRulesClose');
+  const title = document.getElementById('ajRulesTitle');
+  const body = document.getElementById('ajRulesBody');
 
-  function openRules(){
+  function open(type){
+    title.textContent = type === 'guia' ? 'Guía rápida' : 'Reglas – Modo Simple';
+    body.innerHTML = '<p><em>Contenido placeholder.</em></p>';
     overlay.style.display = 'flex';
   }
-  function closeRules(){
-    overlay.style.display = 'none';
-  }
+  function close(){ overlay.style.display = 'none'; }
 
-  closeBtn.addEventListener('click', closeRules);
-  overlay.addEventListener('click', e=>{
-    if(e.target === overlay) closeRules();
-  });
+  closeBtn.onclick = close;
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) close(); });
   document.addEventListener('keydown', e=>{
-    if(e.key === 'Escape' && overlay.style.display === 'flex') closeRules();
+    if(e.key==='Escape' && overlay.style.display==='flex') close();
   });
 
-  // hook rule buttons (by text)
-  document.querySelectorAll('button').forEach(btn=>{
-    const t=(btn.textContent||'').toLowerCase();
-    if(t.includes('regla')){
-      btn.onclick = openRules;
-    }
-  });
-})();
-</script>
-<!-- === END NEW CLEAN RULES MODAL === -->
-
-
-<script id="rules-modal-extend-guide">
-(function(){
-  const overlay = document.getElementById('rulesOverlay');
-  if(!overlay) return;
-  const title = overlay.querySelector('.rules-header span');
-  const body = overlay.querySelector('.rules-body');
-
-  function openWith(type){
-    if(type === 'guia'){
-      title.textContent = 'Guía rápida';
-      body.innerHTML = '<p><em>Contenido de guía rápida (placeholder).</em></p>';
-    }else{
-      title.textContent = 'Reglas – Modo Simple';
-      body.innerHTML = '<p><em>Contenido de reglas (placeholder).</em></p>';
-    }
-    overlay.style.display = 'flex';
+  // HARD RESET: replace buttons to nuke all previous handlers
+  function resetButtons(){
+    document.querySelectorAll('button').forEach(btn=>{
+      const txt=(btn.textContent||'').toLowerCase();
+      if(txt.includes('regla') || txt.includes('guía') || txt.includes('guia')){
+        const clone = btn.cloneNode(true);
+        btn.replaceWith(clone);
+        if(txt.includes('guía') || txt.includes('guia')){
+          clone.addEventListener('click', e=>{
+            e.preventDefault(); e.stopPropagation();
+            open('guia');
+          });
+        }else{
+          clone.addEventListener('click', e=>{
+            e.preventDefault(); e.stopPropagation();
+            open('reglas');
+          });
+        }
+      }
+    });
   }
 
-  // Hook buttons
-  document.querySelectorAll('button').forEach(btn=>{
-    const t = (btn.textContent||'').toLowerCase();
-    if(t.includes('regla')){
-      btn.onclick = ()=>openWith('reglas');
-    }
-    if(t.includes('guía') || t.includes('guia')){
-      btn.onclick = ()=>openWith('guia');
-    }
-  });
+  document.addEventListener('DOMContentLoaded', resetButtons);
+  setTimeout(resetButtons, 0);
+  setTimeout(resetButtons, 50);
 })();
 </script>
+<!-- === END HARD RESET === -->
 
 </body>
 
