@@ -8199,56 +8199,63 @@ body[data-theme="noche"] .regv2-btn{
 </script>
 
 
-<script id="aj-fix-rules-panel-root">
+<script id="aj-fix-rules-modal-correct">
 (function(){
-  function fix(){
+
+  function isVisible(el){
+    return el && el.offsetParent !== null && getComputedStyle(el).display !== 'none';
+  }
+
+  function getRulesPanel(){
+    // panel de reglas: suele ser el modal más chico encima del menú
+    return Array.from(document.querySelectorAll('div'))
+      .filter(el => {
+        const z = parseInt(getComputedStyle(el).zIndex || '0', 10);
+        return z >= 50 && el.offsetWidth > 150 && el.offsetHeight > 120;
+      })
+      .sort((a,b)=>{
+        const za = parseInt(getComputedStyle(a).zIndex || '0', 10);
+        const zb = parseInt(getComputedStyle(b).zIndex || '0', 10);
+        return zb - za;
+      })[0];
+  }
+
+  function attach(){
     try{
-      // El problema: el botón Cerrar apunta al megaPanel en vez del panel de reglas.
-      // Solución: detectar el panel visible MÁS ALTO y cerrarlo explícitamente.
-
-      function closeTopFloatingPanel(){
-        const visibles = Array.from(document.querySelectorAll('body *'))
-          .filter(el => {
-            if(!el.offsetParent) return false;
-            const z = parseInt(getComputedStyle(el).zIndex || '0', 10);
-            return z >= 40 && el.offsetWidth > 50 && el.offsetHeight > 50;
-          })
-          .sort((a,b)=>{
-            const za = parseInt(getComputedStyle(a).zIndex || '0', 10);
-            const zb = parseInt(getComputedStyle(b).zIndex || '0', 10);
-            return zb - za;
-          });
-
-        const top = visibles[0];
-        if(top){
-          top.style.display = 'none';
-        }
-      }
-
-      // Reemplazar comportamiento de botones "Cerrar" SOLO cuando hay reglas abiertas
       document.querySelectorAll('button,.btn').forEach(btn=>{
         const t = (btn.textContent||'').toLowerCase().trim();
         if(t === 'cerrar' || t === 'close'){
-          btn.addEventListener('click', (e)=>{
-            e.stopPropagation();
-            e.preventDefault();
-            setTimeout(closeTopFloatingPanel, 0);
+          btn.addEventListener('click', function(e){
+            const rules = getRulesPanel();
+            if(rules){
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              e.stopPropagation();
+              rules.style.display = 'none';
+              return false;
+            }
           }, true);
         }
       });
 
-      // ESC siempre cierra el panel flotante superior
-      document.addEventListener('keydown', (e)=>{
+      // ESC siempre cierra reglas primero
+      document.addEventListener('keydown', function(e){
         if(e.key === 'Escape'){
-          closeTopFloatingPanel();
+          const rules = getRulesPanel();
+          if(rules){
+            rules.style.display = 'none';
+            e.stopPropagation();
+          }
         }
-      });
+      }, true);
 
-    }catch(e){}
+    }catch(err){}
   }
 
-  document.addEventListener('DOMContentLoaded', fix);
-  setTimeout(fix, 200);
+  document.addEventListener('DOMContentLoaded', attach);
+  setTimeout(attach, 200);
+  setTimeout(attach, 500);
+
 })();
 </script>
 
