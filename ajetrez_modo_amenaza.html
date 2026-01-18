@@ -106,13 +106,10 @@
 /* Neutralizar cualquier layout previo */
 #btnMegaMenu{
   all: unset;
-  position: fixed !important;
-  top: calc(24px + (var(--square) * 5));
-  left: 50%;
-  transform: translateX(calc(-50% + (var(--square) * 10)));
-  z-index: 9999;
+  position: absolute;
+  z-index: 50;
 
-  /* Reaplicar estilo base del botón */
+  /* Estilo base conservado */
   background: #111;
   color: #fff;
   border-radius: 999px;
@@ -230,7 +227,21 @@
   .shift-ctrl.locked{ opacity:.55; pointer-events:none; filter: grayscale(20%); }
 
   #bottomBar{  position: relative;}
-  #btnMegaMenu{ min-width: 160px; font-size: 15px; }
+  #btnMegaMenu{
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 
   .hint{ position:absolute; top: 6px; font-size: 12px; color:#444; opacity:.55; user-select: none; pointer-events:none; }
   .hint.left{ left: 6px; } .hint.right{ right: 6px; } .hint.center{ left:50%; transform:translateX(-50%); }
@@ -369,7 +380,19 @@
 
 /* Sutil contorno blanco para el botón de Menú */
 #btnMegaMenu{
-  border: 1.5px solid rgba(255,255,255,0.70);
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 #btnMegaMenu:hover{
   border-color: rgba(255,255,255,0.85);
@@ -2021,8 +2044,19 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   justify-content:flex-start !important; /* evitamos space-between */
 }
 #btnMegaMenu{
-  margin-left:auto !important;
-  margin-right:auto !important; /* esto centra el Menú entre izquierda y derecha */
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 #rightControls{
   margin-left:0 !important;
@@ -2033,14 +2067,19 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 
 /* === Reset fuerte para Menú: eliminar offsets previos (sin fijarlo) === */
 #btnMegaMenu{
-  position: static !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* Asegurar contenedor: flex y permitir que Menú se centre con márgenes auto */
 #bottomBar{
@@ -2164,10 +2203,21 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 <style id="aj-menu-size-match-restart">
   /* Hacer que el botón Menú tenga el mismo tamaño visual que Reiniciar (.btn.small) */
-  #btnMegaMenu {
-    min-width: 0 !important;
-    width: auto !important;
-  }
+  #btnMegaMenu{
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
   /* En algunos layouts se aplican paddings por id anteriores, reforzamos aquí */
   #btnMegaMenu.btn.small {
     padding: 5.4px 8.1px !important; /* igual que .btn.small (-10%) */
@@ -2323,13 +2373,20 @@ body[data-theme="noche"] .regv2-btn{
   /* Centrar el botón Menú (horizontalmente) en la barra inferior */
   #bottomBar { position: relative !important; }
   #btnMegaMenu{
-    position: absolute !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    top: 6mm !important;        /* alineado con el resto de botones */
-    min-width: 0 !important;
-    z-index: 5 !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
   /* Espaciado limpio entre Pantalla activa y Reiniciar */
   #rightControls #wakeLockToggle + #btnRestartBR{
     margin-left: 8px !important;
@@ -2426,25 +2483,38 @@ body[data-theme="noche"] .regv2-btn{
 <style id="aj-free-megaMenu">
   /* Liberar completamente el botón de Menú para moverlo sin anclajes ni "rebotes" */
   #btnMegaMenu{
-    position: absolute !important;      /* fuera del flujo del topbar/flex */
-    left: var(--menu-x) !important;
-    top: var(--menu-y) !important;
-    transform: translate(-50%, 0) !important;  /* centrado horizontal por defecto */
-    margin: 0 !important;
-    bottom: auto !important;
-    right: auto !important;
-    inset: auto auto auto auto !important;     /* neutraliza cualquier "inset" previo */
-    z-index: 2147483200 !important;            /* por encima de la barra superior */
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 
   /* Neutralizar ajustes heredados del topbar que empujaban los botones */
   #topBar #btnMegaMenu,
   #topBar .btn#btnMegaMenu{
-    margin: 0 !important;
-    top: var(--menu-y) !important;
-    bottom: auto !important;
-    transform: translate(-50%, 0) !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Menú +0.5 casillero a la derecha (nudge) - 2025-09-13 -->
 <style id="aj-menu-nudge-right-0_5sq-2025-09-13">
@@ -5946,8 +6016,19 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 </style><style id="uiShrink10">
 /* Reducir 10%: botón Menú y botones de "Colabora con el proyecto" (donaciones) */
 #btnMegaMenu{
-  font-size: 90% !important;
-  padding: 7.2px 10.8px !important; /* 8px 12px -> -10% */
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* Donación: imágenes PayPal / Mercado Pago */
 
@@ -14948,7 +15029,19 @@ document.addEventListener('DOMContentLoaded', () => {
 <style>
 /* Ocultar SOLO el botón de menú del HUD */
 #btnMegaMenu{
-  display: none !important;
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
 }
 
 /* Botón menú libre, anclado al tablero */
@@ -15483,13 +15576,20 @@ document.addEventListener('DOMContentLoaded', () => {
 }
   /* Remove any forced centering on the Menu button so it can be shifted horizontally */
   #btnMegaMenu{
-    justify-self: initial !important;
-    
-    margin-left: initial !important;
-    margin-right: initial !important;
-    left: initial !important;
-    right: initial !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Flexible bottom bar & centered, narrower Menu button -->
 <style id="aj-bottomBar-flex-center-menu">
@@ -15501,26 +15601,38 @@ document.addEventListener('DOMContentLoaded', () => {
    position: relative;}
   /* Make Menu button size to content and center via auto margins */
   #btnMegaMenu{
-    flex: 0 0 auto !important;
-    width: auto !important;
-    min-width: 120px !important;     /* narrower than previous 160px */
-    white-space: nowrap !important;
-    margin-left: auto !important;
-    margin-right: auto !important;   /* centers in the bar */
-    align-self: center !important;
-    justify-self: auto !important;   /* neutralize any grid rule */
-    left: auto !important;
-    right: auto !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Menu button down 3mm + centered -->
 <style id="aj-menu-btn-down-3mm-center">
   #btnMegaMenu{
-    position: relative !important;
-    top: 10mm !important;                /* bajar 3 mm */
-    margin-left: auto !important;       /* centrado horizontal */
-    margin-right: auto !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ CLEAN: Standardize bottom bar layout, center Menu, keep narrow width -->
 <style id="aj-clean-bottombar-flex">
@@ -15532,15 +15644,20 @@ document.addEventListener('DOMContentLoaded', () => {
    position: relative;}
   /* Left spacer, Menu centered by auto margins, rightControls keeps right-aligned cluster */
   #btnMegaMenu{
-    flex: 0 0 auto !important;
-    width: auto !important;
-    min-width: 120px !important;
-    white-space: nowrap !important;
-    margin-left: auto !important;   /* centers */
-    margin-right: auto !important;
-    position: relative !important;
-    top: 10mm !important;            /* keep the requested drop */
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
   #rightControls{
     display: inline-flex !important;
     align-items: center !important;
@@ -15553,9 +15670,20 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- AJETREZ: Move Menu button 2 squares to the right -->
 <style id="aj-menu-btn-right-2squares">
   #btnMegaMenu{
-    position: relative !important;
-    left: calc(var(--square) * 2) !important;   /* +2 casilleros a la derecha */
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Center bottom bar buttons vertically inside the container -->
 <style id="aj-bottomBar-center-vert">
@@ -15575,9 +15703,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   /* Específico para asegurar que el Menú no herede un top mayor por especificidad previa */
   #btnMegaMenu{
-    position: relative !important;
-    top: 8mm !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Subir botones inferiores 2mm más (quedan en 6mm) -->
 <style id="aj-bottomBar-up-2mm-more">
@@ -15586,17 +15725,38 @@ document.addEventListener('DOMContentLoaded', () => {
     top: 6mm !important;
   }
   #btnMegaMenu{
-    position: relative !important;
-    top: 6mm !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Menú +3mm a la derecha (mantiene +2 casilleros) -->
 <style id="aj-menu-right-plus-3mm">
   #btnMegaMenu{
-    position: relative !important;
-    left: calc(var(--square) * 2 + 3mm) !important;
-    top: 6mm !important; /* mantener alineación vertical actual */
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Panel menú con altura REAL igual a 8 casilleros (mismo alto que las secciones del juego) -->
 <style id="aj-panel-equal-sections">
@@ -15742,9 +15902,20 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Desplaza el botón de Menú medio casillero adicional a la derecha
      Respetando el offset previo (+2 casilleros + 3mm) => ahora 2.5 casilleros + 3mm */
   #btnMegaMenu{
-    position: relative !important;
-    left: calc(var(--square) * 2.5 + 3mm) !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Reiniciar +1 casillero a la derecha (2025-09-13) -->
 <style id="aj-restart-right-plus-1sq-2025-09-13">
@@ -15782,17 +15953,39 @@ document.addEventListener('DOMContentLoaded', () => {
 <style id="aj-menu-right-plus-ANOTHER-0_5sq-2025-09-13">
   /* Mueve el botón de Menú medio casillero más a la derecha respecto del estado actual */
   #btnMegaMenu{
-    position: relative !important;
-    left: calc(var(--square) * 3 + 3mm) !important; /* antes: 2.5c + 3mm */
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Menú +3 mm adicionales (quedan +3c + 6mm) - 2025-09-13 -->
 <style id="aj-menu-right-plus-3mm-2025-09-13">
   /* Desde +3c + 3mm, sumamos +3mm más */
   #btnMegaMenu{
-    position: relative !important;
-    left: calc(var(--square) * 3 + 6mm) !important;
-  }
+  all: unset;
+  position: absolute;
+  z-index: 50;
+
+  /* Estilo base conservado */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
 </style>
 <!-- AJETREZ: Achicar botón 'Registro de partidas' en 5% (2025-09-13) -->
 <style id="aj-regv2-open-scale-95-2025-09-13">
