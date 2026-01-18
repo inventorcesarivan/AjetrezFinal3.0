@@ -520,7 +520,9 @@ body[data-theme="madera"] .board-wrap{
   }
 </style><style id="onlineToastPatch">
   #ajToast{
-    position:relative; /* bottom anchoring removed */ 18px;
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
     transform: translateX(-50%);
     max-width: min(680px, 92vw);
     padding: 12px 14px;
@@ -948,8 +950,6 @@ body, html{overflow:visible!important;}
 </style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-tidy">
   /* Quitar empuje vertical extra en la barra superior */
   #topBar{
-  position:relative;
-
     --bar-trim: 0mm !important;
     transform: none !important;
   }
@@ -1027,9 +1027,7 @@ body, html{overflow:visible!important;}
   }
 </style><style id="aj-topbar-align-bottom">
   /* Alinear EXACTAMENTE con el borde inferior del top bar */
-  #topBar{
-  position:relative;
- position: relative !important; }
+  #topBar{ position: relative !important; }
 
   /* Grupos y bloques principales anclados al borde inferior */
   #topBar #modeGroup,
@@ -1760,9 +1758,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 </style>
 <style id="aj-top-right-compact-2025-09-11">
   /* En el topbar, empuja el timer hacia la derecha */
-  #topBar{
-  position:relative;
- position: relative !important; }
+  #topBar{ position: relative !important; }
   #topBar #timeIndicator{ position: absolute !important; right: 10px !important; top: 6px !important; }
   /* Achicar ancho de los botones internos (registro/reproductor) */
   #timeIndicator #regv2-replayer,
@@ -3427,8 +3423,8 @@ body[data-theme="noche"] .regv2-btn{
 }
 </style>
 
-</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar" style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;height:calc(var(--toolbar-h) * 1.8);">
-<button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:50;" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
+</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
+<button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
 <button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
@@ -3462,7 +3458,7 @@ body[data-theme="noche"] .regv2-btn{
 </div></div></div><div aria-label="Ajetrez base limpia" id="board"></div><div aria-label="Decidir desplazamiento de fila" class="shift-ctrl" id="shiftCtrl" role="group"><span class="lbl" id="shiftLbl">Fila</span><span id="chooseWrap"><button aria-label="Mantener" id="btnKeep" type="button">Mantener</button><button aria-label="Desplazar sección" id="btnShift" type="button">Desplazar sección</button></span><span id="confirmWrap" style="display:none"><span id="choiceTxt" style="font-size:12px;font-weight:700;margin-right:6px;opacity:.85">Confirmar:</span><button aria-label="Confirmar" class="confirm" id="btnConfirm" type="button">Confirmar</button><button aria-label="Volver a elegir" id="btnBack" type="button">Cambiar elección</button></span></div><div id="overlay"><div id="banner">FIN</div></div><div id="panelBackdrop"></div><div aria-labelledby="mpTitle" aria-modal="true" id="megaPanel" role="dialog"><div class="apply-toast" id="applyToast">✔ Cambios guardados
 </div><div class="mp-header"><div id="mpTitle">Panel de Ajetrez
 </div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="btnClosePanel" type="button">Cerrar</button></div></div><div id="tabsView"><div class="mp-tabs">
-    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button></div><div class="mp-content">
+    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button></div><div class="mp-content">
 
     <div class="tab" id="tab-personalizacion" style="display:none"><h3>Personalización del juego</h3><div class="row"><div class="field"><label>Estilo de piezas</label><select id="selSprites"><option value="auto">Auto (usar sprites si están disponibles)</option><option value="sprites">Sprites (imágenes)</option><option value="unicode">Unicode (símbolos)</option></select>
 
@@ -3553,8 +3549,17 @@ body[data-theme="noche"] .regv2-btn{
 </div></div><div class="field"><label>Victorias Blancas</label><div class="pill" id="statW">0
 </div></div><div class="field"><label>Victorias Negras</label><div class="pill" id="statB">0
 </div></div><div class="field"><label>Tablas</label><div class="pill" id="statD">0
-</div></div></div><div id="infoSplit"><div id="infoLeft"><div style="margin-top:10px;max-height:120px;overflow:auto;border:1px solid #eee;border-radius:10px;"><table class="simple" id="logsTable"><thead><tr><th>Fecha</th><th>Modo</th><th>Resultado</th><th>Ganador</th><th>Movs</th></tr></thead><tbody></tbody></table></div><div id="replayDock" style="display:none"></div><!-- Replay panel will be injected here --><div id="replayDock"></div></div></div></div><div class="row" style="margin-top:8px;"></div></div><div class="tab" id="tab-mas" style="display:none"><h3>Más funciones</h3><p>Acá vamos a agregar: estilos claros/oscuros, selector de temas, perfiles, estadísticas detalladas, etc.</p></div></div></div></div></div><div style="height:var(--toolbar-gap)"></div>
-<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button></div></div></div><script>
+</div></div></div><div id="infoSplit"><div id="infoLeft"><div style="margin-top:10px;max-height:120px;overflow:auto;border:1px solid #eee;border-radius:10px;"><table class="simple" id="logsTable"><thead><tr><th>Fecha</th><th>Modo</th><th>Resultado</th><th>Ganador</th><th>Movs</th></tr></thead><tbody></tbody></table></div><div id="replayDock" style="display:none"></div><!-- Replay panel will be injected here --><div id="replayDock"></div></div></div></div><div class="row" style="margin-top:8px;"></div></div><div class="tab" id="tab-mas" style="display:none"><h3>Más funciones</h3><p>Acá vamos a agregar: estilos claros/oscuros, selector de temas, perfiles, estadísticas detalladas, etc.</p></div></div></div></div></div><div style="height:var(--toolbar-gap)"></div><div aria-label="Barra inferior" class="bar" id="bottomBar">
+<div aria-label="Botones de donación" id="donateBox">
+<span class="label">Colabora</span>
+<a class="btn imgbtn" href="https://link.mercadopago.com.ar/ajetrez" id="btnMercadoPago" rel="noopener noreferrer" target="_blank" title="Colabora con Mercado Pago">
+<img alt="Mercado Pago" src="m pago.jpg"/>
+</a>
+<a class="btn imgbtn" href="https://www.paypal.com/ncp/payment/PTRWET3UWGEY8" id="btnPaypal" rel="noopener noreferrer" target="_blank" title="Colabora con PayPal">
+<img alt="PayPal" src="logo paypal.png"/>
+</a>
+</div>
+<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
   function make(src){ try{ const a = new Audio(src); a.preload='auto'; a.volume = 0.85; return a; }catch(_){ return null; } }
@@ -4947,7 +4952,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     });
   }
   const fsRoot  = document.getElementById('fsRoot');
-  const btnFSBR = 
+  const btnFSBR = document.getElementById('btnFSBR');
   if(btnFSBR){
     btnFSBR.addEventListener('click', async ()=>{
       try{
@@ -11069,7 +11074,7 @@ function showToast(){
   function all(s,r){ return Array.from((r||document).querySelectorAll(s)); }
 
   // 1) Ocultar/deshabilitar la pestaña antigua que dispara el overlay automáticamente
-  var oldBtn = 
+  var oldBtn = document.getElementById('btnRegistrosTab');
   if(oldBtn){ oldBtn.style.display = 'none'; oldBtn.id = 'btnRegistrosTab__disabled'; }
   var oldTab = document.getElementById('tab-registros');
   if(oldTab){ oldTab.style.display='none'; oldTab.id = 'tab-registros__disabled'; }
@@ -15028,8 +15033,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script><style id="aj-bars-minus-3mm">
   /* Achicar 3 mm los contenedores de botones superior e inferior */
   #topBar{
-  position:relative;
-
     min-height: calc(var(--toolbar-h) - 3mm) !important;
   }
   #bottomBar{
