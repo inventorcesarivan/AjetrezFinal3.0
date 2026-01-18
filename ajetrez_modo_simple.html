@@ -3166,7 +3166,7 @@ body, html{overflow:visible!important;}
     // Hide when closing the registros panel
     if(id === 'rgClose'){
       var bar = $('#regv2-replayer');
-      if(bar){ bar./* visibility handled by toggle */ }
+      if(bar){ bar.style.display = 'none'; }
     }
   }, true);
 
@@ -3178,7 +3178,7 @@ body, html{overflow:visible!important;}
     B.stop = function(opts){
       var r = orig.apply(B, arguments);
       var bar = document.getElementById('regv2-replayer');
-      if(bar){ bar./* visibility handled by toggle */ }
+      if(bar){ bar.style.display = 'none'; }
       return r;
     };
     B.__stopHooked = true;
@@ -8135,7 +8135,7 @@ body[data-theme="noche"] .regv2-btn{
     document.querySelectorAll('button, .btn, [role="button"], a, span').forEach(el=>{
       const t = (el.textContent || '').toLowerCase().trim();
       if (t === 'bot vs bot' || t === 'bots vs bots') {
-        el./* visibility handled by toggle */
+        el.style.display = 'none';
         el.setAttribute('aria-hidden','true');
       }
     });
@@ -8168,7 +8168,7 @@ body[data-theme="noche"] .regv2-btn{
         t.includes('bot versus bot') ||
         (t.includes('bot') && t.includes('bot') && t.includes('demo'))
       ){
-        el./* visibility handled by toggle */
+        el.style.display = 'none';
         el.setAttribute('aria-hidden','true');
       }
     });
@@ -9073,7 +9073,7 @@ function showChoose(row){
   applyShiftCtrlLockVisual();
   ctrlLbl.textContent = 'Fila ' + (row+1);
   chooseWrap.style.display = 'inline';
-  confirmWrap./* visibility handled by toggle */
+  confirmWrap.style.display = 'none';
   ctrlEl.style.display = 'flex';
   if(window.AJ_RULES && window.AJ_RULES.legalShiftWithReason){
     const current = offsets[row]; const target = (current===0?8:0);
@@ -9085,15 +9085,15 @@ function showChoose(row){
 function showConfirm(label){
   applyShiftCtrlLockVisual();
   document.getElementById('choiceTxt').textContent = 'Confirmar: ' + label;
-  chooseWrap./* visibility handled by toggle */
+  chooseWrap.style.display = 'none';
   confirmWrap.style.display = 'inline';
   ctrlEl.style.display = 'flex';
 }
 function hideCtrl(){
   applyShiftCtrlLockVisual();
-  ctrlEl./* visibility handled by toggle */
+  ctrlEl.style.display = 'none';
   chooseWrap.style.display = 'inline';
-  confirmWrap./* visibility handled by toggle */
+  confirmWrap.style.display = 'none';
 }
 
 function evaluateStatus(nextToMove){
@@ -9106,7 +9106,7 @@ function evaluateStatus(nextToMove){
     const ms=legalMovesFor(vis,board,offsets,r,c,nextToMove,epTarget);
     if(ms.length>0) any = true;
   }
-  overlay./* visibility handled by toggle */
+  overlay.style.display = 'none';
   try{ if(inCheck(vis, nextToMove)){ window.__SND__ && __SND__.play('jaque'); } }catch(_){}
 
   if(!any){
@@ -9352,7 +9352,7 @@ function restartGame(){
   epTarget = null;
   gameOver = false; winner = null;
   hideCtrl();
-  const overlay = document.getElementById('overlay'); overlay./* visibility handled by toggle */
+  const overlay = document.getElementById('overlay'); overlay.style.display = 'none';
   try{ startNewGameLog(); }catch(_){}
   render();
 }
@@ -9981,8 +9981,8 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     refreshLoginState();
   }
   function closePanel(){
-    backdrop./* visibility handled by toggle */
-    panel./* visibility handled by toggle */
+    backdrop.style.display = 'none';
+    panel.style.display = 'none';
     btnOpen.setAttribute('aria-expanded','false');
   }
 
@@ -9990,12 +9990,12 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     const u = localStorage.getItem('aj_user');
     if(u){
       loggedUser.textContent = 'Usuario: ' + u;
-      loginView./* visibility handled by toggle */
+      loginView.style.display = 'none';
       tabsView.style.display = 'flex';
     }else{
       loggedUser.textContent = '';
       loginView.style.display = 'flex';
-      tabsView./* visibility handled by toggle */
+      tabsView.style.display = 'none';
     }
   }
 
@@ -10298,7 +10298,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     }
     function hideStartOverlay(){
       const el = document.getElementById('startOverlay');
-      if(el){ el./* visibility handled by toggle */ }
+      if(el){ el.style.display = 'none'; }
       window.GAME_STARTED = true;
       try{ kickBotsIfReady(); }catch(_){}
     }
@@ -11664,7 +11664,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   function hideTop(){
     var p = document.getElementById('replayPanel');
     if(!p) return;
-    p./* visibility handled by toggle */
+    p.style.display = 'none';
     p.classList.remove('rp-force-show');
   }
 
@@ -13241,7 +13241,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
 
   function showDetail(id){
     const all = loadAll(); const g = all.find(x=>x.id===id); if(!g) return;
-    $('#reg-empty')./* visibility handled by toggle */ $('#reg-detail').style.display = 'block';
+    $('#reg-empty').style.display = 'none'; $('#reg-detail').style.display = 'block';
     $('#reg-title').textContent = (g.meta?.title) || (humanMode(g.mode)+' — '+(g.result||'?'));
     $('#reg-date').textContent = fmtDate(g.createdAt);
     $('#reg-mode-val').textContent = humanMode(g.mode);
@@ -13427,7 +13427,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
   var btnClose  = $('#botChooserClose');
 
   function show(el){ if(el) el.style.display = 'block'; }
-  function hide(el){ if(el) el./* visibility handled by toggle */ }
+  function hide(el){ if(el) el.style.display = 'none'; }
 
   function loadStored(){
     var s = { single: null, w: null, b: null };
@@ -13679,8 +13679,8 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     var backdrop = document.getElementById('panelBackdrop');
     var btn = document.getElementById('btnMegaMenu');
     if(!panel || !backdrop || !btn) return;
-    backdrop./* visibility handled by toggle */
-    panel./* visibility handled by toggle */
+    backdrop.style.display = 'none';
+    panel.style.display = 'none';
     btn.setAttribute('aria-expanded','false');
   }
   // Capture-phase handler to toggle even if other listeners cancel/bubble-stop
@@ -13724,12 +13724,12 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
       var lu = document.getElementById('loggedUser');
       if(u){
         if(lu) lu.textContent = 'Usuario: ' + u;
-        if(lv) lv./* visibility handled by toggle */
+        if(lv) lv.style.display = 'none';
         if(tv) tv.style.display = 'flex';
       }else{
         if(lu) lu.textContent = '';
         if(lv) lv.style.display = 'flex';
-        if(tv) tv./* visibility handled by toggle */
+        if(tv) tv.style.display = 'none';
       }
     }catch(_){}
   }
@@ -13749,8 +13749,8 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     var backdrop = document.getElementById('panelBackdrop');
     var btn = document.getElementById('btnMegaMenu');
     if(!panel || !backdrop || !btn) return;
-    backdrop./* visibility handled by toggle */
-    panel./* visibility handled by toggle */
+    backdrop.style.display = 'none';
+    panel.style.display = 'none';
     btn.setAttribute('aria-expanded','false');
   }
 
@@ -13806,12 +13806,12 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
       var lu = document.getElementById('loggedUser');
       if(u){
         if(lu) lu.textContent = 'Usuario: ' + u;
-        if(lv) lv./* visibility handled by toggle */
+        if(lv) lv.style.display = 'none';
         if(tv) tv.style.display = 'flex';
       }else{
         if(lu) lu.textContent = '';
         if(lv) lv.style.display = 'flex';
-        if(tv) tv./* visibility handled by toggle */
+        if(tv) tv.style.display = 'none';
       }
     }catch(_){}
   }
@@ -13821,8 +13821,8 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     var backdrop = document.getElementById('panelBackdrop');
     var btn = document.getElementById('btnMegaMenu');
     if(!panel || !backdrop || !btn) return;
-    backdrop./* visibility handled by toggle */
-    panel./* visibility handled by toggle */
+    backdrop.style.display = 'none';
+    panel.style.display = 'none';
     btn.setAttribute('aria-expanded','false');
   }
 
@@ -14765,7 +14765,7 @@ div[style="height:var(--toolbar-gap)"]{
     if(fab){ fab.style.display = 'flex'; fab.dataset.id = id; }
   }
   function hideFab(){
-    if(fab){ fab./* visibility handled by toggle */ fab.removeAttribute('data-id'); }
+    if(fab){ fab.style.display = 'none'; fab.removeAttribute('data-id'); }
   }
 
   if(btn){
@@ -14905,8 +14905,8 @@ div[style="height:var(--toolbar-gap)"]{
         // Cerrar panel de Registros
         const bp = document.getElementById('rgBackdrop');
         const rp = document.getElementById('regPanel');
-        if(bp) bp./* visibility handled by toggle */
-        if(rp) rp./* visibility handled by toggle */
+        if(bp) bp.style.display = 'none';
+        if(rp) rp.style.display = 'none';
       }catch(_){}
       try{
         // Cerrar menú principal (Mega Panel)
@@ -14915,7 +14915,7 @@ div[style="height:var(--toolbar-gap)"]{
         const btnClose = document.getElementById('btnClosePanel');
         const btnOpen  = document.getElementById('btnMegaMenu');
         if(btnClose) btnClose.click(); // dispara la lógica nativa de cierre
-        if(pnl) pnl./* visibility handled by toggle */
+        if(pnl) pnl.style.display = 'none';
         if(bd)  bd.style.display  = 'none';
         if(btnOpen) btnOpen.setAttribute('aria-expanded','false');
       }catch(_){}
@@ -15237,7 +15237,7 @@ div[style="height:var(--toolbar-gap)"]{
   // Hide the floating open button if we managed to inject inside the menu
   function hideFloating(){
     var f = document.getElementById('regv2-open');
-    if(f) f./* visibility handled by toggle */
+    if(f) f.style.display = 'none';
   }
 
   // Attempt immediately
@@ -15395,7 +15395,7 @@ div[style="height:var(--toolbar-gap)"]{
       try{
         showMask();
         var startBtn = document.getElementById('btnStartGame');
-        if(startBtn) startBtn./* visibility handled by toggle */
+        if(startBtn) startBtn.style.display = 'none';
       }catch(_){}
       await playOrig();
       // When loop ends naturally, remove mask
@@ -15797,7 +15797,7 @@ catch(_){}
   ready(function(){
     var actions = document.getElementById('regv2-actions');
     if(actions){
-      actions./* visibility handled by toggle */
+      actions.style.display = 'none';
       // Add a "Cargar al reproductor" button near the speed select (or below textarea)
       if(!document.getElementById('regv2-sendto')){
         var btn = document.createElement('button');
@@ -16838,7 +16838,7 @@ function showToast(){
         var overlay = document.getElementById('regv2-overlay');
         if(overlay){ overlay.style.display = 'flex'; }
         var mp = document.getElementById('megaPanel') || document.getElementById('menu-panel');
-        if(mp){ mp./* visibility handled by toggle */ }
+        if(mp){ mp.style.display = 'none'; }
         // Si el botón Menú usa aria-expanded, actualizarlo
         var menuBtn = document.getElementById('btnMegaMenu');
         if(menuBtn){ menuBtn.setAttribute('aria-expanded','false'); }
@@ -16899,7 +16899,7 @@ function showToast(){
           howTab = document.createElement('div');
           howTab.className = 'tab';
           howTab.id = 'tab-como-jugar-ajetrez';
-          howTab./* visibility handled by toggle */
+          howTab.style.display = 'none';
           howTab.innerHTML =
             '<h3>Cómo jugar Ajetrez</h3>' +
             '<p style="margin-top:6px">Seleccioná una sección.</p>' +
@@ -16945,7 +16945,7 @@ function showToast(){
       tab = document.createElement('div');
       tab.className = 'tab';
       tab.id = 'tab-registros';
-      tab./* visibility handled by toggle */
+      tab.style.display = 'none';
       tab.innerHTML = ''
         + '<h3>Registros de partidas</h3>'
         + '<p style="margin:-4mm 0 14px 0; line-height:1.4">'
@@ -16966,7 +16966,7 @@ function showToast(){
           if(overlay){ overlay.style.display = 'flex'; }
           // Close menu panel if open
           var mp = $('#megaPanel') || $('#menu-panel');
-          if(mp){ mp./* visibility handled by toggle */ }
+          if(mp){ mp.style.display = 'none'; }
           var menuBtn = document.getElementById('btnMegaMenu');
           if(menuBtn){ menuBtn.setAttribute('aria-expanded','false'); }
         }catch(e){ console.warn('Error opening reg overlay:', e); }
@@ -16997,7 +16997,7 @@ function showToast(){
 
   // 1) Ocultar/deshabilitar la pestaña antigua que dispara el overlay automáticamente
   var oldBtn = document.getElementById('btnRegistrosTab');
-  if(oldBtn){ oldBtn./* visibility handled by toggle */ oldBtn.id = 'btnRegistrosTab__disabled'; }
+  if(oldBtn){ oldBtn.style.display = 'none'; oldBtn.id = 'btnRegistrosTab__disabled'; }
   var oldTab = document.getElementById('tab-registros');
   if(oldTab){ oldTab.style.display='none'; oldTab.id = 'tab-registros__disabled'; }
 
@@ -17025,7 +17025,7 @@ function showToast(){
       v2tab = document.createElement('div');
       v2tab.className = 'tab';
       v2tab.id = 'tab-registros-v2';
-      v2tab./* visibility handled by toggle */
+      v2tab.style.display = 'none';
       v2tab.innerHTML = ''
         + '<h3>Registros de partidas</h3>'
         + '<p style="margin:-4mm 0 14px 0; line-height:1.4">'
@@ -17043,7 +17043,7 @@ function showToast(){
         var overlay = $('#regv2-overlay');
         if(overlay){ overlay.style.display = 'flex'; }
         var mp = $('#megaPanel') || $('#menu-panel');
-        if(mp){ mp./* visibility handled by toggle */ }
+        if(mp){ mp.style.display = 'none'; }
         var menuBtn = $('#btnMegaMenu');
         if(menuBtn){ menuBtn.setAttribute('aria-expanded','false'); }
       });
@@ -17795,8 +17795,8 @@ function showToast(){
   function closeMenu(){
     try{
       var mp = $('#megaPanel'), bp = $('#panelBackdrop');
-      if(mp) mp./* visibility handled by toggle */
-      if(bp) bp./* visibility handled by toggle */
+      if(mp) mp.style.display = 'none';
+      if(bp) bp.style.display = 'none';
       var btn = $('#btnMegaMenu'); if(btn) btn.setAttribute('aria-expanded', 'false');
     }catch(_){}
   }
@@ -17873,7 +17873,7 @@ function showToast(){
       closeBtn.__wired = true;
       closeBtn.addEventListener('click', function(){
         var zf = $('#zonesFloat');
-        if(zf) zf./* visibility handled by toggle */
+        if(zf) zf.style.display = 'none';
         reopenMenuOnPersonal(); // reabrir menú en Personalización
       });
     }
@@ -18893,7 +18893,7 @@ function showToast(){
     // Si existe la fila vieja y queda vacía, ocultar
     var row = $('.aj-visual-row', tab);
     if(row && row.children.length === 0){
-      row./* visibility handled by toggle */
+      row.style.display = 'none';
     }
   }
 
@@ -19014,7 +19014,7 @@ function showToast(){
     btn.textContent = 'Versiones';
     btn.id = 'tabVersiones';
     var page = buildPanelContent();
-    page./* visibility handled by toggle */
+    page.style.display = 'none';
     tabs.appendChild(btn);
     content.appendChild(page);
     function showPage(){
@@ -19043,7 +19043,7 @@ function showToast(){
     dd.style.position = 'absolute';
     dd.style.right = '0';
     dd.style.top = '40px';
-    dd./* visibility handled by toggle */
+    dd.style.display = 'none';
     dd.style.flexDirection = 'column';
     dd.style.gap = '6px';
     dd.style.padding = '8px';
@@ -20863,7 +20863,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // Hide when Online is clicked
   btnOnline.addEventListener('click', ()=>{
     getBotDifficultyNodes().forEach(el=>{
-      el./* visibility handled by toggle */
+      el.style.display = 'none';
     });
   });
 
@@ -21310,40 +21310,16 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-
-</script>
-
-<script>
-
-</script>
-
-<script>
-
-</script>
-
-<script>
-/* === SAFE MENU RESTORE === */
+/* === MENU BUTTON: TOGGLE + FULL CLOSE SUPPORT === */
 document.addEventListener('DOMContentLoaded', () => {
-  let boardWrap = document.querySelector('.board-wrap');
+  const boardWrap = document.querySelector('.board-wrap');
   if(!boardWrap) return;
 
-  // Restore menu button
   let btn = document.getElementById('btnMenuMain');
   if(!btn){
     btn = document.createElement('button');
     btn.id = 'btnMenuMain';
     btn.textContent = 'MENÚ';
-    btn.style.position = 'absolute';
-    btn.style.left = '50%';
-    btn.style.bottom = 'calc(var(--square) * -1.2)';
-    btn.style.transform = 'translateX(-50%)';
-    btn.style.zIndex = '999';
-    btn.style.background = '#111';
-    btn.style.color = '#fff';
-    btn.style.borderRadius = '999px';
-    btn.style.padding = '8px 16px';
-    btn.style.fontWeight = '900';
-    btn.style.cursor = 'pointer';
     boardWrap.appendChild(btn);
   }
 
@@ -21354,35 +21330,39 @@ document.addEventListener('DOMContentLoaded', () => {
     if(backdrop) backdrop.style.display = 'block';
     if(mp) mp.style.display = 'flex';
   }
+
   function closeMenu(){
     if(backdrop) backdrop.style.display = 'none';
     if(mp) mp.style.display = 'none';
   }
 
-  // Toggle
-  btn.onclick = () => {
-    if(mp && mp.style.display === 'flex') closeMenu();
+  function isOpen(){
+    return mp && mp.style.display === 'flex';
+  }
+
+  // Toggle from menu button
+  btn.addEventListener('click', () => {
+    if(isOpen()) closeMenu();
     else openMenu();
-  };
+  });
 
-  // Backdrop closes
-  if(backdrop) backdrop.onclick = closeMenu;
+  // Backdrop closes menu
+  if(backdrop){
+    backdrop.addEventListener('click', closeMenu);
+  }
 
-  // Close button inside panel (simple)
+  // 🔑 Explicitly bind ANY button inside panel that says "Cerrar"
   if(mp){
     mp.querySelectorAll('button').forEach(b=>{
-      if((b.textContent||'').toLowerCase().includes('cerrar')){
-        b.onclick = closeMenu;
+      if(b.textContent.trim().toLowerCase() === 'cerrar'){
+        b.addEventListener('click', closeMenu);
       }
     });
   }
 });
-/* === END SAFE MENU RESTORE === */
+/* === END MENU BUTTON LOGIC === */
 </script>
 </body>
-
-
-
 
 
 
