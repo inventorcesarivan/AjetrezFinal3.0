@@ -8258,53 +8258,46 @@ button[title*="registro"]{
 
 
 <style>
-/* === LIMPIEZA DEFINITIVA DE REGISTROS INTERNOS === */
+/* === FIX DEFINITIVO: BLOQUEAR ACCESOS SECUNDARIOS DE REGISTROS === */
+/* Oculta COMPLETAMENTE el bloque de accesos rápidos que aparece debajo de las tabs */
+#megaPanel .mp-tabs + div,
+#megaPanel .mp-tabs + .row,
+#megaPanel .mp-tabs + .row + .row{
+  display:none !important;
+}
 
-/* Ocultar cualquier botón/píldora interna duplicada de Registros */
-#megaPanel .btn,
-#megaPanel .pill,
-#megaPanel button{
-  /* no tocamos todos, solo filtramos por texto abajo con JS */
+/* Seguridad extra: si algún botón suelto reaparece */
+#megaPanel button,
+#megaPanel .btn{
+  &[data-registros-ghost="true"]{
+    display:none !important;
+  }
 }
 </style>
 
 <script>
 (function(){
-  function cleanInternalRegistros(){
+  function hardBlockRegistroGhosts(){
     const panel = document.getElementById('megaPanel');
     if(!panel) return;
 
-    // 1) Tabs superiores (por si reaparecen)
-    panel.querySelectorAll('.mp-tabs .tab-btn').forEach(btn=>{
-      const t=(btn.textContent||'').trim().toLowerCase();
-      if(t.includes('registro')){
-        btn.remove();
+    // Marcar y ocultar cualquier botón "Registros" que NO sea el principal
+    panel.querySelectorAll('button, .btn').forEach(btn=>{
+      const t = (btn.textContent||'').trim().toLowerCase();
+      if(t === 'registros' || t === 'registro'){
+        // conservar solo el primero (botón negro principal)
+        if(panel.__registroKept){
+          btn.dataset.registrosGhost = 'true';
+          btn.style.display = 'none';
+        }else{
+          panel.__registroKept = true;
+        }
       }
     });
-
-    // 2) Botones/píldoras internas duplicadas
-    const found = [];
-    panel.querySelectorAll('button, .btn, .pill').forEach(el=>{
-      const t=(el.textContent||'').trim().toLowerCase();
-      if(t === 'registros' || t === 'registro' || t === 'registros '){
-        found.append if False else None
-      }
-    });
-
-    // Mantener SOLO el primer botón válido de registros
-    let kept = False
-    for el in panel.querySelectorAll('button, .btn, .pill'):
-        t=(el.textContent||'').strip().lower()
-        if t == 'registros':
-            if not kept:
-                kept = True
-            else:
-                el.remove()
-
   }
 
-  document.addEventListener('DOMContentLoaded', cleanInternalRegistros);
-  const mo = new MutationObserver(cleanInternalRegistros);
+  document.addEventListener('DOMContentLoaded', hardBlockRegistroGhosts);
+  const mo = new MutationObserver(hardBlockRegistroGhosts);
   mo.observe(document.body,{childList:true,subtree:true});
 })();
 </script>
