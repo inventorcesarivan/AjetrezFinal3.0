@@ -186,6 +186,46 @@
   transform: none !important;
 }
 
+
+/* === AJETREZ: CONTENEDOR SUPERIOR CREMA FLOTANTE === */
+.top-ui-float{
+  position: absolute;
+  top: calc(-1 * var(--square) * 2.2); /* arriba del contenedor actual */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--square) * var(--board-cols));
+  background: linear-gradient(#f3e6cf, #e8d7b8);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--square) * 0.5);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  z-index: 30;
+}
+
+/* asegurar referencia */
+.board-wrap{ position: relative; }
+
+/* botones dentro del contenedor crema */
+.top-ui-float .btn{
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  padding:8px 14px;
+  font-weight:900;
+  border:2px solid rgba(255,255,255,.75);
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+/* ocultar visualmente la barra anterior pero mantener JS */
+.board-topbar{
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+}
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
