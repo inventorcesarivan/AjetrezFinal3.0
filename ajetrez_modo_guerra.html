@@ -21175,11 +21175,16 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-/* === MENU BUTTON: TOGGLE + FULL CLOSE SUPPORT === */
+
+</script>
+
+<script>
+/* === MENU PANEL: BULLETPROOF CLOSE HANDLER === */
 document.addEventListener('DOMContentLoaded', () => {
   const boardWrap = document.querySelector('.board-wrap');
   if(!boardWrap) return;
 
+  // Ensure menu button exists
   let btn = document.getElementById('btnMenuMain');
   if(!btn){
     btn = document.createElement('button');
@@ -21195,39 +21200,54 @@ document.addEventListener('DOMContentLoaded', () => {
     if(backdrop) backdrop.style.display = 'block';
     if(mp) mp.style.display = 'flex';
   }
-
   function closeMenu(){
     if(backdrop) backdrop.style.display = 'none';
     if(mp) mp.style.display = 'none';
   }
-
   function isOpen(){
     return mp && mp.style.display === 'flex';
   }
 
-  // Toggle from menu button
+  // Toggle from main menu button
   btn.addEventListener('click', () => {
-    if(isOpen()) closeMenu();
-    else openMenu();
+    isOpen() ? closeMenu() : openMenu();
   });
 
-  // Backdrop closes menu
+  // Backdrop always closes
   if(backdrop){
     backdrop.addEventListener('click', closeMenu);
   }
 
-  // 🔑 Explicitly bind ANY button inside panel that says "Cerrar"
+  // 🔑 DELEGATED CLOSE HANDLER INSIDE PANEL
   if(mp){
-    mp.querySelectorAll('button').forEach(b=>{
-      if(b.textContent.trim().toLowerCase() === 'cerrar'){
-        b.addEventListener('click', closeMenu);
+    mp.addEventListener('click', (e) => {
+      const t = e.target;
+
+      // Any element explicitly marked
+      if(t.closest('[data-close], [data-action="close"]')){
+        closeMenu();
+        return;
+      }
+
+      // Buttons / elements whose text, title or aria-label says "cerrar"
+      const el = t.closest('button, a, div');
+      if(el){
+        const txt = (el.textContent || '').toLowerCase();
+        const title = (el.getAttribute('title') || '').toLowerCase();
+        const aria = (el.getAttribute('aria-label') || '').toLowerCase();
+
+        if(txt.includes('cerrar') || title.includes('cerrar') || aria.includes('cerrar')){
+          closeMenu();
+          return;
+        }
       }
     });
   }
 });
-/* === END MENU BUTTON LOGIC === */
+/* === END MENU PANEL CLOSE HANDLER === */
 </script>
 </body>
+
 
 
 
