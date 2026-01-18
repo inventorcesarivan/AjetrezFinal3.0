@@ -14973,6 +14973,49 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
+
+<script id="aj-fix-play-online-center">
+(function(){
+  function fixPlayOnline(){
+    // posibles IDs usados para el botón jugar online
+    const btn =
+      document.getElementById('btnPlayOnline') ||
+      document.getElementById('btnOnline') ||
+      document.getElementById('btnJugarOnline');
+
+    if(!btn) return;
+
+    // llevarlo al body para evitar interferencias de layout
+    if(btn.parentElement !== document.body){
+      document.body.appendChild(btn);
+    }
+
+    // centrarlo horizontalmente respecto a la pantalla (tablero está centrado)
+    btn.style.all = 'unset';
+    btn.style.position = 'fixed';
+    btn.style.top = '18px';
+    btn.style.left = '50%';
+    btn.style.transform = 'translateX(-50%)';
+    btn.style.zIndex = '9998';
+
+    // estilo coherente con el resto
+    btn.style.background = '#111';
+    btn.style.color = '#fff';
+    btn.style.borderRadius = '999px';
+    btn.style.padding = '8px 14px';
+    btn.style.fontWeight = '800';
+    btn.style.cursor = 'pointer';
+    btn.style.boxShadow = '0 2px 8px rgba(0,0,0,.15)';
+    btn.style.border = '1.5px solid rgba(255,255,255,0.7)';
+  }
+
+  window.addEventListener('load', fixPlayOnline);
+  setTimeout(fixPlayOnline, 0);
+  setTimeout(fixPlayOnline, 150);
+  setTimeout(fixPlayOnline, 350);
+})();
+</script>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
