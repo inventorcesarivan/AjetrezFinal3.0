@@ -8219,6 +8219,59 @@ button[title*="registro"]{
 })();
 </script>
 
+
+<style>
+/* === LIMPIEZA DEFINITIVA DE REGISTROS INTERNOS === */
+
+/* Ocultar cualquier botón/píldora interna duplicada de Registros */
+#megaPanel .btn,
+#megaPanel .pill,
+#megaPanel button{
+  /* no tocamos todos, solo filtramos por texto abajo con JS */
+}
+</style>
+
+<script>
+(function(){
+  function cleanInternalRegistros(){
+    const panel = document.getElementById('megaPanel');
+    if(!panel) return;
+
+    // 1) Tabs superiores (por si reaparecen)
+    panel.querySelectorAll('.mp-tabs .tab-btn').forEach(btn=>{
+      const t=(btn.textContent||'').trim().toLowerCase();
+      if(t.includes('registro')){
+        btn.remove();
+      }
+    });
+
+    // 2) Botones/píldoras internas duplicadas
+    const found = [];
+    panel.querySelectorAll('button, .btn, .pill').forEach(el=>{
+      const t=(el.textContent||'').trim().toLowerCase();
+      if(t === 'registros' || t === 'registro' || t === 'registros '){
+        found.append if False else None
+      }
+    });
+
+    // Mantener SOLO el primer botón válido de registros
+    let kept = False
+    for el in panel.querySelectorAll('button, .btn, .pill'):
+        t=(el.textContent||'').strip().lower()
+        if t == 'registros':
+            if not kept:
+                kept = True
+            else:
+                el.remove()
+
+  }
+
+  document.addEventListener('DOMContentLoaded', cleanInternalRegistros);
+  const mo = new MutationObserver(cleanInternalRegistros);
+  mo.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
