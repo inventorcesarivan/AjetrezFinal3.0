@@ -100,7 +100,29 @@
 }
 /* ===== END MOBILE UI REDUCTION ===== */
 
-</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
+
+/* ===== FLOATING UI RESET ===== */
+#topBar, .bar{
+  position: relative !important;
+}
+#topBar button,
+.bar button{
+  position: absolute !important;
+  top: 8px;
+  z-index: 40;
+}
+#topBar button:nth-of-type(1){ left: 8px; }
+#topBar button:nth-of-type(2){ left: 50%; transform: translateX(-50%); }
+#topBar button:nth-of-type(3){ right: 8px; }
+
+/* Neutralizar cualquier anclaje viejo */
+button{
+  bottom:auto !important;
+  transform:none !important;
+}
+/* ===== END FLOATING UI RESET ===== */
+</style>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
     --square: 56px;
@@ -3637,7 +3659,7 @@ button#btnOnlineExternal:active{
 <button class="btn small" id="rp-start" type="button">⏮</button>
 <button class="btn small" id="rp-prev" type="button">◀︎</button>
 <button class="btn small" id="rp-play" type="button">▶︎</button>
-<button class="btn small" id="rp-pause" type="button">⏸</button>
+
 <button class="btn small" id="rp-next" type="button">▶︎</button>
 <button class="btn small" id="rp-end" type="button">⏭</button>
 <select aria-label="Velocidad de reproducción" class="sel small" id="rp-speed" style="width:88px">
@@ -6334,7 +6356,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
         + '<button class="btn small" id="rpExit">Cerrar</button></div>'
         + '<div class="row" style="gap:6px;margin-bottom:8px;"><button class="btn small" id="rpReset">Reiniciar</button>'
         + '<button class="btn small" id="rpPrev">◀</button><button class="btn small" id="rpPlay">▶</button>'
-        + '<button class="btn small" id="rpPause" style="display:none;">⏸</button><button class="btn small" id="rpNext">▶</button>'
+        + '<button class="btn small" id="rpNext">▶</button>'
         + '<select id="rpSpeed" class="sel small"><option value="1200">x1</option><option value="700">x1.7</option><option value="400">x3</option></select>'
         + '</div><div class="pill" id="replayMeta" style="margin-bottom:8px;">—</div><ol id="rpList" style="margin:0;padding-left:20px;max-height:58vh;overflow:auto;"></ol>';
       document.body.appendChild(panel);
@@ -6478,7 +6500,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
         + '    <button class="btn small" id="rpReset">Reiniciar</button>'
         + '    <button class="btn small" id="rpPrev">◀</button>'
         + '    <button class="btn small" id="rpPlay">▶</button>'
-        + '    <button class="btn small" id="rpPause" style="display:none;">⏸</button>'
+        + '    '
         + '    <button class="btn small" id="rpNext">▶</button>'
         + '    <select id="rpSpeed" class="sel small"><option value="1200">x1</option><option value="700">x1.7</option><option value="400">x3</option></select>'
         + '  </div>'
@@ -9392,8 +9414,8 @@ div[style="height:var(--toolbar-gap)"]{
 <textarea id="regv2-input" placeholder="Pega UCI: e2e4 e7e5 g1f3 ..."></textarea>
 <div class="regv2-row">
 <button class="regv2-btn" id="regv2-play" type="button">Reproducir en tablero</button>
-<button class="regv2-btn" id="regv2-pause" type="button">Pausar</button>
-<button class="regv2-btn" id="regv2-resume" type="button">Continuar</button>
+
+
 <button class="regv2-btn" id="regv2-stop" type="button">Detener</button>
 </div>
 </div>
@@ -10084,7 +10106,7 @@ catch(_){}
       + '<button id="rp2-start" title="Inicio">|◀</button>'
       + '<button id="rp2-prev"  title="Anterior">⏮</button>'
       + '<button id="rp2-play"  title="Reproducir">▶</button>'
-      + '<button id="rp2-pause" title="Pausar" style="display:none">⏸</button>'
+      + ''
       + '<button id="rp2-next"  title="Siguiente">⏭</button>'
       + '<button id="rp2-end"   title="Fin">▶|</button>'
       + '<span class="sep"></span>'
