@@ -14909,6 +14909,30 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
+
+<script id="aj-remove-fullscreen">
+(function(){
+  function removeFS(){
+    const ids = [
+      'btnFS','btnFullscreen','btnFullScreen','btnFSBR','fullscreenBtn'
+    ];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.remove();
+    });
+  }
+
+  window.addEventListener('load', removeFS);
+  setTimeout(removeFS, 0);
+  setTimeout(removeFS, 150);
+  setTimeout(removeFS, 350);
+
+  if(window.toggleFullscreen){
+    window.toggleFullscreen = function(){};
+  }
+})();
+</script>
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
