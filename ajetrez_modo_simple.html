@@ -8531,46 +8531,56 @@ button#btnOnlineExternal:active{
 </script>
 
 
-<script id="aj-fix-floating-panels-close">
+<script id="aj-fix-rules-panel-root">
 (function(){
-  function fixPanels(){
+  function fix(){
     try{
-      // detectar paneles flotantes de reglas / ayuda
-      document.querySelectorAll('.floating-panel, .rule-panel, .info-panel').forEach(panel=>{
-        if(panel.dataset.fixedClose) return;
-        panel.dataset.fixedClose = "1";
+      // El problema: el botón Cerrar apunta al megaPanel en vez del panel de reglas.
+      // Solución: detectar el panel visible MÁS ALTO y cerrarlo explícitamente.
 
-        // asegurar z-index correcto
-        panel.style.zIndex = 999;
+      function closeTopFloatingPanel(){
+        const visibles = Array.from(document.querySelectorAll('body *'))
+          .filter(el => {
+            if(!el.offsetParent) return false;
+            const z = parseInt(getComputedStyle(el).zIndex || '0', 10);
+            return z >= 40 && el.offsetWidth > 50 && el.offsetHeight > 50;
+          })
+          .sort((a,b)=>{
+            const za = parseInt(getComputedStyle(a).zIndex || '0', 10);
+            const zb = parseInt(getComputedStyle(b).zIndex || '0', 10);
+            return zb - za;
+          });
 
-        // click fuera cierra
-        document.addEventListener('click', (e)=>{
-          if(panel.style.display !== 'none' && panel.contains(e.target) === false){
-            panel.style.display = 'none';
-          }
-        });
+        const top = visibles[0];
+        if(top){
+          top.style.display = 'none';
+        }
+      }
 
-        // tecla ESC cierra
-        document.addEventListener('keydown', (e)=>{
-          if(e.key === 'Escape'){
-            panel.style.display = 'none';
-          }
-        });
-
-        // asegurar botón cerrar si existe
-        panel.querySelectorAll('button, .btn').forEach(btn=>{
-          const t = (btn.textContent||'').toLowerCase();
-          if(t.includes('cerrar') || t.includes('close')){
-            btn.onclick = ()=>{ panel.style.display = 'none'; };
-          }
-        });
+      // Reemplazar comportamiento de botones "Cerrar" SOLO cuando hay reglas abiertas
+      document.querySelectorAll('button,.btn').forEach(btn=>{
+        const t = (btn.textContent||'').toLowerCase().trim();
+        if(t === 'cerrar' || t === 'close'){
+          btn.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            setTimeout(closeTopFloatingPanel, 0);
+          }, true);
+        }
       });
+
+      // ESC siempre cierra el panel flotante superior
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape'){
+          closeTopFloatingPanel();
+        }
+      });
+
     }catch(e){}
   }
 
-  document.addEventListener('DOMContentLoaded', fixPanels);
-  setTimeout(fixPanels, 200);
-  setTimeout(fixPanels, 500);
+  document.addEventListener('DOMContentLoaded', fix);
+  setTimeout(fix, 200);
 })();
 </script>
 
