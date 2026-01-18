@@ -100,14 +100,7 @@
 }
 /* ===== END MOBILE UI REDUCTION ===== */
 
-
-.top-controls{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-</style>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
+</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
     --square: 56px;
@@ -527,9 +520,7 @@ body[data-theme="madera"] .board-wrap{
   }
 </style><style id="onlineToastPatch">
   #ajToast{
-    position: fixed;
-    left: 50%;
-    bottom: 18px;
+    position:relative; /* bottom anchoring removed */ 18px;
     transform: translateX(-50%);
     max-width: min(680px, 92vw);
     padding: 12px 14px;
@@ -957,12 +948,6 @@ body, html{overflow:visible!important;}
 </style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-topbar-tidy">
   /* Quitar empuje vertical extra en la barra superior */
   #topBar{
-  height: calc(var(--toolbar-h) * 1.6);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-
     --bar-trim: 0mm !important;
     transform: none !important;
   }
@@ -1040,13 +1025,7 @@ body, html{overflow:visible!important;}
   }
 </style><style id="aj-topbar-align-bottom">
   /* Alinear EXACTAMENTE con el borde inferior del top bar */
-  #topBar{
-  height: calc(var(--toolbar-h) * 1.6);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
- position: relative !important; }
+  #topBar{ position: relative !important; }
 
   /* Grupos y bloques principales anclados al borde inferior */
   #topBar #modeGroup,
@@ -1777,13 +1756,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 </style>
 <style id="aj-top-right-compact-2025-09-11">
   /* En el topbar, empuja el timer hacia la derecha */
-  #topBar{
-  height: calc(var(--toolbar-h) * 1.6);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
- position: relative !important; }
+  #topBar{ position: relative !important; }
   #topBar #timeIndicator{ position: absolute !important; right: 10px !important; top: 6px !important; }
   /* Achicar ancho de los botones internos (registro/reproductor) */
   #timeIndicator #regv2-replayer,
@@ -3645,7 +3618,7 @@ button#btnOnlineExternal:active{
 }
 </style>
 
-</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
+</head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar" style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;height:calc(var(--toolbar-h) * 1.8);">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Bot versus bot (demo)" data-mode="bot-vs-bot" style="position:static;" type="button">Bot versus bot (demo)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
@@ -3851,16 +3824,7 @@ button#btnOnlineExternal:active{
 </div></div><div class="field"><label>Victorias Blancas</label><div class="pill" id="statW">0
 </div></div><div class="field"><label>Victorias Negras</label><div class="pill" id="statB">0
 </div></div><div class="field"><label>Tablas</label><div class="pill" id="statD">0
-</div></div></div><div id="infoSplit"><div id="infoLeft"><div style="margin-top:10px;max-height:120px;overflow:auto;border:1px solid #eee;border-radius:10px;"><table class="simple" id="logsTable"><thead><tr><th>Fecha</th><th>Modo</th><th>Resultado</th><th>Ganador</th><th>Movs</th></tr></thead><tbody></tbody></table></div><div id="replayDock" style="display:none"></div><!-- Replay panel will be injected here --><div id="replayDock"></div></div></div></div><div class="row" style="margin-top:8px;"></div></div><div class="tab" id="tab-mas" style="display:none"><h3>Más funciones</h3><p>Acá vamos a agregar: estilos claros/oscuros, selector de temas, perfiles, estadísticas detalladas, etc.</p></div></div></div></div></div><div style="height:var(--toolbar-gap)"></div><div aria-label="Barra inferior" class="bar" id="bottomBar">
-<div aria-label="Botones de donación" id="donateBox">
-<span class="label">Colabora</span>
-<a class="btn imgbtn" href="https://link.mercadopago.com.ar/ajetrez" id="btnMercadoPago" rel="noopener noreferrer" target="_blank" title="Colabora con Mercado Pago">
-<img alt="Mercado Pago" src="m pago.jpg"/>
-</a>
-<a class="btn imgbtn" href="https://www.paypal.com/ncp/payment/PTRWET3UWGEY8" id="btnPaypal" rel="noopener noreferrer" target="_blank" title="Colabora con PayPal">
-<img alt="PayPal" src="logo paypal.png"/>
-</a>
-</div>
+</div></div></div><div id="infoSplit"><div id="infoLeft"><div style="margin-top:10px;max-height:120px;overflow:auto;border:1px solid #eee;border-radius:10px;"><table class="simple" id="logsTable"><thead><tr><th>Fecha</th><th>Modo</th><th>Resultado</th><th>Ganador</th><th>Movs</th></tr></thead><tbody></tbody></table></div><div id="replayDock" style="display:none"></div><!-- Replay panel will be injected here --><div id="replayDock"></div></div></div></div><div class="row" style="margin-top:8px;"></div></div><div class="tab" id="tab-mas" style="display:none"><h3>Más funciones</h3><p>Acá vamos a agregar: estilos claros/oscuros, selector de temas, perfiles, estadísticas detalladas, etc.</p></div></div></div></div></div><div style="height:var(--toolbar-gap)"></div>
 <div class="right-ctrls" id="rightControls"><button class="btn small" id="btnRestartBR" type="button">Reiniciar</button><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
@@ -15085,12 +15049,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script><style id="aj-bars-minus-3mm">
   /* Achicar 3 mm los contenedores de botones superior e inferior */
   #topBar{
-  height: calc(var(--toolbar-h) * 1.6);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-
     min-height: calc(var(--toolbar-h) - 3mm) !important;
   }
   #bottomBar{
