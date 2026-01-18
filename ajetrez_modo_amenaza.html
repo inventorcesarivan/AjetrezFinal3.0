@@ -158,7 +158,7 @@
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -194,7 +194,7 @@
   box-shadow: 0 6px 20px rgba(0,0,0,.08);
 }
   .shell{ display:grid; grid-template-rows: var(--toolbar-h) var(--toolbar-gap) auto var(--toolbar-gap) var(--toolbar-h); justify-items:center; }
-  .bar, .board-wrap{ width: calc(var(--square) * var(--board-cols)); }
+  .bar, .board-wrap{ position: relative; width: calc(var(--square) * var(--board-cols)); }
   .board-wrap{ position:relative; }
   .bar{ position: relative; height: var(--toolbar-h); border-radius: 10px; background: transparent; }
 
@@ -280,7 +280,7 @@
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -538,7 +538,7 @@ body[data-theme="oliva"] .sq.lateral.dark  { background: #c7d3ba; }
 body[data-theme="oliva"] { color:#223; }
 
 /* Eliminar veta/lineas en MADERA dentro del contenedor del tablero */
-body[data-theme="madera"] .board-wrap{
+body[data-theme="madera"] .board-wrap{ position: relative;
   background-image: none !important;
   background-blend-mode: normal !important;
 }
@@ -573,7 +573,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -621,7 +621,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -645,7 +645,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -692,7 +692,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -726,7 +726,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -770,7 +770,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -799,7 +799,7 @@ body[data-theme="madera"] .board-wrap{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -830,7 +830,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -870,7 +870,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -900,7 +900,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -928,7 +928,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -991,7 +991,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1037,7 +1037,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1063,7 +1063,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1088,7 +1088,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1126,7 +1126,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1155,7 +1155,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1332,7 +1332,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1360,7 +1360,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1403,7 +1403,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1430,7 +1430,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1453,7 +1453,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1482,7 +1482,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1515,7 +1515,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1552,7 +1552,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1579,7 +1579,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1607,7 +1607,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1649,7 +1649,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1688,7 +1688,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1716,7 +1716,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1741,7 +1741,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1768,7 +1768,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1811,7 +1811,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1861,7 +1861,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1885,7 +1885,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1912,7 +1912,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1943,7 +1943,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1970,7 +1970,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -1999,7 +1999,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2038,7 +2038,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2077,7 +2077,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2116,7 +2116,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2155,7 +2155,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2194,7 +2194,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2229,7 +2229,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2260,7 +2260,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2288,7 +2288,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2313,7 +2313,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2412,7 +2412,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2451,7 +2451,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2502,7 +2502,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2533,7 +2533,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2562,7 +2562,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2587,7 +2587,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2617,7 +2617,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2650,7 +2650,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2683,7 +2683,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2709,7 +2709,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2751,7 +2751,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2775,7 +2775,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2874,7 +2874,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2949,7 +2949,7 @@ body, html{overflow:visible!important;}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -2975,7 +2975,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3000,7 +3000,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3037,7 +3037,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3088,7 +3088,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3127,7 +3127,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3158,7 +3158,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3184,7 +3184,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3218,7 +3218,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3253,7 +3253,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3301,7 +3301,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3342,7 +3342,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3366,7 +3366,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3391,7 +3391,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3425,7 +3425,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3467,7 +3467,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3518,7 +3518,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3545,7 +3545,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3572,7 +3572,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3599,7 +3599,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3626,7 +3626,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3656,7 +3656,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3683,7 +3683,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3709,7 +3709,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3744,7 +3744,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3803,7 +3803,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3844,7 +3844,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3877,7 +3877,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3908,7 +3908,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -3955,7 +3955,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4002,7 +4002,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4065,7 +4065,7 @@ body[data-theme="pizarra"]#regv2-panel *{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4095,7 +4095,7 @@ body[data-theme="pizarra"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4127,7 +4127,7 @@ body[data-theme="pizarra"] .tab-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4160,7 +4160,7 @@ body[data-theme="noche"] #regv2-panel .btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4195,7 +4195,7 @@ body[data-theme="noche"] #verDevToastClose{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4225,7 +4225,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4246,7 +4246,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4265,7 +4265,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4286,7 +4286,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4305,7 +4305,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4351,7 +4351,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4401,7 +4401,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4434,7 +4434,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4464,7 +4464,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4507,7 +4507,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4556,7 +4556,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4588,7 +4588,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4623,7 +4623,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4653,7 +4653,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4685,7 +4685,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4725,7 +4725,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4744,7 +4744,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4776,7 +4776,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4816,7 +4816,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4855,7 +4855,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4888,7 +4888,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4918,7 +4918,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4951,7 +4951,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -4979,7 +4979,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5040,7 +5040,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5069,7 +5069,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5098,7 +5098,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5127,7 +5127,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5156,7 +5156,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5185,7 +5185,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5209,7 +5209,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5247,7 +5247,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5277,7 +5277,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5320,7 +5320,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5366,7 +5366,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5406,7 +5406,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5451,7 +5451,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5481,7 +5481,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5517,7 +5517,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5548,7 +5548,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5577,7 +5577,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5617,7 +5617,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5648,7 +5648,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5683,7 +5683,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5722,7 +5722,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5768,7 +5768,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5810,7 +5810,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5839,7 +5839,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5867,7 +5867,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5901,7 +5901,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5946,7 +5946,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -5987,7 +5987,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6020,7 +6020,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6063,7 +6063,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6106,7 +6106,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6148,7 +6148,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6190,7 +6190,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6235,7 +6235,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6283,7 +6283,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6341,7 +6341,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6381,7 +6381,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6451,7 +6451,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6498,7 +6498,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6562,7 +6562,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6603,7 +6603,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6651,7 +6651,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6703,7 +6703,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6734,7 +6734,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6761,7 +6761,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6810,7 +6810,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6848,7 +6848,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6879,7 +6879,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6910,7 +6910,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -6954,7 +6954,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -7003,7 +7003,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -7039,7 +7039,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -7093,7 +7093,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -7190,7 +7190,7 @@ body[data-theme="noche"] .regv2-btn{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9578,7 +9578,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9605,7 +9605,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9646,7 +9646,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9682,7 +9682,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9721,7 +9721,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9760,7 +9760,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9787,7 +9787,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9824,7 +9824,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9860,7 +9860,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9887,7 +9887,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -9926,7 +9926,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -10006,7 +10006,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -10046,7 +10046,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -10082,7 +10082,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -10819,7 +10819,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11136,7 +11136,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11196,7 +11196,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11230,7 +11230,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11268,7 +11268,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11384,7 +11384,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11528,7 +11528,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -11592,7 +11592,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13036,7 +13036,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13071,7 +13071,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13110,7 +13110,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13137,7 +13137,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13171,7 +13171,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13198,7 +13198,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13571,7 +13571,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13771,7 +13771,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13825,7 +13825,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -13879,7 +13879,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -14093,7 +14093,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -14156,7 +14156,7 @@ div[style="height:var(--toolbar-gap)"]{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -14557,7 +14557,7 @@ catch(_){}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -14661,7 +14661,7 @@ catch(_){}
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -16050,7 +16050,7 @@ function showToast(){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -16103,7 +16103,7 @@ function showToast(){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -16131,7 +16131,7 @@ function showToast(){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -16254,7 +16254,7 @@ function showToast(){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -16387,7 +16387,7 @@ function showToast(){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -18175,7 +18175,7 @@ function showVeteranBanner(color){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -18375,7 +18375,7 @@ function showVeteranBanner(color){
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -18875,7 +18875,7 @@ Final: jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insufi
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19029,7 +19029,7 @@ document.addEventListener("DOMContentLoaded", () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19097,7 +19097,7 @@ document.addEventListener("DOMContentLoaded", () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19459,7 +19459,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19658,7 +19658,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19750,7 +19750,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19817,7 +19817,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -19905,7 +19905,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20187,7 +20187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20244,7 +20244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20272,7 +20272,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20296,7 +20296,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20354,7 +20354,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20398,7 +20398,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20439,7 +20439,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20490,7 +20490,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20531,7 +20531,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20561,7 +20561,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20608,7 +20608,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20653,7 +20653,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20694,7 +20694,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20736,7 +20736,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20776,7 +20776,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20806,7 +20806,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20831,7 +20831,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20862,7 +20862,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20890,7 +20890,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20925,7 +20925,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20967,7 +20967,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -20996,7 +20996,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21032,7 +21032,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21064,7 +21064,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21107,7 +21107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21129,7 +21129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21148,7 +21148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21170,7 +21170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21189,7 +21189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21211,7 +21211,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21230,7 +21230,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21252,7 +21252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21271,7 +21271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21313,7 +21313,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21355,7 +21355,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21384,7 +21384,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21418,7 +21418,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21508,7 +21508,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21643,7 +21643,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21693,7 +21693,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21733,7 +21733,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21764,7 +21764,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21794,7 +21794,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
@@ -21864,7 +21864,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   right: calc(var(--square) * 0.5);
   bottom: calc(var(--square) * 0.5);
-  z-index: 50;
+  z-index: 60;
 
   background: #111;
   color: #fff;
