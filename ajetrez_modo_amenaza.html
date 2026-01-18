@@ -40,7 +40,7 @@
 })();
 </script>
 <style id="bottomBarSizingFix">
-#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+#bottomBar{ display:none !important; }
 
   /* Desplazar los botones de pago 1 casillero a la derecha */
   #btnMercadoPago{ margin-left: calc(var(--casillero, 64px) * 0.5); }
@@ -249,7 +249,7 @@
   .shift-ctrl .confirm:hover{ background:#149143; }
   .shift-ctrl.locked{ opacity:.55; pointer-events:none; filter: grayscale(20%); }
 
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   #btnMegaMenu{
   all: unset;
   position: absolute;
@@ -915,10 +915,10 @@ body, html{overflow:visible!important;}
 
 </style><!-- AJETREZ PATCH: Reajuste de posición de la barra inferior --><style id="aj-bottombar-fix">
   /* Sube la barra ~1 casillero sin afectar layout */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   /* Opcional: en pantallas estrechas mantenemos el ajuste */
   @media (max-width: 820px){
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -1347,10 +1347,10 @@ body, html{overflow:visible!important;}
 
 </style><style id="aj-bottombar-height-patch">
   /* Achicar altura del contenedor de botones inferior ~1 casillero (desde abajo hacia arriba) */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   /* Mantener el ajuste también en pantallas angostas */
   @media (max-width: 820px){
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -1444,7 +1444,7 @@ body, html{overflow:visible!important;}
 /* === END RESTART FREE VISUAL POSITION === */
 
 </style><!-- LEGACY AUDIO CSS REMOVED --><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-minus4mm">
-#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+#bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -1506,7 +1506,7 @@ body, html{overflow:visible!important;}
 
   /* Asegurar que el alto del bottom bar vuelva a su valor base para mantener simetría
      (ya no restamos 3mm aquí, porque los recortamos con el separador inferior). */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -1531,7 +1531,7 @@ body, html{overflow:visible!important;}
 </style><style id="aj-bottomBase-trim-2mm">
   /* Base de color de la barra inferior: recorta visualmente 2mm desde abajo
      sin mover los botones (no altera la altura ni el layout del contenedor). */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   #bottomBar::before{
     content: "";
     position: absolute;
@@ -1594,7 +1594,7 @@ body, html{overflow:visible!important;}
 
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottomBase-trim-6mm">
   /* Achica el alto total de la base de color: -6mm en total (3mm arriba + 3mm abajo) */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   #bottomBar::before{
     top: 3mm !important;
     bottom: 3mm !important;
@@ -1876,7 +1876,7 @@ body, html{overflow:visible!important;}
 
 </style><!-- LEGACY AUDIO CSS REMOVED --><style id="aj-bottombar-align-to-dashed">
   /* Subir la barra inferior para que su borde superior toque la línea punteada del área del tablero */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -1933,7 +1933,7 @@ body, html{overflow:visible!important;}
       bottom: 0 !important; /* antes: 3mm */
     }
     /* Asegura que no haya offsets residuales */
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -2278,7 +2278,7 @@ body, html{overflow:visible!important;}
      Eso puede producir una separación aparente por redondeo/altura disponible.
      Neutralizamos 'top' y compensamos con un micro-offset adicional. */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -2303,7 +2303,7 @@ body, html{overflow:visible!important;}
 
 </style><!-- AJETREZ: Mobile — subir barra inferior ~1 casillero --><style id="aj-bottomBar-mobile-up-1square-0909">
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -3925,7 +3925,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 <style>
 
 /* === Ajetrez: Centrar botón Menú en bottomBar SIN fijar posiciones === */
-#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+#bottomBar{ display:none !important; }
 #btnMegaMenu{
   all: unset;
   position: absolute;
@@ -3990,7 +3990,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
   border: 1.5px solid rgba(255,255,255,0.7);
 }
 /* Asegurar contenedor: flex y permitir que Menú se centre con márgenes auto */
-#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+#bottomBar{ display:none !important; }
 /* Grupo derecho queda al final de la fila sin empujar el centro */
 #rightControls{ margin-left: 0 !important; }
 
@@ -4701,7 +4701,7 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 <style id="aj-bottom-menu-center">
   /* Centrar el botón Menú (horizontalmente) en la barra inferior */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   #btnMegaMenu{
   all: unset;
   position: absolute;
@@ -4846,7 +4846,7 @@ body[data-theme="noche"] .regv2-btn{
     margin:0;
   }
   /* Asegurar que la barra no recorte el botón */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -9873,7 +9873,6 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 }
 /* === END RESTART FREE VISUAL POSITION === */
 
-</style><style id="tabsHeaderCream">
 /* Fondo crema para el contenedor de los botones superiores (mp-tabs) */
 #megaPanel .mp-tabs{
   background: #f7f1e1 !important;
@@ -12940,10 +12939,7 @@ function setHelp(mode){
     'online':
       '<p style="margin:0 0 6px 0;"><strong>En desarrollo:</strong> jugarás por Internet contra otra persona, con sincronización y turnos remotos.</p>' +
       '<p style="margin:0 0 8px 0;">Aún no está activo. Si querés que llegue antes, podés apoyar el proyecto con una donación.</p>' +
-      '<div class="donation-buttons" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;align-items:center;">' +
-        '' +
-        '' +
-      '</div>'
+      ''
   };
 
   function setHelp(mode){
@@ -13031,7 +13027,7 @@ function setHelp(mode){
 div[style="height:var(--toolbar-gap)"]{
   height: calc(var(--toolbar-gap) - 4mm) !important;
 }
-#bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+#bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -13131,7 +13127,7 @@ div[style="height:var(--toolbar-gap)"]{
 <style id="aj-bottomBar-mobile-up-1more-square-0909b">
   /* Subir TODOS los botones inferiores +1 casillero en versión móvil */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -13192,7 +13188,7 @@ div[style="height:var(--toolbar-gap)"]{
 <style id="aj-bottomBar-mobile-down-half-square-0909c">
   /* Versión móvil: bajar los botones inferiores medio casillero */
   @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+    #bottomBar{ display:none !important; }
   }
 
 
@@ -19395,16 +19391,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       Desde ya, muchas gracias.
     </p>
 
-    <div id="online-donations"
-      style="margin-top:28px;display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;">
-      
-      
-
-      <a href="https://link.mercadopago.com.ar/ajetrez" target="_blank" rel="noopener">
-        <img src="mercadopago.jpg" alt="Donar con MercadoPago"
-          style="height:46px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);">
-      </a>
-    </div>
+    
   `;
 
   function resetModes(){
@@ -20191,7 +20178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   #topBar{
     min-height: calc(var(--toolbar-h) - 3mm) !important;
   }
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -20239,7 +20226,7 @@ document.addEventListener('DOMContentLoaded', () => {
   #timeIndicator{ top: calc(6px + var(--bar-trim)) !important; }
 
   /* BOTTOM BAR: recorte explícito adicional coherente con el cálculo existente */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
 
   /* Evitar que el transform de los botones “suba” el contenido,
      enmascarando el recorte real del contenedor */
@@ -20300,7 +20287,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </style><style id="aj-bottombar-extra-minus-3mm">
   /* Recorte adicional del contenedor inferior: -3mm desde abajo hacia arriba */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
 
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
@@ -20384,7 +20371,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- AJETREZ: Flexible bottom bar & centered, narrower Menu button -->
 <style id="aj-bottomBar-flex-center-menu">
   /* Use a flexible layout (not grid) to avoid 'forced' positioning */
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   /* Make Menu button size to content and center via auto margins */
   #btnMegaMenu{
   all: unset;
@@ -20468,7 +20455,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </style>
 <!-- AJETREZ CLEAN: Standardize bottom bar layout, center Menu, keep narrow width -->
 <style id="aj-clean-bottombar-flex">
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   /* Left spacer, Menu centered by auto margins, rightControls keeps right-aligned cluster */
   #btnMegaMenu{
   all: unset;
@@ -20560,7 +20547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </style>
 <!-- AJETREZ: Center bottom bar buttons vertically inside the container -->
 <style id="aj-bottomBar-center-vert">
-  #bottomBar{ position: relative; width: calc(var(--square) * var(--board-cols)); margin-left:auto; margin-right:auto; }
+  #bottomBar{ display:none !important; }
   /* Colocar todos los botones de la barra a la misma altura visual */
   #bottomBar .btn{
     position: relative !important;
