@@ -21543,6 +21543,38 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <!-- === END NEW CLEAN RULES MODAL === -->
 
+
+<script id="rules-modal-extend-guide">
+(function(){
+  const overlay = document.getElementById('rulesOverlay');
+  if(!overlay) return;
+  const title = overlay.querySelector('.rules-header span');
+  const body = overlay.querySelector('.rules-body');
+
+  function openWith(type){
+    if(type === 'guia'){
+      title.textContent = 'Guía rápida';
+      body.innerHTML = '<p><em>Contenido de guía rápida (placeholder).</em></p>';
+    }else{
+      title.textContent = 'Reglas – Modo Simple';
+      body.innerHTML = '<p><em>Contenido de reglas (placeholder).</em></p>';
+    }
+    overlay.style.display = 'flex';
+  }
+
+  // Hook buttons
+  document.querySelectorAll('button').forEach(btn=>{
+    const t = (btn.textContent||'').toLowerCase();
+    if(t.includes('regla')){
+      btn.onclick = ()=>openWith('reglas');
+    }
+    if(t.includes('guía') || t.includes('guia')){
+      btn.onclick = ()=>openWith('guia');
+    }
+  });
+})();
+</script>
+
 </body>
 
 
