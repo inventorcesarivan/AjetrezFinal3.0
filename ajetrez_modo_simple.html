@@ -14934,19 +14934,19 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<!-- === MENU LIBRE (SOLUCIÓN LIMPIA) === -->
+
+
+
+<!-- === MENU LIBRE (SOLUCIÓN LIMPIA DEFINITIVA) === -->
 <style>
-/* Ocultar SOLO el botón de menú del HUD, sin tocar lógica */
+/* Ocultar SOLO el botón de menú del HUD */
 #btnMegaMenu{
   display: none !important;
 }
 
-/* Botón de menú independiente */
+/* Botón menú libre, anclado al tablero */
 #menuLibre{
-  position: fixed;
-  top: calc(18px - (var(--square) * 0.5));
-  left: 50%;
-  transform: translateX(calc(-50% + (var(--square) * 6)));
+  position: absolute;
   z-index: 9999;
 
   background: #111;
@@ -14962,23 +14962,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
+  const originalBtn = document.getElementById('btnMegaMenu');
+  if(!originalBtn){
+    console.error('No se encontró btnMegaMenu');
+    return;
+  }
+
   // Crear botón libre
   const btn = document.createElement('button');
   btn.id = 'menuLibre';
   btn.textContent = 'Menú';
 
-  // Al hacer click, llamar al MISMO menú real
-  btn.onclick = () => {
-    if(typeof openMegaPanel === 'function'){
-      openMegaPanel();
-    } else if(typeof toggleMenu === 'function'){
-      toggleMenu();
-    } else {
-      console.warn('No se encontró función de menú');
-    }
-  };
+  // === CONEXIÓN CORRECTA ===
+  // Clonamos EXACTAMENTE el comportamiento del botón original
+  btn.onclick = () => originalBtn.click();
 
-  document.body.appendChild(btn);
+  // === POSICIÓN LIMPIA ===
+  // Anclarlo al contenedor real del tablero
+  const board =
+    document.getElementById('board') ||
+    document.getElementById('game') ||
+    document.querySelector('.board');
+
+  if(!board){
+    console.error('No se encontró el tablero');
+    return;
+  }
+
+  // el tablero debe ser relativo para que el botón se ancle bien
+  board.style.position = 'relative';
+  board.appendChild(btn);
+
+  // Posición exacta:
+  // 6 casilleros a la derecha del centro
+  // medio casillero hacia arriba
+  btn.style.left = 'calc(50% + (var(--square) * 6))';
+  btn.style.top  = 'calc(0px - (var(--square) * 0.5))';
+
 });
 </script>
 <!-- === FIN MENU LIBRE === -->
