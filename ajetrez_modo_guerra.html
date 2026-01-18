@@ -21167,32 +21167,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-/* === ADD_NEW_MAIN_MENU_BUTTON (SAFE) === */
+
+</script>
+
+<script>
+/* === ADD_NEW_MAIN_MENU_BUTTON (TOGGLE + CLOSE FIX) === */
 document.addEventListener('DOMContentLoaded', () => {
   const boardWrap = document.querySelector('.board-wrap');
   if(!boardWrap) return;
 
-  // ensure single instance
   let btn = document.getElementById('btnMenuMain');
   if(!btn){
     btn = document.createElement('button');
     btn.id = 'btnMenuMain';
     btn.textContent = 'MENÚ';
-    btn.addEventListener('click', () => {
-      // Hook to existing menu logic if present
-      const mp = document.getElementById('megaPanel');
-      const backdrop = document.getElementById('panelBackdrop');
-      if(mp && backdrop){
-        backdrop.style.display = 'block';
-        mp.style.display = 'flex';
-      }
-    });
     boardWrap.appendChild(btn);
   }
+
+  const mp = document.getElementById('megaPanel');
+  const backdrop = document.getElementById('panelBackdrop');
+
+  function openMenu(){
+    if(backdrop) backdrop.style.display = 'block';
+    if(mp) mp.style.display = 'flex';
+  }
+
+  function closeMenu(){
+    if(backdrop) backdrop.style.display = 'none';
+    if(mp) mp.style.display = 'none';
+  }
+
+  function isOpen(){
+    return mp && mp.style.display === 'flex';
+  }
+
+  btn.addEventListener('click', () => {
+    if(isOpen()) closeMenu();
+    else openMenu();
+  });
+
+  // Close when clicking backdrop
+  if(backdrop){
+    backdrop.addEventListener('click', closeMenu);
+  }
+
+  // Close buttons inside panel
+  document.querySelectorAll('[data-close-panel], .mp-close, #btnClosePanel').forEach(el=>{
+    el.addEventListener('click', closeMenu);
+  });
 });
 /* === END ADD_NEW_MAIN_MENU_BUTTON === */
 </script>
 </body>
+
 
 
 
