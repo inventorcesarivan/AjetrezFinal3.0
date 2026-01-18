@@ -101,9 +101,23 @@
 /* ===== END MOBILE UI REDUCTION ===== */
 
 
-/* === AJETREZ PATCH: desplazar botón Menú ~10 casilleros a la derecha === */
+/* === AJETREZ PATCH SEGURO === */
+
+/* 1. Ocultar botón de Registros (no rompe panel) */
+#btnRegistros{
+  display: none !important;
+}
+
+/* 2. Liberar y posicionar botón Menú */
+.bar{
+  position: relative;
+}
+
 #btnMegaMenu{
-  transform: translateX(calc(var(--square) * 10));
+  position: absolute !important;
+  top: 6px;
+  left: calc(var(--square) * 10);
+  z-index: 25;
 }
 
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
