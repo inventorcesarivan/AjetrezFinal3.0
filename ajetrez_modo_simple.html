@@ -299,7 +299,7 @@
   position:absolute;
   inset:0;
   background: rgba(0,0,0,.35);
-  display:none;
+  display:none; pointer-events:auto;
   z-index: 30;
 }
   #megaPanel{
@@ -1070,7 +1070,7 @@ body, html{overflow:visible!important;}
   position:absolute;
   inset:0;
   background: rgba(0,0,0,.35);
-  display:none;
+  display:none; pointer-events:auto;
   z-index: 30;
 }
 #megaPanel{
@@ -8535,7 +8535,7 @@ button#btnOnlineExternal:active{
 </div><button id="btnStartGame" type="button">Comenzar partida</button><div class="hint">Pulsa para iniciar. Bloquea el juego en todos los modos hasta empezar.
 </div></div></div><div aria-label="Ajetrez base limpia" id="board"></div><div aria-label="Decidir desplazamiento de fila" class="shift-ctrl" id="shiftCtrl" role="group"><span class="lbl" id="shiftLbl">Fila</span><span id="chooseWrap"><button aria-label="Mantener" id="btnKeep" type="button">Mantener</button><button aria-label="Desplazar sección" id="btnShift" type="button">Desplazar sección</button></span><span id="confirmWrap" style="display:none"><span id="choiceTxt" style="font-size:12px;font-weight:700;margin-right:6px;opacity:.85">Confirmar:</span><button aria-label="Confirmar" class="confirm" id="btnConfirm" type="button">Confirmar</button><button aria-label="Volver a elegir" id="btnBack" type="button">Cambiar elección</button></span></div><div id="overlay"><div id="banner">FIN</div></div><div id="panelBackdrop"></div><div aria-labelledby="mpTitle" aria-modal="true" id="megaPanel" role="dialog"><div class="apply-toast" id="applyToast">✔ Cambios guardados
 </div><div class="mp-header"><div id="mpTitle">Panel de Ajetrez
-</div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn cerrar" id="btnClosePanel" type="button">Cerrar</button></div></div><div id="tabsView"><div class="mp-tabs">
+</div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="btnClosePanel" type="button">Cerrar</button></div></div><div id="tabsView"><div class="mp-tabs">
     <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button></div><div class="mp-content">
 
     <div class="tab" id="tab-personalizacion" style="display:none"><h3>Personalización del juego</h3><div class="row"><div class="field"><label>Estilo de piezas</label><select id="selSprites"><option value="auto">Auto (usar sprites si están disponibles)</option><option value="sprites">Sprites (imágenes)</option><option value="unicode">Unicode (símbolos)</option></select>
@@ -21368,17 +21368,42 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMegaPanel(){
     const panel = document.getElementById('megaPanel');
     const backdrop = document.getElementById('panelBackdrop');
-    if(panel) panel.style.display = 'none';
-    if(backdrop) backdrop.style.display = 'none';
+    if(panel){
+      panel.style.display = 'none';
+      panel.classList.remove('open');
+    }
+    if(backdrop){
+      backdrop.style.display = 'none';
+    }
+    document.body.classList.remove('menu-open');
   }
-  window.closeMegaPanel = closeMegaPanel;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const btnCerrar = document.querySelector('#megaPanel .btn.cerrar');
-    if(btnCerrar){
-      btnCerrar.addEventListener('click', closeMegaPanel);
+  // Captura global (por si el botón está bloqueado por overlays o z-index)
+  document.addEventListener('click', function(e){
+    const t = e.target;
+    if(!t) return;
+
+    // Botón cerrar por clase, id o texto
+    if(
+      t.closest('.btn.cerrar') ||
+      t.id === 'btnCerrarPanel' ||
+      (t.textContent && t.textContent.trim().toLowerCase() === 'cerrar')
+    ){
+      e.preventDefault();
+      e.stopPropagation();
+      closeMegaPanel();
+    }
+  }, true); // <-- capture phase
+
+  // Click en backdrop también cierra
+  document.addEventListener('click', function(e){
+    const b = document.getElementById('panelBackdrop');
+    if(b && e.target === b){
+      closeMegaPanel();
     }
   });
+
+  window.closeMegaPanel = closeMegaPanel;
 })();
 </script>
 
