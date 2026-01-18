@@ -130,6 +130,27 @@
   pointer-events: auto;
 }
 
+
+/* === AJETREZ PATCH: BOTÓN REGISTROS FLOTANTE ABAJO DERECHA === */
+#btnRegistros{
+  display: block !important;
+  all: unset;
+  position: fixed !important;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+
+  /* estilo consistente */
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.7);
+}
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
