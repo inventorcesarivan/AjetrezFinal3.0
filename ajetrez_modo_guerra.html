@@ -1506,9 +1506,9 @@ body, html{overflow:visible!important;}
   }
 
   // Try hooking repeatedly until available
-  var tries = 0, t = setInterval(function(){
+  var tries = 0, t = {
     tries++;
-    if(hookStop() || tries > 40){ clearInterval(t); }
+    if(hookStop() || tries > 40){  }
   }, 250);
 })();
 </script>
@@ -1540,7 +1540,7 @@ body, html{overflow:visible!important;}
   function $(s,root=document){ return root.querySelector(s); }
   function ensureWrap(){
     var host = $('#timeIndicator');
-    var time = $('#timeTxt');
+    
     var pause = $('#pauseBtn');
     if(!host || !time || !pause) return false;
 
@@ -5412,7 +5412,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 // BOT_UI sin carteles: mantiene tiempos pero no muestra banners
 (function(){
   try{
-    var timeouts = [];
+    
     function clearAll(){ try{ timeouts.forEach(clearTimeout); }catch(_){ } timeouts = []; }
     function headlessShowFor(text, ms, onAction, actionLead){
       ms = (typeof ms==='number' && ms>0) ? ms : 0;
@@ -5481,13 +5481,13 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
       }
       // Por si otros flujos actualizan GAME_STARTED, hacemos un pequeño polling corto al inicio para estabilizar el estado
       var tries = 0;
-      var tm = setInterval(function(){
+      var tm = {
         tries++;
         try{
           if(window.GAME_STARTED){ setAttention(false); }
           else { setAttention(true); }
         }catch(_){}
-        if(tries>30) clearInterval(tm);
+        if(tries>30) 
       }, 250);
     }
     if(document.readyState==='loading'){
@@ -6708,10 +6708,10 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
       setActiveOnline(btn);
       // Mover el toast inmediatamente y también reintentar por si aparece con delay
       let tries = 0;
-      const iv = setInterval(()=>{
+      const iv = =>{
         tries++;
         const ok = moveToastUp();
-        if(ok || tries>20){ clearInterval(iv); }
+        if(ok || tries>20){  }
       }, 60);
     }, {passive:true});
   }
@@ -7035,8 +7035,8 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     if(running) return;
     running = true; startTS = Date.now();
     box.classList.remove('paused','finished');
-    if(tick) clearInterval(tick);
-    tick = setInterval(render, 250);
+    if(tick) 
+    tick = 
     render();
   }
   function stop() {
@@ -7044,7 +7044,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     acc += (Date.now() - startTS);
     running = false; startTS = null;
     box.classList.add('paused');
-    if(tick) { clearInterval(tick); tick=null; }
+    if(tick) {  tick=null; }
     render();
   }
   function reset(){
@@ -7706,7 +7706,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     const total    = (g.moves||[]).length;
     const evals    = (g.moves||[]).map(m=>m.eval).filter(x=>x!=null);
     const avgEval  = evals.length ? (evals.reduce((a,b)=>a+b,0)/evals.length).toFixed(2) : '—';
-    const avgTime  = (g.moves||[]).map(m=>m.time).filter(x=>x>0);
+    
     const avgT     = avgTime.length ? Math.round(avgTime.reduce((a,b)=>a+b,0)/avgTime.length)+'s' : '—';
     function li(label, val){ const li=document.createElement('li'); li.innerHTML='<b>'+label+':</b> '+val; sl.appendChild(li); }
     li('Movimientos', total); li('Capturas', captures); li('Checks', checks); li('Mates', mates);
@@ -8869,7 +8869,7 @@ div[style="height:var(--toolbar-gap)"]{
     }
   }
   document.addEventListener('DOMContentLoaded', bind);
-  setInterval(bind, 1500); // por si el panel se re-renderiza
+   // por si el panel se re-renderiza
 })();
 </script>
 <script id="aj-replay">
@@ -8934,8 +8934,8 @@ div[style="height:var(--toolbar-gap)"]{
     if(slider){ slider.max = (RP.game?.moves?.length||0); slider.value = RP.ply; }
   }
 
-  function play(){ if(RP.timer) return; RP.timer = setInterval(()=>{ if(RP.ply >= (RP.game.moves.length)){ pause(); return; } gotoPly(RP.ply+1); }, 700 / RP.speed); }
-  function pause(){ if(RP.timer){ clearInterval(RP.timer); RP.timer=null; } }
+  function play(){ if(RP.timer) return; RP.timer = =>{ if(RP.ply >= (RP.game.moves.length)){ pause(); return; } gotoPly(RP.ply+1); }, 700 / RP.speed); }
+  function pause(){ if(RP.timer){  RP.timer=null; } }
 
   function startReplay(game){
     RP.game = game; RP.ply = 0; RP.speed = 1;
@@ -10087,7 +10087,7 @@ catch(_){}
   document.addEventListener('regv2:scriptLoaded', function(){ extendBot(); hookPlay(); updateUI(); });
 
   // Periodic UI refresh (in case of external index changes)
-  setInterval(updateUI, 400);
+  
 })();
 </script>
 <script id="rv2-sticky-js">
@@ -10272,7 +10272,7 @@ catch(_){}
   }, true);
 
   // --- Auto-guardar ---
-  let __rv2Current = null; let __rv2SaveTimer = null;
+  let __rv2Current = null; 
   function draftSaveSoon(){ try{ if(__rv2SaveTimer) clearTimeout(__rv2SaveTimer); __rv2SaveTimer = setTimeout(draftPersist, 400); }catch(_){ } }
   function draftPersist(){
     try{
@@ -10606,7 +10606,7 @@ catch(_){}
   }
 
   // Debounce simple
-  var resizeTimer;
+  
   function onResize(){
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function(){
@@ -10826,7 +10826,7 @@ function showToast(){
 
   function moveIfNeeded(){
     var topBar = $('#topBar');
-    var clock = $('#timeIndicator');
+    
     var reg = $('#regv2-clock-btn');
     var pause = $('#pauseBtn');
     if(!topBar || !clock) return false;
@@ -10849,7 +10849,7 @@ function showToast(){
 
   function layout(){
     try{
-      var clock = $('#timeIndicator');
+      
       var reg = $('#regv2-clock-btn');
       var pause = $('#pauseBtn');
       if(!clock) return;
@@ -10875,13 +10875,13 @@ function showToast(){
     // Intentar mover de entrada
     moveIfNeeded();
     // Reintentos, ya que reloj/pausa/registro se insertan dinámicamente
-    var tries = 0, t = setInterval(function(){
+    var tries = 0, t = {
       tries++;
-      if(moveIfNeeded() || tries > 40){ clearInterval(t); }
+      if(moveIfNeeded() || tries > 40){  }
     }, 250);
     // Recalcular en resize y de vez en cuando por variaciones del texto del reloj
     window.addEventListener('resize', layout);
-    setInterval(layout, 1000);
+    
   });
 })();
 </script>
@@ -10931,9 +10931,9 @@ function showToast(){
   ready(function(){
     if(addBtn()) return;
     // Esperar a que el menú esté en el DOM
-    var tries = 0, t = setInterval(function(){
+    var tries = 0, t = {
       tries++;
-      if(addBtn() || tries > 40){ clearInterval(t); }
+      if(addBtn() || tries > 40){  }
     }, 250);
   });
 })();
@@ -11055,9 +11055,9 @@ function showToast(){
 
   ready(function(){
     if(ensureTabContent()) return;
-    var tries = 0, t = setInterval(function(){
+    var tries = 0, t = {
       tries++;
-      if(ensureTabContent() || tries > 40){ clearInterval(t); }
+      if(ensureTabContent() || tries > 40){  }
     }, 250);
   });
 })();
@@ -11128,9 +11128,9 @@ function showToast(){
   function ready(fn){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
   ready(function(){
     if(ensureV2()) return;
-    var tries=0, t=setInterval(function(){
+    var tries=0, t={
       tries++;
-      if(ensureV2() || tries>40){ clearInterval(t); }
+      if(ensureV2() || tries>40){  }
     },250);
   });
 })();
@@ -11239,7 +11239,7 @@ function showToast(){
       mo.observe(document.body, {subtree:true, childList:true, attributes:true, attributeFilter:['style','class']});
     }catch(_){}
     // Pulso ocasional por si se nos escapa algún cambio de tamaño del canvas
-    setInterval(fit, 1000);
+    
   });
 })();
 </script>
@@ -14825,11 +14825,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }catch(_){}
   }
 
-  var progressTimer = null;
+  
   function startProgress(){
     stopProgress();
     updateProgressLabel();
-    progressTimer = setInterval(updateProgressLabel, 150);
+    progressTimer = 
     var s = document.getElementById('rp-slider');
     if(s){
       s.addEventListener('input', updateProgressLabel, {passive:true});
@@ -14837,7 +14837,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
   }
   function stopProgress(){
-    try{ if(progressTimer) clearInterval(progressTimer); }catch(_){}
+    try{ if(progressTimer)  }catch(_){}
     progressTimer = null;
   }
 
@@ -14930,8 +14930,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
   if(!wrapReplay()){
-    var iid = setInterval(function(){ if(wrapReplay()){ clearInterval(iid); } }, 80);
-    setTimeout(function(){ try{ clearInterval(iid); }catch(_){} }, 8000);
+    var iid = { if(wrapReplay()){  } }, 80);
+    setTimeout(function(){ try{  }catch(_){} }, 8000);
   }
 
   // Cierre por la "X": detener, salir, reiniciar tablero y habilitarlo
