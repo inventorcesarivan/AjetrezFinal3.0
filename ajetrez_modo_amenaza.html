@@ -15075,6 +15075,55 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <!-- === FIN REINICIAR LIBRE === -->
 
+
+<!-- === POSICIONAMIENTO LIMPIO POR BOUNDING RECT === -->
+<style>
+#menuLibre, #reiniciarLibre{
+  position: fixed;
+  z-index: 9999;
+}
+</style>
+
+<script>
+(function(){
+
+  function findBoard(){
+    return (
+      document.querySelector('[data-board]') ||
+      document.querySelector('.board-container') ||
+      document.querySelector('.board') ||
+      document.querySelector('canvas')
+    );
+  }
+
+  function placeButtons(){
+    const board = findBoard();
+    if(!board) return;
+
+    const rect = board.getBoundingClientRect();
+
+    const menu = document.getElementById('menuLibre');
+    if(menu){
+      menu.style.left = (rect.left + rect.width * 0.65) + 'px';
+      menu.style.top  = (rect.top  - rect.height * 0.08) + 'px';
+    }
+
+    const reiniciar = document.getElementById('reiniciarLibre');
+    if(reiniciar){
+      reiniciar.style.left = (rect.right - rect.width * 0.12) + 'px';
+      reiniciar.style.top  = (rect.bottom - rect.height * 0.10) + 'px';
+    }
+  }
+
+  window.addEventListener('load', placeButtons);
+  window.addEventListener('resize', placeButtons);
+  setTimeout(placeButtons, 0);
+  setTimeout(placeButtons, 200);
+
+})();
+</script>
+<!-- === FIN POSICIONAMIENTO === -->
+
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
 <style id="aj-replay-glass-css">
