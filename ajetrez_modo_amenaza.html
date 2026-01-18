@@ -337,6 +337,31 @@ button[data-action="restart"]{
   position: relative;
 }
 
+
+/* === NUEVO BOTÓN MENÚ INDEPENDIENTE (ABAJO CENTRO) === */
+#btnMenuBottomCenter{
+  all: unset;
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * var(--square) * 0.9);
+  transform: translateX(-50%);
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,.28);
+  border: 2px solid rgba(255,255,255,.85);
+}
+
 </style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
     --square-menu: 56px; /* tamaño base menú desktop */
@@ -15309,6 +15334,32 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 <!-- === FIN POSICIONAMIENTO === -->
+
+
+<script>
+(function(){
+  function openMenuFromBottom(){
+    const mainBtn = document.getElementById('btnMegaMenu');
+    if(mainBtn){
+      mainBtn.click();
+      return;
+    }
+    // fallback directo
+    const panel = document.getElementById('megaPanel');
+    const back = document.getElementById('panelBackdrop');
+    if(panel && back){
+      back.style.display = 'flex';
+      panel.style.display = 'flex';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    const btn = document.getElementById('btnMenuBottomCenter');
+    if(btn){
+      btn.addEventListener('click', openMenuFromBottom);
+    }
+  });
+})();
+</script>
 
 </body>
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
