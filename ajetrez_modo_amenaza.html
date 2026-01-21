@@ -176,6 +176,89 @@
 }
 #btnMenuMain:hover{ background:#222; }
 /* === END NEW MAIN MENU BUTTON === */
+
+/* === PATCH CIERRE CLARO Y SEGURO === */
+.aj-close-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  cursor:pointer;
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  padding:6px 12px;
+  border:2px solid rgba(255,255,255,.8);
+}
+.aj-close-btn span.x{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  border:2px solid #fff;
+  font-weight:900;
+}
+.aj-close-btn:hover{ background:#222; }
+/* === FIN PATCH === */
+
+
+/* === CIERRE VISUAL SOLO EN PANELES DE GUIA Y REGLAS === */
+
+/* Guía rápida */
+.panel-guia-rapida .aj-close-btn::before,
+.panel-guia-rapida .close-btn::before{
+  content: "Cerrar panel  ✕";
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+/* Reglas modo simple */
+.panel-reglas-simple .aj-close-btn::before,
+.panel-reglas-simple .close-btn::before{
+  content: "Cerrar panel  ✕";
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+/* Reglas modo guerra */
+.panel-reglas-guerra .aj-close-btn::before,
+.panel-reglas-guerra .close-btn::before{
+  content: "Cerrar panel  ✕";
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+/* Reglas modo amenaza */
+.panel-reglas-amenaza .aj-close-btn::before,
+.panel-reglas-amenaza .close-btn::before{
+  content: "Cerrar panel  ✕";
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+/* === FIN CIERRE VISUAL === */
+
+
+/* === PESTAÑAS INTERNAS COMO JUGAR === */
+.aj-tabs-internas{ margin-top:20px; }
+.aj-tabs-btns{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+.aj-tab-panel{ display:none; }
+.aj-tab-panel.active{ display:block; }
+
 </style>
 <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajetrez — Panel con Login, Pestañas + Info Partidas (v3-fix2)</title><style>
   :root{
@@ -1119,7 +1202,7 @@ body, html{overflow:visible!important;}
 <style id="menu-panel-pointerfix">
 /* --- Menú: asegurar clickeabilidad y capas dentro del panel --- */
 #megaPanel, #megaPanel *{ pointer-events: auto !important; }
-#btnClosePanel{ z-index: 2147483601 !important; position: relative; }
+#/* btnClosePanel eliminado */{ z-index: 2147483601 !important; position: relative; }
 #btnLogin{ z-index: 2147483601 !important; position: relative; }
 
 
@@ -4742,7 +4825,7 @@ body[data-theme="noche"] #regv2-panel .btn{
 
 /* === Noche: asegurar iconos/✕ de cerrar visibles en blanco === */
 body[data-theme="noche"] #rpFabClose,
-body[data-theme="noche"] #btnClosePanel,
+body[data-theme="noche"] #/* btnClosePanel eliminado */,
 body[data-theme="noche"] #botChooserClose,
 body[data-theme="noche"] #rgClose,
 body[data-theme="noche"] #menu-robust-login-close-fix,
@@ -8247,7 +8330,7 @@ body[data-theme="noche"] .regv2-btn{
     // === MENU CLOSE (RESTORED) ===
     const panel = document.getElementById('megaPanel');
     const backdrop = document.getElementById('panelBackdrop');
-    const btnClose = document.getElementById('btnClosePanel');
+    const btnClose = document.getElementById('/* btnClosePanel eliminado */');
 
     function closeMenu(){
       if(backdrop) backdrop.style.display = 'none';
@@ -8287,22 +8370,77 @@ body[data-theme="noche"] .regv2-btn{
 })();
 </script>
 
+
+<style id="fix-visible-close-btn">
+#btnClosePanel{
+  all: unset;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-left: auto;
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  font-weight:800;
+  cursor:pointer;
+  border:1.5px solid rgba(255,255,255,.7);
+}
+#btnClosePanel:hover{ background:#222; }
+</style>
+
+
+<style id="fix-close-btn-right">
+/* Botón cerrar SIEMPRE a la derecha */
+.mp-header{
+  display:flex;
+  align-items:center;
+}
+.mp-header h1,
+.mp-header h2,
+.mp-header span{
+  margin-right:auto;
+}
+
+#btnClosePanel,
+.btn-close-internal{
+  margin-left:auto;
+  margin-right:0;
+  align-self:center;
+}
+
+/* estilo consistente */
+#btnClosePanel,
+.btn-close-internal{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 12px;
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  font-weight:800;
+  cursor:pointer;
+  border:1.5px solid rgba(255,255,255,.7);
+}
+#btnClosePanel:hover,
+.btn-close-internal:hover{ background:#222; }
+</style>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button><button class="btn dd-item" data-label="Modo Online" data-mode="online" style="position:static;" type="button">Modo Online</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
 <div aria-label="Reproducir partida" id="rpFab" role="region" style="display:none">
-<button class="btn small" id="rpFabBtn">▶ Reproducir en tablero</button>
-<button aria-label="Cerrar" class="btn small" id="rpFabClose">✕</button>
+<button class="btn small btn-close-internal" id="rpFabBtn">▶ Reproducir en tablero</button>
+<button aria-label="Cerrar" class="btn small btn-close-internal" id="rpFabClose">✕</button>
 </div>
 <!-- Replay Controls (Modo Revisión) -->
 <div id="replayBar" style="display:none; position:absolute; left:50%; transform:translateX(-50%); top: calc(-1.5 * var(--square) + 4px); width:auto; max-width:min(96vw, calc(var(--square)*var(--board-cols) - 24px)); z-index:2147483602; pointer-events:auto;">
 <div style="display:flex; align-items:center; gap:8px; background:rgba(17,17,17,.92); color:#fff; border:2px solid #fff; border-radius:12px; padding:6px 8px;">
-<button class="btn small" id="rp-start" type="button">⏮</button>
-<button class="btn small" id="rp-prev" type="button">◀︎</button>
-<button class="btn small" id="rp-play" type="button">▶︎</button>
-<button class="btn small" id="rp-pause" type="button">⏸</button>
-<button class="btn small" id="rp-next" type="button">▶︎</button>
-<button class="btn small" id="rp-end" type="button">⏭</button>
+<button class="btn small btn-close-internal" id="rp-start" type="button">⏮</button>
+<button class="btn small btn-close-internal" id="rp-prev" type="button">◀︎</button>
+<button class="btn small btn-close-internal" id="rp-play" type="button">▶︎</button>
+<button class="btn small btn-close-internal" id="rp-pause" type="button">⏸</button>
+<button class="btn small btn-close-internal" id="rp-next" type="button">▶︎</button>
+<button class="btn small btn-close-internal" id="rp-end" type="button">⏭</button>
 <select aria-label="Velocidad de reproducción" class="sel small" id="rp-speed" style="width:88px">
 <option selected="" value="0.25">0.25×</option>
 <option value="0.5">0.5×</option>
@@ -8314,14 +8452,14 @@ body[data-theme="noche"] .regv2-btn{
 <option value="3">3×</option>
 </select>
 <input id="rp-slider" max="0" min="0" style="flex:1" type="range" value="0"/>
-<button aria-label="Cerrar" class="btn small" id="rp-exit" type="button">✕</button>
+<button aria-label="Cerrar" class="btn small btn-close-internal" id="rp-exit" type="button">✕</button>
 </div>
 </div>
 <div aria-label="Overlay de inicio" aria-live="polite" id="startOverlay"><div class="start-card"><div style="font-weight:800; font-size:18px;">Comenzar partida
 </div><button id="btnStartGame" type="button">Comenzar partida</button><div class="hint">Pulsa para iniciar. Bloquea el juego en todos los modos hasta empezar.
 </div></div></div><div aria-label="Ajetrez base limpia" id="board"></div><div aria-label="Decidir desplazamiento de fila" class="shift-ctrl" id="shiftCtrl" role="group"><span class="lbl" id="shiftLbl">Fila</span><span id="chooseWrap"><button aria-label="Mantener" id="btnKeep" type="button">Mantener</button><button aria-label="Desplazar sección" id="btnShift" type="button">Desplazar sección</button></span><span id="confirmWrap" style="display:none"><span id="choiceTxt" style="font-size:12px;font-weight:700;margin-right:6px;opacity:.85">Confirmar:</span><button aria-label="Confirmar" class="confirm" id="btnConfirm" type="button">Confirmar</button><button aria-label="Volver a elegir" id="btnBack" type="button">Cambiar elección</button></span></div><div id="overlay"><div id="banner">FIN</div></div><div id="panelBackdrop"></div><div aria-labelledby="mpTitle" aria-modal="true" id="megaPanel" role="dialog"><div class="apply-toast" id="applyToast">✔ Cambios guardados
 </div><div class="mp-header"><div id="mpTitle">Panel de Ajetrez
-</div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="btnClosePanel" type="button">Cerrar</button></div></div><div id="tabsView"><div class="mp-tabs">
+<button class="btn small btn-close-internal" id="btnClosePanel" aria-label="Cerrar panel">Cerrar</button></div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="/* btnClosePanel eliminado */" type="button"></button></div></div><div id="tabsView"><div class="mp-tabs">
     <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button></div><div class="mp-content">
 
     <div class="tab" id="tab-personalizacion" style="display:none"><h3>Personalización del juego</h3><div class="row"><div class="field"><label>Estilo de piezas</label><select id="selSprites"><option value="auto">Auto (usar sprites si están disponibles)</option><option value="sprites">Sprites (imágenes)</option><option value="unicode">Unicode (símbolos)</option></select>
@@ -8354,7 +8492,7 @@ body[data-theme="noche"] .regv2-btn{
     </div>
   </div>
   <div class="row" style="gap: 10px; margin-top: 12px;">
-    <button class="btn small" id="btnZonasReset" type="button">Restablecer</button>
+    <button class="btn small btn-close-internal" id="btnZonasReset" type="button">Restablecer</button>
   </div>
 </div>
 
@@ -8524,7 +8662,7 @@ body[data-theme="noche"] .regv2-btn{
 </div></div></div><div id="infoSplit"><div id="infoLeft"><div style="margin-top:10px;max-height:120px;overflow:auto;border:1px solid #eee;border-radius:10px;"><table class="simple" id="logsTable"><thead><tr><th>Fecha</th><th>Modo</th><th>Resultado</th><th>Ganador</th><th>Movs</th></tr></thead><tbody></tbody></table></div><div id="replayDock" style="display:none"></div><!-- Replay panel will be injected here --><div id="replayDock"></div></div></div></div><div class="row" style="margin-top:8px;"></div></div><div class="tab" id="tab-mas" style="display:none"><h3>Más funciones</h3><p>Acá vamos a agregar: estilos claros/oscuros, selector de temas, perfiles, estadísticas detalladas, etc.</p></div></div></div></div></div><div style="height:var(--toolbar-gap)"></div><div aria-label="Barra inferior" class="bar" id="bottomBar">
 <div aria-label="Botones de donación" id="donateBox">
 </div>
-<div class="right-ctrls" id="rightControls"><button class="btn small" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
+<div class="right-ctrls" id="rightControls"><button class="btn small btn-close-internal" id="btnFSBR" type="button">Pantalla completa</button></div></div></div><script>
 // --- Audio FX setup ---
 (function(){
   function make(src){ try{ const a = new Audio(src); a.preload='auto'; a.volume = 0.85; return a; }catch(_){ return null; } }
@@ -10001,7 +10139,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   const panel = document.getElementById('megaPanel');
   const backdrop = document.getElementById('panelBackdrop');
   const btnOpen = document.getElementById('btnMegaMenu');
-  const btnClose = document.getElementById('btnClosePanel');
+  const btnClose = document.getElementById('/* btnClosePanel eliminado */');
   const btnLogout = document.getElementById('btnLogout');
   const loggedUser = document.getElementById('loggedUser');
 
@@ -10021,7 +10159,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     try{ hideCtrl(); }catch(_){}
     refreshLoginState();
   }
-  function closePanel(){
+  function /* closePanel eliminado */(){
     backdrop.style.display = 'none';
     panel.style.display = 'none';
     btnOpen.setAttribute('aria-expanded','false');
@@ -10040,9 +10178,9 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
     }
   }
 
-  btnOpen.addEventListener('click', ()=>{ const isOpen = panel.style.display==='flex'; if(isOpen){ closePanel(); } else { openPanel(); } });
-  btnClose.addEventListener('click', closePanel);
-  backdrop.addEventListener('click', closePanel);
+  btnOpen.addEventListener('click', ()=>{ const isOpen = panel.style.display==='flex'; if(isOpen){ /* closePanel eliminado */(); } else { openPanel(); } });
+  btnClose.addEventListener('click', /* closePanel eliminado */);
+  backdrop.addEventListener('click', /* closePanel eliminado */);
 
   btnLogin.addEventListener('click', ()=>{
     const u = (inpUser.value||'').trim();
@@ -10316,7 +10454,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 
   // Atajo: tecla ESC cierra panel
   document.addEventListener('keydown', (e)=>{
-    if(e.key==='Escape' && panel.style.display==='flex'){ closePanel(); }
+    if(e.key==='Escape' && panel.style.display==='flex'){ /* closePanel eliminado */(); }
   });
 })();
 </script><script>
@@ -11611,10 +11749,10 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
       panel.id = 'replayPanel';
       panel.innerHTML = '<div class="row" style="justify-content:space-between;align-items:center;margin-bottom:8px;">'
         + '<strong style="font-size:18px">Reproductor de partida</strong>'
-        + '<button class="btn small" id="rpExit">Cerrar</button></div>'
-        + '<div class="row" style="gap:6px;margin-bottom:8px;"><button class="btn small" id="rpReset">Reiniciar</button>'
-        + '<button class="btn small" id="rpPrev">◀</button><button class="btn small" id="rpPlay">▶</button>'
-        + '<button class="btn small" id="rpPause" style="display:none;">⏸</button><button class="btn small" id="rpNext">▶</button>'
+        + '<button class="btn small btn-close-internal" id="rpExit"></button></div>'
+        + '<div class="row" style="gap:6px;margin-bottom:8px;"><button class="btn small btn-close-internal" id="rpReset">Reiniciar</button>'
+        + '<button class="btn small btn-close-internal" id="rpPrev">◀</button><button class="btn small btn-close-internal" id="rpPlay">▶</button>'
+        + '<button class="btn small btn-close-internal" id="rpPause" style="display:none;">⏸</button><button class="btn small btn-close-internal" id="rpNext">▶</button>'
         + '<select id="rpSpeed" class="sel small"><option value="1200">x1</option><option value="700">x1.7</option><option value="400">x3</option></select>'
         + '</div><div class="pill" id="replayMeta" style="margin-bottom:8px;">—</div><ol id="rpList" style="margin:0;padding-left:20px;max-height:58vh;overflow:auto;"></ol>';
       document.body.appendChild(panel);
@@ -11755,11 +11893,11 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
         + '<div class="row" style="align-items:flex-end;gap:12px;">'
         + '  <div class="field" style="min-width:220px;"><label>Partida seleccionada</label><div class="pill" id="replayMeta">—</div></div>'
         + '  <div class="row controls-row" role="group" aria-label="Controles" style="gap:6px;">'
-        + '    <button class="btn small" id="rpReset">Reiniciar</button>'
-        + '    <button class="btn small" id="rpPrev">◀</button>'
-        + '    <button class="btn small" id="rpPlay">▶</button>'
-        + '    <button class="btn small" id="rpPause" style="display:none;">⏸</button>'
-        + '    <button class="btn small" id="rpNext">▶</button>'
+        + '    <button class="btn small btn-close-internal" id="rpReset">Reiniciar</button>'
+        + '    <button class="btn small btn-close-internal" id="rpPrev">◀</button>'
+        + '    <button class="btn small btn-close-internal" id="rpPlay">▶</button>'
+        + '    <button class="btn small btn-close-internal" id="rpPause" style="display:none;">⏸</button>'
+        + '    <button class="btn small btn-close-internal" id="rpNext">▶</button>'
         + '    <select id="rpSpeed" class="sel small"><option value="1200">x1</option><option value="700">x1.7</option><option value="400">x3</option></select>'
         + '  </div>'
         + '</div>'
@@ -12386,7 +12524,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
 #btnMenuMain:hover{ background:#222; }
 /* === END NEW MAIN MENU BUTTON === */
 </style>
-<div aria-hidden="true" id="botChooserBackdrop"></div><div aria-labelledby="botChooserTitle" aria-modal="true" id="botChooserPanel" role="dialog"><div class="row" style="margin-bottom:6px;"><h3 id="botChooserTitle">Elegí la dificultad del bot</h3><button aria-label="Cerrar" class="btn secondary" id="botChooserClose" type="button">Cerrar</button></div><!-- Single-select (Player vs Bot) --><div id="bcSingle"><label for="botChooserSelect" style="font-weight:700;display:block;margin-bottom:6px;">Dificultad</label><select id="botChooserSelect"><option value="easy">Fácil</option>
+<div aria-hidden="true" id="botChooserBackdrop"></div><div aria-labelledby="botChooserTitle" aria-modal="true" id="botChooserPanel" role="dialog"><div class="row" style="margin-bottom:6px;"><h3 id="botChooserTitle">Elegí la dificultad del bot</h3><button aria-label="Cerrar" class="btn secondary" id="botChooserClose" type="button"></button></div><!-- Single-select (Player vs Bot) --><div id="bcSingle"><label for="botChooserSelect" style="font-weight:700;display:block;margin-bottom:6px;">Dificultad</label><select id="botChooserSelect"><option value="easy">Fácil</option>
 <option value="normal" selected>Normal</option>
 <option value="hard">Difícil</option>
 </select></div><!-- Dual-select (Bot vs Bot) --><div id="bcDual"><div class="cols"><div class="col"><label for="botChooserSelectW" style="font-weight:700;">Blancas</label><select id="botChooserSelectW"><option value="easy">Fácil</option>
@@ -13197,7 +13335,7 @@ window.AJ_RULES.legalShift = function(row, target, boardRef, offsRef){
   window.__AJ_syncPanelUnderRow__ = syncPanel;
 })();
 </script><!-- === REGISTROS: Panel flotante independiente === --><div id="rgBackdrop" style="position:fixed;inset:0;background:rgba(0,0,0,.38);display:none;z-index:2147483600;"></div><div aria-labelledby="rgTitle" aria-modal="true" class="rg-top" id="regPanel" role="dialog" style="display:none;"><div class="rg-header"><div id="rgTitle">Registros de partidas</div><div class="rg-right"><button class="btn" id="reg-replay-start" title="Reproducir esta partida en el tablero" type="button">Reproducir en tablero</button>
-<button class="btn small" id="rgExportAll">Exportar JSON</button><button class="btn small" id="rgImport">Importar JSON</button><button class="btn" id="rgClose">Cerrar</button></div></div><div class="rg-content"><div class="registros-grid"><aside class="reg-left"><div class="card"><div class="card-title">Buscar y filtrar</div><div class="row gap"><input class="input" id="reg-q" placeholder="Buscar por etiqueta, modo, resultado..."/></div><div class="row gap"><select class="input" id="reg-mode"><option value="">Todos los modos</option><option value="pvp">Player vs Player</option><option value="pvb">Player Vs Bot</option><option value="bvb">Bot vs Bot</option></select><select class="input" id="reg-result"><option value="">Todos los resultados</option><option value="1-0">1-0</option><option value="0-1">0-1</option><option value="1/2-1/2">Tablas</option></select></div><div class="row gap"><button class="btn small" id="reg-refresh">Actualizar</button><button class="btn small" id="reg-save-current">Guardar partida actual</button></div></div><div class="card" style="margin-top:10px"><div class="card-title">Partidas guardadas</div><div id="regHintSelect" style="margin:6px 0 8px 0;font-weight:700; color:#C8102E; text-align:left;">Selecciona una partida</div><div aria-label="Lista de partidas" class="game-list" id="reg-list" role="listbox"></div></div></aside><section class="reg-right"><div class="card" id="reg-empty"><div class="card-title">Selecciona una partida</div><p class="muted">Elige una de la lista para ver sus detalles. También puedes guardar la partida actual.</p><div class="row gap"></div></div><div class="card" id="reg-detail" style="display:none"><div class="card-title"><span id="reg-title">Título</span><div class="right"><button class="btn small" id="reg-export-pgn">Exportar PGN</button><button class="btn small" id="reg-delete">Eliminar</button></div></div><div class="grid-2 gap"><div><div class="meta-line"><b>Fecha:</b><span id="reg-date">—</span></div><div class="meta-line"><b>Modo:</b><span id="reg-mode-val">—</span></div><div class="meta-line"><b>Resultado:</b><span id="reg-result-val">—</span></div><div class="meta-line"><b>Duración:</b><span id="reg-duration">—</span></div><div class="meta-line"><b>Etiquetas:</b><span id="reg-tags">—</span></div></div><div><div class="meta-chip">👁 Apertura: <span id="reg-opening">—</span></div><div class="meta-chip">⚡ Tiempos por jugada: <span id="reg-times">—</span></div><div class="meta-chip">⚠️ Errores: <span id="reg-errors">—</span></div></div></div><div class="grid-2 gap" style="margin-top:8px"><div class="card soft"><div class="card-title sm">Movimientos</div><div class="moves-table" id="reg-moves"></div></div><div class="card soft"><div class="card-title sm">Estadísticas</div><ul class="stats-list" id="reg-stats"></ul></div></div><div class="card soft" style="margin-top:8px"><div class="card-title sm">Notas</div>\1</div></div></section></div></div></div><!-- === REGISTROS — lógica y almacenamiento === --><script>
+<button class="btn small btn-close-internal" id="rgExportAll">Exportar JSON</button><button class="btn small btn-close-internal" id="rgImport">Importar JSON</button><button class="btn" id="rgClose"></button></div></div><div class="rg-content"><div class="registros-grid"><aside class="reg-left"><div class="card"><div class="card-title">Buscar y filtrar</div><div class="row gap"><input class="input" id="reg-q" placeholder="Buscar por etiqueta, modo, resultado..."/></div><div class="row gap"><select class="input" id="reg-mode"><option value="">Todos los modos</option><option value="pvp">Player vs Player</option><option value="pvb">Player Vs Bot</option><option value="bvb">Bot vs Bot</option></select><select class="input" id="reg-result"><option value="">Todos los resultados</option><option value="1-0">1-0</option><option value="0-1">0-1</option><option value="1/2-1/2">Tablas</option></select></div><div class="row gap"><button class="btn small btn-close-internal" id="reg-refresh">Actualizar</button><button class="btn small btn-close-internal" id="reg-save-current">Guardar partida actual</button></div></div><div class="card" style="margin-top:10px"><div class="card-title">Partidas guardadas</div><div id="regHintSelect" style="margin:6px 0 8px 0;font-weight:700; color:#C8102E; text-align:left;">Selecciona una partida</div><div aria-label="Lista de partidas" class="game-list" id="reg-list" role="listbox"></div></div></aside><section class="reg-right"><div class="card" id="reg-empty"><div class="card-title">Selecciona una partida</div><p class="muted">Elige una de la lista para ver sus detalles. También puedes guardar la partida actual.</p><div class="row gap"></div></div><div class="card" id="reg-detail" style="display:none"><div class="card-title"><span id="reg-title">Título</span><div class="right"><button class="btn small btn-close-internal" id="reg-export-pgn">Exportar PGN</button><button class="btn small btn-close-internal" id="reg-delete">Eliminar</button></div></div><div class="grid-2 gap"><div><div class="meta-line"><b>Fecha:</b><span id="reg-date">—</span></div><div class="meta-line"><b>Modo:</b><span id="reg-mode-val">—</span></div><div class="meta-line"><b>Resultado:</b><span id="reg-result-val">—</span></div><div class="meta-line"><b>Duración:</b><span id="reg-duration">—</span></div><div class="meta-line"><b>Etiquetas:</b><span id="reg-tags">—</span></div></div><div><div class="meta-chip">👁 Apertura: <span id="reg-opening">—</span></div><div class="meta-chip">⚡ Tiempos por jugada: <span id="reg-times">—</span></div><div class="meta-chip">⚠️ Errores: <span id="reg-errors">—</span></div></div></div><div class="grid-2 gap" style="margin-top:8px"><div class="card soft"><div class="card-title sm">Movimientos</div><div class="moves-table" id="reg-moves"></div></div><div class="card soft"><div class="card-title sm">Estadísticas</div><ul class="stats-list" id="reg-stats"></ul></div></div><div class="card soft" style="margin-top:8px"><div class="card-title sm">Notas</div>\1</div></div></section></div></div></div><!-- === REGISTROS — lógica y almacenamiento === --><script>
 (function(){
   if(window.AJ_Recorder) return;
   const LS_KEY = 'ajetrez.registros.v1';
@@ -13716,7 +13854,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     btn.setAttribute('aria-expanded','true');
     try{ document.body.classList.remove('aj-paused-force'); }catch(_){}
   }
-  function closePanel(){
+  function /* closePanel eliminado */(){
     var panel = document.getElementById('megaPanel');
     var backdrop = document.getElementById('panelBackdrop');
     var btn = document.getElementById('btnMegaMenu');
@@ -13733,7 +13871,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     e.stopPropagation();
     var panel = document.getElementById('megaPanel');
     var isOpen = panel && panel.style.display === 'flex';
-    if(isOpen){ closePanel(); } else { openPanel(); }
+    if(isOpen){ /* closePanel eliminado */(); } else { openPanel(); }
   }, true);
 
   // Backdrop click closes
@@ -13741,7 +13879,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     if(e && e.target && e.target.id === 'panelBackdrop'){
       e.preventDefault();
       e.stopPropagation();
-      closePanel();
+      /* closePanel eliminado */();
     }
   }, true);
 
@@ -13749,7 +13887,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
   document.addEventListener('keydown', function(e){
     if(e && e.key === 'Escape'){
       var panel = document.getElementById('megaPanel');
-      if(panel && panel.style.display === 'flex'){ closePanel(); }
+      if(panel && panel.style.display === 'flex'){ /* closePanel eliminado */(); }
     }
   }, true);
 })();
@@ -13786,7 +13924,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     btn.setAttribute('aria-expanded','true');
     refreshLoginUI();
   }
-  function closePanelRobust(){
+  function /* closePanel eliminado */Robust(){
     var panel = document.getElementById('megaPanel');
     var backdrop = document.getElementById('panelBackdrop');
     var btn = document.getElementById('btnMegaMenu');
@@ -13798,10 +13936,10 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
 
   // Garantizar que el botón Cerrar cierre el panel (fase de captura)
   document.addEventListener('click', function(e){
-    var closeBtn = e.target && e.target.closest && e.target.closest('#btnClosePanel');
+    var closeBtn = e.target && e.target.closest && e.target.closest('#/* btnClosePanel eliminado */');
     if(!closeBtn) return;
     e.preventDefault(); e.stopPropagation();
-    closePanelRobust();
+    /* closePanel eliminado */Robust();
   }, true);
 
   // Login robusto (fase de captura)
@@ -13858,7 +13996,7 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
     }catch(_){}
   }
 
-  function closePanelRobust(){
+  function /* closePanel eliminado */Robust(){
     var panel = document.getElementById('megaPanel');
     var backdrop = document.getElementById('panelBackdrop');
     var btn = document.getElementById('btnMegaMenu');
@@ -13880,10 +14018,10 @@ const g = window.__AJ_CURRENT_GAME__; if(!g) return;
 
   ['pointerdown','mousedown'].forEach(function(evName){
     document.addEventListener(evName, function(e){
-      var closeBtn = e.target && e.target.closest && e.target.closest('#btnClosePanel');
+      var closeBtn = e.target && e.target.closest && e.target.closest('#/* btnClosePanel eliminado */');
       if(!closeBtn) return;
       e.preventDefault(); e.stopPropagation();
-      closePanelRobust();
+      /* closePanel eliminado */Robust();
     }, true);
   });
 
@@ -14954,7 +15092,7 @@ div[style="height:var(--toolbar-gap)"]{
         // Cerrar menú principal (Mega Panel)
         const pnl = document.getElementById('megaPanel');
         const bd  = document.getElementById('panelBackdrop');
-        const btnClose = document.getElementById('btnClosePanel');
+        const btnClose = document.getElementById('/* btnClosePanel eliminado */');
         const btnOpen  = document.getElementById('btnMegaMenu');
         if(btnClose) btnClose.click(); // dispara la lógica nativa de cierre
         if(pnl) pnl.style.display = 'none';
@@ -15127,7 +15265,7 @@ div[style="height:var(--toolbar-gap)"]{
 <div class="regv2-head-actions">
 <button class="regv2-btn small" id="regv2-import" type="button">Importar JSON</button>
 <button class="regv2-btn small" id="regv2-export" type="button">Exportar JSON</button>
-<button class="regv2-btn small" id="regv2-exit" type="button">Cerrar</button>
+<button class="regv2-btn small" id="regv2-exit" type="button"></button>
 <input accept=".json,application/json" id="regv2-file" style="display:none" type="file"/>
 </div>
 <button id="regv2-close" type="button">✕</button></header>
@@ -16148,9 +16286,9 @@ catch(_){}
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px">
             <strong>Partidas guardadas</strong>
             <div>
-              <button class="btn small" id="rv2-refresh">Actualizar</button>
-              <button class="btn small" id="rv2-save">Guardar partida actual</button>
-              <label class="btn small" style="display:inline-flex;gap:6px;align-items:center;margin-left:6px">
+              <button class="btn small btn-close-internal" id="rv2-refresh">Actualizar</button>
+              <button class="btn small btn-close-internal" id="rv2-save">Guardar partida actual</button>
+              <label class="btn small btn-close-internal" style="display:inline-flex;gap:6px;align-items:center;margin-left:6px">
                 <input type="checkbox" id="rv2-autosave"> Auto‑guardar
               </label>
               <button class="btn small danger" id="rv2-clear-all">Borrar todo el registro</button>
@@ -16162,12 +16300,12 @@ catch(_){}
           <div class="head">
             <h4 id="rv2-title">Detalle</h4>
             <div id="rv2-actions">
-              <button class="btn small" id="rv2-load">Cargar en probador</button>
-              <label class="btn small" style="display:inline-flex;gap:6px;align-items:center">
+              <button class="btn small btn-close-internal" id="rv2-load">Cargar en probador</button>
+              <label class="btn small btn-close-internal" style="display:inline-flex;gap:6px;align-items:center">
                 <input type="checkbox" id="rv2-autoload"> Auto‑cargar UCI
               </label>
-              <button class="btn small" id="rv2-play">Reproducir</button>
-              <button class="btn small" id="rv2-export">Exportar PGN</button>
+              <button class="btn small btn-close-internal" id="rv2-play">Reproducir</button>
+              <button class="btn small btn-close-internal" id="rv2-export">Exportar PGN</button>
               <button class="btn small danger" id="rv2-delete">Eliminar partida</button>
             </div>
           </div>
@@ -16914,7 +17052,26 @@ function showToast(){
   function all(s,r){ return Array.from((r||document).querySelectorAll(s)); }
 
   function ensureTabContent(){
-    // === AÑADIDO: pestaña "Cómo jugar Ajetrez" ===
+    // === AÑADIDO: pestaña "Cómo jugar Ajetrez
+
+<!-- === AJETREZ: PESTAÑAS INTERNAS COMO JUGAR === -->
+<div id="comoJugarTabs" class="aj-tabs-internas">
+  <div class="aj-tabs-btns">
+    <button class="btn tab-int selected" data-tab="guia">Guía rápida</button>
+    <button class="btn tab-int" data-tab="simple">Reglas modo simple</button>
+    <button class="btn tab-int" data-tab="amenaza">Reglas modo amenaza</button>
+    <button class="btn tab-int" data-tab="guerra">Reglas modo guerra</button>
+  </div>
+
+  <div class="aj-tabs-content">
+    <div id="tab-guia" class="aj-tab-panel active"></div>
+    <div id="tab-simple" class="aj-tab-panel"></div>
+    <div id="tab-amenaza" class="aj-tab-panel"></div>
+    <div id="tab-guerra" class="aj-tab-panel"></div>
+  </div>
+</div>
+<!-- === FIN PESTAÑAS INTERNAS === -->
+" ===
     try{
       var panel = $('#megaPanel') || $('#menu-panel');
       if(panel){
@@ -16946,10 +17103,10 @@ function showToast(){
             '<h3>Cómo jugar Ajetrez</h3>' +
             '<p style="margin-top:6px">Seleccioná una sección.</p>' +
             '<div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap;">' +
-              '<button class="btn small" type="button" data-how="guia">Guía rápida</button>' +
-              '<button class="btn small" type="button" data-how="simple">Reglas modo simple</button>' +
-              '<button class="btn small" type="button" data-how="amenaza">Reglas modo amenaza</button>' +
-              '<button class="btn small" type="button" data-how="guerra">Reglas modo guerra</button>' +
+              '<button class="btn small btn-close-internal" type="button" data-how="guia">Guía rápida</button>' +
+              '<button class="btn small btn-close-internal" type="button" data-how="simple">Reglas modo simple</button>' +
+              '<button class="btn small btn-close-internal" type="button" data-how="amenaza">Reglas modo amenaza</button>' +
+              '<button class="btn small btn-close-internal" type="button" data-how="guerra">Reglas modo guerra</button>' +
             '</div>';
           if(mpContent){ mpContent.appendChild(howTab); }
         }
@@ -16992,7 +17149,7 @@ function showToast(){
         + '<h3>Registros de partidas</h3>'
         + '<p style="margin:-4mm 0 14px 0; line-height:1.4">'
         + 'Desde esta sección podés abrir el panel de registros del juego y tener acceso a toda la información de las partidas.</p>'
-        + '<button class="btn small" id="regv2-open-from-tab" type="button">Abrir panel de registros</button>';
+        + '<button class="btn small btn-close-internal" id="regv2-open-from-tab" type="button">Abrir panel de registros</button>';
       // Insert as the last tab content
       if(mpContent){ mpContent.appendChild(tab); } else { panel.appendChild(tab); }
     }
@@ -17072,7 +17229,7 @@ function showToast(){
         + '<h3>Registros de partidas</h3>'
         + '<p style="margin:-4mm 0 14px 0; line-height:1.4">'
         + 'Desde esta sección podés abrir el panel de registros del juego y tener acceso a toda la información de las partidas.</p>'
-        + '<button class="btn small" id="regv2-open-from-tab" type="button">Abrir panel de registros</button>';
+        + '<button class="btn small btn-close-internal" id="regv2-open-from-tab" type="button">Abrir panel de registros</button>';
       contentHost.appendChild(v2tab);
     }
 
@@ -17867,7 +18024,7 @@ function showToast(){
       zf.innerHTML = [
         '<div class="zf-header">',
         '  <span>Brillo y opacidad del tablero</span>',
-        '  <div class="zf-right"><button class="btn small" id="zonesClose" type="button">✕</button></div>',
+        '  <div class="zf-right"><button class="btn small btn-close-internal" id="zonesClose" type="button">✕</button></div>',
         '</div>',
         '<div class="zf-content" id="zonesContent"></div>'
       ].join('');
@@ -17882,7 +18039,7 @@ function showToast(){
       card.innerHTML = [
         '<div class="card-title"><span>Brillo y opacidad por zonas</span></div>',
         '<p class="hint-sm">Presioná el botón para abrir los controles y ajustar el <strong>centro</strong> y los <strong>laterales</strong> a gusto.</p>',
-        '<button class="btn small" id="openZonesFloat" type="button">Personalizar brillo y opacidad del tablero</button>',
+        '<button class="btn small btn-close-internal" id="openZonesFloat" type="button">Personalizar brillo y opacidad del tablero</button>',
         '<div class="zones-illustration"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 960 240\" width=\"100%\" height=\"auto\" aria-hidden=\"true\">\n  <!-- Lateral izquierdo -->\n  <rect x=\"0\" y=\"20\" width=\"240\" height=\"200\" fill=\"#cfd6e2\" opacity=\"0.65\" />\n  <!-- Centro jugable -->\n  <rect x=\"240\" y=\"20\" width=\"480\" height=\"200\" fill=\"#bcc7d8\" opacity=\"0.95\" />\n  <!-- Lateral derecho -->\n  <rect x=\"720\" y=\"20\" width=\"240\" height=\"200\" fill=\"#cfd6e2\" opacity=\"0.65\" />\n  <!-- Líneas del tablero simplificadas -->\n  <g stroke=\"#fff\" stroke-opacity=\"0.8\">\n    <!-- columnas centro (8) -->\n    <line x1=\"240.00\" y1=\"20\" x2=\"240.00\" y2=\"220\" />\n    <line x1=\"300.00\" y1=\"20\" x2=\"300.00\" y2=\"220\" />\n    <line x1=\"360.00\" y1=\"20\" x2=\"360.00\" y2=\"220\" />\n    <line x1=\"420.00\" y1=\"20\" x2=\"420.00\" y2=\"220\" />\n    <line x1=\"480.00\" y1=\"20\" x2=\"480.00\" y2=\"220\" />\n    <line x1=\"540.00\" y1=\"20\" x2=\"540.00\" y2=\"220\" />\n    <line x1=\"600.00\" y1=\"20\" x2=\"600.00\" y2=\"220\" />\n    <line x1=\"660.00\" y1=\"20\" x2=\"660.00\" y2=\"220\" />\n    <line x1=\"720.00\" y1=\"20\" x2=\"720.00\" y2=\"220\" />\n  </g>\n  <g stroke=\"#fff\" stroke-opacity=\"0.8\">\n    <!-- filas (8) -->\n    <line x1=\"240\" y1=\"20.00\" x2=\"720\" y2=\"20.00\" />\n    <line x1=\"240\" y1=\"45.00\" x2=\"720\" y2=\"45.00\" />\n    <line x1=\"240\" y1=\"70.00\" x2=\"720\" y2=\"70.00\" />\n    <line x1=\"240\" y1=\"95.00\" x2=\"720\" y2=\"95.00\" />\n    <line x1=\"240\" y1=\"120.00\" x2=\"720\" y2=\"120.00\" />\n    <line x1=\"240\" y1=\"145.00\" x2=\"720\" y2=\"145.00\" />\n    <line x1=\"240\" y1=\"170.00\" x2=\"720\" y2=\"170.00\" />\n    <line x1=\"240\" y1=\"195.00\" x2=\"720\" y2=\"195.00\" />\n    <line x1=\"240\" y1=\"220.00\" x2=\"720\" y2=\"220.00\" />\n  </g>\n  <!-- Etiquetas -->\n  <text x=\"480\" y=\"18\" fill=\"#333\" font-weight=\"700\" text-anchor=\"middle\" font-size=\"14\">Centro jugable (8×8)</text>\n  <text x=\"120\" y=\"230\" fill=\"#333\" font-size=\"12\" text-anchor=\"middle\">Lateral</text>\n  <text x=\"840\" y=\"230\" fill=\"#333\" font-size=\"12\" text-anchor=\"middle\">Lateral</text>\n</svg></div>',
         '<div class="zones-legend">',
         '  <span class="legend-chip"><span class="legend-swatch" style="background:#bcc7d8;"></span> Centro jugable</span>',
@@ -19865,7 +20022,7 @@ document.addEventListener('DOMContentLoaded', () => {
       panel.innerHTML=`
         <div style="background:#111;color:#fff;padding:10px 14px;font-weight:800;display:flex;justify-content:space-between;">
           <span id="rulesTitle">Reglas</span>
-          <button id="closeRules" class="btn small">Cerrar</button>
+          <button id="closeRules" class="btn small btn-close-internal"></button>
         </div>
         <div id="rulesBody" style="padding:14px;max-height:50vh;overflow:auto;font-size:14px;"></div>
       `;
@@ -20020,7 +20177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <h3 id="comoJugarTitulo">Cómo jugar Ajetrez</h3>
     <p id="comoJugarTexto">Texto de referencia</p>
     <div style="text-align:right;">
-      <button class="btn small" type="button" onclick="document.getElementById('comoJugarBackdrop').style.display='none'">Cerrar</button>
+      <button class="btn small btn-close-internal" type="button" onclick="document.getElementById('comoJugarBackdrop').style.display='none'"></button>
     </div>
   </div>
 </div>
@@ -20353,7 +20510,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="internal-float">
     <header>
       <span>Reglas modo simple</span>
-      <button class="btn small" onclick="closeRulesModoSimple()">Cerrar</button>
+      <button class="btn small btn-close-internal" onclick="closeRulesModoSimple()"></button>
     </header>
     <div class="content" id="rulesSimpleContent"></div>
   </div>
@@ -21339,7 +21496,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Botón cerrar por clase, id o texto
     if(
       t.closest('.btn.cerrar') ||
-      t.id === 'btnCerrarPanel' ||
+      t.id === '/* btnCerrar eliminado */Panel' ||
       (t.textContent && t.textContent.trim().toLowerCase() === 'cerrar')
     ){
       e.preventDefault();
@@ -21357,6 +21514,127 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.closeMegaPanel = closeMegaPanel;
+})();
+</script>
+
+
+<script>
+(function(){
+  const btn = document.getElementById('btnMegaMenu');
+  const panel = document.getElementById('megaPanel');
+  const backdrop = document.getElementById('panelBackdrop');
+  if(!btn || !panel || !backdrop) return;
+
+  function toggle(){
+    const open = panel.style.display === 'flex';
+    panel.style.display = open ? 'none' : 'flex';
+    backdrop.style.display = open ? 'none' : 'block';
+  }
+
+  btn.addEventListener('click', toggle);
+})();
+</script>
+
+<script>
+/* === PATCH CIERRE ROBUSTO === */
+(function(){
+  function closeMegaPanel(){
+    const panel = document.getElementById('megaPanel');
+    const backdrop = document.getElementById('panelBackdrop');
+    if(panel) panel.style.display='none';
+    if(backdrop) backdrop.style.display='none';
+  }
+
+  function injectCloseButtons(){
+    // Panel principal
+    const header = document.querySelector('#megaPanel .mp-header');
+    if(header && !header.querySelector('.aj-close-btn')){
+      const btn = document.createElement('button');
+      btn.className='aj-close-btn';
+      btn.innerHTML='Cerrar <span class="x">✕</span>';
+      btn.onclick = closeMegaPanel;
+      header.appendChild(btn);
+    }
+
+    // Paneles internos (si existen)
+    document.querySelectorAll('.inner-panel-header').forEach(h=>{
+      if(!h.querySelector('.aj-close-btn')){
+        const btn = document.createElement('button');
+        btn.className='aj-close-btn';
+        btn.innerHTML='Cerrar <span class="x">✕</span>';
+        btn.onclick = ()=> h.closest('.inner-panel').style.display='none';
+        h.appendChild(btn);
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', injectCloseButtons);
+})();
+/* === FIN PATCH === */
+</script>
+<script>
+/* === LIMPIEZA BOTONES CIERRE VIEJOS === */
+(function(){
+  function limpiarCierresViejos(){
+    const header = document.querySelector('#megaPanel .mp-header');
+    if(!header) return;
+
+    header.querySelectorAll('button').forEach(btn=>{
+      const txt = (btn.textContent || '').trim().toLowerCase();
+      const hasX = btn.textContent.includes('✕');
+      const hasCircle = btn.offsetWidth < 40 && btn.offsetHeight < 40;
+
+      // eliminar:
+      // - botones viejos que dicen solo "Cerrar"
+      // - botones circulares pequeños sin texto claro
+      if(
+        (txt === 'cerrar' && !hasX) ||
+        (hasCircle && txt === '')
+      ){
+        btn.remove();
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', limpiarCierresViejos);
+})();
+/* === FIN LIMPIEZA === */
+</script>
+
+<script>
+(function(){
+  const btns = document.querySelectorAll('.tab-int');
+  const panels = document.querySelectorAll('.aj-tab-panel');
+
+  btns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      btns.forEach(b=>b.classList.remove('selected'));
+      panels.forEach(p=>p.classList.remove('active'));
+
+      btn.classList.add('selected');
+      const id = 'tab-' + btn.dataset.tab;
+      const panel = document.getElementById(id);
+      if(panel) panel.classList.add('active');
+    });
+  });
+
+  // Extraer contenido original de paneles flotantes si existen
+  const map = {
+    guia: '.panel-guia-rapida',
+    simple: '.panel-reglas-simple',
+    amenaza: '.panel-reglas-amenaza',
+    guerra: '.panel-reglas-guerra'
+  };
+
+  Object.keys(map).forEach(k=>{
+    const src = document.querySelector(map[k]);
+    const dst = document.getElementById('tab-'+k);
+    if(src && dst){
+      const content = src.querySelector('.mp-content') || src;
+      dst.innerHTML = content.innerHTML;
+      src.remove();
+    }
+  });
 })();
 </script>
 
@@ -21539,8 +21817,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function showPane(){ var p = ensurePane(); if(p){ p.style.display='block'; } }
   function hidePane(){ var p = document.getElementById('aj-replay-glass-pane'); if(p){ p.style.display='none'; } }
 
-  function closePanels(){
-    try{ if(typeof closePanelRobust==='function') closePanelRobust(); }catch(_){}
+  function /* closePanel eliminado */s(){
+    try{ if(typeof /* closePanel eliminado */Robust==='function') /* closePanel eliminado */Robust(); }catch(_){}
     try{ if(typeof closeReg==='function') closeReg(); }catch(_){}
     try{ var bd = $('#panelBackdrop'); if(bd) bd.style.display='none'; }catch(_){}
     try{ var rb = $('#rgBackdrop'); if(rb) rb.style.display='none'; }catch(_){}
@@ -21554,7 +21832,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var _start = api.start;
       var _exit  = api.exit;
       api.start = function(){
-        closePanels();
+        /* closePanel eliminado */s();
         showPane();
         hideStartButtons(true);
         var r = _start ? _start.apply(this, arguments) : undefined;
