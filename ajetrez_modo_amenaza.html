@@ -9228,6 +9228,32 @@ document.addEventListener("DOMContentLoaded", ()=>{
 }
 </style>
 
+
+<style id="mobileWebParity">
+/* === MOBILE = WEB VISUAL PARITY === */
+@media (max-width: 980px){
+  :root{
+    --square: 56px; /* force same square size as web */
+  }
+
+  body{
+    background:#f5f5f5;
+  }
+
+  .frame{
+    max-width: none;
+  }
+
+  .shell{
+    justify-items: center;
+  }
+
+  #board{
+    outline-offset: 6px;
+  }
+}
+</style>
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
