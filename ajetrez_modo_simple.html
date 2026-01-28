@@ -9781,11 +9781,18 @@ button#btnOnlineExternal:active{
 </style>
 
 
-<style id="aj-mobile-buttons-compact">
-/* === AJUSTE FINO BOTONES SUPERIORES — SOLO MÓVIL === */
+<style id="aj-mobile-top-buttons-baseline-final">
+/* === AJUSTE FINAL MÓVIL: LÍNEA BASE COMÚN + -10% === */
 @media (max-width: 900px){
 
-  /* Botones superiores (modo, online, menu, reglas) */
+  /* Fila superior alineada */
+  .mode-group{
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  /* Todos los botones superiores */
   .mode-group .btn,
   #btnOnlineExternal,
   #btnMenuMain,
@@ -9794,21 +9801,23 @@ button#btnOnlineExternal:active{
   #btnReglasSimple,
   #guerraRulesBtn,
   #amenazaRulesBtn{
-    font-size: 12px !important;
-    padding: 4px 10px !important;
-    min-height: 26px !important;
-    border-radius: 999px !important;
+    font-size: 11.7px !important;
+    padding: 3.5px 9px !important;
+    min-height: 24px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  /* Reducir separación entre botones */
-  .mode-group{
-    gap: 6px !important;
-  }
-
-  /* Ajuste específico del indicador de modo */
+  /* Indicador de modo */
   .mode-indicator{
-    font-size: 12px !important;
-    padding: 4px 8px !important;
+    font-size: 11.7px !important;
+    padding: 3.5px 7px !important;
+    min-height: 24px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 }
 </style>
