@@ -3,13 +3,7 @@
 <html lang="es"><head>
 
 <!-- === MOBILE GAME OFFSET PATCH === -->
-<style id="mobileGameOffset">
-@media (max-width: 900px){
-  .frame{
-    margin-top: calc(var(--square, 56px) * 1);
-  }
-}
-</style>
+
 <!-- === END MOBILE GAME OFFSET PATCH === -->
 
 
@@ -102,24 +96,7 @@
 }
 
 /* === AJETREZ PATCH: BOTÓN REGISTROS FLOTANTE ABAJO DERECHA === */
-#btnRegistros{
-  display: block !important;
-  all: unset;
-  position: fixed !important;
-  right: 18px;
-  bottom: 18px;
-  z-index: 9999;
 
-  /* estilo consistente */
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 14px;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  border: 1.5px solid rgba(255,255,255,0.7);
-}
 
 /* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
 
@@ -1582,57 +1559,7 @@ body, html{overflow:visible!important;}
 /* === END AJETREZ_PAY_FIX === */
 </style>
 
-<style id="aj-contraste-selector-bot">
-  /* Legibilidad del Selector de Bot (panel blanco) en cualquier tema */
-  #botChooserPanel { color:#111 !important; }
-  #botChooserPanel h1, #botChooserPanel h2, #botChooserPanel h3,
-  #botChooserPanel label, #botChooserPanel .label,
-  #botChooserPanel p, #botChooserPanel span, #botChooserPanel .help,
-  #botChooserPanel .meta, #botChooserPanel .card-title { color:#111 !important; opacity:1 !important; }
 
-  /* Inputs y selects ya estaban en negro, reforzamos */
-  #botChooserPanel input, #botChooserPanel select, #botChooserPanel option, #botChooserPanel textarea {
-    color:#111 !important;
-  }
-
-  /* Mantener contraste de los botones del panel (texto blanco sobre botón negro) */
-  #botChooserPanel .btn, #botChooserPanel .btn * { color:#fff !important; }
-
-  /* Si el HUD/indicador de modo abre un dropdown con fondo claro, usar texto negro */
-  /* (Selectors generales y no destructivos; si el fondo es oscuro, otras reglas podrán imponerse) */
-  #modeGroup .dropdown, #modeGroup .dropdown *,
-  #modeGroup .bot-dropdown, #modeGroup .bot-dropdown * {
-    color:#111 !important;
-  }
-
-/* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
-
-/* === END RESTART FREE VISUAL POSITION === */
-
-/* === NEW MAIN MENU BUTTON (STABLE) === */
-#btnMenuMain{
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--square) * -1.2);
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  border: 1.5px solid rgba(255,255,255,0.75);
-}
-#btnMenuMain:hover{ background:#222; }
-/* === END NEW MAIN MENU BUTTON === */
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 <style id="aj-bottombar-buttons-offset">
 /* Levanta los botones inferiores aprox 3 mm sin afectar layout */
@@ -2725,42 +2652,7 @@ body, html{overflow:visible!important;}
 /* === END AJETREZ_PAY_FIX === */
 </style>
 
-<!-- AJETREZ: Alineación fina de barra inferior (vFINAL) --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: Mobile tight-fix — barra inferior más cerca del tablero --><style id="aj-bottomBar-mobile-tightfix-0909">
-  /* En móvil, algunas reglas previas mueven #bottomBar con 'top:-1*var(--square)'.
-     Eso puede producir una separación aparente por redondeo/altura disponible.
-     Neutralizamos 'top' y compensamos con un micro-offset adicional. */
-  @media (max-width: 900px), (pointer: coarse){
-    #bottomBar{ display:none !important; }
-  }
-
-/* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
-
-/* === END RESTART FREE VISUAL POSITION === */
-
-/* === NEW MAIN MENU BUTTON (STABLE) === */
-#btnMenuMain{
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--square) * -1.2);
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  border: 1.5px solid rgba(255,255,255,0.75);
-}
-#btnMenuMain:hover{ background:#222; }
-/* === END NEW MAIN MENU BUTTON === */
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
+<!-- AJETREZ: Alineación fina de barra inferior (vFINAL) --><!-- LEGACY AUDIO CSS REMOVED --><!-- AJETREZ: Mobile tight-fix — barra inferior más cerca del tablero -->
 
 <!-- AJETREZ: Mobile — subir barra inferior ~1 casillero --><style id="aj-bottomBar-mobile-up-1square-0909">
   @media (max-width: 900px), (pointer: coarse){
@@ -4863,75 +4755,7 @@ textarea[placeholder*="UCI"], textarea[placeholder*="uci"]{ height: 160px !impor
 </style>
 
 
-<style>
 
-/* === Tema-safe: texto oscuro sobre fondos claros en "noche" y "pizarra" === */
-/* Panel principal de menú (#megaPanel) y secciones claras */
-body[data-theme="noche"]  #megaPanel,
-body[data-theme="pizarra"]#megaPanel,
-body[data-theme="noche"]  #megaPanel .mp-content,
-body[data-theme="pizarra"]#megaPanel .mp-content,
-body[data-theme="noche"]  #megaPanel .mp-footer,
-body[data-theme="pizarra"]#megaPanel .mp-footer,
-/* Panel de registros (v1 y v2) */
-body[data-theme="noche"]  #regPanel,
-body[data-theme="pizarra"]#regPanel,
-body[data-theme="noche"]  #regv2-panel,
-body[data-theme="pizarra"]#regv2-panel{
-  color:#111 !important; /* texto negro/oscuro para contraste en fondos blancos o muy claros */
-}
-
-/* Excepciones: encabezado oscuro del megaPanel mantiene texto claro */
-body[data-theme="noche"]  #megaPanel .mp-header,
-body[data-theme="pizarra"]#megaPanel .mp-header{
-  color:#fff !important;
-}
-
-/* Inputs y listas dentro de registros y menú con fondo claro: texto oscuro garantizado */
-body[data-theme="noche"]  #megaPanel input,
-body[data-theme="pizarra"]#megaPanel input,
-body[data-theme="noche"]  #megaPanel select,
-body[data-theme="pizarra"]#megaPanel select,
-body[data-theme="noche"]  #megaPanel textarea,
-body[data-theme="pizarra"]#megaPanel textarea,
-body[data-theme="noche"]  #regPanel *,
-body[data-theme="pizarra"]#regPanel *,
-body[data-theme="noche"]  #regv2-panel *,
-body[data-theme="pizarra"]#regv2-panel *{
-  color:#111 !important;
-}
-
-/* Si algún botón/etiqueta depende de texto blanco sobre fondo oscuro, sus reglas específicas ya lo definen.
-   Este bloque evita que el color heredado del tema (gris muy claro) haga ilegible el contenido sobre fondos blancos. */
-
-/* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
-
-/* === END RESTART FREE VISUAL POSITION === */
-
-/* === NEW MAIN MENU BUTTON (STABLE) === */
-#btnMenuMain{
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--square) * -1.2);
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  border: 1.5px solid rgba(255,255,255,0.75);
-}
-#btnMenuMain:hover{ background:#222; }
-/* === END NEW MAIN MENU BUTTON === */
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
 <style>
@@ -7200,52 +7024,7 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 
 
-<style id="aj-zones-float-css-2025-09-13-fs-top-align">
-  /* En fullscreen: wrapper con flex arriba (no centrado vertical) */
-  :fullscreen #zonesFSAnchor,
-  :-webkit-full-screen #zonesFSAnchor{
-    align-items: flex-start !important;   /* al tope */
-    justify-content: center !important;   /* centrado horizontal */
-    padding-top: 6mm !important;          /* respiro desde arriba */
-  }
-  /* Asegurar que el panel no se re-centre por reglas previas */
-  :fullscreen #zonesFSAnchor #zonesFloat.zf-top,
-  :-webkit-full-screen #zonesFSAnchor #zonesFloat.zf-top{
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-    margin: 0 !important;
-  }
 
-/* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
-
-/* === END RESTART FREE VISUAL POSITION === */
-
-/* === NEW MAIN MENU BUTTON (STABLE) === */
-#btnMenuMain{
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--square) * -1.2);
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  border: 1.5px solid rgba(255,255,255,0.75);
-}
-#btnMenuMain:hover{ background:#222; }
-/* === END NEW MAIN MENU BUTTON === */
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
 <style id="aj-piece-style-width-80">
@@ -8430,108 +8209,10 @@ body[data-theme="noche"] .regv2-btn{
 </style>
 
 
-<style>
-/* === Ajuste fino: Reglas por versiones en Guía === */
-#rulesByVersion{
-  margin-top: 8px !important; /* subir bloque */
-  text-align: center;
-}
-#rulesByVersion h3{
-  text-align: center;
-}
-#rulesByVersion > div{
-  justify-content: center;
-}
-
-/* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
-
-/* === END RESTART FREE VISUAL POSITION === */
-
-/* === NEW MAIN MENU BUTTON (STABLE) === */
-#btnMenuMain{
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--square) * -1.2);
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  border: 1.5px solid rgba(255,255,255,0.75);
-}
-#btnMenuMain:hover{ background:#222; }
-/* === END NEW MAIN MENU BUTTON === */
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
-<style>
-/* === Ajustes finales Guía del juego === */
 
-/* : texto un poco más chico */
-.guia-rapida, 
-.guia-rapida li,
-.guia-rapida p{
-  font-size: 14px !important;
-  line-height: 1.45;
-}
 
-/* Subir bloque reglas por versiones */
-#rulesByVersion{
-  margin-top: 0px !important; /* subir aún más */
-  padding-top: 4px;
-  text-align: center;
-}
-
-/* Título reglas */
-#rulesByVersion h3{
-  margin-top: 4px;
-  margin-bottom: 6px;
-  font-size: 16px;
-}
-
-/* Botones centrados y compactos */
-#rulesByVersion > div{
-  justify-content: center;
-  gap: 10px;
-}
-
-/* === RESTART BUTTON: FREE VISUAL POSITION (NO ANCHOR) === */
-
-/* === END RESTART FREE VISUAL POSITION === */
-
-/* === NEW MAIN MENU BUTTON (STABLE) === */
-#btnMenuMain{
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--square) * -1.2);
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  border: 1.5px solid rgba(255,255,255,0.75);
-}
-#btnMenuMain:hover{ background:#222; }
-/* === END NEW MAIN MENU BUTTON === */
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
 <script id="aj-hide-bot-vs-bot-safe">
@@ -8911,97 +8592,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 </script>
 
-<style id="amenazaRulesStyles">
-#btnReglasAmenaza{
-  all: unset;
-  position: fixed !important;
-  left: 14px !important;
-  bottom: 14px !important;
-  z-index: 2147483647 !important;
-
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  border: 2px solid rgba(255,255,255,.85);
-  box-shadow: 0 6px 20px rgba(0,0,0,.35);
-}
-#btnReglasAmenaza:hover{ background:#222; }
-
-#amenazaRulesBackdrop_OLD{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.4);
-  display:none;
-  z-index:2147483000;
-}
-
-#amenazaRulesPanel_OLD{
-  position:fixed;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:min(760px,92vw);
-  max-height:82vh;
-  overflow:auto;
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 18px 60px rgba(0,0,0,.45);
-  padding:16px;
-  z-index:2147483001;
-  display:none;
-}
-
-#amenazaRulesPanel_OLD h2{ margin-top:0; }
-
-#amenazaRulesClose{
-  position:sticky;
-  top:0;
-  float:right;
-  background:#111;
-  color:#fff;
-  border:2px solid #fff;
-  border-radius:999px;
-  padding:6px 12px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
-<style id="amenazaRulesForceVisible">
-#btnReglasAmenaza{
-  all: unset !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
 
-  position: fixed !important;
-  left: 14px !important;
-  bottom: 14px !important;
-  z-index: 2147483647 !important;
 
-  background: #111 !important;
-  color: #fff !important;
-  border-radius: 999px !important;
-  padding: 10px 16px !important;
-  font-weight: 900 !important;
-  cursor: pointer !important;
-  border: 2px solid rgba(255,255,255,.85) !important;
-  box-shadow: 0 6px 20px rgba(0,0,0,.35) !important;
-}
-#btnReglasAmenaza:hover{ background:#222 !important; }
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
 <style id="amenazaRulesCleanStyles">
@@ -9058,47 +8652,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </style>
 
 
-<style id="aj-external-buttons-unify">
-/* === AJETREZ: UNIFICAR TAMAÑO DE BOTONES EXTERNOS === */
-/* Basado en el indicador "Player vs player (local)" */
 
-/* Botones externos generales */
-#btnReglasSimple,
-#amenazaRulesBtn,
-#guerraRulesBtn,
-#btnMenuMain,
-#btnMegaMenu,
-#btnRegistros,
-.mode-indicator,
-#modeIndicator{
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  padding: 6px 14px !important;
-  min-height: 34px !important;
-  line-height: 1 !important;
-  border-radius: 999px !important;
-}
-
-/* Ajuste fino para móviles */
-@media (max-width: 900px){
-  #btnReglasSimple,
-  #amenazaRulesBtn,
-  #guerraRulesBtn,
-  #btnMenuMain,
-  #btnMegaMenu,
-  #btnRegistros,
-  .mode-indicator,
-  #modeIndicator{
-    font-size: 13px !important;
-    padding: 6px 12px !important;
-    min-height: 32px !important;
-  }
-}
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
 <style id="aj-btn-mode-size-fix">
@@ -9173,36 +8727,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </style>
 
 
-<style id="aj-reglas-align-with-menu">
-/* === BOTÓN REGLAS — ALINEADO EN ALTURA CON MENÚ (NO FLOTANTE) === */
-/* Ajuste leve y reversible, sin anclajes duros */
 
-#btnReglasSimple,
-#amenazaRulesBtn,
-#guerraRulesBtn,
-#btnReglas{
-  position: absolute;
-  bottom: calc(var(--square) * -0.9);
-  left: 18px;
-  animation: none !important;   /* desactiva flotación */
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-}
-
-/* Mobile: mismo criterio, leve ajuste */
-@media (max-width: 900px){
-  #btnReglasSimple,
-  #amenazaRulesBtn,
-  #guerraRulesBtn,
-  #btnReglas{
-    bottom: calc(var(--square) * -0.7);
-    left: 12px;
-  }
-}
-
-/* === AJETREZ_PAY_FIX === */
-.aj-pay-bg{ cursor:pointer; pointer-events:auto !important; }
-/* === END AJETREZ_PAY_FIX === */
-</style>
 
 
 <style id="aj-top-clean-center-fix">
@@ -9314,41 +8839,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 <!-- === MOBILE MENU & RULES BUTTONS BOTTOM PATCH === -->
-<style id="mobileMenuRulesBottom">
-@media (max-width: 900px){
 
-  /* Contenedor principal de barras */
-  .shell{
-    grid-template-rows: auto auto auto auto auto;
-  }
-
-  /* Barra superior pierde protagonismo */
-  .bar{
-    order: 1;
-  }
-
-  /* Tablero al centro */
-  .board-wrap{
-    order: 2;
-  }
-
-  /* Barra inferior forzada debajo del tablero */
-  .shell > .bar:last-of-type{
-    order: 3;
-    margin-top: 12px;
-  }
-
-  /* Alinear botones de menú y reglas abajo */
-  .right-ctrls,
-  .mode-group{
-    position: static !important;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-  }
-
-}
-</style>
 <!-- === END MOBILE MENU & RULES BUTTONS BOTTOM PATCH === -->
 
 
@@ -9393,130 +8884,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </style>
 
 
-<style id="aj-floating-menu-rules">
-/* === BOTONES MENU Y REGLAS FLOTANTES (GLOBAL) === */
-
-/* Botón Menú */
-#btnMenuMain,
-#btnMegaMenu,
-#btnMenu,
-.btn-menu{
-  position: fixed !important;
-  left: 50% !important;
-  bottom: 18px !important;
-  transform: translateX(-50%) !important;
-  z-index: 9999 !important;
-}
-
-/* Botones de Reglas */
-#btnReglasSimple,
-#guerraRulesBtn,
-#amenazaRulesBtn,
-.btn-reglas{
-  position: fixed !important;
-  right: 18px !important;
-  bottom: 18px !important;
-  z-index: 9999 !important;
-}
-
-/* En móvil: subir reglas para no chocar con menú */
-@media (max-width: 900px){
-  #btnReglasSimple,
-  #guerraRulesBtn,
-  #amenazaRulesBtn,
-  .btn-reglas{
-    bottom: 64px !important;
-  }
-}
-</style>
 
 
-<style id="aj-floating-menu-rules-raise">
-/* === SUBIR BOTONES FLOTANTES MEDIO CASILLERO (WEB + MÓVIL) === */
-:root{
-  --aj-half-square: calc(var(--square, 56px) * 0.5);
-}
 
-/* Botón Menú */
-#btnMenuMain,
-#btnMegaMenu,
-#btnMenu,
-.btn-menu{
-  bottom: calc(18px + var(--aj-half-square)) !important;
-}
 
-/* Botones Reglas */
-#btnReglasSimple,
-#guerraRulesBtn,
-#amenazaRulesBtn,
-.btn-reglas{
-  bottom: calc(18px + var(--aj-half-square)) !important;
-}
-</style>
 
-<style>
-/* === AJETREZ DEEP PATCH: BOTONES TOTALMENTE LIBRES === */
 
-/* Botón REGLAS */
-#btnReglas{
-  all: unset !important;
-  position: fixed !important;
-  top: 10px !important;
-  left: 10px !important;
-  z-index: 99999 !important;
 
-  background:#111 !important;
-  color:#fff !important;
-  border-radius:999px !important;
-  padding:8px 14px !important;
-  font-weight:800 !important;
-  cursor:pointer !important;
-  border:1.5px solid rgba(255,255,255,.8) !important;
-  box-shadow:0 2px 8px rgba(0,0,0,.25) !important;
-}
 
-/* Botón MENU */
-#btnMegaMenu{
-  all: unset !important;
-  position: fixed !important;
-  top: 52px !important;
-  left: 10px !important;
-  z-index: 99998 !important;
-
-  background:#111 !important;
-  color:#fff !important;
-  border-radius:999px !important;
-  padding:8px 14px !important;
-  font-weight:800 !important;
-  cursor:pointer !important;
-  border:1.5px solid rgba(255,255,255,.8) !important;
-  box-shadow:0 2px 8px rgba(0,0,0,.25) !important;
-}
-
-/* Blindaje total contra contenedores */
-.bar,
-.mode-group,
-.right-ctrls,
-.frame *{
-  pointer-events:auto;
-}
-
-/* === END DEEP PATCH === */
-</style>
-<style>
-/* === AJETREZ GLOBAL SHIFT UP: +1 CASILLERO === */
-/* Desplaza TODO el contenido dentro de la base gris sin escalar */
-
-.frame{
-  transform: translateY(calc(var(--square) * -1)) !important;
-}
-
-/* Blindaje para evitar conflictos con otros transforms */
-.frame *{
-  transform-origin: center center;
-}
-/* === END GLOBAL SHIFT === */
-</style>
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
@@ -9554,7 +8929,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </div></div></div><div aria-label="Ajetrez base limpia" id="board"></div><div aria-label="Decidir desplazamiento de fila" class="shift-ctrl" id="shiftCtrl" role="group"><span class="lbl" id="shiftLbl">Fila</span><span id="chooseWrap"><button aria-label="Mantener" id="btnKeep" type="button">Mantener</button><button aria-label="Desplazar sección" id="btnShift" type="button">Desplazar sección</button></span><span id="confirmWrap" style="display:none"><span id="choiceTxt" style="font-size:12px;font-weight:700;margin-right:6px;opacity:.85">Confirmar:</span><button aria-label="Confirmar" class="confirm" id="btnConfirm" type="button">Confirmar</button><button aria-label="Volver a elegir" id="btnBack" type="button">Cambiar elección</button></span></div><div id="overlay"><div id="banner">FIN</div></div><div id="panelBackdrop"></div><div aria-labelledby="mpTitle" aria-modal="true" id="megaPanel" role="dialog"><div class="apply-toast" id="applyToast">✔ Cambios guardados
 </div><div class="mp-header"><div id="mpTitle">Panel de Ajetrez
 <button class="btn small btn-close-internal" id="btnClosePanel" aria-label="Cerrar panel">Cerrar</button></div><div class="right"><span class="hint-sm" id="loggedUser"></span><button class="btn" id="/* btnClosePanel eliminado */" type="button"></button></div></div><div id="tabsView"><div class="mp-tabs">
-    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button></div><div class="mp-content">
+    <button class="tab-btn active" data-tab="tab-version">Versión de Ajetrez</button><button class="tab-btn" data-tab="tab-modos">Modos de juego</button><button class="tab-btn" data-tab="tab-personalizacion">Personalización</button><button class="tab-btn" data-tab="tab-registros" id="btnRegistrosTab">Registros</button>
+</div><div class="mp-content">
 
     <div class="tab" id="tab-personalizacion" style="display:none"><h3>Personalización del juego</h3><div class="row"><div class="field"><label>Estilo de piezas</label><select id="selSprites"><option value="auto">Auto (usar sprites si están disponibles)</option><option value="sprites">Sprites (imágenes)</option><option value="unicode">Unicode (símbolos)</option></select>
 
@@ -21512,11 +20888,7 @@ Final: jaque mate o tablas (ahogado, 3 repeticiones, 50 jugadas, material insufi
 
 
 <script>
-function openRulesModoSimple(){
-  openMegaPanel({
-    title: "Cómo jugar — Modo simple",
-    content: document.getElementById("rulesModoSimpleTemplate").innerHTML
-  });
+);
 }
 </script>
 
@@ -21542,13 +20914,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 // Reimplementación usando el MISMO sistema que los otros botones funcionales
-function openRulesModoSimple(){
-  if(typeof openInfoPanel === "function"){
-    openInfoPanel({
-      title: "Reglas modo amenaza",
-      html: document.getElementById("rulesModoSimpleTemplate").innerHTML,
-      size: "full" // misma configuración que los otros botones grandes
-    });
+);
   } else if(typeof openMegaPanel === "function"){
     openMegaPanel({
       title: "Cómo jugar — Modo simple",
@@ -21680,14 +21046,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <script>
-function openRulesModoSimple(){
-  const backdrop = document.getElementById("rulesSimpleFloat");
-  const content = document.getElementById("rulesSimpleContent");
-  if(!backdrop || !content) return;
 
-  content.innerHTML = document.getElementById("rulesModoSimpleTemplate").innerHTML;
-  backdrop.style.display = "flex";
-}
 
 function closeRulesModoSimple(){
   const backdrop = document.getElementById("rulesSimpleFloat");
@@ -21828,14 +21187,7 @@ podés verlas y alcanzarlas.
 </template>
 
 <script>
-function openRulesModoAmenaza(){
-  const backdrop = document.getElementById("rulesSimpleFloat");
-  const content = document.getElementById("rulesSimpleContent");
-  if(!backdrop || !content) return;
 
-  content.innerHTML = document.getElementById("rulesModoAmenazaTemplate").innerHTML;
-  backdrop.style.display = "flex";
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = Array.from(document.querySelectorAll("button"))
@@ -21943,14 +21295,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </template>
 
 <script>
-function openRulesModoGuerra(){
-  const backdrop = document.getElementById("rulesSimpleFloat");
-  const content = document.getElementById("rulesSimpleContent");
-  if(!backdrop || !content) return;
 
-  content.innerHTML = document.getElementById("rulesModoGuerraTemplate").innerHTML;
-  backdrop.style.display = "flex";
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = Array.from(document.querySelectorAll("button"))
