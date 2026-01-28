@@ -9674,6 +9674,20 @@ button#btnOnlineExternal:active{
 </style>
 <!-- === END MOBILE MENU & RULES BUTTONS BOTTOM PATCH === -->
 
+
+<!-- === MOBILE FRAME TOP EXPANSION PATCH === -->
+<style id="mobileFrameTopExpand">
+@media (max-width: 900px){
+
+  /* Aumentar solo la parte superior de la base gris */
+  .frame{
+    padding-top: calc(14px + var(--square));
+  }
+
+}
+</style>
+<!-- === END MOBILE FRAME TOP EXPANSION PATCH === -->
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
