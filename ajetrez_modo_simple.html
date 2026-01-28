@@ -9701,6 +9701,37 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<style id="shrinkBaseKeepContent">
+/* === WEB + MOBILE: ACHICAR BASE(S) ~2 CASILLEROS SIN ESCALAR CONTENIDO === */
+
+/* 1) Achicar la base gris principal */
+.frame{
+  padding-bottom: calc(14px - (var(--square) * 2));
+  box-sizing: border-box;
+}
+
+/* 2) Si existe una base "madre" visual (gradiente/fondo), acompaña el achique */
+.frame::before,
+.frame::after{
+  bottom: calc((var(--square) * 2) * -1);
+}
+
+/* 3) Recentrar el contenido dentro de la base resultante */
+.shell{
+  display: grid;
+  place-items: center;
+  padding-top: 0 !important; /* anulamos corrimientos previos */
+}
+
+/* 4) Mantener proporciones del juego intactas */
+.board-wrap,
+#board,
+.bar{
+  flex-shrink: 0;
+}
+</style>
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
