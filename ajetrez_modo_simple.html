@@ -9718,6 +9718,68 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<style id="aj-floating-menu-rules">
+/* === BOTONES MENU Y REGLAS FLOTANTES (GLOBAL) === */
+
+/* Botón Menú */
+#btnMenuMain,
+#btnMegaMenu,
+#btnMenu,
+.btn-menu{
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999 !important;
+}
+
+/* Botones de Reglas */
+#btnReglasSimple,
+#guerraRulesBtn,
+#amenazaRulesBtn,
+.btn-reglas{
+  position: fixed !important;
+  right: 18px !important;
+  bottom: 18px !important;
+  z-index: 9999 !important;
+}
+
+/* En móvil: subir reglas para no chocar con menú */
+@media (max-width: 900px){
+  #btnReglasSimple,
+  #guerraRulesBtn,
+  #amenazaRulesBtn,
+  .btn-reglas{
+    bottom: 64px !important;
+  }
+}
+</style>
+
+
+<style id="aj-floating-menu-rules-raise">
+/* === SUBIR BOTONES FLOTANTES MEDIO CASILLERO (WEB + MÓVIL) === */
+:root{
+  --aj-half-square: calc(var(--square, 56px) * 0.5);
+}
+
+/* Botón Menú */
+#btnMenuMain,
+#btnMegaMenu,
+#btnMenu,
+.btn-menu{
+  bottom: calc(18px + var(--aj-half-square)) !important;
+}
+
+/* Botones Reglas */
+#btnReglasSimple,
+#guerraRulesBtn,
+#amenazaRulesBtn,
+.btn-reglas{
+  bottom: calc(18px + var(--aj-half-square)) !important;
+}
+</style>
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
@@ -23000,6 +23062,49 @@ document.addEventListener('click', function(e){
   }
 }, true);
 /* === END AJETREZ_PAY_FIX JS === */
+</script>
+
+
+<script id="aj-force-float-position-fix">
+/*
+  FIX DEFINITIVO:
+  Algunos botones tenían posición fijada inline o recalculada por JS.
+  Forzamos la posición en runtime con JS (última palabra).
+*/
+(function(){
+  function apply(){
+    const half = (getComputedStyle(document.documentElement)
+                  .getPropertyValue('--square') || '56px').trim();
+    const halfPx = parseFloat(half) * 0.5 || 28;
+
+    const menuBtns = [
+      '#btnMenuMain',
+      '#btnMegaMenu',
+      '#btnMenu',
+      '.btn-menu'
+    ];
+    const rulesBtns = [
+      '#btnReglasSimple',
+      '#guerraRulesBtn',
+      '#amenazaRulesBtn',
+      '.btn-reglas'
+    ];
+
+    [...menuBtns, ...rulesBtns].forEach(sel=>{
+      document.querySelectorAll(sel).forEach(btn=>{
+        btn.style.position = 'fixed';
+        btn.style.bottom = (18 + halfPx) + 'px';
+        btn.style.zIndex = 9999;
+      });
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', apply, { once:true });
+  }else{
+    apply();
+  }
+})();
 </script>
 
 </body>
