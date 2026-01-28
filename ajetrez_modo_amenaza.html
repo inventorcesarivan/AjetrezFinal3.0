@@ -9379,6 +9379,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </style>
 <!-- === END WEB FRAME TOP EXPANSION PATCH === -->
 
+
+<style id="aj-mobile-online-btn-position">
+@media (max-width: 900px){
+  /* Colocar botón externo Jugar Online encima del botón Modo */
+  #btnOnlineExternal{
+    position: absolute !important;
+    left: 10px !important;
+    top: -38px !important;
+    z-index: 60 !important;
+  }
+}
+</style>
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
