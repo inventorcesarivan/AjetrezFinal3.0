@@ -9848,6 +9848,23 @@ button[data-mode="online"]:hover{
 </style>
 <!-- === END MOBILE MODE CONTROLS SCALE === -->
 
+
+<!-- === MOBILE MENU BUTTON BOTTOM CENTER === -->
+<style id="mobileMenuBottomCenter">
+@media (max-width: 900px){
+  #btnMegaMenu,
+  #btnMenuMain{
+    position: absolute !important;
+    left: 50% !important;
+    bottom: calc(var(--square) * -0.6) !important;
+    top: auto !important;
+    transform: translateX(-50%) !important;
+    z-index: 60;
+  }
+}
+</style>
+<!-- === END MOBILE MENU BUTTON BOTTOM CENTER === -->
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
