@@ -23055,6 +23055,36 @@ document.addEventListener('click', function(e){
 })();
 </script>
 
+
+<script id="aj-remove-legacy-rules-button">
+/* === ELIMINAR DEFINITIVAMENTE BOTÓN LEGACY DE REGLAS === */
+(function(){
+  function removeLegacy(){
+    const selectors = [
+      '.rules-bar',
+      '.rules-bottom',
+      '.rules-wide',
+      '#rulesBottom',
+      '#rulesBar',
+      '#rulesWide',
+      'button.rules-wide',
+      'button[aria-label="Reglas"][style*="width"]'
+    ];
+    selectors.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>{
+        el.remove();
+      });
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', removeLegacy, { once:true });
+  }else{
+    removeLegacy();
+  }
+})();
+</script>
+
 </body>
 
 <!-- AJETREZ: Overlay de reproducción (bloqueo del tablero) v2 -->
