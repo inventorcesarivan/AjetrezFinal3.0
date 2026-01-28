@@ -9780,66 +9780,6 @@ button#btnOnlineExternal:active{
 }
 </style>
 
-
-<style id="aj-mobile-top-buttons-baseline-final">
-/* === AJUSTE FINAL MÓVIL: LÍNEA BASE COMÚN + -10% === */
-@media (max-width: 900px){
-
-  /* Fila superior alineada */
-  .mode-group{
-    display: flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-  }
-
-  /* Todos los botones superiores */
-  .mode-group .btn,
-  #btnOnlineExternal,
-  #btnMenuMain,
-  #btnMegaMenu,
-  #btnMenu,
-  #btnReglasSimple,
-  #guerraRulesBtn,
-  #amenazaRulesBtn{
-    font-size: 11.7px !important;
-    padding: 3.5px 9px !important;
-    min-height: 24px !important;
-    line-height: 1 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* Indicador de modo */
-  .mode-indicator{
-    font-size: 11.7px !important;
-    padding: 3.5px 7px !important;
-    min-height: 24px !important;
-    line-height: 1 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-  }
-}
-</style>
-
-
-<style id="aj-hide-duplicate-rules-mobile">
-/* === FIX: OCULTAR BOTÓN DUPLICADO DE REGLAS EN MÓVIL === */
-@media (max-width: 900px){
-  /* Botón de reglas legacy que aparece estirado abajo */
-  .rules-bar,
-  .rules-bottom,
-  .rules-wide,
-  #rulesBottom,
-  #rulesBar,
-  #rulesWide,
-  button[aria-label="Reglas"][style*="width: 100%"],
-  button.rules-wide{
-    display: none !important;
-  }
-}
-</style>
-
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
@@ -23163,36 +23103,6 @@ document.addEventListener('click', function(e){
     document.addEventListener('DOMContentLoaded', apply, { once:true });
   }else{
     apply();
-  }
-})();
-</script>
-
-
-<script id="aj-remove-legacy-rules-button">
-/* === ELIMINAR DEFINITIVAMENTE BOTÓN LEGACY DE REGLAS === */
-(function(){
-  function removeLegacy(){
-    const selectors = [
-      '.rules-bar',
-      '.rules-bottom',
-      '.rules-wide',
-      '#rulesBottom',
-      '#rulesBar',
-      '#rulesWide',
-      'button.rules-wide',
-      'button[aria-label="Reglas"][style*="width"]'
-    ];
-    selectors.forEach(sel=>{
-      document.querySelectorAll(sel).forEach(el=>{
-        el.remove();
-      });
-    });
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', removeLegacy, { once:true });
-  }else{
-    removeLegacy();
   }
 })();
 </script>
