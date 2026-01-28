@@ -9215,6 +9215,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </style>
 
 
+
+<style id="baseHeightReduce">
+/* Reduce base container height by ~1 square (web & mobile) */
+.shell{
+  grid-template-rows:
+    var(--toolbar-h)
+    var(--toolbar-gap)
+    auto
+    var(--toolbar-gap)
+    calc(var(--toolbar-h) - var(--square));
+}
+</style>
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
