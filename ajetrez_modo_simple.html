@@ -9780,6 +9780,69 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+<style>
+/* === AJETREZ DEEP PATCH: BOTONES TOTALMENTE LIBRES === */
+
+/* Botón REGLAS */
+#btnReglas{
+  all: unset !important;
+  position: fixed !important;
+  top: 10px !important;
+  left: 10px !important;
+  z-index: 99999 !important;
+
+  background:#111 !important;
+  color:#fff !important;
+  border-radius:999px !important;
+  padding:8px 14px !important;
+  font-weight:800 !important;
+  cursor:pointer !important;
+  border:1.5px solid rgba(255,255,255,.8) !important;
+  box-shadow:0 2px 8px rgba(0,0,0,.25) !important;
+}
+
+/* Botón MENU */
+#btnMegaMenu{
+  all: unset !important;
+  position: fixed !important;
+  top: 52px !important;
+  left: 10px !important;
+  z-index: 99998 !important;
+
+  background:#111 !important;
+  color:#fff !important;
+  border-radius:999px !important;
+  padding:8px 14px !important;
+  font-weight:800 !important;
+  cursor:pointer !important;
+  border:1.5px solid rgba(255,255,255,.8) !important;
+  box-shadow:0 2px 8px rgba(0,0,0,.25) !important;
+}
+
+/* Blindaje total contra contenedores */
+.bar,
+.mode-group,
+.right-ctrls,
+.frame *{
+  pointer-events:auto;
+}
+
+/* === END DEEP PATCH === */
+</style>
+<style>
+/* === AJETREZ GLOBAL SHIFT UP: +1 CASILLERO === */
+/* Desplaza TODO el contenido dentro de la base gris sin escalar */
+
+.frame{
+  transform: translateY(calc(var(--square) * -1)) !important;
+}
+
+/* Blindaje para evitar conflictos con otros transforms */
+.frame *{
+  transform-origin: center center;
+}
+/* === END GLOBAL SHIFT === */
+</style>
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
