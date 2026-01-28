@@ -9614,6 +9614,27 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<!-- === MOBILE BASE SIZE UNIFICATION PATCH === -->
+<style id="mobileBaseUnify">
+@media (max-width: 900px){
+  body{
+    align-items:flex-start;
+  }
+  .frame{
+    width: calc(var(--square) * 24 + 28px);
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+  .shell,
+  .board-wrap,
+  #board{
+    max-width: 100%;
+  }
+}
+</style>
+<!-- === END MOBILE BASE SIZE UNIFICATION PATCH === -->
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
