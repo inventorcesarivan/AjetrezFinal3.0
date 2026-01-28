@@ -9496,6 +9496,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
 }
 </style>
 
+
+<style id="aj-hide-duplicate-rules-mobile">
+/* === FIX: OCULTAR BOTÓN DUPLICADO DE REGLAS EN MÓVIL === */
+@media (max-width: 900px){
+  /* Botón de reglas legacy que aparece estirado abajo */
+  .rules-bar,
+  .rules-bottom,
+  .rules-wide,
+  #rulesBottom,
+  #rulesBar,
+  #rulesWide,
+  button[aria-label="Reglas"][style*="width: 100%"],
+  button.rules-wide{
+    display: none !important;
+  }
+}
+</style>
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
