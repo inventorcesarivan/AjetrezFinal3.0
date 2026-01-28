@@ -9635,6 +9635,45 @@ button#btnOnlineExternal:active{
 </style>
 <!-- === END MOBILE BASE SIZE UNIFICATION PATCH === -->
 
+
+<!-- === MOBILE MENU & RULES BUTTONS BOTTOM PATCH === -->
+<style id="mobileMenuRulesBottom">
+@media (max-width: 900px){
+
+  /* Contenedor principal de barras */
+  .shell{
+    grid-template-rows: auto auto auto auto auto;
+  }
+
+  /* Barra superior pierde protagonismo */
+  .bar{
+    order: 1;
+  }
+
+  /* Tablero al centro */
+  .board-wrap{
+    order: 2;
+  }
+
+  /* Barra inferior forzada debajo del tablero */
+  .shell > .bar:last-of-type{
+    order: 3;
+    margin-top: 12px;
+  }
+
+  /* Alinear botones de menú y reglas abajo */
+  .right-ctrls,
+  .mode-group{
+    position: static !important;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+}
+</style>
+<!-- === END MOBILE MENU & RULES BUTTONS BOTTOM PATCH === -->
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
