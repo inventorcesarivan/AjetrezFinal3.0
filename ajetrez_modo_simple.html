@@ -9773,6 +9773,64 @@ button#btnOnlineExternal:active{
 /* === END PATCH === */
 
 </style>
+<style>
+
+/* === PATCH: BOTÓN JUGAR ONLINE FLOTANTE === */
+#btnOnline,
+.btn-online,
+button[data-mode="online"]{
+  all: unset;
+  position: absolute;
+  left: calc(var(--square) * 0.25);
+  top: calc(var(--square) * 0.25);
+  z-index: 70;
+
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  padding:7px 12px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  border:1.5px solid rgba(255,255,255,.75);
+}
+#btnOnline:hover,
+.btn-online:hover,
+button[data-mode="online"]:hover{
+  background:#222;
+}
+/* === END PATCH === */
+
+</style>
+<style>
+
+/* === PATCH: JUGAR ONLINE SOBRE RELOJ (TOP RIGHT) === */
+#btnOnline,
+.btn-online,
+button[data-mode="online"]{
+  all: unset;
+  position: absolute;
+  right: calc(var(--square) * 0.5);
+  top: calc(var(--square) * -0.25);
+  z-index: 80;
+
+  background:#111;
+  color:#fff;
+  border-radius:999px;
+  padding:7px 12px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  border:1.5px solid rgba(255,255,255,.75);
+}
+#btnOnline:hover,
+.btn-online:hover,
+button[data-mode="online"]:hover{
+  background:#222;
+}
+/* === END PATCH === */
+
+</style>
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
