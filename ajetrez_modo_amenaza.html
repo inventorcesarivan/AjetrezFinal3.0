@@ -9454,6 +9454,39 @@ document.addEventListener("DOMContentLoaded", ()=>{
 }
 </style>
 
+
+<style id="aj-mobile-buttons-compact">
+/* === AJUSTE FINO BOTONES SUPERIORES — SOLO MÓVIL === */
+@media (max-width: 900px){
+
+  /* Botones superiores (modo, online, menu, reglas) */
+  .mode-group .btn,
+  #btnOnlineExternal,
+  #btnMenuMain,
+  #btnMegaMenu,
+  #btnMenu,
+  #btnReglasSimple,
+  #guerraRulesBtn,
+  #amenazaRulesBtn{
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    min-height: 26px !important;
+    border-radius: 999px !important;
+  }
+
+  /* Reducir separación entre botones */
+  .mode-group{
+    gap: 6px !important;
+  }
+
+  /* Ajuste específico del indicador de modo */
+  .mode-indicator{
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+  }
+}
+</style>
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
