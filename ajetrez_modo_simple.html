@@ -9732,6 +9732,42 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<style id="overlayClampToFrame">
+/* === OVERLAY DE REGLAS LIMITADO A LA BASE GRIS (WEB + MOBILE) === */
+
+/* La base gris es el marco de referencia */
+.frame{
+  position: relative;
+  overflow: hidden; /* nada puede salir */
+}
+
+/* Overlay semitransparente */
+#panelBackdrop,
+#overlay{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Panel flotante de reglas */
+#megaPanel{
+  position: absolute !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
+  overflow: auto;
+}
+
+/* Evitar overlays anclados al viewport */
+body > #panelBackdrop,
+body > #overlay{
+  display: none !important;
+}
+</style>
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
