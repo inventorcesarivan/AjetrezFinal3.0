@@ -9580,6 +9580,29 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<style id="mobileBaseTrim2">
+/* === MOBILE: REDUCIR BASE GRIS ~2 CASILLEROS DESDE ABAJO === */
+@media (max-width: 980px){
+
+  /* Base principal */
+  .shell{
+    grid-template-rows:
+      var(--toolbar-h)
+      var(--toolbar-gap)
+      auto
+      var(--toolbar-gap)
+      calc(var(--toolbar-h) - (var(--square) * 2));
+  }
+
+  /* Si existe una base secundaria inferior, reducirla también */
+  .frame::after,
+  .frame::before{
+    height: calc(100% - (var(--square) * 2));
+  }
+}
+</style>
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
