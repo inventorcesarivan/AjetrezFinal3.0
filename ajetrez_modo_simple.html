@@ -9649,6 +9649,19 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<style id="globalBasePlusHalf">
+/* === WEB + MOBILE: AUMENTAR BASE GRIS +0.5 CASILLERO (HACIA ARRIBA) === */
+.shell{
+  grid-template-rows:
+    var(--toolbar-h)
+    var(--toolbar-gap)
+    auto
+    var(--toolbar-gap)
+    calc(var(--toolbar-h) + (var(--square) * 0.5));
+}
+</style>
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
