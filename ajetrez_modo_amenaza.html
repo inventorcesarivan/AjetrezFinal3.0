@@ -9505,6 +9505,23 @@ button[data-mode="online"]:hover{
 /* === END PATCH === */
 
 </style>
+
+<!-- === MOBILE MODE CONTROLS SCALE (-15%) === -->
+<style id="mobileModeControlsScale">
+@media (max-width: 900px){
+  .mode-group{
+    transform: scale(0.85);
+    transform-origin: left top;
+  }
+  .mode-group .btn,
+  .mode-group .mode-indicator,
+  #btnOnline{
+    font-size: 0.85em;
+  }
+}
+</style>
+<!-- === END MOBILE MODE CONTROLS SCALE === -->
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
