@@ -346,8 +346,11 @@
   /* === PANEL COMPLETO === */
   #panelBackdrop{
   position:absolute;
-  inset:0;
-  background: rgba(0,0,0,.35);
+  top:0;
+  left:0;
+  right:0;
+  height: calc(var(--square) * 8);
+  background: rgba(0,0,0,.30);
   display:none; pointer-events:auto;
   z-index: 30;
 }
@@ -356,8 +359,8 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(var(--square-menu) * 16);
-  height: calc(var(--square-menu) * 8);
+  width: calc(var(--square) * 16);
+  height: calc(var(--square) * 8);
   background:#fff;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(0,0,0,.25);
@@ -9701,104 +9704,6 @@ button#btnOnlineExternal:active{
 }
 </style>
 <!-- === END WEB FRAME TOP EXPANSION PATCH === -->
-
-
-<!-- === MENU & RULES BUTTONS UP HALF SQUARE (MOBILE + WEB) === -->
-<style id="menuRulesUpHalfSquare">
-
-/* Aplica a ambas versiones */
-.right-ctrls,
-.mode-group{
-  transform: translateY(calc(var(--square) * -0.5));
-}
-
-</style>
-<!-- === END MENU & RULES BUTTONS UP HALF SQUARE === -->
-
-
-<!-- === FLOATING MENU & RULES BUTTONS (MOBILE + WEB) === -->
-<style id="floatingMenuRules">
-
-/* Ambos botones flotantes, mismo comportamiento en móvil y web */
-.mode-group,
-.right-ctrls{
-  position: fixed !important;
-  left: 50%;
-  bottom: calc(var(--square) * 1.2);
-  transform: translate(-50%, calc(var(--square) * -0.5));
-  z-index: 999;
-  display: flex;
-  gap: 14px;
-  pointer-events: auto;
-}
-
-/* Evitar que el layout original los afecte */
-.shell .mode-group,
-.shell .right-ctrls{
-  position: fixed !important;
-}
-
-</style>
-<!-- === END FLOATING MENU & RULES BUTTONS === -->
-
-
-<!-- === FLOATING MENU & RULES BUTTONS UP +0.5 SQUARE === -->
-<style id="floatingMenuRulesUpHalf">
-
-/* Subir medio casillero adicional (móvil + web) */
-.mode-group,
-.right-ctrls{
-  bottom: calc(var(--square) * 1.7) !important; /* +0.5 casillero */
-}
-
-</style>
-<!-- === END FLOATING MENU & RULES BUTTONS UP +0.5 SQUARE === -->
-
-
-<!-- === FIX FLOATING CHAOS: ONLY MENU & RULES FLOAT === -->
-<style id="fixFloatingOrder">
-
-/* 1) Restaurar layout normal de contenedores generales */
-.mode-group,
-.right-ctrls{
-  position: static !important;
-  transform: none !important;
-  bottom: auto !important;
-  left: auto !important;
-}
-
-/* 2) Hacer flotantes SOLO los botones correctos */
-#btnMegaMenu,
-#btnReglas,
-#btnRules{
-  position: fixed !important;
-  left: 50%;
-  bottom: calc(var(--square) * 1.7);
-  transform: translateX(-50%);
-  z-index: 999;
-}
-
-/* Separación visual si ambos existen */
-#btnMegaMenu{ transform: translateX(calc(-50% - var(--square))); }
-#btnReglas,
-#btnRules{ transform: translateX(calc(-50% + var(--square))); }
-
-</style>
-<!-- === END FIX FLOATING CHAOS === -->
-
-
-<!-- === FLOATING MENU & RULES UP +1 SQUARE (FINAL TUNE) === -->
-<style id="floatingMenuRulesUpOne">
-
-/* Subir ~1 casillero completo en móvil y web */
-#btnMegaMenu,
-#btnReglas,
-#btnRules{
-  bottom: calc(var(--square) * 2.7) !important;
-}
-
-</style>
-<!-- === END FLOATING MENU & RULES UP +1 SQUARE === -->
 
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
