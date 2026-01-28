@@ -9442,6 +9442,56 @@ body > #overlay{
 }
 </style>
 
+
+<style id="overlayHardFix">
+/* ==== OVERLAY HARD FIX (WEB + MOBILE) ==== */
+.frame{
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Kill viewport-based overlays */
+#panelBackdrop,
+#overlay{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Neutralize fixed/viewport rules if any */
+#panelBackdrop[style*="fixed"],
+#overlay[style*="fixed"]{
+  position: absolute !important;
+}
+
+/* Panel inside overlay */
+#megaPanel{
+  position: absolute !important;
+  inset: 5% !important;
+  max-width: 90% !important;
+  max-height: 90% !important;
+  overflow-y: auto !important;
+}
+</style>
+
+<script>
+/* Re-parent overlays into .frame to avoid body/viewport sizing */
+(function(){
+  const frame = document.querySelector('.frame');
+  if(!frame) return;
+
+  ['panelBackdrop','overlay','megaPanel'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && el.parentElement !== frame){
+      frame.appendChild(el);
+    }
+  });
+})();
+</script>
+
 </head><body>
 <!-- REMOVED_DUPLICATE_BUTTON onclick="openAmenazaRules_OLD()">Reglas</button><!-- checked -->
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">

@@ -9244,6 +9244,56 @@ body > #overlay{
 }
 </style>
 
+
+<style id="overlayHardFix">
+/* ==== OVERLAY HARD FIX (WEB + MOBILE) ==== */
+.frame{
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Kill viewport-based overlays */
+#panelBackdrop,
+#overlay{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Neutralize fixed/viewport rules if any */
+#panelBackdrop[style*="fixed"],
+#overlay[style*="fixed"]{
+  position: absolute !important;
+}
+
+/* Panel inside overlay */
+#megaPanel{
+  position: absolute !important;
+  inset: 5% !important;
+  max-width: 90% !important;
+  max-height: 90% !important;
+  overflow-y: auto !important;
+}
+</style>
+
+<script>
+/* Re-parent overlays into .frame to avoid body/viewport sizing */
+(function(){
+  const frame = document.querySelector('.frame');
+  if(!frame) return;
+
+  ['panelBackdrop','overlay','megaPanel'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && el.parentElement !== frame){
+      frame.appendChild(el);
+    }
+  });
+})();
+</script>
+
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
 <!-- Floating Replay FAB (centered over board) -->
