@@ -9662,6 +9662,27 @@ button#btnOnlineExternal:active{
 }
 </style>
 
+
+<style id="globalContentDown1">
+/* === WEB + MOBILE: DESPLAZAR TODO EL CONTENIDO +1 CASILLERO HACIA ABAJO === */
+
+/* El contenedor principal del juego */
+.shell{
+  padding-top: calc(var(--square) * 1);
+  box-sizing: border-box;
+}
+
+/* Asegurar que barras, tablero y overlays acompañen */
+.bar,
+.board-wrap,
+#board,
+#overlay,
+#panelBackdrop,
+#megaPanel{
+  top: auto;
+}
+</style>
+
 </head><body>
 <button id="btnReglasSimple" onclick="openSimpleRules()">Reglas</button>
 ><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
