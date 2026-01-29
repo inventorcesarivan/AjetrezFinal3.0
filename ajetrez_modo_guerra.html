@@ -2,6 +2,22 @@
 
 <html lang="es"><head>
 
+<!-- === GLOBAL GAME UP SHIFT (EXCEPT FRAME BG) === -->
+<style id="globalGameUpShift">
+/* Desplaza TODO el juego (tablero + botones) 1 casillero hacia arriba.
+   La base gris (.frame) NO se mueve. */
+.shell{
+  transform: translateY(calc(var(--square) * -1));
+}
+@media (max-width: 900px){
+  .shell{
+    transform: translateY(calc(var(--square) * -1));
+  }
+}
+</style>
+<!-- === END GLOBAL GAME UP SHIFT === -->
+
+
 <!-- === MOBILE GAME OFFSET PATCH === -->
 <style id="mobileGameOffset">
 @media (max-width: 900px){
