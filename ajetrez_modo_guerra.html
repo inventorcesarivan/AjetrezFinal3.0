@@ -2,22 +2,6 @@
 
 <html lang="es"><head>
 
-<!-- === GLOBAL GAME UP SHIFT (EXCEPT FRAME BG) === -->
-<style id="globalGameUpShift">
-/* Desplaza TODO el juego (tablero + botones) 1 casillero hacia arriba.
-   La base gris (.frame) NO se mueve. */
-.shell{
-  transform: translateY(calc(var(--square) * -1));
-}
-@media (max-width: 900px){
-  .shell{
-    transform: translateY(calc(var(--square) * -1));
-  }
-}
-</style>
-<!-- === END GLOBAL GAME UP SHIFT === -->
-
-
 <!-- === MOBILE GAME OFFSET PATCH === -->
 <style id="mobileGameOffset">
 @media (max-width: 900px){
@@ -22906,6 +22890,50 @@ document.addEventListener('click', function(e){
   }
 })();
 </script>
+
+
+<!-- === ROOT FIX: MOVE (NOT DUPLICATE) MENU & RULES === -->
+<style>
+#floatingTopControls{
+  position:absolute;
+  top: calc(var(--square) * 0.5);
+  left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  gap:12px;
+  z-index:999;
+}
+
+/* Shift the rest of the UI down */
+.shell{
+  margin-top: calc(var(--square) * 1);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn =
+    document.querySelector("#btnMegaMenu") ||
+    [...document.querySelectorAll("button")].find(b => /menú/i.test(b.textContent));
+
+  const rulesBtn =
+    document.querySelector("#btnRules") ||
+    [...document.querySelectorAll("button")].find(b => /reglas/i.test(b.textContent));
+
+  if(!menuBtn || !rulesBtn) return;
+
+  // Create floating container
+  const wrap = document.createElement("div");
+  wrap.id = "floatingTopControls";
+
+  // Move (not clone!) the real buttons
+  wrap.appendChild(menuBtn);
+  wrap.appendChild(rulesBtn);
+
+  document.body.appendChild(wrap);
+});
+</script>
+<!-- === END ROOT FIX === -->
 
 </body>
 
