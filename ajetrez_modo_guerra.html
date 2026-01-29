@@ -9308,59 +9308,55 @@ button[data-mode="online"]:hover{
 
 </style>
 
-<!-- ================= FINAL MOBILE UI PATCH ================= -->
-<style id="finalMobileUIPatch">
+<!-- ================= FLOATING RULES BUTTON (ROOT CLEAN) ================= -->
+<style id="floatingRulesRoot">
+:root{
+  --rules-x: 50%;
+  --rules-y: 12px;
+  --rules-translate-x: -50%;
+  --rules-translate-y: 0;
+}
+
+.frame{
+  position: relative !important;
+}
+
+#btnRules,
+.btn-rules,
+[data-rules]{
+  all: initial !important;
+
+  position: absolute !important;
+  left: var(--rules-x) !important;
+  top: var(--rules-y) !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: translate(var(--rules-translate-x), var(--rules-translate-y)) !important;
+  z-index: 90 !important;
+
+  background: #111 !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 8px 14px !important;
+  font-weight: 800 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  border: 2px solid rgba(255,255,255,.75) !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25) !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 @media (max-width: 900px){
-
-  .frame{ position: relative !important; }
-
-  .mode-group{
-    transform: scale(0.85);
-    transform-origin: left top;
-  }
-
-  #btnMegaMenu{
-    all: initial !important;
-    position: absolute !important;
-    left: 50% !important;
-    bottom: calc(var(--square) * 0.6) !important;
-    transform: translateX(-50%) !important;
-    z-index: 80 !important;
-
-    background:#111 !important;
-    color:#fff !important;
-    border-radius:999px !important;
-    padding:10px 18px !important;
-    font-weight:900 !important;
-    font-family:inherit !important;
-    cursor:pointer !important;
-    border:2px solid rgba(255,255,255,.75) !important;
-    box-shadow:0 4px 14px rgba(0,0,0,.25) !important;
-  }
-
-  #btnRules,
-  .btn-rules,
-  [data-rules]{
-    all: initial !important;
-    position: absolute !important;
-    left: 50% !important;
-    bottom: calc(var(--square) * -0.2) !important;
-    transform: translateX(-50%) !important;
-    z-index: 75 !important;
-
-    background:#111 !important;
-    color:#fff !important;
-    border-radius:999px !important;
-    padding:8px 14px !important;
-    font-weight:800 !important;
-    font-family:inherit !important;
-    cursor:pointer !important;
-    border:2px solid rgba(255,255,255,.7) !important;
-    box-shadow:0 4px 14px rgba(0,0,0,.22) !important;
+  :root{
+    --rules-y: calc(var(--square) * 0.4);
   }
 }
 </style>
-<!-- ================= END FINAL MOBILE UI PATCH ================= -->
+<!-- ================= END FLOATING RULES BUTTON ================= -->
 
 </head><body><div class="frame" data-fullscreen-root="" id="fsRoot"><div class="shell"><div aria-label="Barra superior" class="bar" id="topBar">
 <button aria-controls="megaPanel" aria-expanded="false" class="btn" id="btnMegaMenu" type="button" style="position:absolute; right:10px; top:6px; z-index:50;">Menú</button><div class="mode-group" id="modeGroup"><button aria-expanded="false" aria-haspopup="true" class="btn" id="btnMode" type="button">Modo de juego</button><span aria-live="polite" class="mode-indicator" id="modeIndicator">Player vs player (local)</span></div><div aria-live="polite" class="bot-hud" id="botHUD" role="status"><div class="bot-hud-inner"><span id="botHUDText"></span></div></div><div aria-label="Elegir modo de juego" class="dropdown" id="modeDropdown" role="menu"><button class="btn dd-item" data-label="Versus Bot" data-mode="bot" style="position:static;" type="button">Player Vs Bot</button><button class="btn dd-item" data-label="Player vs player (local)" data-mode="pvp-local" style="position:static;" type="button">Player vs player (local)</button></div></div><div style="height:var(--toolbar-gap)"></div><div class="board-wrap" id="boardWrap">
